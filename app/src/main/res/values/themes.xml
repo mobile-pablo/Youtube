@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.Youtube" parent="@style/Theme.Leanback" />
+</resources>
