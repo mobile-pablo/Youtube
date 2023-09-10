@@ -1,0 +1,34 @@
+name: Android Test Apk
+
+on:
+  push:
+    branches: [ "master", main, draft ]
+  pull_request:
+    branches: [ "master", main, draft ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: set up JDK 15.0.0-ea
+        uses: actions/setup-java@v3
+        with:
+          java-version: '20'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Create file
+        run: cat /home/runner/work/Youtube_-_TV/Youtube_-_TV/app/google-services.json | base64
+
+      - name: Putting data
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo $DATA > /home/runner/work/Youtube_-_TV/Youtube_-_TV/app/google-services.json
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew assembleDebug
