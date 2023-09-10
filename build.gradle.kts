@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android) apply false
     alias(libs.plugins.kotlinKapt) apply false
     alias(libs.plugins.kotlinParcelize) apply false
-  //  alias(libs.plugins.gmsGoogle) apply false
+    alias(libs.plugins.gmsGoogle) apply false
     alias(libs.plugins.hiltPlugin) apply false
     alias(libs.plugins.kspPlugin) apply false
     alias(libs.plugins.androidLibrary) apply false

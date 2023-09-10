@@ -4,9 +4,21 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.kotlinParcelize)
-   // alias(libs.plugins.gmsGoogle)
+    alias(libs.plugins.gmsGoogle)
     alias(libs.plugins.hiltPlugin)
     alias(libs.plugins.kspPlugin)
+}
+
+kotlin {
+    sourceSets {
+        debug {
+            kotlin.srcDir("build/generated/ksp/debug/kotlin")
+        }
+
+        getByName("release") {
+            kotlin.srcDir("build/generated/ksp/release/kotlin")
+        }
+    }
 }
 
 android {
@@ -54,14 +66,17 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.leanback)
 
+    implementation(libs.bundles.androidXBundle)
+    implementation(libs.bundles.composeBundle)
+    implementation(libs.bundles.tvBundle)
+
     implementation(libs.hilt.android)
     annotationProcessor(libs.hilt.compiler)
 
-    implementation(libs.bundles.composeBundle)
-    implementation(libs.bundles.androidXBundle)
-    implementation(libs.bundles.tvBundle)
+    kaptAndroidTest(libs.hilt.android.compiler)
+    ksp(libs.compose.destination.ksp)
 
+    testImplementation(libs.junit)
     debugImplementation(libs.bundles.composeDebugBundle)
-
     androidTestImplementation(libs.bundles.androidTestBundle)
 }
