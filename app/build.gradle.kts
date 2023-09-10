@@ -1,37 +1,22 @@
-apply(from = "../ktlint.gradle.kts")
-
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("kotlin-parcelize")
-    id("com.google.gms.google-services")
-    id("org.jetbrains.kotlin.android")
-    id("dagger.hilt.android.plugin")
-    id("com.google.devtools.ksp") version "1.8.0-1.0.9"
-}
-
-kotlin {
-    sourceSets {
-        debug {
-            kotlin.srcDir("build/generated/ksp/debug/kotlin")
-        }
-
-        getByName("release") {
-            kotlin.srcDir("build/generated/ksp/release/kotlin")
-        }
-    }
+    alias(libs.plugins.com.android.application)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlinKapt)
+    alias(libs.plugins.kotlinParcelize)
+   // alias(libs.plugins.gmsGoogle)
+    alias(libs.plugins.hiltPlugin)
+    alias(libs.plugins.kspPlugin)
 }
 
 android {
-    namespace = "com.mobile_pablo.youtube_tv"
+    namespace = "com.mobile.pablo.youtube"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.mobile_pablo.youtube_tv"
-        minSdk = 28
+        applicationId = "com.mobile.pablo.youtube"
+        minSdk = 21
         targetSdk = 33
-
         versionCode = 1
         versionName = "1.0"
 
@@ -47,12 +32,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = "11"
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     buildFeatures {
@@ -60,53 +41,27 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.0"
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
-tasks.getByPath("preBuild").dependsOn("ktlint")
-
 dependencies {
-    implementation(project(":uicomponents"))
-    implementation(project(":feature:home"))
 
-    implementation(libs.androidX.core)
-    implementation(libs.androidX.lifecycle)
+    implementation(libs.core.ktx)
     implementation(libs.leanback)
 
-    implementation(libs.compose.activity)
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material)
-
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    annotationProcessor(libs.hilt.compiler)
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.junit.ext)
-    androidTestImplementation(libs.google.truth) {
-        exclude(group = "dagger.fastInit")
-        exclude(group = "kapt.kotlin.generated")
-        exclude(group = "org.checkerframework")
-    }
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(libs.espresso.barista.compose)
-    androidTestImplementation(libs.espresso.barista) {
-        exclude(group = "org.jetbrains.kotlin")
-    }
-    androidTestImplementation(libs.uiautomator)
-    androidTestImplementation(libs.compose.junit)
-    androidTestImplementation(libs.hilt.testing)
-    androidTestImplementation(libs.compose.hiltNavigation)
-    kaptAndroidTest(libs.hilt.android.compiler)
+    implementation(libs.bundles.composeBundle)
+    implementation(libs.bundles.androidXBundle)
+    implementation(libs.bundles.tvBundle)
 
-    debugImplementation(libs.compose.tooling)
-    debugImplementation(libs.compose.testManifest)
+    debugImplementation(libs.bundles.composeDebugBundle)
 
-    implementation(libs.compose.destination)
-    ksp(libs.compose.destination.ksp)
-
-    implementation(libs.baseline.profile)
-
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
+    androidTestImplementation(libs.bundles.androidTestBundle)
 }

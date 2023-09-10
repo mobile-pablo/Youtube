@@ -44,6 +44,10 @@ accompanist = '0.31.0-alpha'
 truth = '1.1.3'
 hiltVersion = "2.42"
 
+build_gradle = "8.0"
+kotlin_gradle = "1.9.10"
+google_services = "4.3.15"
+
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 leanback = { group = "androidx.leanback", name = "leanback", version.ref = "leanback" }
@@ -105,6 +109,12 @@ firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
 
 google-accompanist = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
+
+
+buildGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "build_gradle" }
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin_gradle" }
+hiltPlugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltVersion" }
+googleServicesPlugin = { module = "com.google.gms:google-services", version.ref = "google_services" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
