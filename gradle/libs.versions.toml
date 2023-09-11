@@ -128,7 +128,8 @@ kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
 [bundles]
-networkingBundle = ["okhttp", "okhttp-logging", "retrofit", "retrofit-scalars", "moshi", "moshi-retrofit"]
+networkingBundle = ["okhttp", "okhttp-logging", "retrofit", "retrofit-scalars"]
+moshiBundle = [ "moshi", "moshi-retrofit"]
 androidXBundle = ["androidX-core", "androidX-lifecycle", "androidX-lifecycle-viewmodel"]
 media3Bundle = ["media3-exoplayer", "media3-ui"]
 tvBundle = ["tv-foundation", "tv-material"]
