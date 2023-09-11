@@ -1,15 +1,13 @@
-apply(from = "../ktlint.gradle.kts")
+apply(from = "../../ktlint.gradle.kts")
 
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.kotlinParcelize)
 }
 
 android {
-    namespace = "com.mobile.pablo.networking"
+    namespace = "com.mobile.pablo.home"
     compileSdk = 33
 
     defaultConfig {
@@ -20,29 +18,11 @@ android {
     }
 
     buildTypes {
-        debug {
-            isMinifyEnabled = false
-
-            //TODO: temp address
-            buildConfigField(
-                type = "String",
-                name = "SERVER_URL",
-                value = "\"https://localhost:8080/\""
-            )
-        }
-
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
-            )
-
-            //TODO: temp address
-            buildConfigField(
-                type = "String",
-                name = "SERVER_URL",
-                value = "\"https://localhost:8080/\""
             )
         }
     }
@@ -50,6 +30,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -58,9 +47,9 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    implementation(libs.bundles.networkingBundle)
 
-    api(libs.coroutine.core)
+    implementation(libs.bundles.composeBundle)
+    implementation(libs.bundles.tvBundle)
 
     implementation(libs.hilt.android)
     annotationProcessor(libs.hilt.compiler)
