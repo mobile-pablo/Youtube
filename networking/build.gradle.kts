@@ -58,6 +58,8 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
+    api(project(":storage"))
+
     implementation(libs.bundles.networkingBundle)
 
     api(libs.coroutine.core)

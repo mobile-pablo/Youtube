@@ -29,7 +29,7 @@ android {
 
     defaultConfig {
         applicationId = "com.mobile.pablo.youtube"
-        minSdk = 21
+        minSdk = 28
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -66,6 +66,7 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
+    implementation(project(":feature:home"))
 
     implementation(libs.core.ktx)
     implementation(libs.leanback)

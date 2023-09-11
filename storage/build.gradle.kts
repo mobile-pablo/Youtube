@@ -48,6 +48,7 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
+    api(project(":core"))
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

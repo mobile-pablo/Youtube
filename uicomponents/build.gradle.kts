@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.kotlinParcelize)
-    alias(libs.plugins.gmsGoogle)
     alias(libs.plugins.hiltPlugin)
     alias(libs.plugins.kspPlugin)
 }

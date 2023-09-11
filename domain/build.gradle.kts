@@ -38,6 +38,8 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
+    api(project(":networking"))
+
     testImplementation(libs.junit)
 
     implementation(libs.hilt.android)
