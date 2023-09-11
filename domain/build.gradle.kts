@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mobile.pablo.core"
+    namespace = "com.mobile.pablo.domain"
     compileSdk = 33
 
     defaultConfig {
@@ -38,12 +38,8 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    implementation(libs.bundles.androidXBundle)
+    testImplementation(libs.junit)
 
     implementation(libs.hilt.android)
     annotationProcessor(libs.hilt.compiler)
-
-    api(libs.bundles.moshiBundle)
-
-    testImplementation(libs.junit)
 }

@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "Youtube"
 include(":app")
 include(":core")
+include(":domain")
