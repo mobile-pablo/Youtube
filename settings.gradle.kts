@@ -17,3 +17,4 @@ rootProject.name = "Youtube"
 include(":app")
 include(":core")
 include(":domain")
+include(":networking")
