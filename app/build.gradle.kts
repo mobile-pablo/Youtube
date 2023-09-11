@@ -1,3 +1,5 @@
+apply(from = "../ktlint.gradle.kts")
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.com.android.application)
@@ -60,6 +62,8 @@ android {
         jvmTarget = "1.8"
     }
 }
+
+tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
 
