@@ -67,6 +67,7 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
     implementation(project(":feature:home"))
+    implementation(project(":uicomponents"))
 
     implementation(libs.core.ktx)
     implementation(libs.leanback)

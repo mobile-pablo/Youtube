@@ -1,4 +1,4 @@
-package com.mobile.pablo.youtube.theme
+package com.mobile.pablo.uicomponents.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider

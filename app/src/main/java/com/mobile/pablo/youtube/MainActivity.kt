@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.Text
-import com.mobile.pablo.youtube.theme.YoutubeTheme
+import com.mobile.pablo.uicomponents.theme.YoutubeTheme
 
 class MainActivity : ComponentActivity() {
 

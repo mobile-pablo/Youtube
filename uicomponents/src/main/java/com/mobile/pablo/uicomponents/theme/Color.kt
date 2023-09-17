@@ -1,4 +1,4 @@
-package com.mobile.pablo.youtube.theme
+package com.mobile.pablo.uicomponents.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
