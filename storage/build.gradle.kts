@@ -51,7 +51,7 @@ dependencies {
     api(project(":core"))
 
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    annotationProcessor(libs.hilt.compiler)
 
     api(libs.room.ktx)
     ksp(libs.room.compiler)
