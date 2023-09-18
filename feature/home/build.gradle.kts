@@ -3,6 +3,7 @@ apply(from = "../../ktlint.gradle.kts")
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.org.jetbrains.kotlin.android)
 }
 
@@ -26,10 +27,6 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
 
     buildFeatures {
         compose = true
@@ -41,6 +38,10 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    kapt {
+        correctErrorTypes = true
     }
 }
 
@@ -54,7 +55,7 @@ dependencies {
     implementation(libs.bundles.tvBundle)
 
     implementation(libs.hilt.android)
-    annotationProcessor(libs.hilt.compiler)
+    kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.bundles.androidTestBundle)

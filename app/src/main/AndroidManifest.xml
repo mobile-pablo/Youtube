@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.mobile.pablo.youtube">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,8 +12,7 @@
             android:required="true" />
 
     <application
-            android:name=".di.YoutubeApplication"
-            android:allowBackup="true"
+            android:name=".app.YoutubeApplication"
             android:banner="@drawable/ic_100tb"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -20,7 +20,6 @@
         <activity
                 android:name=".MainActivity"
                 android:exported="true"
-                android:label="@string/app_name"
                 android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

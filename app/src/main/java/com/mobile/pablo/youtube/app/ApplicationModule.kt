@@ -1,4 +1,4 @@
-package com.mobile.pablo.youtube.di
+package com.mobile.pablo.youtube.app
 
 import dagger.Module
 import dagger.hilt.InstallIn

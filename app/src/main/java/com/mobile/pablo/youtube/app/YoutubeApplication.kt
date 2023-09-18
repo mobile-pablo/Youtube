@@ -1,4 +1,4 @@
-package com.mobile.pablo.youtube.di
+package com.mobile.pablo.youtube.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
