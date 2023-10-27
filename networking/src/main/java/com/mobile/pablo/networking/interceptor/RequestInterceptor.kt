@@ -13,15 +13,21 @@ import java.net.UnknownHostException
 class RequestInterceptor : Interceptor {
 
     companion object {
+
         private const val USER_AGENT = "User-Agent"
         private const val ANDROID = "Android"
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val url = chain.request().url.newBuilder().addQueryParameter("key", YOUTUBE_KEY)
+        val url = chain.request()
+            .url
+            .newBuilder()
+            .addQueryParameter("key", YOUTUBE_KEY)
+            .build()
+
         val request = chain.request()
         return try {
-            val requestBuilder = request.newBuilder()
+            val requestBuilder = request.newBuilder().url(url)
                 .addHeader(USER_AGENT, ANDROID)
             chain.proceed(requestBuilder.build())
         } catch (timeout: SocketTimeoutException) {
