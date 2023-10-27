@@ -2,6 +2,9 @@ package com.mobile.pablo.networking.di
 
 import com.mobile.pablo.networking.BuildConfig
 import com.mobile.pablo.networking.interceptor.RequestInterceptor
+import com.mobile.pablo.networking.service.YoutubeService
+import com.mobile.pablo.networking.source.VideoDataSource
+import com.mobile.pablo.networking.source.VideoDataSourceImpl
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -18,8 +21,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkingModule {
-
-    // TODO : Add Auth Interceptor accordingly to Youtube API + OAuth
 
     @Provides
     @Singleton
@@ -45,4 +46,13 @@ object NetworkingModule {
             .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
+
+    @Provides
+    @Singleton
+    internal fun providesYoutubeService(retrofit: Retrofit): YoutubeService =
+        retrofit.create(YoutubeService::class.java)
+
+    @Provides
+    @Singleton
+    internal fun providesVideoDataSource(impl : VideoDataSourceImpl): VideoDataSource = impl
 }
