@@ -1,4 +1,4 @@
-package com.mobile.pablo.core.models
+package com.mobile.pablo.core.model
 
 data class SearchItemDTO(
     val kind: String? = null,

@@ -1,6 +1,6 @@
 package com.mobile.pablo.networking.mapper
 
-import com.mobile.pablo.core.models.ThumbnailsDTO
+import com.mobile.pablo.core.model.ThumbnailsDTO
 import com.mobile.pablo.networking.model.ThumbnailsResponse
 import javax.inject.Inject
 

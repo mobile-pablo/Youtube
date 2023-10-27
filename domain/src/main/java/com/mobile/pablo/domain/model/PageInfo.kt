@@ -1,6 +1,6 @@
-package com.mobile.pablo.core.models
+package com.mobile.pablo.domain.model
 
-data class PageInfoDTO(
+data class PageInfo(
     val totalResults: Int? = null,
     val resultsPerPage: Int? = null
 )

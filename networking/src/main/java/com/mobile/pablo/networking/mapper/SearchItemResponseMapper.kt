@@ -1,6 +1,6 @@
 package com.mobile.pablo.networking.mapper
 
-import com.mobile.pablo.core.models.SearchItemDTO
+import com.mobile.pablo.core.model.SearchItemDTO
 import com.mobile.pablo.networking.model.SearchItemResponse
 import javax.inject.Inject
 

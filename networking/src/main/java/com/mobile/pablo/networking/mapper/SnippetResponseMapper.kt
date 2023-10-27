@@ -1,6 +1,6 @@
 package com.mobile.pablo.networking.mapper
 
-import com.mobile.pablo.core.models.SnippetDTO
+import com.mobile.pablo.core.model.SnippetDTO
 import com.mobile.pablo.networking.model.SnippetResponse
 import javax.inject.Inject
 
