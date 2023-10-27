@@ -1,7 +1,5 @@
 package com.mobile.pablo.core.models
 
-import com.squareup.moshi.Json
-
 data class SnippetDTO(
     var publishedAt: String? = null,
     var channelId: String? = null,

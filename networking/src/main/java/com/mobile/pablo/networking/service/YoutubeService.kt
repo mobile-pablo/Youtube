@@ -10,6 +10,6 @@ internal interface YoutubeService {
     @GET("/search")
     suspend fun getSearchVideos(
         @Query("part") part: String = "snippet",
-        @Query("q") q: String = "cat",
-    ) : Response<SearchResponse>
+        @Query("q") q: String
+    ): Response<SearchResponse>
 }

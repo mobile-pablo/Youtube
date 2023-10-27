@@ -5,7 +5,7 @@ import com.mobile.pablo.networking.model.SearchItemResponse
 import javax.inject.Inject
 
 internal class SearchItemResponseMapper @Inject constructor(
-    private val idResponseMapper : IdResponseMapper,
+    private val idResponseMapper: IdResponseMapper,
     private val snippetResponseMapper: SnippetResponseMapper
 ) {
     fun map(remote: SearchItemResponse?): SearchItemDTO? {

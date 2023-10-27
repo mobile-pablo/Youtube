@@ -26,5 +26,4 @@ internal class VideoDataSourceImpl @Inject constructor(
             }
         }
     }
-
 }
