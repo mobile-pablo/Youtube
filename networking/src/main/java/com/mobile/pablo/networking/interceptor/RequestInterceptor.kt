@@ -1,6 +1,7 @@
 package com.mobile.pablo.networking.interceptor
 
 import com.mobile.pablo.core.util.EMPTY_STRING
+import com.mobile.pablo.networking.utils.YOUTUBE_KEY
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Response
@@ -17,6 +18,7 @@ class RequestInterceptor : Interceptor {
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
+        val url = chain.request().url.newBuilder().addQueryParameter("key", YOUTUBE_KEY)
         val request = chain.request()
         return try {
             val requestBuilder = request.newBuilder()
