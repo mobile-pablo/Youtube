@@ -8,5 +8,5 @@ data class SearchResponse(
     @Json(name = "nextPageToken") var nextPageToken: String? = null,
     @Json(name = "regionCode") var regionCode: String? = null,
     @Json(name = "pageInfo") var pageInfo: PageInfoResponse? = null,
-    @Json(name = "items") var items: ArrayList<SearchItemsResponse> = arrayListOf()
+    @Json(name = "items") var items: ArrayList<SearchItemResponse> = arrayListOf()
 )

@@ -43,9 +43,12 @@ dependencies {
     implementation(libs.bundles.androidXBundle)
 
     implementation(libs.hilt.android)
+    implementation(libs.firebase.crashlytics.ktx)
+    implementation(libs.firebase.bom)
     kapt(libs.hilt.compiler)
 
     api(libs.bundles.moshiBundle)
+    api(libs.timber)
 
     testImplementation(libs.junit)
 }
