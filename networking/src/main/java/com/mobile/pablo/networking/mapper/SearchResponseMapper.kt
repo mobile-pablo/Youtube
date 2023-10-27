@@ -9,15 +9,25 @@ internal class SearchResponseMapper @Inject constructor(
     private val searchItemResponseMapper: SearchItemResponseMapper
 ) {
 
-    fun map(remote: SearchResponse?): SearchDTO? {
-        return remote?.run {
+    fun mapSearch(response: SearchResponse?): SearchDTO? {
+        return response?.run {
             SearchDTO(
-                kind,
-                etag,
-                nextPageToken,
-                regionCode,
-                pageInfoResponseMapper.map(pageInfo),
-                items.map(searchItemResponseMapper::map)
+                kind = kind,
+                etag = etag,
+                nextPageToken = nextPageToken,
+                regionCode = regionCode,
+                pageInfo = pageInfoResponseMapper.map(pageInfo),
+                items = items.map(searchItemResponseMapper::mapSearch)
+            )
+        }
+    }
+
+    fun mapPopularSearch(response: SearchResponse?): SearchDTO? {
+        return response?.run {
+            SearchDTO(
+                kind = kind,
+                etag = etag,
+                items = items.map(searchItemResponseMapper::mapPopularSearch)
             )
         }
     }

@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 internal class ThumbnailResponseMapper @Inject constructor() {
 
-    fun map(thumbnail: ThumbnailResponse?): ThumbnailDTO? {
-        return thumbnail?.run {
+    fun map(response: ThumbnailResponse?): ThumbnailDTO? {
+        return response?.run {
             ThumbnailDTO(
                 url,
                 width,

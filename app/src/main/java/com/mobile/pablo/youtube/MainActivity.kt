@@ -12,7 +12,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             YoutubeTheme {
-                Text("hey")
+                Text("Lorem ipsum dolet sit amet")
             }
         }
     }

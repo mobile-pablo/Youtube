@@ -12,4 +12,11 @@ internal interface YoutubeService {
         @Query("part") part: String = "snippet",
         @Query("q") q: String
     ): Response<SearchResponse>
+
+    @GET("/videos")
+    suspend fun getPopularSearchVideos(
+        @Query("part") part: String = "snippet",
+        @Query("chart") chart: String = "mostPopular",
+        @Query("regionCode") regionCode: String = "US"
+    ): Response<SearchResponse>
 }

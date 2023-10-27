@@ -19,10 +19,29 @@ internal class VideoDataSourceImpl @Inject constructor(
         return when {
             searchResponse.isSuccessful -> {
                 val searchResult = searchResponse.body()
-                DataTransfer(searchResponseMapper.map(searchResult))
+                DataTransfer(searchResponseMapper.mapSearch(searchResult))
             }
             else -> {
                 DataTransfer(error = Exception(searchResponse.message()))
+            }
+        }
+    }
+
+    override suspend fun getPopularVideos(
+        query: String,
+        regionCode: String
+    ): DataTransfer<SearchDTO> {
+        val searchPopularResponse = callSafe {
+            youtubeService.getPopularSearchVideos(regionCode = regionCode)
+        }
+
+        return when {
+            searchPopularResponse.isSuccessful -> {
+                val searchResult = searchPopularResponse.body()
+                DataTransfer(searchResponseMapper.mapPopularSearch(searchResult))
+            }
+            else -> {
+                DataTransfer(error = Exception(searchPopularResponse.message()))
             }
         }
     }

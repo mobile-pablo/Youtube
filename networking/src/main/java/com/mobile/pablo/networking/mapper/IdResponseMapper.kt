@@ -9,8 +9,8 @@ internal class IdResponseMapper @Inject constructor() {
     fun map(remote: IdResponse?): IdDTO? {
         return remote?.run {
             IdDTO(
-                kind,
-                videoId
+                kind = kind,
+                videoId = videoId
             )
         }
     }

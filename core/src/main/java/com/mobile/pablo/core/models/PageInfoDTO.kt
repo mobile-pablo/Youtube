@@ -1,6 +1,6 @@
 package com.mobile.pablo.core.models
 
 data class PageInfoDTO(
-    var totalResults: Int? = null,
-    var resultsPerPage: Int? = null
+    val totalResults: Int? = null,
+    val resultsPerPage: Int? = null
 )

@@ -1,12 +1,16 @@
 package com.mobile.pablo.core.models
 
 data class SnippetDTO(
-    var publishedAt: String? = null,
-    var channelId: String? = null,
-    var title: String? = null,
-    var description: String? = null,
-    var thumbnails: ThumbnailsDTO? = null,
-    var channelTitle: String? = null,
-    var liveBroadcastContent: String? = null,
-    var publishTime: String? = null
+    val publishedAt: String? = null,
+    val channelId: String? = null,
+    val title: String? = null,
+    val description: String? = null,
+    val thumbnails: ThumbnailsDTO? = null,
+    val channelTitle: String? = null,
+    val liveBroadcastContent: String? = null,
+    val publishTime: String? = null,
+    val tags: ArrayList<String> = arrayListOf(),
+    val categoryId: String? = null,
+    val localized: LocalizedDTO? = null,
+    val defaultAudioLanguage: String? = null
 )

@@ -1,6 +1,6 @@
 package com.mobile.pablo.core.models
 
 data class IdDTO(
-    var kind: String? = null,
-    var videoId: String? = null
+    val kind: String? = null,
+    val videoId: String? = null
 )

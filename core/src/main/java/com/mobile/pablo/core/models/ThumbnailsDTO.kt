@@ -1,13 +1,13 @@
 package com.mobile.pablo.core.models
 
 data class ThumbnailsDTO(
-    var default: ThumbnailDTO? = null,
-    var medium: ThumbnailDTO? = null,
-    var high: ThumbnailDTO? = null
+    val default: ThumbnailDTO? = null,
+    val medium: ThumbnailDTO? = null,
+    val high: ThumbnailDTO? = null
 )
 
 data class ThumbnailDTO(
-    var url: String? = null,
-    var width: Int? = null,
-    var height: Int? = null
+    val url: String? = null,
+    val width: Int? = null,
+    val height: Int? = null
 )

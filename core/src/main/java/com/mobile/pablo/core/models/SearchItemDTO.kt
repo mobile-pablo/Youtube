@@ -1,8 +1,8 @@
 package com.mobile.pablo.core.models
 
 data class SearchItemDTO(
-    var kind: String? = null,
-    var etag: String? = null,
-    var id: IdDTO? = null,
-    var snippet: SnippetDTO? = null
+    val kind: String? = null,
+    val etag: String? = null,
+    val id: IdDTO? = null,
+    val snippet: SnippetDTO? = null
 )
