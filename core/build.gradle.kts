@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.firebaseCrashlytics)
 }
 
 android {
@@ -43,7 +44,8 @@ dependencies {
     implementation(libs.bundles.androidXBundle)
 
     implementation(libs.hilt.android)
-    implementation(libs.firebase.crashlytics.ktx)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.bom)
     kapt(libs.hilt.compiler)
 

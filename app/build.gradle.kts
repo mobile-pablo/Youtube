@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.gmsGoogle)
     alias(libs.plugins.hiltPlugin)
     alias(libs.plugins.kspPlugin)
+    alias(libs.plugins.firebaseCrashlytics)
 }
 
 kotlin {

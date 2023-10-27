@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.hiltPlugin) apply false
     alias(libs.plugins.kspPlugin) apply false
     alias(libs.plugins.androidLibrary) apply false
+    alias(libs.plugins.firebaseCrashlytics) apply false
 }
 true // Needed to make the Suppress annotation work for the plugins block
 

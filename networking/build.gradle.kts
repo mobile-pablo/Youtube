@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.kotlinParcelize)
+    alias(libs.plugins.firebaseCrashlytics)
 }
 
 android {

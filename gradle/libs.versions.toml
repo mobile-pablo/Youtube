@@ -7,9 +7,10 @@ leanback = "1.0.0"
 gms = "4.3.15"
 ksp = "1.9.0-1.0.11"
 kotlin = "1.7.0"
+firebaseCrashlyticsGradle = "2.9.9"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
-espresso-core = "3.5.1"
+espresso-core = '3.5.1'
 tv-compose = "1.0.0-alpha07"
 compose = '1.4.0'
 compose_material = '1.4.0'
@@ -40,7 +41,6 @@ runner = '1.4.0'
 uiautomator = '2.3.0-alpha02'
 baseline-profile = '1.3.0'
 firebase_bom = '31.5.0'
-firebase_crashlytics = '18.5.1'
 hilt-testing = '2.44'
 accompanist = '0.31.0-alpha'
 truth = '1.1.3'
@@ -91,7 +91,7 @@ junit-macroBenchmark = { module = "androidx.benchmark:benchmark-macro-junit4", v
 testRunner = { module = "androidx.test:runner", version.ref = "runner" }
 uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
 baseline-profile = { module = "androidx.profileinstaller:profileinstaller", version.ref = "baseline-profile" }
-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
 espresso-barista = { module = "com.adevinta.android:barista", version.ref = "barista" }
 espresso-barista-compose = { module = "com.adevinta.android:barista-compose", version.ref = "barista" }
 
@@ -108,7 +108,8 @@ moshi-retrofit = { module = "com.squareup.retrofit2:converter-moshi", version.re
 coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutineCore" }
 
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase_bom" }
-firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx", version = "18.5.0" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version = "21.4.0"  }
 
 google-accompanist = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
@@ -118,7 +119,6 @@ buildGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin_gradle" }
 hiltPlugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltVersion" }
 googleServicesPlugin = { module = "com.google.gms:google-services", version.ref = "google_services" }
-firebase-crashlytics-ktx = { group = "com.google.firebase", name = "firebase-crashlytics-ktx", version = "firebase_crashlytics" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
@@ -130,6 +130,7 @@ gmsGoogle = { id = "com.google.gms.google-services", version.ref = "gms" }
 hiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+firebaseCrashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsGradle" }
 
 [bundles]
 networkingBundle = ["okhttp", "okhttp-logging", "retrofit", "retrofit-scalars"]
