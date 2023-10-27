@@ -27,7 +27,9 @@ internal class SearchResponseMapper @Inject constructor(
             SearchDTO(
                 kind = kind,
                 etag = etag,
-                items = items.map(searchItemResponseMapper::mapPopularSearch)
+                items = items.map(searchItemResponseMapper::mapPopularSearch),
+                nextPageToken = nextPageToken,
+                pageInfo = pageInfoResponseMapper.map(pageInfo),
             )
         }
     }
