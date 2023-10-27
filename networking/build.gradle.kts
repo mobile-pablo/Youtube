@@ -27,7 +27,7 @@ android {
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
-                value = "\"https://localhost:8080/\""
+                value = "\"https://youtube.googleapis.com/youtube/v3/\""
             )
         }
 
@@ -42,7 +42,7 @@ android {
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
-                value = "\"https://localhost:8080/\""
+                value = "\"https://youtube.googleapis.com/youtube/v3/\""
             )
         }
     }
