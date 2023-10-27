@@ -4,7 +4,7 @@ import com.mobile.pablo.core.model.SnippetDTO
 import com.mobile.pablo.domain.model.Snippet
 import javax.inject.Inject
 
-internal class SnippetMapper @Inject constructor(
+class SnippetMapper @Inject constructor(
     private val thumbnailsMapper: ThumbnailsMapper,
     private val localizedMapper: LocalizedMapper
 ) {

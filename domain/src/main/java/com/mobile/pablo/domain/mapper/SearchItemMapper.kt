@@ -4,7 +4,7 @@ import com.mobile.pablo.core.model.SearchItemDTO
 import com.mobile.pablo.domain.model.SearchItem
 import javax.inject.Inject
 
-internal class SearchItemMapper @Inject constructor(
+class SearchItemMapper @Inject constructor(
     private val idMapper: IdMapper,
     private val snippetMapper: SnippetMapper
 ) {

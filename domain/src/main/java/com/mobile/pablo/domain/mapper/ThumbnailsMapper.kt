@@ -4,7 +4,7 @@ import com.mobile.pablo.core.model.ThumbnailsDTO
 import com.mobile.pablo.domain.model.Thumbnails
 import javax.inject.Inject
 
-internal class ThumbnailsMapper @Inject constructor(
+class ThumbnailsMapper @Inject constructor(
     private val thumbnailMapper: ThumbnailMapper
 ) {
 

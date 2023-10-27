@@ -28,7 +28,6 @@ internal class VideoDataSourceImpl @Inject constructor(
     }
 
     override suspend fun getPopularVideos(
-        query: String,
         regionCode: String
     ): DataTransfer<SearchDTO> {
         val searchPopularResponse = callSafe {

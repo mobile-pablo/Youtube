@@ -4,7 +4,7 @@ import com.mobile.pablo.core.model.PageInfoDTO
 import com.mobile.pablo.domain.model.PageInfo
 import javax.inject.Inject
 
-internal class PageInfoMapper @Inject constructor() {
+class PageInfoMapper @Inject constructor() {
 
     fun map(dto: PageInfoDTO?): PageInfo? {
         return dto?.run {

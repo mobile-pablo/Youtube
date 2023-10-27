@@ -4,7 +4,7 @@ import com.mobile.pablo.core.model.SearchDTO
 import com.mobile.pablo.domain.model.Search
 import javax.inject.Inject
 
-internal class SearchMapper @Inject constructor(
+class SearchMapper @Inject constructor(
     private val pageInfoMapper: PageInfoMapper,
     private val searchItemMapper: SearchItemMapper
 ) {
