@@ -54,5 +54,5 @@ object NetworkingModule {
 
     @Provides
     @Singleton
-    internal fun providesVideoDataSource(impl : VideoDataSourceImpl): VideoDataSource = impl
+    internal fun providesVideoDataSource(impl: VideoDataSourceImpl): VideoDataSource = impl
 }

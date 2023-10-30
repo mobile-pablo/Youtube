@@ -29,7 +29,7 @@ class SearchMapper @Inject constructor(
                 etag = etag,
                 items = items!!.map(searchItemMapper::mapPopularSearch),
                 nextPageToken = nextPageToken,
-                pageInfo = pageInfoMapper.map(pageInfo),
+                pageInfo = pageInfoMapper.map(pageInfo)
             )
         }
     }

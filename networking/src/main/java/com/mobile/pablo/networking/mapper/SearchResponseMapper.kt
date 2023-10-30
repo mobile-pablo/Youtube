@@ -29,7 +29,7 @@ internal class SearchResponseMapper @Inject constructor(
                 etag = etag,
                 items = items.map(searchItemResponseMapper::mapPopularSearch),
                 nextPageToken = nextPageToken,
-                pageInfo = pageInfoResponseMapper.map(pageInfo),
+                pageInfo = pageInfoResponseMapper.map(pageInfo)
             )
         }
     }

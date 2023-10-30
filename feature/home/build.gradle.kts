@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.firebaseCrashlytics)
+    alias(libs.plugins.kspPlugin)
 }
 
 android {
@@ -44,6 +45,17 @@ android {
     kapt {
         correctErrorTypes = true
     }
+
+    ksp {
+        arg(
+            "compose-destinations.moduleName",
+            "home"
+        )
+        arg(
+            "compose-destinations.mode",
+            "destinations"
+        )
+    }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlint")
@@ -54,6 +66,7 @@ dependencies {
 
     implementation(libs.bundles.composeBundle)
     implementation(libs.bundles.tvBundle)
+    ksp(libs.compose.destination.ksp)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

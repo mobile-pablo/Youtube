@@ -32,7 +32,7 @@ sealed class VideosUseCase {
         private val searchMapper: SearchMapper
     ) : VideosUseCase() {
 
-        suspend operator fun invoke(regionCode : String): DataTransfer<Search> {
+        suspend operator fun invoke(regionCode: String): DataTransfer<Search> {
             val searchResponse = videoDataSource.getPopularVideos(regionCode = regionCode)
 
             return when {
