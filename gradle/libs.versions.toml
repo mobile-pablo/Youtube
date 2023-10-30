@@ -10,7 +10,6 @@ kotlin = "1.7.0"
 firebaseCrashlyticsGradle = "2.9.9"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
-espresso-core = '3.5.1'
 tv-compose = "1.0.0-alpha07"
 compose = '1.4.0'
 compose_material = '1.4.0'
@@ -91,7 +90,6 @@ junit-macroBenchmark = { module = "androidx.benchmark:benchmark-macro-junit4", v
 testRunner = { module = "androidx.test:runner", version.ref = "runner" }
 uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
 baseline-profile = { module = "androidx.profileinstaller:profileinstaller", version.ref = "baseline-profile" }
-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
 espresso-barista = { module = "com.adevinta.android:barista", version.ref = "barista" }
 espresso-barista-compose = { module = "com.adevinta.android:barista-compose", version.ref = "barista" }
 
@@ -145,7 +143,7 @@ composeBundle = ["compose-activity", "compose-bom", "compose-coil", "compose-con
 composeDebugBundle = ["compose-tooling", "compose-testManifest"]
 
 androidTestBundle = ["junit-ext", "google-truth", "espresso-barista", "espresso-barista-compose",
-    "espresso-core", "uiautomator", "compose-hiltNavigation", "hilt-testing"]
+    "uiautomator", "compose-hiltNavigation", "hilt-testing"]
 
 
 
