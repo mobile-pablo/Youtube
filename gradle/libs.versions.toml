@@ -137,13 +137,13 @@ androidXBundle = ["androidX-core", "androidX-lifecycle", "androidX-lifecycle-vie
 media3Bundle = ["media3-exoplayer", "media3-ui"]
 tvBundle = ["tv-foundation", "tv-material"]
 composeBundle = ["compose-activity", "compose-bom", "compose-coil", "compose-constraint",
-    "compose-destination", "compose-junit",
+    "compose-destination", "compose-junit", "compose-hiltNavigation",
     "compose-lifecycle", "compose-material", "compose-swipe", "compose-viewmodel", "compose-ui", "compose-tooling-preview"]
 
 composeDebugBundle = ["compose-tooling", "compose-testManifest"]
 
 androidTestBundle = ["junit-ext", "google-truth", "espresso-barista", "espresso-barista-compose",
-    "uiautomator", "compose-hiltNavigation", "hilt-testing"]
+    "uiautomator", "hilt-testing"]
 
 
 

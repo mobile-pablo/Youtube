@@ -1,9 +1,12 @@
 package com.mobile.pablo.home.screen
 
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import androidx.tv.material3.Text
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -11,7 +14,25 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination
 fun HomeScreen(
     destinationsNavigator: DestinationsNavigator,
-    navController: NavController = rememberNavController()
+    navController: NavController = rememberNavController(),
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
-    Text(text = "Home Screen")
+    val homeState = viewModel.homeState.value
+    when (homeState) {
+        is HomeState.Loading -> {
+            Text(text = "Loading")
+        }
+
+        is HomeState.Done -> {
+            LazyColumn {
+                items(homeState.data.items!!) { item ->
+                    Text(text = item!!.snippet!!.description!!)
+                }
+            }
+        }
+
+        else -> {
+            Text(text = "Error")
+        }
+    }
 }

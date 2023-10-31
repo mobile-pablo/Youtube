@@ -11,7 +11,9 @@ import androidx.tv.material3.Surface
 import com.mobile.pablo.uicomponents.theme.YoutubeTheme
 import com.mobile.pablo.youtube.nav.NavGraphs
 import com.ramcosta.composedestinations.DestinationsNavHost
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     @OptIn(ExperimentalTvMaterial3Api::class)
