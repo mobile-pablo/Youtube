@@ -62,6 +62,10 @@ android {
     kapt {
         correctErrorTypes = true
     }
+
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlint")
