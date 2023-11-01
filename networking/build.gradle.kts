@@ -24,11 +24,11 @@ android {
         debug {
             isMinifyEnabled = false
 
-            //TODO: temp address
+
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
-                value = "\"https://youtube.googleapis.com/youtube/v3/\""
+                value = "\"https://www.googleapis.com/\""
             )
         }
 
@@ -39,11 +39,10 @@ android {
                 "proguard-rules.pro"
             )
 
-            //TODO: temp address
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
-                value = "\"https://youtube.googleapis.com/youtube/v3/\""
+                value = "\"https://www.googleapis.com/youtube/\""
             )
         }
     }

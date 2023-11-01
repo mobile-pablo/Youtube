@@ -2,7 +2,6 @@ package com.mobile.pablo.networking.source
 
 import com.mobile.pablo.core.model.SearchDTO
 import com.mobile.pablo.core.data.DataTransfer
-import com.mobile.pablo.core.data.callSafe
 import com.mobile.pablo.networking.mapper.SearchResponseMapper
 import com.mobile.pablo.networking.service.YoutubeService
 import javax.inject.Inject
@@ -13,9 +12,8 @@ internal class VideoDataSourceImpl @Inject constructor(
 ) : VideoDataSource {
 
     override suspend fun getSearchVideos(query: String): DataTransfer<SearchDTO> {
-        val searchResponse = callSafe {
-            youtubeService.getSearchVideos(q = query)
-        }
+        val searchResponse = youtubeService.getSearchVideos(q = query)
+
         return when {
             searchResponse.isSuccessful -> {
                 val searchResult = searchResponse.body()
@@ -30,9 +28,7 @@ internal class VideoDataSourceImpl @Inject constructor(
     override suspend fun getPopularVideos(
         regionCode: String
     ): DataTransfer<SearchDTO> {
-        val searchPopularResponse = callSafe {
-            youtubeService.getPopularSearchVideos(regionCode = regionCode)
-        }
+        val searchPopularResponse = youtubeService.getPopularSearchVideos(regionCode = regionCode)
 
         return when {
             searchPopularResponse.isSuccessful -> {
@@ -40,7 +36,7 @@ internal class VideoDataSourceImpl @Inject constructor(
                 DataTransfer(searchResponseMapper.mapPopularSearch(searchResult))
             }
             else -> {
-                DataTransfer(error = Exception(searchPopularResponse.message()))
+                DataTransfer(error = Exception(searchPopularResponse.code().toString()))
             }
         }
     }

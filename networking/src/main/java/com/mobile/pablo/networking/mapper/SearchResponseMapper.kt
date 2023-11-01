@@ -17,7 +17,7 @@ internal class SearchResponseMapper @Inject constructor(
                 nextPageToken = nextPageToken,
                 regionCode = regionCode,
                 pageInfo = pageInfoResponseMapper.map(pageInfo),
-                items = items.map(searchItemResponseMapper::mapSearch)
+                items = items?.map(searchItemResponseMapper::mapSearch)
             )
         }
     }
@@ -27,7 +27,7 @@ internal class SearchResponseMapper @Inject constructor(
             SearchDTO(
                 kind = kind,
                 etag = etag,
-                items = items.map(searchItemResponseMapper::mapPopularSearch),
+                items = items?.map(searchItemResponseMapper::mapPopularSearch),
                 nextPageToken = nextPageToken,
                 pageInfo = pageInfoResponseMapper.map(pageInfo)
             )

@@ -1,14 +1,13 @@
 package com.mobile.pablo.home.screen
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.mobile.pablo.core.ext.launchAsync
 import com.mobile.pablo.domain.usecase.VideosUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -17,8 +16,8 @@ class HomeViewModel @Inject constructor(
 
     private var downloadJob: Job? = null
 
-    private val _homeState: MutableState<HomeState> = mutableStateOf(value = HomeState.Loading)
-    val homeState: State<HomeState> = _homeState
+    private val _homeState: MutableStateFlow<HomeState> = MutableStateFlow(value = HomeState.Loading)
+    val homeState: StateFlow<HomeState> = _homeState
 
     fun getPopularVideos(regionCode: String) {
         downloadJob?.cancel()

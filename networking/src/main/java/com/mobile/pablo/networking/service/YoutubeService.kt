@@ -7,13 +7,13 @@ import retrofit2.http.Query
 
 internal interface YoutubeService {
 
-    @GET("/search")
+    @GET("youtube//v3/search")
     suspend fun getSearchVideos(
         @Query("part") part: String = "snippet",
         @Query("q") q: String
     ): Response<SearchResponse>
 
-    @GET("/videos")
+    @GET("youtube/v3/videos")
     suspend fun getPopularSearchVideos(
         @Query("part") part: String = "snippet",
         @Query("chart") chart: String = "mostPopular",

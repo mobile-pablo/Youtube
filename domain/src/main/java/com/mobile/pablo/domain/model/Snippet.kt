@@ -9,7 +9,7 @@ data class Snippet(
     val channelTitle: String? = null,
     val liveBroadcastContent: String? = null,
     val publishTime: String? = null,
-    val tags: ArrayList<String> = arrayListOf(),
+    val tags: List<String> = emptyList(),
     val categoryId: String? = null,
     val localized: Localized? = null,
     val defaultAudioLanguage: String? = null
