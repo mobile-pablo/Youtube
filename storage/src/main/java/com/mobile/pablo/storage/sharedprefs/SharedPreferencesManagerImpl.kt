@@ -13,7 +13,7 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
 
     companion object {
 
-        private const val PREFS_FILE_NAME = "inco_settings"
+        private const val PREFS_FILE_NAME = "youtube_settings"
     }
 
     private val sharedPreferences: SharedPreferences
