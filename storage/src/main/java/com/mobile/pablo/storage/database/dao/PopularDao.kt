@@ -10,13 +10,16 @@ import com.mobile.pablo.storage.database.entity.search.PopularItemEntity
 internal abstract class PopularDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insertPopularItem(search: PopularItemEntity)
+    abstract suspend fun insertPopularItem(search: PopularItemEntity?)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insertPopularItems(items: List<PopularItemEntity>)
+    abstract suspend fun insertPopularItems(items: List<PopularItemEntity?>)
 
     @Query("SELECT * FROM popular_item")
     abstract suspend fun getPopularItems(): List<PopularItemEntity>?
+
+    @Query("DELETE FROM popular_item WHERE etag = :etag")
+    abstract suspend fun removePopularItem(etag: String)
 
     @Query("DELETE FROM popular_item")
     abstract suspend fun clearPopularItems()

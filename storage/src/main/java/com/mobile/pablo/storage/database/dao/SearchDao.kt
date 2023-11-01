@@ -18,6 +18,9 @@ internal abstract class SearchDao {
     @Query("SELECT * FROM search_item")
     abstract suspend fun getSearchItems(): List<SearchItemEntity>?
 
+    @Query("DELETE FROM search_item WHERE etag = :etag")
+    abstract suspend fun removeSearchItem(etag: String)
+
     @Query("DELETE FROM search_item")
     abstract suspend fun clearSearchItems()
 
