@@ -10,10 +10,10 @@ import com.mobile.pablo.storage.database.entity.search.SearchItemEntity
 internal abstract class SearchDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insertSearchItem(search: SearchItemEntity)
+    abstract suspend fun insertSearchItem(search: SearchItemEntity?)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insertSearchItems(items: List<SearchItemEntity>)
+    abstract suspend fun insertSearchItems(items: List<SearchItemEntity?>)
 
     @Query("SELECT * FROM search_item")
     abstract suspend fun getSearchItems(): List<SearchItemEntity>?

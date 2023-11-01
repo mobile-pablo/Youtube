@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "search_item")
 internal data class SearchItemEntity(
-    val kind: String,
+    val kind: String?,
     @PrimaryKey val etag: String,
-    @Embedded(prefix = "id_") val id: IdEntity,
-    @Embedded(prefix = "snippet_") val snippet: SearchSnippetEntity
+    @Embedded(prefix = "id_") val id: IdEntity?,
+    @Embedded(prefix = "snippet_") val snippet: SearchSnippetEntity?
 )
