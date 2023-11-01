@@ -1,6 +1,7 @@
 package com.mobile.pablo.domain.usecase
 
 import com.mobile.pablo.core.data.DataTransfer
+import com.mobile.pablo.domain.mapper.PopularMapper
 import com.mobile.pablo.domain.mapper.SearchMapper
 import com.mobile.pablo.domain.model.Popular
 import com.mobile.pablo.domain.model.Search
@@ -19,7 +20,7 @@ sealed class VideosUseCase {
 
             return when {
                 searchResponse.isSuccessful -> {
-                    val search = searchMapper.mapSearch(searchResponse.data)
+                    val search = searchMapper.map(searchResponse.data)
                     DataTransfer(data = search)
                 }
 
@@ -30,7 +31,7 @@ sealed class VideosUseCase {
 
     class GetPopularVideos @Inject constructor(
         private val videoDataSource: VideoDataSource,
-        private val searchMapper: SearchMapper
+        private val popularMapper: PopularMapper
     ) : VideosUseCase() {
 
         suspend operator fun invoke(regionCode: String): DataTransfer<Popular> {
@@ -38,7 +39,7 @@ sealed class VideosUseCase {
 
             return when {
                 searchResponse.isSuccessful -> {
-                    val search = searchMapper.mapPopularSearch(searchResponse.data)
+                    val search = popularMapper.map(searchResponse.data)
                     DataTransfer(data = search)
                 }
 
