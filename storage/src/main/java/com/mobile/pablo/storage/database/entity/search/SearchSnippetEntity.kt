@@ -1,6 +1,7 @@
 package com.mobile.pablo.storage.database.entity.search
 
 import androidx.room.Embedded
+import com.mobile.pablo.storage.database.entity.common.ThumbnailsEntity
 
 internal data class SearchSnippetEntity(
     val publishedAt: String?,

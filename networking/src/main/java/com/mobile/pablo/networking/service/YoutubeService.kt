@@ -1,7 +1,7 @@
 package com.mobile.pablo.networking.service
 
-import com.mobile.pablo.networking.model.PopularResponse
-import com.mobile.pablo.networking.model.SearchResponse
+import com.mobile.pablo.networking.model.popular.PopularResponse
+import com.mobile.pablo.networking.model.search.SearchResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.mobile.pablo.storage.database.dao.PopularDao
 import com.mobile.pablo.storage.database.dao.SearchDao
-import com.mobile.pablo.storage.database.entity.search.PopularItemEntity
+import com.mobile.pablo.storage.database.entity.popular.PopularItemEntity
 import com.mobile.pablo.storage.database.entity.search.SearchItemEntity
 import com.mobile.pablo.storage.database.typeconverter.ListConverter
 

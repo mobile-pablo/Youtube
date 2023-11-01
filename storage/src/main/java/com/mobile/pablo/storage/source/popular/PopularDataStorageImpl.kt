@@ -1,8 +1,8 @@
 package com.mobile.pablo.storage.source.popular
 
-import com.mobile.pablo.core.model.PopularItemDTO
+import com.mobile.pablo.core.model.popular.PopularItemDTO
 import com.mobile.pablo.storage.database.dao.PopularDao
-import com.mobile.pablo.storage.mapper.PopularEntityMapper
+import com.mobile.pablo.storage.mapper.popular.PopularEntityMapper
 import javax.inject.Inject
 
 internal class PopularDataStorageImpl @Inject constructor(
@@ -20,7 +20,7 @@ internal class PopularDataStorageImpl @Inject constructor(
         popularDao.insertPopularItems(entities)
     }
 
-    override suspend fun getPopularItems(): List<PopularItemDTO>? {
+    override suspend fun getPopularItems(): List<PopularItemDTO> {
         val items = popularDao.getPopularItems()
         return items!!.map { popularEntityMapper.map(it)!! }
     }

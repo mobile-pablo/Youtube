@@ -1,10 +1,10 @@
 package com.mobile.pablo.networking.source
 
 import com.mobile.pablo.core.data.DataTransfer
-import com.mobile.pablo.core.model.PopularDTO
-import com.mobile.pablo.core.model.SearchDTO
-import com.mobile.pablo.networking.mapper.PopularResponseMapper
-import com.mobile.pablo.networking.mapper.SearchResponseMapper
+import com.mobile.pablo.core.model.popular.PopularDTO
+import com.mobile.pablo.core.model.search.SearchDTO
+import com.mobile.pablo.networking.mapper.popular.PopularResponseMapper
+import com.mobile.pablo.networking.mapper.search.SearchResponseMapper
 import com.mobile.pablo.networking.service.YoutubeService
 import javax.inject.Inject
 

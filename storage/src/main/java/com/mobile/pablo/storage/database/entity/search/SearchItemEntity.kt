@@ -3,6 +3,7 @@ package com.mobile.pablo.storage.database.entity.search
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.mobile.pablo.storage.database.entity.common.IdEntity
 
 @Entity(tableName = "search_item")
 internal data class SearchItemEntity(

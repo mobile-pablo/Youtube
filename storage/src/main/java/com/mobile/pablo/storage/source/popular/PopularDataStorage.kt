@@ -1,6 +1,6 @@
 package com.mobile.pablo.storage.source.popular
 
-import com.mobile.pablo.core.model.PopularItemDTO
+import com.mobile.pablo.core.model.popular.PopularItemDTO
 
 interface PopularDataStorage {
 

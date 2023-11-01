@@ -1,6 +1,6 @@
 package com.mobile.pablo.home.screen
 
-import com.mobile.pablo.domain.model.Popular
+import com.mobile.pablo.domain.model.popular.Popular
 
 sealed class HomeState {
     data object Loading : HomeState()

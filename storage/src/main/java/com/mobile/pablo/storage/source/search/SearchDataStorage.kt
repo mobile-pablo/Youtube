@@ -1,6 +1,6 @@
 package com.mobile.pablo.storage.source.search
 
-import com.mobile.pablo.core.model.SearchItemDTO
+import com.mobile.pablo.core.model.search.SearchItemDTO
 
 interface SearchDataStorage {
 

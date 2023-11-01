@@ -1,8 +1,8 @@
 package com.mobile.pablo.networking.source
 
-import com.mobile.pablo.core.model.SearchDTO
+import com.mobile.pablo.core.model.search.SearchDTO
 import com.mobile.pablo.core.data.DataTransfer
-import com.mobile.pablo.core.model.PopularDTO
+import com.mobile.pablo.core.model.popular.PopularDTO
 
 interface VideoDataSource {
 

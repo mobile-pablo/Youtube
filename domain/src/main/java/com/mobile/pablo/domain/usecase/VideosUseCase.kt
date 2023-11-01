@@ -1,10 +1,10 @@
 package com.mobile.pablo.domain.usecase
 
 import com.mobile.pablo.core.data.DataTransfer
-import com.mobile.pablo.domain.mapper.PopularMapper
-import com.mobile.pablo.domain.mapper.SearchMapper
-import com.mobile.pablo.domain.model.Popular
-import com.mobile.pablo.domain.model.Search
+import com.mobile.pablo.domain.mapper.popular.PopularMapper
+import com.mobile.pablo.domain.mapper.search.SearchMapper
+import com.mobile.pablo.domain.model.popular.Popular
+import com.mobile.pablo.domain.model.search.Search
 import com.mobile.pablo.networking.source.VideoDataSource
 import javax.inject.Inject
 

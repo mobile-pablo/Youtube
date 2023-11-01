@@ -1,8 +1,8 @@
 package com.mobile.pablo.storage.source.search
 
-import com.mobile.pablo.core.model.SearchItemDTO
+import com.mobile.pablo.core.model.search.SearchItemDTO
 import com.mobile.pablo.storage.database.dao.SearchDao
-import com.mobile.pablo.storage.mapper.SearchItemEntityMapper
+import com.mobile.pablo.storage.mapper.search.SearchItemEntityMapper
 import javax.inject.Inject
 
 internal class SearchDataStorageImpl @Inject constructor(
