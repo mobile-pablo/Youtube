@@ -20,20 +20,20 @@ fun HomeScreen(
 ) {
     viewModel.getPopularVideos(regionCode = "US")
     val homeState = viewModel.homeState.collectAsState()
-        when (homeState.value) {
-            is HomeState.Loading -> Text(text = "Loading")
+    when (homeState.value) {
+        is HomeState.Loading -> Text(text = "Loading")
 
-            is HomeState.Done -> {
-                val homeStateDone = homeState.value as HomeState.Done
-                LazyColumn {
-                    items(homeStateDone.data.items!!) { item ->
-                        Text(text = item!!.snippet!!.channelTitle!!)
-                    }
+        is HomeState.Done -> {
+            val homeStateDone = homeState.value as HomeState.Done
+            LazyColumn {
+                items(homeStateDone.data.items!!) { item ->
+                    Text(text = item!!.snippet!!.channelTitle!!)
                 }
             }
-
-            is HomeState.Error -> {
-                Text(text = (homeState.value as HomeState.Error).error.toString())
-            }
         }
+
+        is HomeState.Error -> {
+            Text(text = (homeState.value as HomeState.Error).error.toString())
+        }
+    }
 }
