@@ -2,6 +2,8 @@ package com.mobile.pablo.storage.di
 
 import android.content.Context
 import com.mobile.pablo.storage.database.AppDatabase
+import com.mobile.pablo.storage.sharedprefs.SharedPreferencesManager
+import com.mobile.pablo.storage.sharedprefs.SharedPreferencesManagerImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,6 +14,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object StorageModule {
+
+    @Provides
+    @Singleton
+    internal fun providesSharedPreferencesManager(
+        impl: SharedPreferencesManagerImpl
+    ): SharedPreferencesManager = impl
 
     @Provides
     @Singleton

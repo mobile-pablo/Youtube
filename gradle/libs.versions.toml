@@ -30,6 +30,7 @@ navigation_compose = '1.8.38-beta'
 compose_constraint = '1.0.1'
 compose_swipe = '1.1.1'
 room = '2.5.1'
+security-crypto = "1.1.0-alpha06"
 timber = '5.0.1'
 junit_ext = '1.1.5'
 junit_macro = '1.1.1'
@@ -95,6 +96,7 @@ espresso-barista-compose = { module = "com.adevinta.android:barista-compose", ve
 
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-security = { module = "androidx.security:security-crypto", version.ref="security-crypto" }
 
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }

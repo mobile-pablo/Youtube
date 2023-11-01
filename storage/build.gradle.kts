@@ -57,6 +57,7 @@ dependencies {
 
     api(libs.room.ktx)
     ksp(libs.room.compiler)
+    implementation(libs.androidx.security)
 
     testImplementation(libs.junit)
 }
