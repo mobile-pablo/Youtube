@@ -1,6 +1,8 @@
 package com.mobile.pablo.domain.mapper
 
+import com.mobile.pablo.core.model.PopularVideosDTO
 import com.mobile.pablo.core.model.SearchDTO
+import com.mobile.pablo.domain.model.PopularVideos
 import com.mobile.pablo.domain.model.Search
 import javax.inject.Inject
 
@@ -22,9 +24,9 @@ class SearchMapper @Inject constructor(
         }
     }
 
-    fun mapPopularSearch(dto: SearchDTO?): Search? {
+    fun mapPopularSearch(dto: PopularVideosDTO?): PopularVideos? {
         return dto?.run {
-            Search(
+            PopularVideos(
                 kind = kind,
                 etag = etag,
                 items = items!!.map(searchItemMapper::mapPopularSearch),

@@ -2,6 +2,7 @@ package com.mobile.pablo.networking.source
 
 import com.mobile.pablo.core.model.SearchDTO
 import com.mobile.pablo.core.data.DataTransfer
+import com.mobile.pablo.core.model.PopularVideosDTO
 import com.mobile.pablo.networking.mapper.SearchResponseMapper
 import com.mobile.pablo.networking.service.YoutubeService
 import javax.inject.Inject
@@ -27,7 +28,7 @@ internal class VideoDataSourceImpl @Inject constructor(
 
     override suspend fun getPopularVideos(
         regionCode: String
-    ): DataTransfer<SearchDTO> {
+    ): DataTransfer<PopularVideosDTO> {
         val searchPopularResponse = youtubeService.getPopularSearchVideos(regionCode = regionCode)
 
         return when {

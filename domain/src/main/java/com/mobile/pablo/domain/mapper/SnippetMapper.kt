@@ -1,6 +1,8 @@
 package com.mobile.pablo.domain.mapper
 
+import com.mobile.pablo.core.model.PopularVideoSnippetDTO
 import com.mobile.pablo.core.model.SnippetDTO
+import com.mobile.pablo.domain.model.PopularVideoSnippet
 import com.mobile.pablo.domain.model.Snippet
 import javax.inject.Inject
 
@@ -23,9 +25,9 @@ class SnippetMapper @Inject constructor(
         }
     }
 
-    fun mapPopularSearch(dto: SnippetDTO?): Snippet? {
+    fun mapPopularSearch(dto: PopularVideoSnippetDTO?): PopularVideoSnippet? {
         return dto?.run {
-            Snippet(
+            PopularVideoSnippet(
                 publishedAt = publishedAt,
                 channelId = channelId,
                 title = title,

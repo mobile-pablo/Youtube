@@ -1,5 +1,6 @@
 package com.mobile.pablo.networking.service
 
+import com.mobile.pablo.networking.model.PopularVideosResponse
 import com.mobile.pablo.networking.model.SearchResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -18,5 +19,5 @@ internal interface YoutubeService {
         @Query("part") part: String = "snippet",
         @Query("chart") chart: String = "mostPopular",
         @Query("regionCode") regionCode: String = "US"
-    ): Response<SearchResponse>
+    ): Response<PopularVideosResponse>
 }
