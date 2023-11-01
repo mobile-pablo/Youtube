@@ -1,8 +1,8 @@
 package com.mobile.pablo.networking.mapper
 
-import com.mobile.pablo.core.model.PopularVideosDTO
+import com.mobile.pablo.core.model.PopularDTO
 import com.mobile.pablo.core.model.SearchDTO
-import com.mobile.pablo.networking.model.PopularVideosResponse
+import com.mobile.pablo.networking.model.PopularResponse
 import com.mobile.pablo.networking.model.SearchResponse
 import javax.inject.Inject
 
@@ -24,9 +24,9 @@ internal class SearchResponseMapper @Inject constructor(
         }
     }
 
-    fun mapPopularSearch(response: PopularVideosResponse?): PopularVideosDTO? {
+    fun mapPopularSearch(response: PopularResponse?): PopularDTO? {
         return response?.run {
-            PopularVideosDTO(
+            PopularDTO(
                 kind = kind,
                 etag = etag,
                 items = items?.map(searchItemResponseMapper::mapPopularSearch),

@@ -1,8 +1,8 @@
 package com.mobile.pablo.networking.mapper
 
-import com.mobile.pablo.core.model.PopularVideoSnippetDTO
-import com.mobile.pablo.core.model.SnippetDTO
-import com.mobile.pablo.networking.model.PopularVideoSnippetResponse
+import com.mobile.pablo.core.model.PopularSnippetDTO
+import com.mobile.pablo.core.model.SearchSnippetDTO
+import com.mobile.pablo.networking.model.PopularSnippetResponse
 import com.mobile.pablo.networking.model.SnippetResponse
 import javax.inject.Inject
 
@@ -11,9 +11,9 @@ internal class SnippetResponseMapper @Inject constructor(
     private val localizedResponseMapper: LocalizedResponseMapper
 ) {
 
-    fun mapSearch(response: SnippetResponse?): SnippetDTO? {
+    fun mapSearch(response: SnippetResponse?): SearchSnippetDTO? {
         return response?.run {
-            SnippetDTO(
+            SearchSnippetDTO(
                 publishedAt,
                 channelId,
                 title,
@@ -25,9 +25,9 @@ internal class SnippetResponseMapper @Inject constructor(
         }
     }
 
-    fun mapPopularSearch(response: PopularVideoSnippetResponse?): PopularVideoSnippetDTO? {
+    fun mapPopularSearch(response: PopularSnippetResponse?): PopularSnippetDTO? {
         return response?.run {
-            PopularVideoSnippetDTO(
+            PopularSnippetDTO(
                 publishedAt = publishedAt,
                 channelId = channelId,
                 title = title,

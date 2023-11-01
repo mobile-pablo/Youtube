@@ -2,7 +2,7 @@ package com.mobile.pablo.networking.model
 
 import com.squareup.moshi.Json
 
-internal data class PopularVideoSnippetResponse (
+internal data class PopularSnippetResponse (
     @Json(name = "publishedAt") val publishedAt: String? = null,
     @Json(name = "channelId") val channelId: String? = null,
     @Json(name = "title") val title: String? = null,

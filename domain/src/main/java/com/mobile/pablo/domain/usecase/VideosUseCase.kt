@@ -2,7 +2,7 @@ package com.mobile.pablo.domain.usecase
 
 import com.mobile.pablo.core.data.DataTransfer
 import com.mobile.pablo.domain.mapper.SearchMapper
-import com.mobile.pablo.domain.model.PopularVideos
+import com.mobile.pablo.domain.model.Popular
 import com.mobile.pablo.domain.model.Search
 import com.mobile.pablo.networking.source.VideoDataSource
 import javax.inject.Inject
@@ -33,7 +33,7 @@ sealed class VideosUseCase {
         private val searchMapper: SearchMapper
     ) : VideosUseCase() {
 
-        suspend operator fun invoke(regionCode: String): DataTransfer<PopularVideos> {
+        suspend operator fun invoke(regionCode: String): DataTransfer<Popular> {
             val searchResponse = videoDataSource.getPopularVideos(regionCode = regionCode)
 
             return when {

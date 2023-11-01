@@ -2,11 +2,11 @@ package com.mobile.pablo.networking.source
 
 import com.mobile.pablo.core.model.SearchDTO
 import com.mobile.pablo.core.data.DataTransfer
-import com.mobile.pablo.core.model.PopularVideosDTO
+import com.mobile.pablo.core.model.PopularDTO
 
 interface VideoDataSource {
 
     suspend fun getSearchVideos(query: String): DataTransfer<SearchDTO>
 
-    suspend fun getPopularVideos(regionCode: String): DataTransfer<PopularVideosDTO>
+    suspend fun getPopularVideos(regionCode: String): DataTransfer<PopularDTO>
 }

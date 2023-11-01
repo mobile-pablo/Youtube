@@ -18,4 +18,16 @@ object StorageModule {
     internal fun providesAppDatabase(
         @ApplicationContext context: Context
     ): AppDatabase = AppDatabase.getInstance(context)
+
+    @Provides
+    @Singleton
+    internal fun providesSearchDao(
+        appDatabase: AppDatabase
+    ) = appDatabase.searchDao()
+
+    @Provides
+    @Singleton
+    internal fun providesPopularDao(
+        appDatabase: AppDatabase
+    ) = appDatabase.popularDao()
 }

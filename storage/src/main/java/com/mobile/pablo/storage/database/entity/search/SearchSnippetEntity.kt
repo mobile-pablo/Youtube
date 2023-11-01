@@ -2,7 +2,7 @@ package com.mobile.pablo.storage.database.entity.search
 
 import androidx.room.Embedded
 
-internal data class SearchItemSnippetEntity(
+internal data class SearchSnippetEntity(
     val publishedAt: String,
     val channelId: String,
     val title: String,
