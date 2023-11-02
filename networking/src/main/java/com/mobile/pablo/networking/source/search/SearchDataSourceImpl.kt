@@ -1,6 +1,7 @@
 package com.mobile.pablo.networking.source.search
 
 import com.mobile.pablo.core.data.DataTransfer
+import com.mobile.pablo.core.data.NetworkException
 import com.mobile.pablo.core.model.search.SearchDTO
 import com.mobile.pablo.networking.mapper.search.SearchResponseMapper
 import com.mobile.pablo.networking.service.YoutubeService
@@ -21,7 +22,12 @@ internal class SearchDataSourceImpl @Inject constructor(
             }
 
             else -> {
-                DataTransfer(error = Exception(searchResponse.message()))
+                DataTransfer(
+                    error = NetworkException(
+                        code = searchResponse.code(),
+                        message = searchResponse.message()
+                    )
+                )
             }
         }
     }

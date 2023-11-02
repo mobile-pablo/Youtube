@@ -1,6 +1,7 @@
 package com.mobile.pablo.networking.source.popular
 
 import com.mobile.pablo.core.data.DataTransfer
+import com.mobile.pablo.core.data.NetworkException
 import com.mobile.pablo.core.model.popular.PopularDTO
 import com.mobile.pablo.networking.mapper.popular.PopularResponseMapper
 import com.mobile.pablo.networking.service.YoutubeService
@@ -23,7 +24,12 @@ internal class PopularDataSourceImpl @Inject constructor(
             }
 
             else -> {
-                DataTransfer(error = Exception(searchPopularResponse.code().toString()))
+                DataTransfer(
+                    error = NetworkException(
+                        code = searchPopularResponse.code(),
+                        message = searchPopularResponse.message()
+                    )
+                )
             }
         }
     }

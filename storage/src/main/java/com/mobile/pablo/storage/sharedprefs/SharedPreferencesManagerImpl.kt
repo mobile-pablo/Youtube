@@ -11,6 +11,10 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
     @ApplicationContext private val context: Context
 ) : SharedPreferencesManager {
 
+    companion object {
+        const val SHARED_PREF_NAME = "youtube_settings"
+    }
+
     private val sharedPreferences: SharedPreferences
 
     init {
@@ -19,7 +23,7 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
             .build()
         sharedPreferences = EncryptedSharedPreferences.create(
             context,
-            "youtube_settings",
+            SHARED_PREF_NAME,
             masterKey,
             EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM

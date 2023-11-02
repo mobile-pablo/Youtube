@@ -28,15 +28,15 @@ sealed class VideosUseCase {
             return when {
                 searchResponse.isSuccessful -> {
                     val items = searchResponse.data!!.items!!
-                    if (items.isNullOrEmpty()) {
-                        val searchLocal = searchDataStorage.getSearchItems()
-                        val searchLocalDTO = searchLocal!!.map(searchItemMapper::map)
-                        DataTransfer(data = Search(items = searchLocalDTO))
-                    } else {
-                        val search = searchMapper.map(searchResponse.data)
-                        searchDataStorage.insertSearchItems(searchResponse.data!!.items!!)
-                        DataTransfer(data = search)
-                    }
+                    val search = searchMapper.map(searchResponse.data)
+                    searchDataStorage.insertSearchItems(items)
+                    DataTransfer(data = search)
+                }
+
+                searchResponse.isServiceUnavailable -> {
+                    val searchLocal = searchDataStorage.getSearchItems()
+                    val searchLocalDTO = searchLocal!!.map(searchItemMapper::map)
+                    DataTransfer(data = Search(items = searchLocalDTO))
                 }
 
                 else -> DataTransfer(error = searchResponse.error)
@@ -57,15 +57,15 @@ sealed class VideosUseCase {
             return when {
                 popularResponse.isSuccessful -> {
                     val items = popularResponse.data!!.items!!
-                    if (items.isNullOrEmpty()) {
-                        val popularLocal = popularDataStorage.getPopularItems()
-                        val popularLocalDTO = popularLocal!!.map(popularItemMapper::map)
-                        DataTransfer(data = Popular(items = popularLocalDTO))
-                    } else {
-                        val popular = popularMapper.map(popularResponse.data)
-                        popularDataStorage.insertPopularItems(popularResponse.data!!.items!!)
-                        DataTransfer(data = popular)
-                    }
+                    val popular = popularMapper.map(popularResponse.data)
+                    popularDataStorage.insertPopularItems(items)
+                    DataTransfer(data = popular)
+                }
+
+                popularResponse.isServiceUnavailable -> {
+                    val popularLocal = popularDataStorage.getPopularItems()
+                    val popularLocalDTO = popularLocal!!.map(popularItemMapper::map)
+                    DataTransfer(data = Popular(items = popularLocalDTO))
                 }
 
                 else -> DataTransfer(error = popularResponse.error)
