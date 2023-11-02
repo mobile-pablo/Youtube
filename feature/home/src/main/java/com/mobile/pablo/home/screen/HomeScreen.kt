@@ -8,6 +8,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.mobile.pablo.home.screen.HomeState.Done
+import com.mobile.pablo.home.screen.HomeState.Error
+import com.mobile.pablo.home.screen.HomeState.Loading
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -21,10 +24,10 @@ fun HomeScreen(
     viewModel.getPopularVideos(regionCode = "US")
     val homeState = viewModel.homeState.collectAsState()
     when (homeState.value) {
-        is HomeState.Loading -> Text(text = "Loading")
+        is Loading -> Text(text = "Loading")
 
-        is HomeState.Done -> {
-            val homeStateDone = homeState.value as HomeState.Done
+        is Done -> {
+            val homeStateDone = homeState.value as Done
             LazyColumn {
                 items(homeStateDone.data.items!!) { item ->
                     Text(text = item!!.snippet!!.channelTitle!!)
@@ -32,8 +35,8 @@ fun HomeScreen(
             }
         }
 
-        is HomeState.Error -> {
-            Text(text = (homeState.value as HomeState.Error).error.toString())
+        is Error -> {
+            Text(text = (homeState.value as Error).error.toString())
         }
     }
 }

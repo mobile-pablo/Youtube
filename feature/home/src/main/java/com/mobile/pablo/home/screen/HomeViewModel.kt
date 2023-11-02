@@ -3,6 +3,9 @@ package com.mobile.pablo.home.screen
 import androidx.lifecycle.ViewModel
 import com.mobile.pablo.core.ext.launchAsync
 import com.mobile.pablo.domain.usecase.VideosUseCase
+import com.mobile.pablo.home.screen.HomeState.Done
+import com.mobile.pablo.home.screen.HomeState.Error
+import com.mobile.pablo.home.screen.HomeState.Loading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Job
@@ -16,7 +19,7 @@ class HomeViewModel @Inject constructor(
 
     private var downloadJob: Job? = null
 
-    private val _homeState: MutableStateFlow<HomeState> = MutableStateFlow(value = HomeState.Loading)
+    private val _homeState: MutableStateFlow<HomeState> = MutableStateFlow(value = Loading)
     val homeState: StateFlow<HomeState> = _homeState
 
     fun getPopularVideos(regionCode: String) {
@@ -24,9 +27,9 @@ class HomeViewModel @Inject constructor(
         downloadJob = launchAsync {
             val response = getPopularVideosUseCase(regionCode = regionCode)
             _homeState.value = if (response.isSuccessful) {
-                HomeState.Done(data = response.data!!)
+                Done(data = response.data!!)
             } else {
-                HomeState.Error(error = response.error!!)
+                Error(error = response.error!!)
             }
         }
     }
