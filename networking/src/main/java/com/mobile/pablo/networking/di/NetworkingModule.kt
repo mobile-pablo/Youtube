@@ -4,8 +4,10 @@ import android.content.Context
 import com.mobile.pablo.networking.BuildConfig
 import com.mobile.pablo.networking.interceptor.RequestInterceptor
 import com.mobile.pablo.networking.service.YoutubeService
-import com.mobile.pablo.networking.source.VideoDataSource
-import com.mobile.pablo.networking.source.VideoDataSourceImpl
+import com.mobile.pablo.networking.source.popular.PopularDataSource
+import com.mobile.pablo.networking.source.popular.PopularDataSourceImpl
+import com.mobile.pablo.networking.source.search.SearchDataSource
+import com.mobile.pablo.networking.source.search.SearchDataSourceImpl
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -80,5 +82,9 @@ object NetworkingModule {
 
     @Provides
     @Singleton
-    internal fun providesVideoDataSource(impl: VideoDataSourceImpl): VideoDataSource = impl
+    internal fun providesSearchDataSource(impl: SearchDataSourceImpl): SearchDataSource = impl
+
+    @Provides
+    @Singleton
+    internal fun providesPopularDataSource(impl: PopularDataSourceImpl): PopularDataSource = impl
 }

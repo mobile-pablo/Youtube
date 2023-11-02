@@ -4,8 +4,8 @@ import com.mobile.pablo.core.model.popular.PopularItemDTO
 
 interface PopularDataStorage {
 
-    suspend fun insertPopularItem(search: PopularItemDTO)
-    suspend fun insertPopularItems(items: List<PopularItemDTO>)
+    suspend fun insertPopularItem(search: PopularItemDTO?)
+    suspend fun insertPopularItems(items: List<PopularItemDTO?>)
     suspend fun getPopularItems(): List<PopularItemDTO>?
     suspend fun removePopularItem(etag: String)
     suspend fun clearPopularItems()
