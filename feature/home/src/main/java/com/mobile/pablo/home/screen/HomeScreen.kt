@@ -11,6 +11,8 @@ import androidx.navigation.compose.rememberNavController
 import com.mobile.pablo.home.screen.HomeState.Done
 import com.mobile.pablo.home.screen.HomeState.Error
 import com.mobile.pablo.home.screen.HomeState.Loading
+import com.mobile.pablo.home.views.HomeItemView
+import com.mobile.pablo.home.wrapper.HomeItemWrapper
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -24,19 +26,34 @@ fun HomeScreen(
     viewModel.getPopularVideos(regionCode = "US")
     val homeState = viewModel.homeState.collectAsState()
     when (homeState.value) {
-        is Loading -> Text(text = "Loading")
+        is Loading -> HomeLoadingView()
+        is Done -> HomeDoneView(homeState.value as Done)
+        is Error -> HomeErrorView(homeState.value as Error)
+    }
+}
 
-        is Done -> {
-            val homeStateDone = homeState.value as Done
-            LazyColumn {
-                items(homeStateDone.data.items!!) { item ->
-                    Text(text = item!!.snippet!!.channelTitle!!)
-                }
-            }
-        }
+@Composable
+private fun HomeLoadingView() {
+    Text(text = "Loading")
+}
 
-        is Error -> {
-            Text(text = (homeState.value as Error).error.toString())
+@Composable
+private fun HomeDoneView(state: Done) {
+    LazyColumn {
+        items(state.data.items!!) { item ->
+            HomeItemView(
+                HomeItemWrapper(
+                    title = item!!.snippet!!.title!!,
+                    description = item.snippet!!.description!!,
+                    imageUrl = item.snippet!!.thumbnails!!.high!!.url!!,
+                    videoId = item.id!!
+                )
+            )
         }
     }
+}
+
+@Composable
+private fun HomeErrorView(state: Error) {
+    Text(text = state.error.toString())
 }
