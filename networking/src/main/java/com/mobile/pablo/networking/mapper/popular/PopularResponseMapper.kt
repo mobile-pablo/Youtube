@@ -17,6 +17,7 @@ internal class PopularResponseMapper @Inject constructor(
                 etag = etag,
                 items = items?.map(popularItemResponseMapper::map),
                 nextPageToken = nextPageToken,
+                prevPageToken = prevPageToken,
                 pageInfo = pageInfoResponseMapper.map(pageInfo)
             )
         }

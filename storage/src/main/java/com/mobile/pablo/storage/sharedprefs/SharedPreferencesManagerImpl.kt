@@ -30,9 +30,9 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
         )
     }
 
-    override suspend fun getString(setting: Setting): String {
+    override suspend fun getString(setting: Setting): String? {
         if (setting.type != Type.STRING) throw IllegalArgumentException("${setting.name} is not a String")
-        return sharedPreferences.getString(setting.name, setting.type.default as String)!!
+        return sharedPreferences.getString(setting.name, setting.type.default as String)
     }
 
     override suspend fun setString(

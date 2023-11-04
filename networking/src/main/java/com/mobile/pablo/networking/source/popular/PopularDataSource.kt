@@ -5,5 +5,8 @@ import com.mobile.pablo.core.model.popular.PopularDTO
 
 interface PopularDataSource {
 
-    suspend fun getPopularVideos(regionCode: String): DataTransfer<PopularDTO>
+    suspend fun getPopularVideos(
+        regionCode: String,
+        pageToken: String
+    ): DataTransfer<PopularDTO>
 }

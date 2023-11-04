@@ -18,6 +18,7 @@ internal interface YoutubeService {
     suspend fun getPopularSearchVideos(
         @Query("part") part: String = "snippet",
         @Query("chart") chart: String = "mostPopular",
-        @Query("regionCode") regionCode: String = "US"
+        @Query("regionCode") regionCode: String = "US",
+        @Query("pageToken") pageToken: String
     ): Response<PopularResponse>
 }

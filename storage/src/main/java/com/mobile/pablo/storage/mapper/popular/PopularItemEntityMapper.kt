@@ -4,7 +4,7 @@ import com.mobile.pablo.core.model.popular.PopularItemDTO
 import com.mobile.pablo.storage.database.entity.popular.PopularItemEntity
 import javax.inject.Inject
 
-internal class PopularEntityMapper @Inject constructor(
+internal class PopularItemEntityMapper @Inject constructor(
     private val popularSnippetEntityMapper: PopularSnippetEntityMapper
 ) {
 

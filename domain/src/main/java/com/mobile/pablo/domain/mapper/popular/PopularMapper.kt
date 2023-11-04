@@ -17,6 +17,7 @@ class PopularMapper @Inject constructor(
                 etag = etag,
                 items = items!!.map(popularItemMapper::map),
                 nextPageToken = nextPageToken,
+                prevPageToken = prevPageToken,
                 pageInfo = pageInfoMapper.map(pageInfo)
             )
         }

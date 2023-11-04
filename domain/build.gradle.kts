@@ -47,4 +47,7 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.paging.runtime)
+    implementation(libs.compose.paging)
 }

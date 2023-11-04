@@ -13,9 +13,13 @@ internal class PopularDataSourceImpl @Inject constructor(
 ) : PopularDataSource {
 
     override suspend fun getPopularVideos(
-        regionCode: String
+        regionCode: String,
+        pageToken: String
     ): DataTransfer<PopularDTO> {
-        val searchPopularResponse = youtubeService.getPopularSearchVideos(regionCode = regionCode)
+        val searchPopularResponse = youtubeService.getPopularSearchVideos(
+            regionCode = regionCode,
+            pageToken = pageToken
+        )
 
         return when {
             searchPopularResponse.isSuccessful -> {

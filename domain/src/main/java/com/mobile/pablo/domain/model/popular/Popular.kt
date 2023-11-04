@@ -6,6 +6,7 @@ data class Popular(
     var kind: String? = null,
     var etag: String? = null,
     var nextPageToken: String? = null,
+    var prevPageToken: String? = null,
     var pageInfo: PageInfo? = null,
     var items: List<PopularItem?>? = null
 )

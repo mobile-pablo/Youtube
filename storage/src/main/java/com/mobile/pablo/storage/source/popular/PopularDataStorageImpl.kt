@@ -2,27 +2,27 @@ package com.mobile.pablo.storage.source.popular
 
 import com.mobile.pablo.core.model.popular.PopularItemDTO
 import com.mobile.pablo.storage.database.dao.PopularDao
-import com.mobile.pablo.storage.mapper.popular.PopularEntityMapper
+import com.mobile.pablo.storage.mapper.popular.PopularItemEntityMapper
 import javax.inject.Inject
 
 internal class PopularDataStorageImpl @Inject constructor(
     private val popularDao: PopularDao,
-    private val popularEntityMapper: PopularEntityMapper
+    private val popularItemEntityMapper: PopularItemEntityMapper
 ) : PopularDataStorage {
 
     override suspend fun insertPopularItem(search: PopularItemDTO?) {
-        val entity = popularEntityMapper.map(search)!!
+        val entity = popularItemEntityMapper.map(search)!!
         popularDao.insertPopularItem(entity)
     }
 
     override suspend fun insertPopularItems(items: List<PopularItemDTO?>) {
-        val entities = items.map(popularEntityMapper::map)
+        val entities = items.map(popularItemEntityMapper::map)
         popularDao.insertPopularItems(entities)
     }
 
     override suspend fun getPopularItems(): List<PopularItemDTO> {
         val items = popularDao.getPopularItems()
-        return items!!.map { popularEntityMapper.map(it)!! }
+        return items!!.map { popularItemEntityMapper.map(it)!! }
     }
 
     override suspend fun removePopularItem(etag: String) = popularDao.removePopularItem(etag)
@@ -31,7 +31,7 @@ internal class PopularDataStorageImpl @Inject constructor(
 
     override suspend fun getPopularItemsByEtag(etag: String): PopularItemDTO? {
         val entity = popularDao.getPopularItemsByEtag(etag)
-        return popularEntityMapper.map(entity)
+        return popularItemEntityMapper.map(entity)
     }
 
     override suspend fun updatePopularItemsByEtag(etag: String) =

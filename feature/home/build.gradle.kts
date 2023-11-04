@@ -68,6 +68,9 @@ dependencies {
     implementation(libs.bundles.tvBundle)
     ksp(libs.compose.destination.ksp)
 
+    implementation(libs.paging.runtime)
+    implementation(libs.compose.paging)
+
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
