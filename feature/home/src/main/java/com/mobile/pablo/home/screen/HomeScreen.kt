@@ -45,7 +45,7 @@ private fun HomeDoneView(state: Done) {
                 HomeItemWrapper(
                     title = item!!.snippet!!.title!!,
                     description = item.snippet!!.description!!,
-                    imageUrl = item.snippet!!.thumbnails!!.high!!.url!!,
+                    imageUrl = item.snippet!!.thumbnails!!.medium!!.url!!,
                     videoId = item.id!!
                 )
             )

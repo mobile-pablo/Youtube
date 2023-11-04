@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontWeight
 import androidx.tv.material3.Text
 import coil.compose.AsyncImage
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
@@ -35,11 +36,22 @@ fun HomeItemView(
             Column {
                 AsyncImage(
                     model = wrapper.imageUrl,
-                    contentDescription = null
+                    contentDescription = null,
+                    modifier = Modifier.clip(
+                        RoundedCornerShape(Theme.spacing.spacing_6)
+                    )
                 )
             }
-            Column {
-                Text(text = wrapper.title)
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = Theme.spacing.spacing_20)
+            ) {
+                Text(
+                    text = wrapper.title,
+                    modifier = Modifier
+                        .padding(bottom = Theme.spacing.spacing_20),
+                    fontWeight = FontWeight.Bold
+                )
                 Text(
                     text = wrapper.description,
                     maxLines = 3
