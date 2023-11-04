@@ -37,9 +37,10 @@ fun HomeItemView(
                 AsyncImage(
                     model = wrapper.imageUrl,
                     contentDescription = null,
-                    modifier = Modifier.clip(
-                        RoundedCornerShape(Theme.spacing.spacing_6)
-                    )
+                    modifier = Modifier
+                        .clip(
+                            RoundedCornerShape(Theme.spacing.spacing_6)
+                        )
                 )
             }
             Column(
