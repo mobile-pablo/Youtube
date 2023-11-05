@@ -16,7 +16,7 @@ internal class PopularDataStorageImpl @Inject constructor(
     }
 
     override suspend fun getPopular(): PopularDTO? {
-        val items = popularDao.getPopular()
+        val items = popularDao.getPopularWithItems()
         return popularEntityMapper.map(items)
     }
 
@@ -25,7 +25,7 @@ internal class PopularDataStorageImpl @Inject constructor(
     override suspend fun clearPopulars() = popularDao.clearPopularsWithItems()
 
     override suspend fun getPopularByEtag(etag: String): PopularDTO? {
-        val entity = popularDao.getPopularByEtag(etag)
+        val entity = popularDao.getPopularWithItemsByEtag(etag)
         return popularEntityMapper.map(entity)
     }
 }

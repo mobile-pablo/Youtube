@@ -21,7 +21,10 @@ internal abstract class PopularDao {
     abstract suspend fun insertPopularItems(items: List<PopularItemEntity?>)
 
     @Query("SELECT * FROM $POPULAR_TABLE_NAME")
-    abstract suspend fun getPopular(): PopularWithItemEntity?
+    abstract suspend fun getPopular(): PopularEntity?
+
+    @Query("SELECT * FROM $POPULAR_ITEM_TABLE_NAME WHERE parentId = :parentId")
+    abstract suspend fun getPopularItems(parentId: String): List<PopularItemEntity?>?
 
     @Query("DELETE FROM $POPULAR_TABLE_NAME WHERE etag = :etag")
     abstract suspend fun removePopular(etag: String)
@@ -36,7 +39,24 @@ internal abstract class PopularDao {
     abstract suspend fun clearPopularItems()
 
     @Query("SELECT * FROM $POPULAR_TABLE_NAME WHERE etag = :etag LIMIT 1")
-    abstract suspend fun getPopularByEtag(etag: String): PopularWithItemEntity?
+    abstract suspend fun getPopularByEtag(etag: String): PopularEntity?
+
+    @Query("SELECT * FROM $POPULAR_ITEM_TABLE_NAME WHERE parentId = :parentId")
+    abstract suspend fun getPopularItemsByParentEtag(parentId: String): List<PopularItemEntity?>?
+
+    @Transaction
+    open suspend fun getPopularWithItems(): PopularWithItemEntity? {
+        val popular = getPopular()
+        val items = getPopularItems(popular!!.etag)
+        return PopularWithItemEntity(popular, items)
+    }
+
+    @Transaction
+    open suspend fun getPopularWithItemsByEtag(etag: String): PopularWithItemEntity? {
+        val popular = getPopularByEtag(etag)
+        val items = getPopularItemsByParentEtag(etag)
+        return PopularWithItemEntity(popular, items)
+    }
 
     @Transaction
     open suspend fun insertPopularWithItems(popularWithItemEntity: PopularWithItemEntity) {
