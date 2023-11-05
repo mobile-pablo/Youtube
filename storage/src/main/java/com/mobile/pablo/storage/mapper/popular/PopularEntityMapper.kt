@@ -23,7 +23,7 @@ internal class PopularEntityMapper @Inject constructor(
                 ),
                 items = items!!.map {
                     popularItemMapper.map(it, etag)
-                },
+                }
             )
         }
     }

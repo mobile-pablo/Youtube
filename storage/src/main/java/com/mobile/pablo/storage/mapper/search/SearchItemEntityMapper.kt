@@ -10,11 +10,15 @@ internal class SearchItemEntityMapper @Inject constructor(
     private val snippetEntityMapper: SnippetEntityMapper
 ) {
 
-    fun map(dto: SearchItemDTO?): SearchItemEntity? {
+    fun map(
+        dto: SearchItemDTO?,
+        parentId: String
+    ): SearchItemEntity? {
         return dto?.run {
             SearchItemEntity(
                 kind = kind,
                 etag = etag,
+                parentId = parentId,
                 id = idEntityMapper.map(id),
                 snippet = snippetEntityMapper.map(snippet)
             )
