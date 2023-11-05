@@ -12,12 +12,7 @@ internal class PopularDataStorageImpl @Inject constructor(
 
     override suspend fun insertPopular(search: PopularDTO?) {
         val entity = popularEntityMapper.map(search)!!
-        popularDao.insertPopular(entity)
-    }
-
-    override suspend fun insertPopulars(items: List<PopularDTO?>) {
-        val entities = items.map(popularEntityMapper::map)
-        popularDao.insertPopulars(entities)
+        popularDao.insertPopularWithItems(entity)
     }
 
     override suspend fun getPopular(): PopularDTO? {
@@ -25,15 +20,12 @@ internal class PopularDataStorageImpl @Inject constructor(
         return popularEntityMapper.map(items)
     }
 
-    override suspend fun removePopular(etag: String) = popularDao.removePopular(etag)
+    override suspend fun removePopular(etag: String) = popularDao.removePopularWithItems(etag)
 
-    override suspend fun clearPopulars() = popularDao.clearPopulars()
+    override suspend fun clearPopulars() = popularDao.clearPopularsWithItems()
 
     override suspend fun getPopularByEtag(etag: String): PopularDTO? {
         val entity = popularDao.getPopularByEtag(etag)
         return popularEntityMapper.map(entity)
     }
-
-    override suspend fun updatePopularByEtag(etag: String) =
-        popularDao.updatePopularByEtag(etag)
 }
