@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
+    implementation(libs.paging.runtime)
+
     api(libs.room.ktx)
     ksp(libs.room.compiler)
     implementation(libs.androidx.security)

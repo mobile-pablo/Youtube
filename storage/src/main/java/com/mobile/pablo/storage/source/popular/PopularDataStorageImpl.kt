@@ -10,9 +10,9 @@ internal class PopularDataStorageImpl @Inject constructor(
     private val popularEntityMapper: PopularEntityMapper
 ) : PopularDataStorage {
 
-    override suspend fun insertPopular(search: PopularDTO?) {
+    override suspend fun upsertPopular(search: PopularDTO?) {
         val entity = popularEntityMapper.map(search)!!
-        popularDao.insertPopularWithItems(entity)
+        popularDao.upsertPopularWithItems(entity)
     }
 
     override suspend fun getPopular(): PopularDTO? {

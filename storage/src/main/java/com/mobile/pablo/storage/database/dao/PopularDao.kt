@@ -1,10 +1,10 @@
 package com.mobile.pablo.storage.database.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Upsert
 import com.mobile.pablo.storage.database.const.POPULAR_ITEM_TABLE_NAME
 import com.mobile.pablo.storage.database.const.POPULAR_TABLE_NAME
 import com.mobile.pablo.storage.database.entity.popular.PopularEntity
@@ -14,14 +14,21 @@ import com.mobile.pablo.storage.database.entity.popular.PopularWithItemEntity
 @Dao
 internal abstract class PopularDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insertPopular(search: PopularEntity?)
+    @Upsert
+    abstract suspend fun upsertPopular(search: PopularEntity?)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insertPopularItems(items: List<PopularItemEntity?>)
+    @Upsert
+    abstract suspend fun upsertPopularItems(items: List<PopularItemEntity?>)
 
     @Query("SELECT * FROM $POPULAR_TABLE_NAME")
     abstract suspend fun getPopular(): PopularEntity?
+
+    @Query(
+        "SELECT * FROM $POPULAR_TABLE_NAME" +
+                " INNER JOIN $POPULAR_ITEM_TABLE_NAME" +
+                " ON $POPULAR_TABLE_NAME.etag = $POPULAR_ITEM_TABLE_NAME.parentId"
+    )
+    abstract suspend fun pagingPopular(): PagingSource<String, PopularWithItemEntity>
 
     @Query("SELECT * FROM $POPULAR_ITEM_TABLE_NAME WHERE parentId = :parentId")
     abstract suspend fun getPopularItems(parentId: String): List<PopularItemEntity?>?
@@ -59,9 +66,9 @@ internal abstract class PopularDao {
     }
 
     @Transaction
-    open suspend fun insertPopularWithItems(popularWithItemEntity: PopularWithItemEntity) {
-        insertPopular(popularWithItemEntity.popular)
-        insertPopularItems(popularWithItemEntity.items!!)
+    open suspend fun upsertPopularWithItems(popularWithItemEntity: PopularWithItemEntity) {
+        upsertPopular(popularWithItemEntity.popular)
+        upsertPopularItems(popularWithItemEntity.items!!)
     }
 
     @Transaction
