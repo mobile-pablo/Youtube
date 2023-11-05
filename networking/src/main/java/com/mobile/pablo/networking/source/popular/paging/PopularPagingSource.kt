@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mobile.pablo.core.data.DataTransfer
 import com.mobile.pablo.core.model.popular.PopularDTO
+import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.networking.source.popular.PopularDataSource
 import com.mobile.pablo.storage.sharedprefs.Setting
 import com.mobile.pablo.storage.sharedprefs.SharedPreferencesManager
@@ -14,17 +15,17 @@ class PopularPagingSource @Inject constructor(
     private val sharedPreferencesManager: SharedPreferencesManager
 ) : PagingSource<String, DataTransfer<PopularDTO>>() {
 
-    override fun getRefreshKey(state: PagingState<String, DataTransfer<PopularDTO>>): String = ""
+    override fun getRefreshKey(state: PagingState<String, DataTransfer<PopularDTO>>): String = EMPTY_STRING
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, DataTransfer<PopularDTO>> {
-        val nextPageToken = sharedPreferencesManager.getString(Setting.NEXT_PAGE_TOKEN) ?: ""
+        val nextPageToken = sharedPreferencesManager.getString(Setting.NEXT_PAGE_TOKEN) ?: EMPTY_STRING
         val popularResponse = popularDataSource.getPopularVideos(
             regionCode = "US",
             nextPageToken
         )
 
-        sharedPreferencesManager.setString(Setting.NEXT_PAGE_TOKEN, popularResponse.data!!.nextPageToken ?: "")
-        sharedPreferencesManager.setString(Setting.PREV_PAGE_TOKEN, popularResponse.data!!.prevPageToken ?: "")
+        sharedPreferencesManager.setString(Setting.NEXT_PAGE_TOKEN, popularResponse.data!!.nextPageToken ?: EMPTY_STRING)
+        sharedPreferencesManager.setString(Setting.PREV_PAGE_TOKEN, popularResponse.data!!.prevPageToken ?: EMPTY_STRING)
         return when {
             popularResponse.isSuccessful -> {
                 LoadResult.Page(

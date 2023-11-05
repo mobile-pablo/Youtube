@@ -11,11 +11,11 @@ import com.mobile.pablo.storage.database.entity.common.PageInfoEntity
 @Entity(tableName = SEARCH_TABLE_NAME)
 internal data class SearchEntity(
     var kind: String? = null,
-    @PrimaryKey var etag: String? = null,
+    @PrimaryKey var etag: String,
     var nextPageToken: String? = null,
     var regionCode: String? = null,
     @Embedded(prefix = PAGE_INFO_PREFIX)
     var pageInfo: PageInfoEntity? = null,
     @Embedded(prefix = ITEMS_PREFIX)
-    var items: List<SearchItemEntity?>? = null
+    var items: List<SearchItemEntity?> = emptyList()
 )

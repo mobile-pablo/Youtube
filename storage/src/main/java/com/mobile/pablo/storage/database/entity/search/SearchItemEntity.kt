@@ -7,7 +7,7 @@ import com.mobile.pablo.storage.database.entity.common.IdEntity
 
 internal data class SearchItemEntity(
     val kind: String?,
-    val etag: String,
+    val etag: String?,
     @Embedded(prefix = ID_PREFIX) val id: IdEntity?,
     @Embedded(prefix = SNIPPET_PREFIX) val snippet: SearchSnippetEntity?
 )

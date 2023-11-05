@@ -33,14 +33,14 @@ sealed class VideosUseCase {
 
             return when {
                 searchResponse.isSuccessful -> {
-                    val items = searchResponse.data!!.items!!
+                    val items = searchResponse.data!!
                     val search = searchMapper.map(searchResponse.data)
-                    searchDataStorage.insertSearchItems(items)
+                    searchDataStorage.insertSearch(items)
                     DataTransfer(data = search)
                 }
 
                 searchResponse.isServiceUnavailable -> {
-                    val searchLocal = searchDataStorage.getSearchItems()
+                    val searchLocal = searchDataStorage.getSearch()!!.items
                     val searchLocalDTO = searchLocal!!.map(searchItemMapper::map)
                     DataTransfer(data = Search(items = searchLocalDTO))
                 }

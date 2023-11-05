@@ -12,4 +12,3 @@ const val HIGH_PREFIX = "high_"
 const val MEDIUM_PREFIX = "medium_"
 const val DEFAULT_PREFIX = "default_"
 const val LOCALIZED_PREFIX = "localized_"
-

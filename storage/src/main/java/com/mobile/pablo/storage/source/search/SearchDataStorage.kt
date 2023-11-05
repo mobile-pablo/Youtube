@@ -1,14 +1,14 @@
 package com.mobile.pablo.storage.source.search
 
-import com.mobile.pablo.core.model.search.SearchItemDTO
+import com.mobile.pablo.core.model.search.SearchDTO
 
 interface SearchDataStorage {
 
-    suspend fun insertSearchItem(search: SearchItemDTO?)
-    suspend fun insertSearchItems(items: List<SearchItemDTO?>)
-    suspend fun getSearchItems(): List<SearchItemDTO>?
-    suspend fun removeSearchItem(etag: String)
-    suspend fun clearSearchItems()
-    suspend fun getSearchItemsByEtag(etag: String): SearchItemDTO?
-    suspend fun updateSearchItemsByEtag(etag: String)
+    suspend fun insertSearch(search: SearchDTO?)
+    suspend fun insertSearches(items: List<SearchDTO?>)
+    suspend fun getSearch(): SearchDTO?
+    suspend fun removeSearch(etag: String)
+    suspend fun clearSearches()
+    suspend fun getSearchByEtag(etag: String): SearchDTO?
+    suspend fun updateItemsByEtag(etag: String)
 }

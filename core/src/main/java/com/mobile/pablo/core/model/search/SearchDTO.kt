@@ -4,7 +4,7 @@ import com.mobile.pablo.core.model.common.PageInfoDTO
 
 data class SearchDTO(
     var kind: String? = null,
-    var etag: String? = null,
+    var etag: String,
     var nextPageToken: String? = null,
     var regionCode: String? = null,
     var pageInfo: PageInfoDTO? = null,
