@@ -12,27 +12,20 @@ internal class SearchDataStorageImpl @Inject constructor(
 
     override suspend fun insertSearch(search: SearchDTO?) {
         val entity = searchEntityMapper.map(search)!!
-        searchDao.insertSearch(entity)
-    }
-
-    override suspend fun insertSearches(items: List<SearchDTO?>) {
-        val entities = items.map(searchEntityMapper::map)
-        searchDao.insertSearches(entities)
+        searchDao.insertSearchWithItems(entity)
     }
 
     override suspend fun getSearch(): SearchDTO? {
-        val items = searchDao.getSearch()
+        val items = searchDao.getSearchWithItems()
         return searchEntityMapper.map(items)
     }
 
-    override suspend fun removeSearch(etag: String) = searchDao.removeSearch(etag)
+    override suspend fun removeSearch(etag: String) = searchDao.removeSearchWithItems(etag)
 
-    override suspend fun clearSearches() = searchDao.clearSearches()
+    override suspend fun clearSearches() = searchDao.clearSearchesWithItems()
 
     override suspend fun getSearchByEtag(etag: String): SearchDTO? {
-        val entity = searchDao.getSearchByEtag(etag)
+        val entity = searchDao.getSearchWithItemsByEtag(etag)
         return searchEntityMapper.map(entity)
     }
-
-    override suspend fun updateItemsByEtag(etag: String) = searchDao.updateSearchByEtag(etag)
 }

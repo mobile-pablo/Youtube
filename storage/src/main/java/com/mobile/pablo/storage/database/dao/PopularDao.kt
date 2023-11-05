@@ -17,6 +17,7 @@ internal abstract class PopularDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertPopular(search: PopularEntity?)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertPopularItems(items: List<PopularItemEntity?>)
 
     @Query("SELECT * FROM $POPULAR_TABLE_NAME")
@@ -26,7 +27,7 @@ internal abstract class PopularDao {
     abstract suspend fun removePopular(etag: String)
 
     @Query("DELETE FROM $POPULAR_ITEM_TABLE_NAME WHERE parentId = :parentId")
-    abstract suspend fun removePopularItems(parentId : String)
+    abstract suspend fun removePopularItems(parentId: String)
 
     @Query("DELETE FROM $POPULAR_TABLE_NAME")
     abstract suspend fun clearPopulars()
