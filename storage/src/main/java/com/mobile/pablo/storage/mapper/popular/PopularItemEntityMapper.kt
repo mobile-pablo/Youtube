@@ -8,12 +8,13 @@ internal class PopularItemEntityMapper @Inject constructor(
     private val popularSnippetEntityMapper: PopularSnippetEntityMapper
 ) {
 
-    fun map(dto: PopularItemDTO?): PopularItemEntity? {
+    fun map(dto: PopularItemDTO?, parentId : String): PopularItemEntity? {
         return dto?.run {
             PopularItemEntity(
                 kind = kind,
                 etag = etag,
                 id = id,
+                parentId = parentId,
                 snippet = popularSnippetEntityMapper.map(snippet)
             )
         }

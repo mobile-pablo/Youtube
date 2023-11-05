@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.mobile.pablo.core.data.DataTransfer
+import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.domain.mapper.popular.PopularMapper
 import com.mobile.pablo.domain.mapper.search.SearchItemMapper
 import com.mobile.pablo.domain.mapper.search.SearchMapper
@@ -42,7 +43,7 @@ sealed class VideosUseCase {
                 searchResponse.isServiceUnavailable -> {
                     val searchLocal = searchDataStorage.getSearch()!!.items
                     val searchLocalDTO = searchLocal!!.map(searchItemMapper::map)
-                    DataTransfer(data = Search(items = searchLocalDTO))
+                    DataTransfer(data = Search(etag = EMPTY_STRING, items = searchLocalDTO))
                 }
 
                 else -> DataTransfer(error = searchResponse.error)

@@ -1,6 +1,7 @@
 package com.mobile.pablo.storage.database.const
 
 const val POPULAR_TABLE_NAME = "popular"
+const val POPULAR_ITEM_TABLE_NAME = "popular_item"
 const val SEARCH_TABLE_NAME = "search"
 
 const val PAGE_INFO_PREFIX = "pageInfo_"

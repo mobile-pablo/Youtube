@@ -8,11 +8,18 @@ import androidx.room.TypeConverters
 import com.mobile.pablo.storage.database.dao.PopularDao
 import com.mobile.pablo.storage.database.dao.SearchDao
 import com.mobile.pablo.storage.database.entity.popular.PopularEntity
+import com.mobile.pablo.storage.database.entity.popular.PopularItemEntity
 import com.mobile.pablo.storage.database.entity.search.SearchEntity
+import com.mobile.pablo.storage.database.entity.search.SearchItemEntity
 import com.mobile.pablo.storage.database.typeconverter.ListConverter
 
 @Database(
-    entities = [SearchEntity::class, PopularEntity::class],
+    entities = [
+        SearchEntity::class,
+        SearchItemEntity::class,
+        PopularEntity::class,
+        PopularItemEntity::class
+    ],
     version = 1,
     exportSchema = false
 )
