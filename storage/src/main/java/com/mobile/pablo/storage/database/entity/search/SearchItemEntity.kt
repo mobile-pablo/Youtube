@@ -1,14 +1,13 @@
 package com.mobile.pablo.storage.database.entity.search
 
 import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import com.mobile.pablo.storage.database.const.ID_PREFIX
+import com.mobile.pablo.storage.database.const.SNIPPET_PREFIX
 import com.mobile.pablo.storage.database.entity.common.IdEntity
 
-@Entity(tableName = "search_item")
 internal data class SearchItemEntity(
     val kind: String?,
-    @PrimaryKey val etag: String,
-    @Embedded(prefix = "id_") val id: IdEntity?,
-    @Embedded(prefix = "snippet_") val snippet: SearchSnippetEntity?
+    val etag: String,
+    @Embedded(prefix = ID_PREFIX) val id: IdEntity?,
+    @Embedded(prefix = SNIPPET_PREFIX) val snippet: SearchSnippetEntity?
 )
