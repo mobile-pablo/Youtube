@@ -23,10 +23,10 @@ class PopularPagingSource @Inject constructor(
             nextPageToken
         )
 
-        sharedPreferencesManager.setString(Setting.NEXT_PAGE_TOKEN, popularResponse.data!!.nextPageToken ?: EMPTY_STRING)
-        sharedPreferencesManager.setString(Setting.PREV_PAGE_TOKEN, popularResponse.data!!.prevPageToken ?: EMPTY_STRING)
         return when {
             popularResponse.isSuccessful -> {
+                sharedPreferencesManager.setString(Setting.NEXT_PAGE_TOKEN, popularResponse.data!!.nextPageToken ?: EMPTY_STRING)
+                sharedPreferencesManager.setString(Setting.PREV_PAGE_TOKEN, popularResponse.data!!.prevPageToken ?: EMPTY_STRING)
                 LoadResult.Page(
                     data = listOf(DataTransfer(data = popularResponse.data!!)),
                     prevKey = popularResponse.data!!.prevPageToken,
