@@ -1,4 +1,4 @@
 package com.mobile.pablo.core.util
 
-const val EMPTY_STRING = ""
-const val SERVICE_UNAVAILABLE = 503
+const val EMPTY_STRING: String = ""
+const val SERVICE_UNAVAILABLE: Int = 503

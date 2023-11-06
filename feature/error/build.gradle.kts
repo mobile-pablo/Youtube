@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mobile.pablo.home"
+    namespace = "com.mobile.pablo.error"
     compileSdk = 33
 
     defaultConfig {
@@ -49,7 +49,7 @@ android {
     ksp {
         arg(
             "compose-destinations.moduleName",
-            "home"
+            "error"
         )
         arg(
             "compose-destinations.mode",
@@ -66,7 +66,6 @@ dependencies {
 
     implementation(libs.bundles.composeBundle)
     implementation(libs.bundles.tvBundle)
-    implementation(project(mapOf("path" to ":feature:error")))
     ksp(libs.compose.destination.ksp)
 
     implementation(libs.paging.runtime)

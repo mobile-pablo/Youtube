@@ -4,8 +4,6 @@ import android.content.Context
 import com.mobile.pablo.storage.database.AppDatabase
 import com.mobile.pablo.storage.sharedprefs.SharedPreferencesManager
 import com.mobile.pablo.storage.sharedprefs.SharedPreferencesManagerImpl
-import com.mobile.pablo.storage.source.popular.PopularDataStorage
-import com.mobile.pablo.storage.source.popular.PopularDataStorageImpl
 import com.mobile.pablo.storage.source.search.SearchDataStorage
 import com.mobile.pablo.storage.source.search.SearchDataStorageImpl
 import dagger.Module
@@ -36,19 +34,6 @@ object StorageModule {
     internal fun providesSearchDao(
         appDatabase: AppDatabase
     ) = appDatabase.searchDao()
-
-    @Provides
-    @Singleton
-    internal fun providesPopularDao(
-        appDatabase: AppDatabase
-    ) = appDatabase.popularDao()
-
-    @Provides
-
-    @Singleton
-    internal fun providesPopularDataStorage(
-        impl: PopularDataStorageImpl
-    ): PopularDataStorage = impl
 
     @Provides
     @Singleton

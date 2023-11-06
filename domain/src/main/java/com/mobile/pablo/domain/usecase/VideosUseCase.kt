@@ -6,13 +6,15 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import com.mobile.pablo.core.data.DataTransfer
 import com.mobile.pablo.core.util.EMPTY_STRING
+import com.mobile.pablo.domain.const.PAGE_PREFETCH_DISTANCE
+import com.mobile.pablo.domain.const.PAGE_SIZE
 import com.mobile.pablo.domain.mapper.popular.PopularMapper
 import com.mobile.pablo.domain.mapper.search.SearchItemMapper
 import com.mobile.pablo.domain.mapper.search.SearchMapper
 import com.mobile.pablo.domain.model.popular.Popular
 import com.mobile.pablo.domain.model.search.Search
 import com.mobile.pablo.networking.source.popular.PopularDataSource
-import com.mobile.pablo.networking.source.popular.paging.PopularPagingSource
+import com.mobile.pablo.networking.source.popular.PopularPagingSource
 import com.mobile.pablo.networking.source.search.SearchDataSource
 import com.mobile.pablo.storage.sharedprefs.SharedPreferencesManager
 import com.mobile.pablo.storage.source.search.SearchDataStorage
@@ -59,7 +61,7 @@ sealed class VideosUseCase {
 
         operator fun invoke(): Flow<PagingData<Popular>> {
             return Pager(
-                config = PagingConfig(pageSize = 20, prefetchDistance = 2),
+                config = PagingConfig(pageSize = PAGE_SIZE, prefetchDistance = PAGE_PREFETCH_DISTANCE),
                 pagingSourceFactory = { PopularPagingSource(popularDataSource, sharedPreferencesManager) }
             ).flow.map { pagingData ->
                 pagingData.map { dataTransfer ->

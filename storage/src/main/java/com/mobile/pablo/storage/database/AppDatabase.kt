@@ -5,10 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.mobile.pablo.storage.database.dao.PopularDao
 import com.mobile.pablo.storage.database.dao.SearchDao
-import com.mobile.pablo.storage.database.entity.popular.PopularEntity
-import com.mobile.pablo.storage.database.entity.popular.PopularItemEntity
 import com.mobile.pablo.storage.database.entity.search.SearchEntity
 import com.mobile.pablo.storage.database.entity.search.SearchItemEntity
 import com.mobile.pablo.storage.database.typeconverter.ListConverter
@@ -16,11 +13,9 @@ import com.mobile.pablo.storage.database.typeconverter.ListConverter
 @Database(
     entities = [
         SearchEntity::class,
-        SearchItemEntity::class,
-        PopularEntity::class,
-        PopularItemEntity::class
+        SearchItemEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(
@@ -29,7 +24,6 @@ import com.mobile.pablo.storage.database.typeconverter.ListConverter
 internal abstract class AppDatabase : RoomDatabase() {
 
     abstract fun searchDao(): SearchDao
-    abstract fun popularDao(): PopularDao
 
     companion object {
 

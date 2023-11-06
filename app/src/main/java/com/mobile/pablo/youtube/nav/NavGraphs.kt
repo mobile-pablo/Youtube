@@ -1,5 +1,6 @@
 package com.mobile.pablo.youtube.nav
 
+import com.mobile.pablo.error.screen.destinations.ErrorScreenDestination
 import com.mobile.pablo.home.screen.destinations.HomeScreenDestination
 import com.ramcosta.composedestinations.dynamic.routedIn
 import com.ramcosta.composedestinations.spec.DestinationSpec
@@ -13,7 +14,8 @@ object NavGraphs {
         override val startRoute = HomeScreenDestination routedIn this
 
         override val destinationsByRoute = listOf<DestinationSpec<*>>(
-            HomeScreenDestination
+            HomeScreenDestination,
+            ErrorScreenDestination
         ).routedIn(this)
             .associateBy { it.route }
     }

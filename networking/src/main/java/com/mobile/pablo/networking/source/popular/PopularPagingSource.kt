@@ -1,11 +1,10 @@
-package com.mobile.pablo.networking.source.popular.paging
+package com.mobile.pablo.networking.source.popular
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mobile.pablo.core.data.DataTransfer
 import com.mobile.pablo.core.model.popular.PopularDTO
 import com.mobile.pablo.core.util.EMPTY_STRING
-import com.mobile.pablo.networking.source.popular.PopularDataSource
 import com.mobile.pablo.storage.sharedprefs.Setting
 import com.mobile.pablo.storage.sharedprefs.SharedPreferencesManager
 import javax.inject.Inject
