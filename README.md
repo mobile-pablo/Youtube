@@ -47,6 +47,7 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 
     * <b>CD</b>  <i>(deploy workflow)</i>  with deploy to Google Play on <b>master</b> branch
 * <h4>Github Actions </h4>
+
     * Delete Branch
     * Lint
     * Mark stale issues
