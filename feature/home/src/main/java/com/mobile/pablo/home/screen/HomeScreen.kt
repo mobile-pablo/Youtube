@@ -51,18 +51,16 @@ fun HomeScreen(
             }
         }
         when {
-            loadState.refresh is LoadState.Loading -> HomeLoadingView()
+            loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading -> HomeLoadingView()
 
-            loadState.refresh is LoadState.Error -> {
+            loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
                 val errorState = loadState.refresh as LoadState.Error
-                navigateToErrorScreen(destinationsNavigator, navController, errorState.error)
-            }
 
-            loadState.append is LoadState.Loading -> HomeLoadingView()
-
-            loadState.append is LoadState.Error -> {
-                val errorState = loadState.append as LoadState.Error
-                navigateToErrorScreen(destinationsNavigator, navController, errorState.error)
+                navigateToErrorScreen(
+                    destinationsNavigator,
+                    navController,
+                    errorState.error
+                )
             }
         }
     }
