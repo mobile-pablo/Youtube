@@ -6,15 +6,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.tv.material3.Text
-import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
 import com.mobile.pablo.home.R
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
 import com.mobile.pablo.uicomponents.theme.spacing
@@ -39,12 +39,14 @@ fun HomeItemView(
     ) {
         Row {
             Column {
-                AsyncImage(
+                SubcomposeAsyncImage(
                     model = wrapper.imageUrl,
-                    placeholder = painterResource(id = R.drawable.ic_image_24),
-                    error = painterResource(id = R.drawable.ic_wifi_tethering_error_24),
                     contentDescription = null,
-                    modifier = Modifier.size(width = Theme.spacing.spacing_160, height = Theme.spacing.spacing_90)
+                    error = { painterResource(id = R.drawable.ic_wifi_tethering_error_24) },
+                    loading = {
+                        CircularProgressIndicator()
+                    },
+                    modifier = Modifier
                         .clip(
                             RoundedCornerShape(Theme.spacing.spacing_6)
                         )
