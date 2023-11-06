@@ -17,6 +17,8 @@ import com.mobile.pablo.home.wrapper.HomeItemWrapper
 import com.mobile.pablo.uicomponents.theme.spacing
 import androidx.compose.material.MaterialTheme as Theme
 
+private const val TEXT_WRAP = 3
+
 @Composable
 fun HomeItemView(
     wrapper: HomeItemWrapper,
@@ -55,7 +57,7 @@ fun HomeItemView(
                 )
                 Text(
                     text = wrapper.description,
-                    maxLines = 3
+                    maxLines = TEXT_WRAP
                 )
             }
         }
