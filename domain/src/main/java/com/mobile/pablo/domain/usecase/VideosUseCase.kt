@@ -61,7 +61,11 @@ sealed class VideosUseCase {
 
         operator fun invoke(): Flow<PagingData<PopularItem>> {
             return Pager(
-                config = PagingConfig(pageSize = PAGE_SIZE, prefetchDistance = PAGE_PREFETCH_DISTANCE),
+                config = PagingConfig(
+                    pageSize = PAGE_SIZE,
+                    prefetchDistance = PAGE_PREFETCH_DISTANCE,
+                    enablePlaceholders = true
+                ),
                 pagingSourceFactory = { PopularPagingSource(popularDataSource, sharedPreferencesManager) }
             ).flow.map { pagingData ->
                 pagingData.map { popularItemDTO ->

@@ -74,14 +74,14 @@ private fun HomeDoneView(popularItems: LazyPagingItems<PopularItem>) {
     ) {
         items(popularItems.itemCount) { index ->
             val item = popularItems[index]
-                HomeItemView(
-                    HomeItemWrapper(
-                        title = item!!.snippet!!.title!!,
-                        description = item.snippet!!.description!!,
-                        imageUrl = item.snippet!!.thumbnails!!.high!!.url!!,
-                        videoId = item.id!!
-                    )
+            HomeItemView(
+                HomeItemWrapper(
+                    title = item!!.snippet!!.title!!,
+                    description = item.snippet!!.description!!,
+                    imageUrl = item.snippet!!.thumbnails!!.high!!.url!!,
+                    videoId = item.id!!
                 )
+            )
         }
     }
 }

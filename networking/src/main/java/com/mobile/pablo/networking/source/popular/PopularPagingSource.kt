@@ -13,7 +13,7 @@ class PopularPagingSource @Inject constructor(
     private val sharedPreferencesManager: SharedPreferencesManager
 ) : PagingSource<String, PopularItemDTO>() {
 
-    override fun getRefreshKey(state: PagingState<String, PopularItemDTO>): String = EMPTY_STRING
+    override fun getRefreshKey(state: PagingState<String, PopularItemDTO>): String? = null
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, PopularItemDTO> {
         val nextPageToken = sharedPreferencesManager.getString(Setting.NEXT_PAGE_TOKEN) ?: EMPTY_STRING

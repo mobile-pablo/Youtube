@@ -16,7 +16,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.tv.material3.Text
+import coil.compose.AsyncImagePainter.State
 import coil.compose.SubcomposeAsyncImage
+import coil.compose.SubcomposeAsyncImageContent
 import com.mobile.pablo.home.R
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
 import com.mobile.pablo.uicomponents.theme.font
@@ -45,16 +47,18 @@ fun HomeItemView(
             SubcomposeAsyncImage(
                 model = wrapper.imageUrl,
                 contentDescription = null,
-                error = { painterResource(id = R.drawable.ic_wifi_tethering_error_24) },
-                loading = {
-                    CircularProgressIndicator()
-                },
                 modifier = Modifier
                     .layoutId(HOME_ITEM_IMAGE_ID)
                     .clip(
                         RoundedCornerShape(Theme.spacing.spacing_6)
                     )
-            )
+            ) {
+                when (painter.state) {
+                    is State.Loading, State.Empty -> CircularProgressIndicator()
+                    is State.Error -> painterResource(id = R.drawable.ic_wifi_tethering_error_24)
+                    is State.Success -> SubcomposeAsyncImageContent()
+                }
+            }
             Text(
                 fontWeight = FontWeight.Bold,
                 fontSize = Theme.font.font_23,
