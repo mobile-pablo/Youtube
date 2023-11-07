@@ -1,4 +1,4 @@
-package com.mobile.pablo.youtube.nav
+package com.mobile.pablo.youtube.nav.graph
 
 import com.mobile.pablo.error.screen.destinations.ErrorScreenDestination
 import com.mobile.pablo.home.screen.destinations.HomeScreenDestination
