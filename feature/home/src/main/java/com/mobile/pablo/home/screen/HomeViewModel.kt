@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.mobile.pablo.core.ext.launchAsync
-import com.mobile.pablo.domain.model.popular.Popular
+import com.mobile.pablo.domain.model.popular.PopularItem
 import com.mobile.pablo.domain.usecase.VideosUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -20,9 +20,9 @@ class HomeViewModel @Inject constructor(
 
     private var downloadJob: Job? = null
 
-    private val _popularState: MutableStateFlow<PagingData<Popular>> =
+    private val _popularState: MutableStateFlow<PagingData<PopularItem>> =
         MutableStateFlow(value = PagingData.empty())
-    val popularState: MutableStateFlow<PagingData<Popular>> get() = _popularState
+    val popularState: MutableStateFlow<PagingData<PopularItem>> get() = _popularState
 
     init {
         getPopularVideos()

@@ -2,8 +2,6 @@ package com.mobile.pablo.home.views
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,16 +9,19 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.ConstraintSet
 import androidx.tv.material3.Text
 import coil.compose.SubcomposeAsyncImage
 import com.mobile.pablo.home.R
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
+import com.mobile.pablo.uicomponents.theme.font
 import com.mobile.pablo.uicomponents.theme.spacing
 import androidx.compose.material.MaterialTheme as Theme
-
-private const val TEXT_WRAP = 3
 
 @Composable
 fun HomeItemView(
@@ -30,46 +31,64 @@ fun HomeItemView(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(Theme.spacing.spacing_6))
             .clickable(onClick = ::onHomeItemClick)
             .padding(
                 vertical = Theme.spacing.spacing_12,
                 horizontal = Theme.spacing.spacing_32
             )
     ) {
-        Row {
-            Column {
-                SubcomposeAsyncImage(
-                    model = wrapper.imageUrl,
-                    contentDescription = null,
-                    error = { painterResource(id = R.drawable.ic_wifi_tethering_error_24) },
-                    loading = {
-                        CircularProgressIndicator()
-                    },
-                    modifier = Modifier
-                        .clip(
-                            RoundedCornerShape(Theme.spacing.spacing_6)
-                        )
-                )
-            }
-            Column(
+        ConstraintLayout(
+            modifier = Modifier
+                .fillMaxWidth(),
+            constraintSet = homeItemConstraints
+        ) {
+            SubcomposeAsyncImage(
+                model = wrapper.imageUrl,
+                contentDescription = null,
+                error = { painterResource(id = R.drawable.ic_wifi_tethering_error_24) },
+                loading = {
+                    CircularProgressIndicator()
+                },
                 modifier = Modifier
-                    .padding(horizontal = Theme.spacing.spacing_20)
-            ) {
-                Text(
-                    text = wrapper.title,
-                    modifier = Modifier
-                        .padding(bottom = Theme.spacing.spacing_20),
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = wrapper.description,
-                    maxLines = TEXT_WRAP
-                )
-            }
+                    .layoutId(HOME_ITEM_IMAGE_ID)
+                    .clip(
+                        RoundedCornerShape(Theme.spacing.spacing_6)
+                    )
+            )
+            Text(
+                fontWeight = FontWeight.Bold,
+                fontSize = Theme.font.font_23,
+                text = wrapper.title.take(HOME_ITEM_DESCRIPTION_MAX_CHARACTERS),
+                overflow = TextOverflow.Clip,
+                maxLines = HOME_ITEM_TITLE_MAX_LINES,
+                modifier = Modifier
+                    .layoutId(HOME_ITEM_TITLE_ID)
+                    .padding(top = Theme.spacing.spacing_20)
+            )
         }
     }
 }
 
 private fun onHomeItemClick() {
 }
+
+private val homeItemConstraints: ConstraintSet = ConstraintSet {
+    val image = createRefFor(HOME_ITEM_IMAGE_ID)
+    val title = createRefFor(HOME_ITEM_TITLE_ID)
+
+    constrain(image) {
+        top.linkTo(parent.top)
+        start.linkTo(parent.start)
+        end.linkTo(parent.end)
+    }
+
+    constrain(title) {
+        top.linkTo(image.bottom)
+        start.linkTo(image.start)
+        end.linkTo(image.end)
+    }
+}
+private const val HOME_ITEM_IMAGE_ID = "home_item_image_id"
+private const val HOME_ITEM_TITLE_ID = "home_item_title_id"
+private const val HOME_ITEM_TITLE_MAX_LINES = 1
+private const val HOME_ITEM_DESCRIPTION_MAX_CHARACTERS = 20

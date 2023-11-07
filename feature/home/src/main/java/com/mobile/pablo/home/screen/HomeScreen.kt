@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,7 +20,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.mobile.pablo.domain.model.popular.Popular
 import com.mobile.pablo.domain.model.popular.PopularItem
 import com.mobile.pablo.error.screen.destinations.ErrorScreenDestination
 import com.mobile.pablo.home.views.HomeItemView
@@ -38,20 +39,13 @@ fun HomeScreen(
     navController: NavController = rememberNavController(),
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val popularLazyPagingItems: LazyPagingItems<Popular> = viewModel.popularState.collectAsLazyPagingItems()
+    val popularLazyPagingItems: LazyPagingItems<PopularItem> =
+        viewModel.popularState.collectAsLazyPagingItems()
 
     popularLazyPagingItems.apply {
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(itemCount) { index ->
-                popularLazyPagingItems[index]!!.items?.forEach {
-                    it?.let {
-                        HomeDoneView(it)
-                    }
-                }
-            }
-        }
         when {
-            loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading -> HomeLoadingView()
+            loadState.refresh is LoadState.Loading -> HomeLoadingView()
+            loadState.append is LoadState.Loading -> CircularProgressIndicator()
 
             loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
                 val errorState = loadState.refresh as LoadState.Error
@@ -62,20 +56,34 @@ fun HomeScreen(
                     errorState.error
                 )
             }
+
+            else -> HomeDoneView(popularLazyPagingItems)
         }
     }
 }
 
+private const val GRID_COLUMNS = 2
+
 @Composable
-private fun HomeDoneView(item: PopularItem) {
-    HomeItemView(
-        HomeItemWrapper(
-            title = item.snippet!!.title!!,
-            description = item.snippet!!.description!!,
-            imageUrl = item.snippet!!.thumbnails!!.medium!!.url!!,
-            videoId = item.id!!
-        )
-    )
+private fun HomeDoneView(popularItems: LazyPagingItems<PopularItem>) {
+
+    LazyVerticalStaggeredGrid(
+        columns = StaggeredGridCells.Fixed(GRID_COLUMNS),
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        items(popularItems.itemCount) { index ->
+            val item = popularItems[index]
+                HomeItemView(
+                    HomeItemWrapper(
+                        title = item!!.snippet!!.title!!,
+                        description = item.snippet!!.description!!,
+                        imageUrl = item.snippet!!.thumbnails!!.high!!.url!!,
+                        videoId = item.id!!
+                    )
+                )
+        }
+    }
 }
 
 @Composable

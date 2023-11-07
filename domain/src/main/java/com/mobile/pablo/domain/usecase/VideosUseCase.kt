@@ -8,10 +8,10 @@ import com.mobile.pablo.core.data.DataTransfer
 import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.domain.const.PAGE_PREFETCH_DISTANCE
 import com.mobile.pablo.domain.const.PAGE_SIZE
-import com.mobile.pablo.domain.mapper.popular.PopularMapper
+import com.mobile.pablo.domain.mapper.popular.PopularItemMapper
 import com.mobile.pablo.domain.mapper.search.SearchItemMapper
 import com.mobile.pablo.domain.mapper.search.SearchMapper
-import com.mobile.pablo.domain.model.popular.Popular
+import com.mobile.pablo.domain.model.popular.PopularItem
 import com.mobile.pablo.domain.model.search.Search
 import com.mobile.pablo.networking.source.popular.PopularDataSource
 import com.mobile.pablo.networking.source.popular.PopularPagingSource
@@ -55,17 +55,17 @@ sealed class VideosUseCase {
 
     class GetPopularVideos @Inject constructor(
         private val popularDataSource: PopularDataSource,
-        private val popularMapper: PopularMapper,
+        private val popularItemMapper: PopularItemMapper,
         private val sharedPreferencesManager: SharedPreferencesManager
     ) : VideosUseCase() {
 
-        operator fun invoke(): Flow<PagingData<Popular>> {
+        operator fun invoke(): Flow<PagingData<PopularItem>> {
             return Pager(
                 config = PagingConfig(pageSize = PAGE_SIZE, prefetchDistance = PAGE_PREFETCH_DISTANCE),
                 pagingSourceFactory = { PopularPagingSource(popularDataSource, sharedPreferencesManager) }
             ).flow.map { pagingData ->
-                pagingData.map { dataTransfer ->
-                    popularMapper.map(dataTransfer.data)!!
+                pagingData.map { popularItemDTO ->
+                    popularItemMapper.map(popularItemDTO)!!
                 }
             }
         }
