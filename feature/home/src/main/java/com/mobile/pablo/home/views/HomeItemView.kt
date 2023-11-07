@@ -62,7 +62,7 @@ fun HomeItemView(
             Text(
                 fontWeight = FontWeight.Bold,
                 fontSize = Theme.font.font_23,
-                text = wrapper.title.take(HOME_ITEM_DESCRIPTION_MAX_CHARACTERS),
+                text = wrapper.title,
                 overflow = TextOverflow.Clip,
                 maxLines = HOME_ITEM_TITLE_MAX_LINES,
                 modifier = Modifier
@@ -95,4 +95,3 @@ private val homeItemConstraints: ConstraintSet = ConstraintSet {
 private const val HOME_ITEM_IMAGE_ID = "home_item_image_id"
 private const val HOME_ITEM_TITLE_ID = "home_item_title_id"
 private const val HOME_ITEM_TITLE_MAX_LINES = 1
-private const val HOME_ITEM_DESCRIPTION_MAX_CHARACTERS = 20
