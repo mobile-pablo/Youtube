@@ -43,14 +43,11 @@ fun NavigationSideBar(
                         selected = selectedItemIndex == index,
                         onClick = { onItemSelected(index) },
                         icon = {
-                            SubcomposeAsyncImage(
-                                model = Image(
-                                    imageVector = if (selectedItemIndex == index)
-                                        item.selectedIcon
-                                    else
-                                        item.unselectedIcon,
-                                    contentDescription = null
-                                ),
+                            Image(
+                                imageVector = if (selectedItemIndex == index)
+                                    item.selectedIcon
+                                else
+                                    item.unselectedIcon,
                                 contentDescription = null
                             )
                         },
