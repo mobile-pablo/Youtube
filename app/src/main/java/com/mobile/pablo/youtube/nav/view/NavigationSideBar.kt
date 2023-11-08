@@ -3,17 +3,22 @@ package com.mobile.pablo.youtube.nav.view
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.NavigationRail
 import androidx.compose.material.NavigationRailItem
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.util.fastForEachIndexed
-import coil.compose.SubcomposeAsyncImage
+import com.mobile.pablo.uicomponents.theme.spacing
 import com.mobile.pablo.youtube.R
 import com.mobile.pablo.youtube.nav.model.NavigationItem
+import androidx.compose.material.MaterialTheme as Theme
 
 @Composable
 fun NavigationSideBar(
@@ -25,30 +30,29 @@ fun NavigationSideBar(
     NavigationRail(
         modifier = modifier,
         header = {
-            SubcomposeAsyncImage(
-                model = Image(
+            Column(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Image(
                     painter = painterResource(id = R.drawable.ic_youtube_34),
-                    contentDescription = null
-                ),
-                contentDescription = null
-            )
+                    contentDescription = null,
+                    modifier = Modifier.padding(Theme.spacing.spacing_12).size(Theme.spacing.spacing_48)
+                )
+            }
         },
         content = {
             Column(
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxHeight()
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.spacing_12, Alignment.Bottom)
             ) {
                 items.fastForEachIndexed { index, item ->
                     NavigationRailItem(
                         selected = selectedItemIndex == index,
                         onClick = { onItemSelected(index) },
                         icon = {
-                            Image(
-                                imageVector = if (selectedItemIndex == index)
-                                    item.selectedIcon
-                                else
-                                    item.unselectedIcon,
-                                contentDescription = null
+                            NavigationIcon(
+                                item = item,
+                                selected = selectedItemIndex == index
                             )
                         },
                         label = {
