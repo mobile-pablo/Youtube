@@ -4,9 +4,7 @@ import com.mobile.pablo.core.util.EMPTY_STRING
 
 enum class Setting(val type: Type) {
     OAUTH_TOKEN(Type.STRING),
-    DARK_MODE_ENABLED(Type.BOOL),
-    NEXT_PAGE_TOKEN(Type.STRING),
-    PREV_PAGE_TOKEN(Type.STRING),
+    DARK_MODE_ENABLED(Type.BOOL)
 }
 
 enum class Type(val default: Any) {

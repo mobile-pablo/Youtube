@@ -12,6 +12,7 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
 ) : SharedPreferencesManager {
 
     companion object {
+
         const val SHARED_PREF_NAME = "youtube_settings"
     }
 
@@ -38,11 +39,13 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
     override suspend fun setString(
         setting: Setting,
         value: String
-    ) {
+    ): String {
         if (setting.type != Type.STRING) throw IllegalArgumentException("${setting.name} is not a String")
         sharedPreferences.edit()
             .putString(setting.name, value)
             .apply()
+
+        return value
     }
 
     override suspend fun getInt(setting: Setting): Int {
@@ -53,11 +56,13 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
     override suspend fun setInt(
         setting: Setting,
         value: Int
-    ) {
+    ): Int {
         if (setting.type != Type.INT) throw IllegalArgumentException("${setting.name} is not an Int")
         sharedPreferences.edit()
             .putInt(setting.name, value)
             .apply()
+
+        return value
     }
 
     override suspend fun getLong(setting: Setting): Long {
@@ -68,11 +73,13 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
     override suspend fun setLong(
         setting: Setting,
         value: Long
-    ) {
+    ): Long {
         if (setting.type != Type.LONG) throw IllegalArgumentException("${setting.name} is not a Long")
         sharedPreferences.edit()
             .putLong(setting.name, value)
             .apply()
+
+        return value
     }
 
     override suspend fun getBool(setting: Setting): Boolean {
@@ -83,11 +90,12 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
     override suspend fun setBool(
         setting: Setting,
         value: Boolean
-    ) {
+    ): Boolean {
         if (setting.type != Type.BOOL) throw IllegalArgumentException("${setting.name} is not a Boolean")
         sharedPreferences.edit()
             .putBoolean(setting.name, value)
             .apply()
+        return value
     }
 
     override suspend fun clear() {

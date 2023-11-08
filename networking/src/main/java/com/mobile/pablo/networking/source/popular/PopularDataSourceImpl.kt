@@ -1,7 +1,8 @@
 package com.mobile.pablo.networking.source.popular
 
 import com.mobile.pablo.core.data.DataTransfer
-import com.mobile.pablo.core.data.NetworkException
+import com.mobile.pablo.core.data.callSafe
+import com.mobile.pablo.core.ext.map
 import com.mobile.pablo.core.model.popular.PopularDTO
 import com.mobile.pablo.networking.mapper.popular.PopularResponseMapper
 import com.mobile.pablo.networking.service.YoutubeService
@@ -16,25 +17,13 @@ internal class PopularDataSourceImpl @Inject constructor(
         regionCode: String,
         pageToken: String
     ): DataTransfer<PopularDTO> {
-        val searchPopularResponse = youtubeService.getPopularSearchVideos(
-            regionCode = regionCode,
-            pageToken = pageToken
-        )
-
-        return when {
-            searchPopularResponse.isSuccessful -> {
-                val searchResult = searchPopularResponse.body()
-                DataTransfer(popularResponseMapper.map(searchResult))
-            }
-
-            else -> {
-                DataTransfer(
-                    error = NetworkException(
-                        code = searchPopularResponse.code(),
-                        message = searchPopularResponse.message()
-                    )
-                )
-            }
+        val popularResponse = callSafe {
+            youtubeService.getPopularSearchVideos(
+                regionCode = regionCode,
+                pageToken = pageToken
+            )
         }
+
+        return popularResponse.map(popularResponseMapper::map)
     }
 }
