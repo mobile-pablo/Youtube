@@ -6,6 +6,8 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import com.mobile.pablo.core.data.DataTransfer
 import com.mobile.pablo.core.util.EMPTY_STRING
+import com.mobile.pablo.domain.const.PAGE_ENABLE_PLACEHOLDERS
+import com.mobile.pablo.domain.const.PAGE_PREFETCH_DISTANCE
 import com.mobile.pablo.domain.const.PAGE_SIZE
 import com.mobile.pablo.domain.mapper.popular.PopularItemMapper
 import com.mobile.pablo.domain.mapper.search.SearchItemMapper
@@ -62,7 +64,8 @@ sealed class VideosUseCase {
             return Pager(
                 config = PagingConfig(
                     pageSize = PAGE_SIZE,
-                    enablePlaceholders = false
+                    prefetchDistance = PAGE_PREFETCH_DISTANCE,
+                    enablePlaceholders = PAGE_ENABLE_PLACEHOLDERS
                 ),
                 pagingSourceFactory = { PopularPagingSource(popularDataSource) }
             ).flow.map { pagingData ->

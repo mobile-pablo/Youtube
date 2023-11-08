@@ -7,6 +7,6 @@ interface PopularDataSource {
 
     suspend fun getPopularVideos(
         regionCode: String,
-        pageToken: String
+        pageToken: String?
     ): DataTransfer<PopularDTO>
 }

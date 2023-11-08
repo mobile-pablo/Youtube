@@ -19,6 +19,6 @@ internal interface YoutubeService {
         @Query("part") part: String = "snippet",
         @Query("chart") chart: String = "mostPopular",
         @Query("regionCode") regionCode: String = "US",
-        @Query("pageToken") pageToken: String
+        @Query("pageToken") pageToken: String? = null
     ): Response<PopularResponse>
 }

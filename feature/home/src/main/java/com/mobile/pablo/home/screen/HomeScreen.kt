@@ -56,9 +56,8 @@ fun HomeScreen(
                     errorState.error
                 )
             }
-
-            else -> HomeDoneView(popularLazyPagingItems)
         }
+        HomeDoneView(popularLazyPagingItems)
     }
 }
 

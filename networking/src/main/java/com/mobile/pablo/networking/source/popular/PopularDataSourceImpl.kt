@@ -15,7 +15,7 @@ internal class PopularDataSourceImpl @Inject constructor(
 
     override suspend fun getPopularVideos(
         regionCode: String,
-        pageToken: String
+        pageToken: String?
     ): DataTransfer<PopularDTO> {
         val popularResponse = callSafe {
             youtubeService.getPopularSearchVideos(

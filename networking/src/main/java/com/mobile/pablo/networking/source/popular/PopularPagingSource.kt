@@ -3,17 +3,21 @@ package com.mobile.pablo.networking.source.popular
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mobile.pablo.core.model.popular.PopularItemDTO
-import com.mobile.pablo.core.util.EMPTY_STRING
 import javax.inject.Inject
 
 class PopularPagingSource @Inject constructor(
     private val popularDataSource: PopularDataSource
 ) : PagingSource<String, PopularItemDTO>() {
 
-    private var nextPageToken = EMPTY_STRING
-    private var prevPageToken = EMPTY_STRING
+    private var nextPageToken: String?
+    private var prevPageToken: String?
 
-    override fun getRefreshKey(state: PagingState<String, PopularItemDTO>): String = nextPageToken
+    init {
+        nextPageToken = null
+        prevPageToken = null
+    }
+
+    override fun getRefreshKey(state: PagingState<String, PopularItemDTO>): String? = nextPageToken
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, PopularItemDTO> {
         val popularResponse = popularDataSource.getPopularVideos(
@@ -21,20 +25,21 @@ class PopularPagingSource @Inject constructor(
             nextPageToken
         )
 
-        return when {
-            popularResponse.isSuccessful -> {
-                nextPageToken = popularResponse.data!!.nextPageToken!!
-                prevPageToken = popularResponse.data!!.prevPageToken ?: EMPTY_STRING
+        popularResponse.data.let { popular ->
+            return when (popular) {
+                null -> LoadResult.Error(popularResponse.error!!)
 
-                LoadResult.Page(
-                    data = popularResponse.data!!.items!!.filterNotNull(),
-                    prevKey = prevPageToken,
-                    nextKey = nextPageToken
-                )
+                else -> {
+                    nextPageToken = popular.nextPageToken
+                    prevPageToken = popular.prevPageToken
+
+                    LoadResult.Page(
+                        data = popular.items!!.filterNotNull(),
+                        prevKey = prevPageToken,
+                        nextKey = nextPageToken
+                    )
+                }
             }
-
-            else ->
-                LoadResult.Error(popularResponse.error!!)
         }
     }
 }
