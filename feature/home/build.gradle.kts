@@ -63,10 +63,10 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 dependencies {
     implementation(project(":domain"))
     implementation(project(":uicomponents"))
+    implementation(project(":feature:error"))
 
     implementation(libs.bundles.composeBundle)
     implementation(libs.bundles.tvBundle)
-    implementation(project(mapOf("path" to ":feature:error")))
     ksp(libs.compose.destination.ksp)
 
     implementation(libs.paging.runtime)

@@ -24,12 +24,10 @@ import com.mobile.pablo.domain.model.popular.PopularItem
 import com.mobile.pablo.error.screen.destinations.ErrorScreenDestination
 import com.mobile.pablo.home.views.HomeItemView
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
+import com.mobile.pablo.uicomponents.ext.navigateTo
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.dynamic.within
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.ramcosta.composedestinations.spec.NavGraphSpec
-import com.ramcosta.composedestinations.utils.navGraph
 import androidx.compose.material.MaterialTheme as Theme
 
 @Composable
@@ -108,7 +106,9 @@ private fun navigateToErrorScreen(
     navController: NavController,
     error: Throwable
 ) {
-    val errorScreenDestination = ErrorScreenDestination(error)
-    val navGraphSpec: NavGraphSpec = navController.currentBackStackEntry!!.navGraph()
-    destinationsNavigator.navigate(errorScreenDestination within navGraphSpec)
+    navigateTo(
+        destinationsNavigator = destinationsNavigator,
+        navController = navController,
+        direction = ErrorScreenDestination(error)
+    )
 }

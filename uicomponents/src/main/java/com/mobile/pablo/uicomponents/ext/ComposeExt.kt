@@ -20,6 +20,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import com.ramcosta.composedestinations.dynamic.within
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.ramcosta.composedestinations.spec.Direction
+import com.ramcosta.composedestinations.spec.NavGraphSpec
+import com.ramcosta.composedestinations.utils.navGraph
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -200,4 +206,13 @@ inline fun <reified T> Flow<T>.observeWithLifecycle(
             ).collect(action)
         }
     }
+}
+
+fun navigateTo(
+    destinationsNavigator: DestinationsNavigator,
+    navController: NavController,
+    direction: Direction
+) {
+    val navGraphSpec: NavGraphSpec = navController.currentBackStackEntry!!.navGraph()
+    destinationsNavigator.navigate(direction within navGraphSpec)
 }
