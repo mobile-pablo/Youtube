@@ -39,8 +39,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.width(Theme.spacing.spacing_82),
                         items = NAVIGATION_ITEMS,
                         selectedItemIndex = selectedItemIndex
-                    ) { selectedItemIndex = it
-                    }
+                    ) { selectedItemIndex = it }
                     DestinationsNavHost(
                         navController = navController,
                         navGraph = NavGraphs.root,
