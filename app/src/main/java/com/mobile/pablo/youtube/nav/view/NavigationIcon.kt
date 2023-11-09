@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import com.mobile.pablo.youtube.nav.model.NavigationItem
 
 @Composable
-fun NavigationIcon(
+internal fun NavigationIcon(
     item: NavigationItem,
     selected: Boolean
 ) {

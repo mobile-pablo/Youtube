@@ -26,14 +26,16 @@ import com.mobile.pablo.uicomponents.theme.spacing
 import androidx.compose.material.MaterialTheme as Theme
 
 @Composable
-fun HomeItemView(
+internal fun HomeItemView(
     wrapper: HomeItemWrapper,
     modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .clickable(onClick = ::onHomeItemClick)
+            .clickable {
+                onHomeItemClick(wrapper.videoId)
+            }
             .padding(
                 vertical = Theme.spacing.spacing_12,
                 horizontal = Theme.spacing.spacing_32
@@ -73,7 +75,8 @@ fun HomeItemView(
     }
 }
 
-private fun onHomeItemClick() {
+private fun onHomeItemClick(videoUrl: String) {
+    // TODO Implement opening Android Video Player
 }
 
 private val homeItemConstraints: ConstraintSet = ConstraintSet {

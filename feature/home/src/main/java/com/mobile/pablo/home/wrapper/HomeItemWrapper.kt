@@ -1,6 +1,6 @@
 package com.mobile.pablo.home.wrapper
 
-data class HomeItemWrapper(
+internal data class HomeItemWrapper(
     val title: String,
     val description: String,
     val imageUrl: String,

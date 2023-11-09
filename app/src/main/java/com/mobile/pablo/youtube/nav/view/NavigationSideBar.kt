@@ -21,7 +21,7 @@ import com.mobile.pablo.youtube.nav.model.NavigationItem
 import androidx.compose.material.MaterialTheme as Theme
 
 @Composable
-fun NavigationSideBar(
+internal fun NavigationSideBar(
     modifier: Modifier = Modifier,
     items: List<NavigationItem>,
     selectedItemIndex: Int,
