@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mobile.pablo.home"
+    namespace = "com.mobile.pablo.player"
     compileSdk = 33
 
     defaultConfig {
@@ -49,7 +49,7 @@ android {
     ksp {
         arg(
             "compose-destinations.moduleName",
-            "home"
+            "player"
         )
         arg(
             "compose-destinations.mode",
@@ -61,13 +61,12 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    implementation(project(":feature:player"))
-    implementation(project(":feature:error"))
-
     implementation(project(":domain"))
     implementation(project(":uicomponents"))
+    implementation(project(":feature:error"))
 
     implementation(libs.bundles.composeBundle)
+    implementation(libs.bundles.youtubeBundle)
     implementation(libs.bundles.tvBundle)
     ksp(libs.compose.destination.ksp)
 

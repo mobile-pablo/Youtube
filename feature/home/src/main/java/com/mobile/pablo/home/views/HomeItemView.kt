@@ -15,26 +15,36 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
+import androidx.navigation.NavController
 import androidx.tv.material3.Text
 import coil.compose.AsyncImagePainter.State
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import com.mobile.pablo.home.R
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
+import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
+import com.mobile.pablo.uicomponents.ext.navigateTo
 import com.mobile.pablo.uicomponents.theme.font
 import com.mobile.pablo.uicomponents.theme.spacing
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import androidx.compose.material.MaterialTheme as Theme
 
 @Composable
 internal fun HomeItemView(
     wrapper: HomeItemWrapper,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    destinationsNavigator: DestinationsNavigator,
+    navControler: NavController
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
             .clickable {
-                onHomeItemClick(wrapper.videoId)
+                onHomeItemClick(
+                    destinationsNavigator = destinationsNavigator,
+                    navController = navControler,
+                    videoId = wrapper.videoId
+                )
             }
             .padding(
                 vertical = Theme.spacing.spacing_12,
@@ -75,8 +85,18 @@ internal fun HomeItemView(
     }
 }
 
-private fun onHomeItemClick(videoUrl: String) {
-    // TODO Implement opening Android Video Player
+private fun onHomeItemClick(
+    destinationsNavigator: DestinationsNavigator,
+    navController: NavController,
+    videoId: String
+) {
+    navigateTo(
+        destinationsNavigator = destinationsNavigator,
+        navController = navController,
+        direction = PlayerScreenDestination(
+            videoId = videoId
+        )
+    )
 }
 
 private val homeItemConstraints: ConstraintSet = ConstraintSet {

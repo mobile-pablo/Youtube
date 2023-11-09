@@ -55,14 +55,22 @@ fun HomeScreen(
                 )
             }
         }
-        HomeDoneView(popularLazyPagingItems)
+        HomeDoneView(
+            popularLazyPagingItems,
+            destinationsNavigator,
+            navController
+        )
     }
 }
 
 private const val GRID_COLUMNS = 2
 
 @Composable
-private fun HomeDoneView(popularItems: LazyPagingItems<PopularItem>) {
+private fun HomeDoneView(
+    popularItems: LazyPagingItems<PopularItem>,
+    destinationsNavigator: DestinationsNavigator,
+    navController: NavController
+) {
 
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Fixed(GRID_COLUMNS),
@@ -72,12 +80,14 @@ private fun HomeDoneView(popularItems: LazyPagingItems<PopularItem>) {
         items(popularItems.itemCount) { index ->
             val item = popularItems[index]
             HomeItemView(
-                HomeItemWrapper(
+                wrapper = HomeItemWrapper(
                     title = item!!.snippet!!.title!!,
                     description = item.snippet!!.description!!,
                     imageUrl = item.snippet!!.thumbnails!!.high!!.url!!,
                     videoId = item.id!!
-                )
+                ),
+                destinationsNavigator = destinationsNavigator,
+                navControler = navController
             )
         }
     }

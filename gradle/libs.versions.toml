@@ -35,6 +35,8 @@ security-crypto = "1.1.0-alpha06"
 timber = '5.0.1'
 junit_ext = '1.1.5'
 junit_macro = '1.1.1'
+youtube_player_core = '12.1.0'
+youtube_player_chromecast = '0.28'
 espresso = '3.5.1'
 barista = '4.3.0'
 mockitoKotlin = '2.2.0'
@@ -50,6 +52,9 @@ hiltVersion = "2.48"
 build_gradle = "8.0"
 kotlin_gradle = "1.9.10"
 google_services = "4.3.15"
+espresso-core = "3.5.1"
+appcompat = "1.6.1"
+material = "1.10.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -99,7 +104,7 @@ espresso-barista-compose = { module = "com.adevinta.android:barista-compose", ve
 
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-androidx-security = { module = "androidx.security:security-crypto", version.ref="security-crypto" }
+androidx-security = { module = "androidx.security:security-crypto", version.ref = "security-crypto" }
 
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
@@ -112,16 +117,21 @@ coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ver
 
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase_bom" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx", version = "18.5.0" }
-firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version = "21.4.0"  }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version = "21.4.0" }
 
 google-accompanist = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
+youtube-player-core = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:core", version.ref = "youtube_player_core" }
+youtube-player-chromecast = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender", version.ref = "youtube_player_chromecast" }
 
 buildGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "build_gradle" }
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin_gradle" }
 hiltPlugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltVersion" }
 googleServicesPlugin = { module = "com.google.gms:google-services", version.ref = "google_services" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
@@ -137,19 +147,26 @@ firebaseCrashlytics = { id = "com.google.firebase.crashlytics", version.ref = "f
 
 [bundles]
 networkingBundle = ["okhttp", "okhttp-logging", "retrofit", "retrofit-scalars"]
-moshiBundle = [ "moshi", "moshi-retrofit"]
+moshiBundle = ["moshi", "moshi-retrofit"]
 androidXBundle = ["androidX-core", "androidX-lifecycle", "androidX-lifecycle-viewmodel"]
 media3Bundle = ["media3-exoplayer", "media3-ui"]
 tvBundle = ["tv-foundation", "tv-material"]
-composeBundle = ["compose-activity", "compose-bom", "compose-coil", "compose-constraint",
-    "compose-destination", "compose-junit", "compose-hiltNavigation",
-    "compose-lifecycle", "compose-material", "compose-swipe", "compose-viewmodel", "compose-ui", "compose-tooling-preview"]
-
+composeBundle = [
+    "compose-activity", "compose-bom", "compose-coil", "compose-constraint",
+    "compose-destination", "compose-junit", "compose-hiltNavigation", "compose-lifecycle",
+    "compose-material", "compose-swipe", "compose-viewmodel", "compose-ui",
+    "compose-tooling-preview"
+]
 composeDebugBundle = ["compose-tooling", "compose-testManifest"]
 
-androidTestBundle = ["junit-ext", "google-truth", "espresso-barista", "espresso-barista-compose",
-    "uiautomator", "hilt-testing"]
-
+androidTestBundle = ["junit-ext",
+    "google-truth",
+    "espresso-barista",
+    "espresso-barista-compose",
+    "uiautomator",
+    "hilt-testing"
+]
+youtubeBundle = ["youtube-player-core", "youtube-player-chromecast"]
 
 
 
