@@ -6,7 +6,7 @@ import com.mobile.pablo.domain.mapper.common.ThumbnailsMapper
 import com.mobile.pablo.domain.model.popular.PopularSnippet
 import javax.inject.Inject
 
- class PopularSnippetMapper @Inject constructor(
+class PopularSnippetMapper @Inject constructor(
     private val thumbnailsMapper: ThumbnailsMapper,
     private val localizedMapper: LocalizedMapper
 ) {

@@ -28,7 +28,7 @@ internal interface YoutubeService {
 
     @GET(YOUTUBE_V3_VIDEOS)
     suspend fun getPopularSearchVideos(
-        @Query(PART_QUERY) part: String = "${SNIPPET},${STATISTICS},${CONTENT_DETAILS}",
+        @Query(PART_QUERY) part: String = "$SNIPPET, $STATISTICS, $CONTENT_DETAILS",
         @Query(CHART_QUERY) chart: String = MOST_POPULAR,
         @Query(REGION_CODE_QUERY) regionCode: String = REGION_US,
         @Query(PAGE_TOKEN_QUERY) pageToken: String? = null

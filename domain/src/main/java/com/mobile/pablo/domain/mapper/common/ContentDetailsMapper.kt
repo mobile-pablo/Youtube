@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class ContentDetailsMapper @Inject constructor() {
 
-    fun map(dto : ContentDetailsDTO?) : ContentDetails? {
+    fun map(dto: ContentDetailsDTO?): ContentDetails? {
         return dto?.run {
             ContentDetails(
                 duration = duration,

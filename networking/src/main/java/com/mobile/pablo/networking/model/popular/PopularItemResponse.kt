@@ -12,5 +12,5 @@ internal data class PopularItemResponse(
     @Json(name = "id") val id: String? = null,
     @Json(name = "snippet") val snippet: PopularSnippetResponse? = null,
     @Json(name = "contentDetails") val contentDetails: ContentDetailsResponse? = null,
-    @Json(name = "statistics") val statistics: StatisticsResponse? = null,
+    @Json(name = "statistics") val statistics: StatisticsResponse? = null
 )

@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 internal class ContentDetailsResponseMapper @Inject constructor() {
 
-    fun map(response : ContentDetailsResponse?) : ContentDetailsDTO? {
+    fun map(response: ContentDetailsResponse?): ContentDetailsDTO? {
         return response?.run {
             ContentDetailsDTO(
                 duration = duration,

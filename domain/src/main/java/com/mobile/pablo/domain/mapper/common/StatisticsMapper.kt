@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class StatisticsMapper @Inject constructor() {
 
-    fun map(dto : StatisticsDTO?) : Statistics? {
+    fun map(dto: StatisticsDTO?): Statistics? {
         return dto?.run {
             Statistics(
                 viewCount = viewCount,
