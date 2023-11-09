@@ -1,10 +1,13 @@
 package com.mobile.pablo.domain.model.popular
 
-import com.squareup.moshi.Json
+import com.mobile.pablo.domain.model.common.ContentDetails
+import com.mobile.pablo.domain.model.common.Statistics
 
 data class PopularItem(
-    @Json(name = "kind") val kind: String? = null,
-    @Json(name = "etag") val etag: String,
-    @Json(name = "id") val id: String? = null,
-    @Json(name = "snippet") val snippet: PopularSnippet? = null
+    val kind: String? = null,
+    val etag: String,
+    val id: String? = null,
+    val snippet: PopularSnippet? = null,
+    val contentDetails: ContentDetails? = null,
+    val statistics: Statistics? = null
 )

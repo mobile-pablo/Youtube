@@ -55,9 +55,9 @@ sealed class VideosUseCase {
         }
     }
 
-    class GetPopularVideos @Inject constructor(
+     class GetPopularVideos @Inject constructor(
         private val popularDataSource: PopularDataSource,
-        private val popularItemMapper: PopularItemMapper
+        internal val popularItemMapper: PopularItemMapper
     ) : VideosUseCase() {
 
         operator fun invoke(): Flow<PagingData<PopularItem>> {

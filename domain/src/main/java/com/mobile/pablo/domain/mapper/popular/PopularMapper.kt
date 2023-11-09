@@ -5,7 +5,7 @@ import com.mobile.pablo.domain.mapper.common.PageInfoMapper
 import com.mobile.pablo.domain.model.popular.Popular
 import javax.inject.Inject
 
-class PopularMapper @Inject constructor(
+internal class PopularMapper @Inject constructor(
     private val pageInfoMapper: PageInfoMapper,
     private val popularItemMapper: PopularItemMapper
 ) {

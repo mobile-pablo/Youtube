@@ -1,5 +1,17 @@
 package com.mobile.pablo.networking.service
 
+import com.mobile.pablo.networking.const.CHART_QUERY
+import com.mobile.pablo.networking.const.CONTENT_DETAILS
+import com.mobile.pablo.networking.const.MOST_POPULAR
+import com.mobile.pablo.networking.const.PAGE_TOKEN_QUERY
+import com.mobile.pablo.networking.const.PART_QUERY
+import com.mobile.pablo.networking.const.Q_QUERY
+import com.mobile.pablo.networking.const.REGION_CODE_QUERY
+import com.mobile.pablo.networking.const.REGION_US
+import com.mobile.pablo.networking.const.SNIPPET
+import com.mobile.pablo.networking.const.STATISTICS
+import com.mobile.pablo.networking.const.YOUTUBE_V3_SEARCH
+import com.mobile.pablo.networking.const.YOUTUBE_V3_VIDEOS
 import com.mobile.pablo.networking.model.popular.PopularResponse
 import com.mobile.pablo.networking.model.search.SearchResponse
 import retrofit2.Response
@@ -8,17 +20,17 @@ import retrofit2.http.Query
 
 internal interface YoutubeService {
 
-    @GET("youtube//v3/search")
+    @GET(YOUTUBE_V3_SEARCH)
     suspend fun getSearchVideos(
-        @Query("part") part: String = "snippet",
-        @Query("q") q: String
+        @Query(PART_QUERY) part: String = SNIPPET,
+        @Query(Q_QUERY) q: String
     ): Response<SearchResponse>
 
-    @GET("youtube/v3/videos")
+    @GET(YOUTUBE_V3_VIDEOS)
     suspend fun getPopularSearchVideos(
-        @Query("part") part: String = "snippet",
-        @Query("chart") chart: String = "mostPopular",
-        @Query("regionCode") regionCode: String = "US",
-        @Query("pageToken") pageToken: String? = null
+        @Query(PART_QUERY) part: String = "${SNIPPET},${STATISTICS},${CONTENT_DETAILS}",
+        @Query(CHART_QUERY) chart: String = MOST_POPULAR,
+        @Query(REGION_CODE_QUERY) regionCode: String = REGION_US,
+        @Query(PAGE_TOKEN_QUERY) pageToken: String? = null
     ): Response<PopularResponse>
 }

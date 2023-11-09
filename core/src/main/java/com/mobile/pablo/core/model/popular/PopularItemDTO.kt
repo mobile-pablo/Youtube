@@ -1,10 +1,13 @@
 package com.mobile.pablo.core.model.popular
 
-import com.squareup.moshi.Json
+import com.mobile.pablo.core.model.common.ContentDetailsDTO
+import com.mobile.pablo.core.model.common.StatisticsDTO
 
 data class PopularItemDTO(
-    @Json(name = "kind") val kind: String? = null,
-    @Json(name = "etag") val etag: String,
-    @Json(name = "id") val id: String? = null,
-    @Json(name = "snippet") val snippet: PopularSnippetDTO? = null
+    val kind: String? = null,
+    val etag: String,
+    val id: String? = null,
+    val snippet: PopularSnippetDTO? = null,
+    val contentDetails: ContentDetailsDTO? = null,
+    val statistics: StatisticsDTO? = null
 )
