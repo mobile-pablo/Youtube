@@ -123,6 +123,7 @@ google-accompanist = { module = "com.google.accompanist:accompanist-permissions"
 google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
 youtube-player-core = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:core", version.ref = "youtube_player_core" }
+youtube-player-custom-ui = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:custom-ui", version.ref = "youtube_player_core" }
 youtube-player-chromecast = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender", version.ref = "youtube_player_chromecast" }
 
 buildGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "build_gradle" }
@@ -166,7 +167,7 @@ androidTestBundle = ["junit-ext",
     "uiautomator",
     "hilt-testing"
 ]
-youtubeBundle = ["youtube-player-core", "youtube-player-chromecast"]
+youtubeBundle = ["youtube-player-core", "youtube-player-custom-ui", "youtube-player-chromecast"]
 
 
 
