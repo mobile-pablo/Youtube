@@ -1,8 +1,15 @@
 # <center><img src= "https://freepngimg.com/download/youtube/77699-classic-icons-youtube-computer-logo-icon.png" style="width:30px; height:30px" /> Youtube </center>
- TV-oriented Clone of Youtube with their API
+ ## <center>TV - oriented Clone of Youtube with their API </center>
 
 ## 🪚 Status 
-    App is in early stages of development
+    App has basic functions like trending video browsing and playing videos but there is one issue.
+    Youtube API doesnt support any views only iframe which is not so much supported by Android TV.
+    I can like open video and play it but not so much add my own features like comment or like.
+    That cuts many of future features that I would implement.
+    Only few external like share and title with redirrection to Youtube App.
+
+    Soon App will have Search Option with history saving.
+    
 ## 📱 How to run
 1. Install Android Studio according to [tutorial](https://developer.android.com/studio?gclid=CjwKCAjwnOipBhBQEiwACyGLukOqCPF7rjbRbw2zo-hldBEOSCVk0P0B1bFUCJjxdKyi6zGc3daUzhoCwSkQAvD_BwE&gclsrc=aw.ds)
 2. Download necessary SDK tools
