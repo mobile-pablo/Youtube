@@ -4,16 +4,29 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.mobile.pablo.storage.database.dao.SearchDao
+import com.mobile.pablo.storage.database.entity.search.SearchEntity
 import com.mobile.pablo.storage.database.entity.search.SearchItemEntity
+import com.mobile.pablo.storage.database.typeconverter.ListConverter
 
 @Database(
-    entities = [SearchItemEntity::class],
-    version = 1,
+    entities = [
+        SearchEntity::class,
+        SearchItemEntity::class
+    ],
+    version = 2,
     exportSchema = false
+)
+@TypeConverters(
+    ListConverter::class
 )
 internal abstract class AppDatabase : RoomDatabase() {
 
+    abstract fun searchDao(): SearchDao
+
     companion object {
+
         private const val DB_NAME = "app_database.db"
         private lateinit var instance: AppDatabase
 

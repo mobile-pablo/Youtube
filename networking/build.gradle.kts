@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.kotlinParcelize)
+    alias(libs.plugins.firebaseCrashlytics)
 }
 
 android {
@@ -23,11 +24,11 @@ android {
         debug {
             isMinifyEnabled = false
 
-            //TODO: temp address
+
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
-                value = "\"https://localhost:8080/\""
+                value = "\"https://www.googleapis.com/\""
             )
         }
 
@@ -38,11 +39,10 @@ android {
                 "proguard-rules.pro"
             )
 
-            //TODO: temp address
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
-                value = "\"https://localhost:8080/\""
+                value = "\"https://www.googleapis.com/youtube/\""
             )
         }
     }
@@ -67,6 +67,8 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.paging.runtime)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.bundles.androidTestBundle)

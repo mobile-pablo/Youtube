@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.kspPlugin)
+    alias(libs.plugins.firebaseCrashlytics)
 }
 
 android {
@@ -54,8 +55,11 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
+    implementation(libs.paging.runtime)
+
     api(libs.room.ktx)
     ksp(libs.room.compiler)
+    implementation(libs.androidx.security)
 
     testImplementation(libs.junit)
 }

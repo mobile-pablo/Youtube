@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Youtube"
+rootProject.name = "Purple Video Player"
 include(":app")
 include(":core")
 include(":domain")
@@ -21,3 +21,5 @@ include(":networking")
 include(":storage")
 include(":uicomponents")
 include(":feature:home")
+include(":feature:player")
+include(":feature:error")
