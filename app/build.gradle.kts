@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 apply(from = "../ktlint.gradle.kts")
 
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
@@ -9,6 +12,7 @@ plugins {
     alias(libs.plugins.gmsGoogle)
     alias(libs.plugins.hiltPlugin)
     alias(libs.plugins.kspPlugin)
+    alias(libs.plugins.firebaseCrashlytics)
 }
 
 kotlin {
@@ -23,6 +27,10 @@ kotlin {
     }
 }
 
+val keystorePropertiesFile = rootProject.file("key.properties")
+val keystoreProperties = Properties()
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+
 android {
     namespace = "com.mobile.pablo.youtube"
     compileSdk = 33
@@ -33,11 +41,21 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+        }
     }
 
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -67,6 +85,8 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
     implementation(project(":feature:home"))
+    implementation(project(":feature:player"))
+    implementation(project(":feature:error"))
     implementation(project(":uicomponents"))
 
     implementation(libs.core.ktx)

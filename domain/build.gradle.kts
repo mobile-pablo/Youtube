@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.firebaseCrashlytics)
 }
 
 android {
@@ -46,4 +47,7 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.paging.runtime)
+    implementation(libs.compose.paging)
 }

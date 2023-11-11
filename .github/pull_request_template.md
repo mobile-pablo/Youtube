@@ -1,7 +1,8 @@
-#### Jira
-* [YTV-XXX](https://mobile-pablo.atlassian.net/browse/YTV-XXX)
-#### Summary
-* Enter summary here
+#### Jira :
+[YTV-XXX](https://mobile-pablo.atlassian.net/browse/YTV-XXX)
 
-#### Notes
-* Enter note here
+#### Qase :
+* [YTC-XXX](https://app.qase.io/case/YTC-XXX)
+
+#### Description :
+* [ ] Description of the changes proposed in the pull request.
