@@ -12,8 +12,13 @@
 
     Soon App will have Search Option with history saving.
 
-[Issue](https://stackoverflow.com/questions/9640265/problems-giving-focus-to-an-iframe-on-smart-tv)
+[Iframe issue](https://stackoverflow.com/questions/9640265/problems-giving-focus-to-an-iframe-on-smart-tv)
 I was regarding to
+
+## 🙊​ Google Play - Status
+    
+    App new releases only will be internal for Youtube Privacy Law.
+    Non less it still uses CD - Deploy workflow only not for production
 
 ## 📱 How to run
 
