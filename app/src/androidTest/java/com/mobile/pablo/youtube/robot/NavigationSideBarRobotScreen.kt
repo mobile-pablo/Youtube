@@ -4,6 +4,7 @@ import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
 import com.google.common.truth.Truth.assertThat
 import com.mobile.pablo.youtube.R
+import com.mobile.pablo.youtube.ext.isDisplayed
 import com.mobile.pablo.youtube.ext.stringRes
 
 internal class NavigationSideBarRobotScreen(
@@ -12,11 +13,13 @@ internal class NavigationSideBarRobotScreen(
 
     private val sideBarContentColumn by lazy {
         val tag = stringRes(R.string.side_bar_item_column)
-        composeTestRule.onNodeWithTag(tag).fetchSemanticsNode().children.size
+        composeTestRule.onNodeWithTag(tag)
     }
 
-    infix fun isSideBarContentColumnIsDisplayed(expectedSize: Int) {
-        assertThat(sideBarContentColumn).isEqualTo(expectedSize)
+    fun isSideBarContentColumnIsDisplayed(expectedSize: Int) {
+        sideBarContentColumn.isDisplayed()
+        val childrenNodes = sideBarContentColumn.fetchSemanticsNode().children
+        assertThat(childrenNodes.size).isEqualTo(expectedSize)
     }
 }
 
