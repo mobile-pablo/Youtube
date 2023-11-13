@@ -105,4 +105,7 @@ dependencies {
     testImplementation(libs.junit)
     debugImplementation(libs.bundles.composeDebugBundle)
     androidTestImplementation(libs.bundles.androidTestBundle)
+
+    androidTestImplementation(project(":core"))
+    testImplementation(project(":core"))
 }

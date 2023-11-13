@@ -53,4 +53,5 @@ dependencies {
     api(libs.timber)
 
     testImplementation(libs.junit)
+    androidTestImplementation(libs.bundles.androidTestBundle)
 }

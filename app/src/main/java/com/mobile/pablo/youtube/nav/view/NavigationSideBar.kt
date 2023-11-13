@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.util.fastForEachIndexed
+import com.mobile.pablo.uicomponents.ext.testTag
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.mobile.pablo.youtube.R
 import com.mobile.pablo.youtube.nav.model.NavigationItem
@@ -42,7 +43,7 @@ internal fun NavigationSideBar(
         },
         content = {
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize().testTag(R.string.side_bar_item_column),
                 verticalArrangement = Arrangement.spacedBy(Theme.spacing.spacing_12, Alignment.Bottom)
             ) {
                 items.fastForEachIndexed { index, item ->

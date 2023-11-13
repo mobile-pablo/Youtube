@@ -28,15 +28,35 @@ internal val NAVIGATION_ITEMS = listOf(
         title = "Playlist",
         selectedIcon = Icons.Filled.List,
         unselectedIcon = Icons.Outlined.List,
-        hasNews = false,
-        destination = HomeScreenDestination,
-        badgeCount = 45
+        destination = HomeScreenDestination
     ),
     NavigationItem(
         title = "Settings",
         selectedIcon = Icons.Filled.Settings,
         unselectedIcon = Icons.Outlined.Settings,
-        destination = HomeScreenDestination,
-        hasNews = true
+        destination = HomeScreenDestination
+    )
+)
+internal val MOCK_NAVIGATION_ITEMS = listOf(
+    NavigationItem(
+        title = "Home",
+        selectedIcon = Icons.Filled.Home,
+        unselectedIcon = Icons.Outlined.Home
+    ),
+    NavigationItem(
+        title = "Search",
+        selectedIcon = Icons.Filled.Search,
+        unselectedIcon = Icons.Outlined.Search
+    ),
+    NavigationItem(
+        title = "Playlist",
+        selectedIcon = Icons.Filled.List,
+        unselectedIcon = Icons.Outlined.List,
+        hasNews = false
+    ),
+    NavigationItem(
+        title = "Settings",
+        selectedIcon = Icons.Filled.Settings,
+        unselectedIcon = Icons.Outlined.Settings
     )
 )
