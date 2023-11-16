@@ -5,6 +5,9 @@ import androidx.compose.material.BadgedBox
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import com.mobile.pablo.youtube.nav.model.NavigationItem
 
 @Composable
@@ -15,11 +18,17 @@ internal fun NavigationIcon(
     BadgedBox(
         badge = {
             if (item.badgeCount != null) {
-                Badge {
+                Badge(
+                    modifier = Modifier.semantics {
+                        contentDescription = BADGE
+                    }
+                ) {
                     Text(text = item.badgeCount.toString())
                 }
             } else if (item.hasNews) {
-                Badge()
+                Badge(modifier = Modifier.semantics {
+                    contentDescription = BADGE
+                })
             }
         }
     ) {
@@ -29,3 +38,5 @@ internal fun NavigationIcon(
         )
     }
 }
+
+internal val BADGE = "Badge"

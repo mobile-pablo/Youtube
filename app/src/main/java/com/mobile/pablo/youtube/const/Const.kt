@@ -52,11 +52,12 @@ internal val MOCK_NAVIGATION_ITEMS = listOf(
         title = "Playlist",
         selectedIcon = Icons.Filled.List,
         unselectedIcon = Icons.Outlined.List,
-        hasNews = false
+        hasNews = true
     ),
     NavigationItem(
         title = "Settings",
         selectedIcon = Icons.Filled.Settings,
-        unselectedIcon = Icons.Outlined.Settings
+        unselectedIcon = Icons.Outlined.Settings,
+        badgeCount = 4
     )
 )
