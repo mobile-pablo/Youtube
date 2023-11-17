@@ -15,7 +15,7 @@ import com.mobile.pablo.uicomponents.theme.spacing
 import com.mobile.pablo.youtube.MainActivity
 import com.mobile.pablo.youtube.const.MOCK_NAVIGATION_ITEMS
 import com.mobile.pablo.youtube.nav.view.NavigationSideBar
-import com.mobile.pablo.youtube.robot.navigationSideBarRobotScreen
+import com.mobile.pablo.youtube.robot.navigationSideBarRobot
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -44,7 +44,7 @@ class NavigationSideBarTest {
 
     @Test
     fun sideBarItemsAreDisplayed() {
-        navigationSideBarRobotScreen(testRule) {
+        navigationSideBarRobot(testRule) {
             isSideBarContentColumnIsDisplayed(MOCK_NAVIGATION_ITEMS.size)
         }
     }

@@ -1,14 +1,9 @@
 package com.mobile.pablo.youtube.tests
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithContentDescription
-import com.google.common.truth.Truth.assertThat
 import com.mobile.pablo.youtube.const.MOCK_NAVIGATION_ITEMS
-import com.mobile.pablo.youtube.ext.doesNotExist
-import com.mobile.pablo.youtube.ext.exists
-import com.mobile.pablo.youtube.ext.isDisplayed
-import com.mobile.pablo.youtube.nav.view.BADGE
 import com.mobile.pablo.youtube.nav.view.NavigationIcon
+import com.mobile.pablo.youtube.robot.navigationIconRobot
 import org.junit.Rule
 import org.junit.Test
 
@@ -24,27 +19,35 @@ class NavigationIconTest {
     @Test
     fun navIcon_displaysItemWhileSelected() {
         composeTestRule.setContent { NavigationIcon(item = item, selected = true) }
-        composeTestRule.onNodeWithContentDescription(item.title).isDisplayed()
+        navigationIconRobot(composeTestRule, item) {
+            isTitleDisplayed()
+        }
     }
 
     @Test
     fun navIcon_displaysItemWhileNotSelected() {
         composeTestRule.setContent { NavigationIcon(item = item, selected = false) }
-        composeTestRule.onNodeWithContentDescription(item.title).isDisplayed()
+        navigationIconRobot(composeTestRule, item) {
+            isTitleDisplayed()
+        }
     }
 
     @Test
     fun navIcon_displaysBadgeWithCount() {
         composeTestRule.setContent { NavigationIcon(item = itemWCount, selected = false) }
-        composeTestRule.onNodeWithContentDescription(BADGE).exists()
+        navigationIconRobot(composeTestRule) {
+            doesBadgeExist()
+        }
     }
 
     @Test
     fun navIcon_wontDisplayBadgeCountWhileCountIsNull() {
         composeTestRule.setContent { NavigationIcon(item = item, selected = false) }
-        composeTestRule.onNodeWithContentDescription(item.title).isDisplayed()
-        assertThat(item.badgeCount).isNull()
-        composeTestRule.onNodeWithContentDescription(BADGE).doesNotExist()
+        navigationIconRobot(composeTestRule, item) {
+            doesNotBadgeExist()
+            assertBadgeCountIsNull()
+            isTitleDisplayed()
+        }
     }
 
     @Test
@@ -52,7 +55,9 @@ class NavigationIconTest {
         composeTestRule.setContent {
             NavigationIcon(item = itemWNews, selected = false)
         }
-        composeTestRule.onNodeWithContentDescription(itemWNews.title).exists()
-        composeTestRule.onNodeWithContentDescription(BADGE).exists()
+        navigationIconRobot(composeTestRule, itemWNews) {
+            doesBadgeExist()
+            isTitleDisplayed()
+        }
     }
 }

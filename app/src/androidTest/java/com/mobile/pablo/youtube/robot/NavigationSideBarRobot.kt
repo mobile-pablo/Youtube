@@ -7,7 +7,7 @@ import com.mobile.pablo.youtube.R
 import com.mobile.pablo.youtube.ext.isDisplayed
 import com.mobile.pablo.youtube.ext.stringRes
 
-internal class NavigationSideBarRobotScreen(
+internal class NavigationSideBarRobot(
     private val composeTestRule: ComposeTestRule
 ) {
 
@@ -23,7 +23,7 @@ internal class NavigationSideBarRobotScreen(
     }
 }
 
-internal fun navigationSideBarRobotScreen(
+internal fun navigationSideBarRobot(
     composeTestRule: ComposeTestRule,
-    func: NavigationSideBarRobotScreen.() -> Unit
-) = NavigationSideBarRobotScreen(composeTestRule).apply(func)
+    func: NavigationSideBarRobot.() -> Unit
+) = NavigationSideBarRobot(composeTestRule).apply(func)
