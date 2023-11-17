@@ -1,60 +1,63 @@
 [versions]
 agp = "8.0.2"
-org-jetbrains-kotlin-android = "1.9.0"
-core-ktx = "1.9.0"
-leanback = "1.0.0"
-
 gms = "4.3.15"
 ksp = "1.9.0-1.0.11"
 kotlin = "1.7.0"
+leanback = "1.0.0"
+core-ktx = "1.9.0"
+coroutineCore = "1.7.3"
+androidx_core = '1.9.0'
+lifecycle = '2.3.1'
+lifecycle_viewmodel = '2.4.0'
+org-jetbrains-kotlin-android = "1.9.0"
+
+timber = '5.0.1'
+firebase_bom = '31.5.0'
 firebaseCrashlyticsGradle = "2.9.9"
-junit = "4.13.2"
-androidx-test-ext-junit = "1.1.5"
+hiltVersion = "2.48"
+
 paging = "3.2.1"
+hilt_compose = '1.1.0-alpha01'
 tv-compose = "1.0.0-alpha07"
 compose = '1.4.0'
 compose_material = '1.4.0'
 activity_compose = '1.7.0'
 compose-bom = "2023.06.01"
-media3 = "1.0.0-alpha03"
+
 okhttp = "4.11.0"
 retrofit = "2.9.0"
 moshi = '1.12.0'
 moshiRetrofit = '2.9.0'
-coroutineCore = "1.7.3"
-androidx_core = '1.9.0'
-lifecycle = '2.3.1'
-lifecycle_viewmodel = '2.4.0'
-hilt_compose = '1.1.0-alpha01'
+
 coil = '2.2.2'
 navigation_compose = '1.8.38-beta'
 compose_constraint = '1.0.1'
 compose_swipe = '1.1.1'
-room = '2.5.1'
-security-crypto = "1.1.0-alpha06"
-timber = '5.0.1'
-junit_ext = '1.1.5'
-junit_macro = '1.1.1'
+
 youtube_player_core = '12.1.0'
 youtube_player_chromecast = '0.28'
-espresso = '3.5.1'
-barista = '4.3.0'
-mockitoKotlin = '2.2.0'
+
+room = '2.5.1'
+security-crypto = "1.1.0-alpha06"
+
+
 runner = '1.4.0'
-uiautomator = '2.3.0-alpha02'
 baseline-profile = '1.3.0'
-firebase_bom = '31.5.0'
+junit_ext = '1.1.5'
+junit_macro = '1.1.1'
+junit = "4.13.2"
+espresso = '3.5.1'
+mockitoKotlin = '5.1.0'
+mockk = '1.13.8'
+uiautomator = '2.3.0-alpha02'
 hilt-testing = '2.44'
-accompanist = '0.31.0-alpha'
 truth = '1.1.3'
-hiltVersion = "2.48"
+androidx-test-ext-junit = "1.1.5"
 
 build_gradle = "8.0"
 kotlin_gradle = "1.9.10"
 google_services = "4.3.15"
-espresso-core = "3.5.1"
-appcompat = "1.6.1"
-material = "1.10.0"
+
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -63,10 +66,10 @@ leanback = { group = "androidx.leanback", name = "leanback", version.ref = "lean
 androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidx_core" }
 androidX-lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidX-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle_viewmodel" }
-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3" }
-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "media3" }
+
 tv-foundation = { module = "androidx.tv:tv-foundation", version.ref = "tv-compose" }
 tv-material = { module = "androidx.tv:tv-material", version.ref = "tv-compose" }
+
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 compose-paging = { module = "androidx.paging:paging-compose", version.ref = "paging" }
 compose-tooling = { module = "androidx.compose.ui:ui-tooling" }
@@ -85,6 +88,7 @@ compose-testManifest = { module = "androidx.compose.ui:ui-test-manifest", versio
 compose-destination = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "navigation_compose" }
 compose-destination-ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "navigation_compose" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltVersion" }
 hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltVersion" }
@@ -92,15 +96,6 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 
-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
-junit = { module = "junit:junit", version.ref = "junit" }
-junit-ext = { module = "androidx.test.ext:junit", version.ref = "junit_ext" }
-junit-macroBenchmark = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "junit_macro" }
-testRunner = { module = "androidx.test:runner", version.ref = "runner" }
-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
-baseline-profile = { module = "androidx.profileinstaller:profileinstaller", version.ref = "baseline-profile" }
-espresso-barista = { module = "com.adevinta.android:barista", version.ref = "barista" }
-espresso-barista-compose = { module = "com.adevinta.android:barista-compose", version.ref = "barista" }
 
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
@@ -119,20 +114,26 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx", version = "18.5.0" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version = "21.4.0" }
 
-google-accompanist = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
 youtube-player-core = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:core", version.ref = "youtube_player_core" }
 youtube-player-custom-ui = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:custom-ui", version.ref = "youtube_player_core" }
 youtube-player-chromecast = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender", version.ref = "youtube_player_chromecast" }
 
+test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
+junit = { module = "junit:junit", version.ref = "junit" }
+junit-ext = { module = "androidx.test.ext:junit", version.ref = "junit_ext" }
+junit-macroBenchmark = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "junit_macro" }
+testRunner = { module = "androidx.test:runner", version.ref = "runner" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockitoKotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
+baseline-profile = { module = "androidx.profileinstaller:profileinstaller", version.ref = "baseline-profile" }
+
 buildGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "build_gradle" }
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin_gradle" }
 hiltPlugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltVersion" }
 googleServicesPlugin = { module = "com.google.gms:google-services", version.ref = "google_services" }
-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
@@ -150,7 +151,6 @@ firebaseCrashlytics = { id = "com.google.firebase.crashlytics", version.ref = "f
 networkingBundle = ["okhttp", "okhttp-logging", "retrofit", "retrofit-scalars"]
 moshiBundle = ["moshi", "moshi-retrofit"]
 androidXBundle = ["androidX-core", "androidX-lifecycle", "androidX-lifecycle-viewmodel"]
-media3Bundle = ["media3-exoplayer", "media3-ui"]
 tvBundle = ["tv-foundation", "tv-material"]
 composeBundle = [
     "compose-activity", "compose-bom", "compose-coil", "compose-constraint",
@@ -162,10 +162,17 @@ composeDebugBundle = ["compose-tooling", "compose-testManifest"]
 
 androidTestBundle = ["junit-ext",
     "google-truth",
-    "espresso-barista",
-    "espresso-barista-compose",
     "uiautomator",
     "hilt-testing"
+]
+
+testBundle = ["junit",
+    "junit-macroBenchmark",
+    "test-ext-junit",
+    "google-truth",
+    "mockitoKotlin",
+    "mockk",
+    "baseline-profile"
 ]
 youtubeBundle = ["youtube-player-core", "youtube-player-custom-ui", "youtube-player-chromecast"]
 

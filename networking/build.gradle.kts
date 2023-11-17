@@ -70,6 +70,6 @@ dependencies {
 
     implementation(libs.paging.runtime)
 
-    testImplementation(libs.junit)
+    testImplementation(libs.bundles.testBundle)
     androidTestImplementation(libs.bundles.androidTestBundle)
 }

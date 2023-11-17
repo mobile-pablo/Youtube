@@ -61,5 +61,5 @@ dependencies {
     ksp(libs.room.compiler)
     implementation(libs.androidx.security)
 
-    testImplementation(libs.junit)
+    testImplementation(libs.bundles.testBundle)
 }

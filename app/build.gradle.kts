@@ -76,6 +76,11 @@ android {
         jvmTarget = "1.8"
     }
 
+    compileOptions {
+        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+    }
+
     kapt {
         correctErrorTypes = true
     }
@@ -102,10 +107,7 @@ dependencies {
     kaptAndroidTest(libs.hilt.android.compiler)
     ksp(libs.compose.destination.ksp)
 
-    testImplementation(libs.junit)
     debugImplementation(libs.bundles.composeDebugBundle)
+    testImplementation(libs.bundles.testBundle)
     androidTestImplementation(libs.bundles.androidTestBundle)
-
-    androidTestImplementation(project(":core"))
-    testImplementation(project(":core"))
 }

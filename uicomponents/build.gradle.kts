@@ -61,7 +61,7 @@ dependencies {
     kaptAndroidTest(libs.hilt.android.compiler)
     ksp(libs.compose.destination.ksp)
 
-    testImplementation(libs.junit)
+    testImplementation(libs.bundles.testBundle)
     debugImplementation(libs.bundles.composeDebugBundle)
     androidTestImplementation(libs.bundles.androidTestBundle)
 }

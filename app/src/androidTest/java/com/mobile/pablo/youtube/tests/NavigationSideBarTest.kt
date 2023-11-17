@@ -43,7 +43,7 @@ class NavigationSideBarTest {
     }
 
     @Test
-    fun sideBarItemsAreDisplayed() {
+    fun sideBar_ItemsAreDisplayed() {
         navigationSideBarRobot(testRule) {
             isSideBarContentColumnIsDisplayed(MOCK_NAVIGATION_ITEMS.size)
         }

@@ -50,4 +50,6 @@ dependencies {
 
     implementation(libs.paging.runtime)
     implementation(libs.compose.paging)
+
+    testImplementation(libs.bundles.testBundle)
 }
