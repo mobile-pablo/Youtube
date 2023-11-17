@@ -126,6 +126,7 @@ junit-ext = { module = "androidx.test.ext:junit", version.ref = "junit_ext" }
 junit-macroBenchmark = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "junit_macro" }
 testRunner = { module = "androidx.test:runner", version.ref = "runner" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutineCore" }
 mockitoKotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
 uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
 baseline-profile = { module = "androidx.profileinstaller:profileinstaller", version.ref = "baseline-profile" }
@@ -171,6 +172,7 @@ testBundle = ["junit",
     "test-ext-junit",
     "google-truth",
     "mockitoKotlin",
+    "coroutines-test",
     "mockk",
     "baseline-profile"
 ]
