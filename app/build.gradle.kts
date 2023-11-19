@@ -76,11 +76,6 @@ android {
         jvmTarget = "1.8"
     }
 
-    compileOptions {
-        targetCompatibility = JavaVersion.VERSION_1_8
-        sourceCompatibility = JavaVersion.VERSION_1_8
-    }
-
     kapt {
         correctErrorTypes = true
     }

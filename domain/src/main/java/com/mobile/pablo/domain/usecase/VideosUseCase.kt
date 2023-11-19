@@ -5,12 +5,10 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.mobile.pablo.core.data.DataTransfer
-import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.domain.const.PAGE_ENABLE_PLACEHOLDERS
 import com.mobile.pablo.domain.const.PAGE_PREFETCH_DISTANCE
 import com.mobile.pablo.domain.const.PAGE_SIZE
 import com.mobile.pablo.domain.mapper.popular.PopularItemMapper
-import com.mobile.pablo.domain.mapper.search.SearchItemMapper
 import com.mobile.pablo.domain.mapper.search.SearchMapper
 import com.mobile.pablo.domain.model.popular.PopularItem
 import com.mobile.pablo.domain.model.search.Search
@@ -27,8 +25,7 @@ sealed class VideosUseCase {
     class GetSearchVideos @Inject constructor(
         private val searchDataSource: SearchDataSource,
         private val searchDataStorage: SearchDataStorage,
-        private val searchMapper: SearchMapper,
-        private val searchItemMapper: SearchItemMapper
+        private val searchMapper: SearchMapper
     ) : VideosUseCase() {
 
         suspend operator fun invoke(query: String): DataTransfer<Search> {
@@ -44,9 +41,9 @@ sealed class VideosUseCase {
 
                 else -> {
                     try {
-                        val searchLocal = searchDataStorage.getSearch()!!.items
-                        val searchLocalDTO = searchLocal!!.map(searchItemMapper::map)
-                        DataTransfer(data = Search(etag = EMPTY_STRING, items = searchLocalDTO))
+                        val searchLocal = searchDataStorage.getSearch()
+                        val searchLocalDTO = searchMapper.map(searchLocal)
+                        DataTransfer(data = searchLocalDTO)
                     } catch (e: Exception) {
                         DataTransfer(error = searchResponse.error)
                     }
