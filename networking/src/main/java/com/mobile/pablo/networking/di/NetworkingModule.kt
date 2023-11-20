@@ -2,6 +2,7 @@ package com.mobile.pablo.networking.di
 
 import android.content.Context
 import com.mobile.pablo.networking.BuildConfig
+import com.mobile.pablo.networking.const.TIMEOUT_MILLIS
 import com.mobile.pablo.networking.interceptor.RequestInterceptor
 import com.mobile.pablo.networking.service.YoutubeService
 import com.mobile.pablo.networking.source.popular.PopularDataSource
@@ -56,9 +57,9 @@ object NetworkingModule {
     ): OkHttpClient =
         OkHttpClient.Builder()
             .cache(cache)
-            .callTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
+            .callTimeout(TIMEOUT_MILLIS, TimeUnit.SECONDS)
+            .readTimeout(TIMEOUT_MILLIS, TimeUnit.SECONDS)
+            .writeTimeout(TIMEOUT_MILLIS, TimeUnit.SECONDS)
             .addInterceptor(requestInterceptor)
             .addInterceptor(loggingInterceptor)
             .build()

@@ -1,15 +1,17 @@
 package com.mobile.pablo.networking.interceptor
 
+import androidx.annotation.Keep
 import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.networking.const.YOUTUBE_KEY
+import java.net.HttpURLConnection
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
-import java.net.HttpURLConnection
-import java.net.SocketTimeoutException
-import java.net.UnknownHostException
 
+@Keep
 class RequestInterceptor : Interceptor {
 
     companion object {

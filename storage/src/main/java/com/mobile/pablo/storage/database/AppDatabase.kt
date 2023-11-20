@@ -1,6 +1,7 @@
 package com.mobile.pablo.storage.database
 
 import android.content.Context
+import androidx.annotation.Keep
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -10,6 +11,7 @@ import com.mobile.pablo.storage.database.entity.search.SearchEntity
 import com.mobile.pablo.storage.database.entity.search.SearchItemEntity
 import com.mobile.pablo.storage.database.typeconverter.ListConverter
 
+@Keep
 @Database(
     entities = [
         SearchEntity::class,

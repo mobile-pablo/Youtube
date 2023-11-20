@@ -1,7 +1,9 @@
 package com.mobile.pablo.storage.sharedprefs
 
+import androidx.annotation.Keep
 import com.mobile.pablo.core.util.EMPTY_STRING
 
+@Keep
 enum class Setting(val type: Type) {
     OAUTH_TOKEN(Type.STRING),
     DARK_MODE_ENABLED(Type.BOOL)
