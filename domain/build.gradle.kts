@@ -57,10 +57,6 @@ dependencies {
     implementation(libs.paging.runtime)
     implementation(libs.compose.paging)
 
-
-    implementation(libs.androidx.runner)
     testImplementation(libs.bundles.testBundle)
-    testAnnotationProcessor(libs.hilt.android.compiler)
     androidTestImplementation(libs.bundles.androidTestBundle)
-    androidTestAnnotationProcessor(libs.hilt.android.compiler)
 }
