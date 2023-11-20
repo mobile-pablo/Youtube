@@ -23,8 +23,6 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
-
-
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
@@ -33,7 +31,7 @@ android {
         }
 
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

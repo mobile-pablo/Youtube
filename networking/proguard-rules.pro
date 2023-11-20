@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keepclassmembers class com.mobile.pablo.networking.service.YoutubeService {
+    public *;
+}
+-keep @javax.inject.Singleton public class *
+-keep class com.mobile.pablo.networking.model.** { *; }
