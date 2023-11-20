@@ -1,6 +1,7 @@
 package com.mobile.pablo.networking.di
 
 import android.content.Context
+import androidx.annotation.Keep
 import com.mobile.pablo.networking.BuildConfig
 import com.mobile.pablo.networking.const.TIMEOUT_MILLIS
 import com.mobile.pablo.networking.interceptor.RequestInterceptor
@@ -66,6 +67,7 @@ object NetworkingModule {
 
     @Provides
     @Singleton
+    @Keep
     fun providesRetrofit(
         client: OkHttpClient,
         moshi: Moshi

@@ -40,7 +40,7 @@ android {
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
-                value = "\"https://www.googleapis.com/youtube/\""
+                value = "\"https://www.googleapis.com/\""
             )
         }
     }
