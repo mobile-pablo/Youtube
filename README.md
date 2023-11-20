@@ -49,16 +49,16 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 * <h4> Compose </h4>
 * <h4> Coroutines </h4>
 * <h4> Compose Navigation </h4>
+* <h4> Paging3 </h4>
 * <h4> Coil </h4>
-* <h4> ExoPlayer </h4>
 * <h4> KtLint </h4>
 * <h4> Leanback </h4>
+* <h4> Youtube Android Player (iFrame) </h4>
 * <h4> Permissions - Accompanist </h4>
 * <h4> Tests </h4>
 
     * <h5> Mockito </h5>
     * <h5> Mockk</h5>
-    * <h5>Espresso </h5>
     * <h5> Truth </h5>
 * <h4> Firebase App Distribution </h4>
 * <h4> Github Actions </h4>
