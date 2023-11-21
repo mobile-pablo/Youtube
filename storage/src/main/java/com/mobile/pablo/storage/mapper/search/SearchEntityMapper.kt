@@ -17,6 +17,7 @@ internal class SearchEntityMapper @Inject constructor(
                 search = SearchEntity(
                     kind = kind,
                     etag = etag,
+                    regionCode = regionCode,
                     nextPageToken = nextPageToken,
                     prevPageToken = prevPageToken,
                     pageInfo = pageInfoMapper.map(pageInfo)
