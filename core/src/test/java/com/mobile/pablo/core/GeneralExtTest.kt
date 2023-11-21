@@ -5,7 +5,7 @@ import com.mobile.pablo.core.data.DataTransfer
 import com.mobile.pablo.core.ext.map
 import java.net.HttpURLConnection
 import kotlinx.coroutines.test.runTest
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
 import org.junit.Test
 import retrofit2.HttpException
@@ -32,7 +32,7 @@ class GeneralExtTest {
     fun mapTransformsErrorResponse() = runTest {
         val response: Response<String> = Response.error(
             HttpURLConnection.HTTP_BAD_REQUEST, ResponseBody.create(
-                MediaType.parse(TEXT_PLAIN), FOO_TEXT
+                TEXT_PLAIN.toMediaTypeOrNull(), FOO_TEXT
             )
         )
         val result = response.map { it.length }

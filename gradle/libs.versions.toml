@@ -169,6 +169,7 @@ androidTestBundle = ["junit-ext",
     "google-truth",
     "mockk-android",
     "uiautomator",
+    "testRunner",
     "coroutines-test",
     "hilt-testing"
 ]

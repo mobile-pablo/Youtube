@@ -49,7 +49,7 @@ internal abstract class SearchDao {
     @Transaction
     open suspend fun getSearchWithItems(): SearchWithItemEntity? {
         val search = getSearch()
-        val items = getSearchItems(search!!.etag)
+        val items = search?.etag?.let { getSearchItems(it) }
         return SearchWithItemEntity(search, items)
     }
 

@@ -45,6 +45,12 @@ android {
     kapt {
         correctErrorTypes = true
     }
+
+    packaging {
+        resources {
+            excludes += "META-INF/*"
+        }
+    }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlint")
@@ -62,4 +68,5 @@ dependencies {
     implementation(libs.androidx.security)
 
     testImplementation(libs.bundles.testBundle)
+    androidTestImplementation(libs.bundles.androidTestBundle)
 }
