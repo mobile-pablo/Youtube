@@ -10,8 +10,8 @@ internal class SearchResponseMapper @Inject constructor(
     private val searchItemResponseMapper: SearchItemResponseMapper
 ) {
 
-    fun map(response: SearchResponse?): SearchDTO? {
-        return response?.run {
+    fun map(response: SearchResponse): SearchDTO {
+        return response.run {
             SearchDTO(
                 kind = kind,
                 etag = etag,
