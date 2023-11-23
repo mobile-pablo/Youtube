@@ -60,7 +60,6 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 * <h4> Leanback </h4>
 * <h4> Youtube Android Player (iFrame) </h4>
 * <h4> Permissions - Accompanist </h4>
-* <h4> Map Struct </h4>
 * <h4> Tests</h4>
   
     * <h5> Compose testing </h5>
