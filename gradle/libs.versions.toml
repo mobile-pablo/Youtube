@@ -96,8 +96,6 @@ hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref 
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
-
-
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-security = { module = "androidx.security:security-crypto", version.ref = "security-crypto" }
@@ -115,12 +113,11 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx", version = "18.5.0" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version = "21.4.0" }
 
-google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
-
 youtube-player-core = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:core", version.ref = "youtube_player_core" }
 youtube-player-custom-ui = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:custom-ui", version.ref = "youtube_player_core" }
 youtube-player-chromecast = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender", version.ref = "youtube_player_chromecast" }
 
+google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
 androidx-runner = { group = "androidx.test", name = "runner", version = "1.5.2" }
 test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 junit = { module = "junit:junit", version.ref = "junit" }

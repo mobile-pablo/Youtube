@@ -1,3 +1,4 @@
+
 # <center><img src= "https://freepngimg.com/download/youtube/77699-classic-icons-youtube-computer-logo-icon.png" style="width:30px; height:30px" /> Youtube </center>
 
 ## <center>TV - oriented Clone of Youtube with their API </center>
@@ -14,6 +15,10 @@
 
 [Iframe issue](https://stackoverflow.com/questions/9640265/problems-giving-focus-to-an-iframe-on-smart-tv)
 I was regarding to
+
+## 🎯​ Test Coverage ████████░░ 80%
+    Most important files are covered currently (1.0.0 status)
+
 
 ## 🙊​ Google Play - Status
     
@@ -55,12 +60,15 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 * <h4> Leanback </h4>
 * <h4> Youtube Android Player (iFrame) </h4>
 * <h4> Permissions - Accompanist </h4>
-* <h4> Tests </h4>
-
-    * <h5> Mockito </h5>
+* <h4> Map Struct </h4>
+* <h4> Tests</h4>
+  
+    * <h5> Compose testing </h5>
     * <h5> Mockk</h5>
+    * <h5> Mock Web Server </h5>
     * <h5> Truth </h5>
 * <h4> Firebase App Distribution </h4>
+* <h4> Crashlytics </h4>
 * <h4> Github Actions </h4>
 * <h4> Bitrise CI/CD </h4>
 
@@ -76,6 +84,11 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
     * Delete Branch
     * Lint
     * Mark stale issues
+
+## To be added soon in (1.0.1)
+
+* Finish UI of Home Screen and Error Screen
+* Add Kover plugin
 
 ## 📸 Screenshots
 

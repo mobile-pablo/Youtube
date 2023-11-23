@@ -8,8 +8,6 @@ import com.ramcosta.composedestinations.annotation.Destination
 
 @Composable
 @Destination
-fun ErrorScreen(
-    error: Throwable
-) {
+fun ErrorScreen() {
     Text(text = stringResource(id = R.string.missing_connection_title))
 }

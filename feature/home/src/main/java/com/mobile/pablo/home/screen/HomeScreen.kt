@@ -45,15 +45,11 @@ fun HomeScreen(
             loadState.refresh is LoadState.Loading -> HomeLoadingView()
             loadState.append is LoadState.Loading -> CircularProgressIndicator()
 
-            loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
-                val errorState = loadState.refresh as LoadState.Error
-
+            loadState.refresh is LoadState.Error || loadState.append is LoadState.Error ->
                 navigateToErrorScreen(
                     destinationsNavigator,
-                    navController,
-                    errorState.error
+                    navController
                 )
-            }
         }
         HomeDoneView(
             popularLazyPagingItems,
@@ -113,12 +109,12 @@ private fun HomeLoadingView() {
 
 private fun navigateToErrorScreen(
     destinationsNavigator: DestinationsNavigator,
-    navController: NavController,
-    error: Throwable
+    navController: NavController
 ) {
     navigateTo(
         destinationsNavigator = destinationsNavigator,
         navController = navController,
-        direction = ErrorScreenDestination(error)
+        direction =
+        ErrorScreenDestination()
     )
 }
