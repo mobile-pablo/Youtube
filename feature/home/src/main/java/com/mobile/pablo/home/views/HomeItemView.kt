@@ -24,6 +24,7 @@ import com.mobile.pablo.home.R
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
 import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
 import com.mobile.pablo.uicomponents.ext.navigateTo
+import com.mobile.pablo.uicomponents.theme.bodyTextColor
 import com.mobile.pablo.uicomponents.theme.font
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -34,7 +35,7 @@ internal fun HomeItemView(
     wrapper: HomeItemWrapper,
     modifier: Modifier = Modifier,
     destinationsNavigator: DestinationsNavigator,
-    navControler: NavController
+    navController: NavController
 ) {
     Box(
         modifier = modifier
@@ -42,7 +43,7 @@ internal fun HomeItemView(
             .clickable {
                 onHomeItemClick(
                     destinationsNavigator = destinationsNavigator,
-                    navController = navControler,
+                    navController = navController,
                     videoId = wrapper.videoId
                 )
             }
@@ -73,8 +74,9 @@ internal fun HomeItemView(
             }
             Text(
                 fontWeight = FontWeight.Bold,
-                fontSize = Theme.font.font_23,
+                fontSize = Theme.font.font_20,
                 text = wrapper.title,
+                color = Theme.colors.bodyTextColor,
                 overflow = TextOverflow.Clip,
                 maxLines = HOME_ITEM_TITLE_MAX_LINES,
                 modifier = Modifier

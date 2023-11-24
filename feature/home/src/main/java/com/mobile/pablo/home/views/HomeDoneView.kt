@@ -11,7 +11,7 @@ import com.mobile.pablo.domain.model.popular.PopularItem
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-private const val GRID_COLUMNS = 2
+private const val GRID_COLUMNS = 3
 
 @Composable
 internal fun HomeDoneView(
@@ -35,7 +35,7 @@ internal fun HomeDoneView(
                     videoId = item.id!!
                 ),
                 destinationsNavigator = destinationsNavigator,
-                navControler = navController
+                navController = navController
             )
         }
     }
