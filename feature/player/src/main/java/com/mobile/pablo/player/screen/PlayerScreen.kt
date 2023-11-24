@@ -21,6 +21,7 @@ fun PlayerScreen(
     navController: NavController = rememberNavController(),
     videoId: String
 ) {
+    // TODO : Hide navigation bar
     Column(
         modifier = Modifier
             .fillMaxSize()
