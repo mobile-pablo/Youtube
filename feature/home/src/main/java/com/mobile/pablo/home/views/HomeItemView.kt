@@ -2,6 +2,7 @@ package com.mobile.pablo.home.views
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,12 +10,9 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.ConstraintSet
 import androidx.navigation.NavController
 import androidx.tv.material3.Text
 import coil.compose.AsyncImagePainter.State
@@ -53,16 +51,14 @@ internal fun HomeItemView(
                 horizontal = Theme.spacing.spacing_32
             )
     ) {
-        ConstraintLayout(
+        Column(
             modifier = Modifier
-                .fillMaxWidth(),
-            constraintSet = homeItemConstraints
+                .fillMaxWidth()
         ) {
             SubcomposeAsyncImage(
                 model = wrapper.imageUrl,
                 contentDescription = null,
                 modifier = Modifier
-                    .layoutId(HOME_ITEM_IMAGE_ID)
                     .clip(
                         RoundedCornerShape(Theme.spacing.spacing_6)
                     )
@@ -77,15 +73,25 @@ internal fun HomeItemView(
                 }
             }
             Text(
-                fontWeight = FontWeight.Bold,
-                fontSize = Theme.font.font_20,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = Theme.font.font_12,
                 text = wrapper.title,
                 color = Theme.colors.bodyTextColor,
                 overflow = TextOverflow.Clip,
                 maxLines = HOME_ITEM_TITLE_MAX_LINES,
                 modifier = Modifier
-                    .layoutId(HOME_ITEM_TITLE_ID)
-                    .padding(top = Theme.spacing.spacing_20)
+                    .padding(top = Theme.spacing.spacing_10)
+            )
+
+            Text(
+                fontWeight = FontWeight.Normal,
+                fontSize = Theme.font.font_9,
+                text = wrapper.channelName,
+                color = Theme.colors.bodyTextColor,
+                overflow = TextOverflow.Clip,
+                maxLines = HOME_ITEM_CHANNEL_NAME_MAX_LINES,
+                modifier = Modifier
+                    .padding(top = Theme.spacing.spacing_4)
             )
         }
     }
@@ -105,22 +111,5 @@ private fun onHomeItemClick(
     )
 }
 
-private val homeItemConstraints: ConstraintSet = ConstraintSet {
-    val image = createRefFor(HOME_ITEM_IMAGE_ID)
-    val title = createRefFor(HOME_ITEM_TITLE_ID)
-
-    constrain(image) {
-        top.linkTo(parent.top)
-        start.linkTo(parent.start)
-        end.linkTo(parent.end)
-    }
-
-    constrain(title) {
-        top.linkTo(image.bottom)
-        start.linkTo(image.start)
-        end.linkTo(image.end)
-    }
-}
-private const val HOME_ITEM_IMAGE_ID = "home_item_image_id"
-private const val HOME_ITEM_TITLE_ID = "home_item_title_id"
-private const val HOME_ITEM_TITLE_MAX_LINES = 1
+private const val HOME_ITEM_TITLE_MAX_LINES = 2
+private const val HOME_ITEM_CHANNEL_NAME_MAX_LINES = 1

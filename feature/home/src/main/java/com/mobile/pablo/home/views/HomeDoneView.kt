@@ -30,6 +30,7 @@ internal fun HomeDoneView(
             HomeItemView(
                 wrapper = HomeItemWrapper(
                     title = item!!.snippet!!.title!!,
+                    channelName = item.snippet!!.channelTitle!!,
                     description = item.snippet!!.description!!,
                     imageUrl = item.snippet!!.thumbnails!!.high!!.url!!,
                     videoId = item.id!!

@@ -23,5 +23,5 @@ object DayColors : CustomColors {
         get() = tertiaryColor
 
     override val progressBackgroundColor: Color
-        get() = Color(0XFFDAD7CD)
+        get() = Color.LightGray
 }
