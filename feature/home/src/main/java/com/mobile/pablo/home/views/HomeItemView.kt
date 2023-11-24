@@ -34,7 +34,7 @@ internal fun HomeItemView(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(Theme.spacing.spacing_240)
+            .height(Theme.spacing.spacing_220)
             .clickable {
                 onHomeItemClick(
                     destinationsNavigator = destinationsNavigator,
