@@ -5,10 +5,10 @@ import androidx.compose.ui.graphics.Color
 object DayColors : CustomColors {
 
     override val primaryColor: Color
-        get() = Color(0xFFBEC8AD)
+        get() = Color(0xFFDAD7CD)
 
     override val secondaryColor: Color
-        get() = Color(0xFF588157)
+        get() = Color(0xFFBEC8AD)
 
     override val tertiaryColor: Color
         get() = Color(0xFF3A5A40)
