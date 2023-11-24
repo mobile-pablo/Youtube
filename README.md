@@ -10,6 +10,7 @@
     I can like open video and play it but not so much add my own features like comment or like.
     That cuts many of future features that I would implement.
     Only few external like share and title with redirrection to Youtube App.
+    I have decided to cut external app opening but I wont  be able to remove Share button.
 
     Soon App will have Search Option with history saving.
 

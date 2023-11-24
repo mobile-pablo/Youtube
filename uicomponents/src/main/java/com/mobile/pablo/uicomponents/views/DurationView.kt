@@ -4,10 +4,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import com.mobile.pablo.uicomponents.ext.formatDuration
@@ -27,6 +29,9 @@ fun DurationView(
             .padding(
                 bottom = Theme.spacing.spacing_8,
                 end = Theme.spacing.spacing_8
+            )
+            .clip(
+                RoundedCornerShape(Theme.spacing.spacing_4)
             )
             .background(Theme.colors.backgroundAlphaColor)
             .padding(
