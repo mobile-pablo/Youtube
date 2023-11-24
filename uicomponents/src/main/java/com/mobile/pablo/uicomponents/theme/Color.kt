@@ -15,7 +15,7 @@ import com.mobile.pablo.uicomponents.theme.customColors.NightColors as Night
  */
 val Colors.primaryColor: Color
     @Composable
-    get() = if (isSystemInDarkTheme()) Night.primaryColor else Day.primaryColor
+    get() = if (!isSystemInDarkTheme()) Night.primaryColor else Day.primaryColor
 
 /**
  *  Extension properties for [Colors]
@@ -24,7 +24,7 @@ val Colors.primaryColor: Color
  */
 val Colors.secondaryColor: Color
     @Composable
-    get() = if (isSystemInDarkTheme()) Night.secondaryColor else Day.secondaryColor
+    get() = if (!isSystemInDarkTheme()) Night.secondaryColor else Day.secondaryColor
 
 /**
  *  Extension properties for [Colors]
@@ -33,7 +33,7 @@ val Colors.secondaryColor: Color
  */
 val Colors.tertiaryColor: Color
     @Composable
-    get() = if (isSystemInDarkTheme()) Night.tertiaryColor else Day.tertiaryColor
+    get() = if (!isSystemInDarkTheme()) Night.tertiaryColor else Day.tertiaryColor
 
 /**
  *  Extension properties for [Colors]
@@ -43,7 +43,7 @@ val Colors.tertiaryColor: Color
  */
 val Colors.tertiarySelectedColor: Color
     @Composable
-    get() = if (isSystemInDarkTheme()) Night.tertiarySelectedColor else Day.tertiarySelectedColor
+    get() = if (!isSystemInDarkTheme()) Night.tertiarySelectedColor else Day.tertiarySelectedColor
 
 /**
  *  Extension properties for [Colors]
@@ -52,7 +52,7 @@ val Colors.tertiarySelectedColor: Color
  */
 val Colors.bodyTextColor: Color
     @Composable
-    get() = if (isSystemInDarkTheme()) Night.bodyTextColor else Day.bodyTextColor
+    get() = if (!isSystemInDarkTheme()) Night.bodyTextColor else Day.bodyTextColor
 
 /**
  *  Extension properties for [Colors]
@@ -61,4 +61,4 @@ val Colors.bodyTextColor: Color
  */
 val Colors.progressBackgroundColor: Color
     @Composable
-    get() = if (isSystemInDarkTheme()) Night.progressBackgroundColor else Day.progressBackgroundColor
+    get() = if (!isSystemInDarkTheme()) Night.progressBackgroundColor else Day.progressBackgroundColor

@@ -1,12 +1,12 @@
 package com.mobile.pablo.youtube.nav.view
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.Icon
 import androidx.compose.material.NavigationRail
 import androidx.compose.material.NavigationRailItem
 import androidx.compose.runtime.Composable
@@ -17,6 +17,7 @@ import androidx.compose.ui.util.fastForEachIndexed
 import com.mobile.pablo.uicomponents.ext.testTag
 import com.mobile.pablo.uicomponents.theme.secondaryColor
 import com.mobile.pablo.uicomponents.theme.spacing
+import com.mobile.pablo.uicomponents.theme.tertiaryColor
 import com.mobile.pablo.youtube.R
 import com.mobile.pablo.youtube.nav.model.NavigationItem
 import androidx.compose.material.MaterialTheme as Theme
@@ -36,8 +37,9 @@ internal fun NavigationSideBar(
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                Image(
+                Icon(
                     painter = painterResource(id = R.drawable.ic_youtube_34),
+                    tint = Theme.colors.tertiaryColor,
                     contentDescription = null,
                     modifier = Modifier
                         .padding(Theme.spacing.spacing_12)

@@ -8,16 +8,16 @@ object NightColors : CustomColors {
         get() = Color(0xFF282828)
 
     override val secondaryColor: Color
-        get() = Color(0xFF052C16)
+        get() = Color(0xFF221F1D)
 
     override val tertiaryColor: Color
-        get() = Color(0xFF2C183E)
+        get() = Color(0xFFDD6828)
 
     override val tertiarySelectedColor: Color
-        get() = Color(0XFF251434)
+        get() = Color(0XFF7F3913)
 
     override val bodyTextColor: Color
-        get() = Color(0xFFDDDDDD)
+        get() = Color(0xFFB6AFAA)
 
     override val progressBackgroundColor: Color
         get() = Color(0XFF4A4A4A)
