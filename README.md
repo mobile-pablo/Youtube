@@ -137,4 +137,11 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
   
     * <b> Crashlytics </b>
         <div> <img  src="readme_assets/crashlytics.png" width="100%"  /> </div>
-    
+
+## 🫧​ Design
+<center>
+    I implemented and used 60 - 30 - 10 rule for this design
+    <br/><br/>
+    <img  width = "50%" src="https://cdn.dribbble.com/users/2248264/screenshots/4552223/media/5ee3ff95aa8d67a446556a3ff15e8001.jpg?resize=800x600&vertical=center"/> <br/>
+  Implementation based on [Youtube TV Design](https://dribbble.com/shots/4552223-YouTube-TV-App-Redsign)
+</center>
