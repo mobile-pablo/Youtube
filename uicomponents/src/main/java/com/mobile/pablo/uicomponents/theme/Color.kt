@@ -71,3 +71,12 @@ val Colors.progressColor: Color
 val Colors.progressBackgroundColor: Color
     @Composable
     get() = if (isSystemInDarkTheme()) Night.progressBackgroundColor else Day.progressBackgroundColor
+
+/**
+ *  Extension properties for [Colors]
+ *  @property backgroundAlphaColor [Color] is
+ *  Color of background alpha used in application.
+ */
+val Colors.backgroundAlphaColor: Color
+    @Composable
+    get() = Color(0x80282828)

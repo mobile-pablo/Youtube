@@ -37,7 +37,7 @@ internal fun HomeDoneView(
                             description = description ?: EMPTY_STRING,
                             imageUrl = thumbnails!!.high!!.url!!,
                             videoId = id!!,
-                            videoLength = contentDetails!!.duration ?: EMPTY_STRING
+                            duration = contentDetails!!.duration ?: EMPTY_STRING
                         ),
                         destinationsNavigator = destinationsNavigator,
                         navController = navController

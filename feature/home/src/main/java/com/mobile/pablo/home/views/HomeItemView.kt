@@ -6,28 +6,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavController
 import androidx.tv.material3.Text
-import coil.compose.AsyncImagePainter.State
-import coil.compose.SubcomposeAsyncImage
-import coil.compose.SubcomposeAsyncImageContent
-import com.mobile.pablo.home.R
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
 import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
 import com.mobile.pablo.uicomponents.ext.navigateTo
 import com.mobile.pablo.uicomponents.theme.bodyTextColor
 import com.mobile.pablo.uicomponents.theme.font
-import com.mobile.pablo.uicomponents.theme.progressColor
 import com.mobile.pablo.uicomponents.theme.spacing
+import com.mobile.pablo.uicomponents.views.AsyncImageWithProgress
+import com.mobile.pablo.uicomponents.views.DurationView
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import androidx.compose.material.MaterialTheme as Theme
 
@@ -59,23 +52,15 @@ internal fun HomeItemView(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            SubcomposeAsyncImage(
-                model = wrapper.imageUrl,
-                contentDescription = null,
+            Box(
                 modifier = Modifier
-                    .clip(
-                        RoundedCornerShape(Theme.spacing.spacing_6)
-                    )
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.BottomEnd
             ) {
-                when (painter.state) {
-                    is State.Loading, State.Empty -> CircularProgressIndicator(
-                        color = Theme.colors.progressColor
-                    )
-
-                    is State.Error -> painterResource(id = R.drawable.ic_wifi_tethering_error_24)
-                    is State.Success -> SubcomposeAsyncImageContent()
-                }
+                AsyncImageWithProgress(wrapper.imageUrl)
+                DurationView(wrapper.duration)
             }
+
             Text(
                 fontWeight = FontWeight.SemiBold,
                 fontSize = Theme.font.font_12,

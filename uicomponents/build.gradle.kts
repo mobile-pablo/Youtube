@@ -48,6 +48,8 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
+    api(project(":core"))
+
     implementation(libs.core.ktx)
     implementation(libs.leanback)
 

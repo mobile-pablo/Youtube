@@ -5,6 +5,6 @@ internal data class HomeItemWrapper(
     val channelName: String,
     val description: String,
     val imageUrl: String,
-    val videoLength: String,
+    val duration: String,
     val videoId: String
 )
