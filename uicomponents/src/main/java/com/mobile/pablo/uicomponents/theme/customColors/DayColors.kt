@@ -19,6 +19,9 @@ object DayColors : CustomColors {
     override val bodyTextColor: Color
         get() = Color(0xFF282828)
 
+    override val progressColor: Color
+        get() = tertiaryColor
+
     override val progressBackgroundColor: Color
         get() = Color(0XFFDAD7CD)
 }

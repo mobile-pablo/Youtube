@@ -11,5 +11,6 @@ interface CustomColors {
     val tertiarySelectedColor: Color
 
     val bodyTextColor: Color
+    val progressColor: Color
     val progressBackgroundColor: Color
 }

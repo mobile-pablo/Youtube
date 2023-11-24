@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
 import com.mobile.pablo.uicomponents.theme.progressBackgroundColor
+import com.mobile.pablo.uicomponents.theme.progressColor
 import com.mobile.pablo.uicomponents.theme.spacing
-import com.mobile.pablo.uicomponents.theme.tertiaryColor
 
 @Composable
 internal fun HomeLoadingView() {
@@ -19,7 +19,7 @@ internal fun HomeLoadingView() {
             .padding(horizontal = MaterialTheme.spacing.spacing_48)
             .fillMaxWidth()
             .height(MaterialTheme.spacing.spacing_16),
-        color = MaterialTheme.colors.tertiaryColor,
+        color = MaterialTheme.colors.progressColor,
         backgroundColor = MaterialTheme.colors.progressBackgroundColor,
         strokeCap = StrokeCap.Square
     )

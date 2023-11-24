@@ -19,6 +19,7 @@ import com.mobile.pablo.home.views.HomeDoneView
 import com.mobile.pablo.home.views.HomeLoadingView
 import com.mobile.pablo.uicomponents.ext.navigateTo
 import com.mobile.pablo.uicomponents.theme.primaryColor
+import com.mobile.pablo.uicomponents.theme.secondaryColor
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import androidx.compose.material.MaterialTheme as Theme
@@ -42,7 +43,9 @@ fun HomeScreen(
         popularLazyPagingItems.apply {
             when {
                 loadState.refresh is LoadState.Loading -> HomeLoadingView()
-                loadState.append is LoadState.Loading -> CircularProgressIndicator()
+                loadState.append is LoadState.Loading -> CircularProgressIndicator(
+                    color = Theme.colors.secondaryColor
+                )
 
                 loadState.refresh is LoadState.Error || loadState.append is LoadState.Error ->
                     navigateToErrorScreen(

@@ -26,6 +26,7 @@ import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
 import com.mobile.pablo.uicomponents.ext.navigateTo
 import com.mobile.pablo.uicomponents.theme.bodyTextColor
 import com.mobile.pablo.uicomponents.theme.font
+import com.mobile.pablo.uicomponents.theme.progressColor
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import androidx.compose.material.MaterialTheme as Theme
@@ -67,7 +68,10 @@ internal fun HomeItemView(
                     )
             ) {
                 when (painter.state) {
-                    is State.Loading, State.Empty -> CircularProgressIndicator()
+                    is State.Loading, State.Empty -> CircularProgressIndicator(
+                        color = Theme.colors.progressColor
+                    )
+
                     is State.Error -> painterResource(id = R.drawable.ic_wifi_tethering_error_24)
                     is State.Success -> SubcomposeAsyncImageContent()
                 }

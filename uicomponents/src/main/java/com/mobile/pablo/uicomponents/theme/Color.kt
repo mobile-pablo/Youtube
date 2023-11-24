@@ -56,6 +56,15 @@ val Colors.bodyTextColor: Color
 
 /**
  *  Extension properties for [Colors]
+ *  @property progressColor [Color] is
+ *  Color of progress bar background used in application.
+ */
+val Colors.progressColor: Color
+    @Composable
+    get() = if (!isSystemInDarkTheme()) Night.progressColor else Day.progressColor
+
+/**
+ *  Extension properties for [Colors]
  *  @property progressBackgroundColor [Color] is
  *  Color of progress bar background used in application.
  */
