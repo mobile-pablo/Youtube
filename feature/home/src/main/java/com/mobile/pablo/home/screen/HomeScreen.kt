@@ -54,7 +54,7 @@ fun HomeScreen(
                     )
             }
             HomeDoneView(
-                popularLazyPagingItems,
+                this,
                 destinationsNavigator,
                 navController
             )
