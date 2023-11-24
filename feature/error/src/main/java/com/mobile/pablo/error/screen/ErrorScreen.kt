@@ -1,6 +1,8 @@
 package com.mobile.pablo.error.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import androidx.tv.material3.Text
 import com.mobile.pablo.error.R
 import com.mobile.pablo.uicomponents.theme.bodyTextColor
@@ -29,7 +33,10 @@ private const val ERROR_DESCRIPTION_MAX_LINES = 2
 
 @Composable
 @Destination
-fun ErrorScreen() {
+fun ErrorScreen(
+    navController: NavController = rememberNavController()
+) {
+    // TODO : Update nav bar visibility status
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -37,12 +44,26 @@ fun ErrorScreen() {
             .background(Theme.colors.primaryColor)
             .padding(horizontal = Theme.spacing.spacing_82)
     ) {
-        Icon(
-            imageVector = Icons.Filled.Search,
-            modifier = Modifier.size(Theme.spacing.spacing_240),
-            contentDescription = null,
-            tint = Theme.colors.secondaryColor
-        )
+        Box(
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Search,
+                modifier = Modifier
+                    .size(Theme.spacing.spacing_240)
+                    .clickable {
+                        navController.popBackStack()
+                    },
+                contentDescription = null,
+                tint = Theme.colors.secondaryColor
+            )
+                Text(
+                    fontWeight = FontWeight.Normal,
+                    text = stringResource(id = R.string.missing_connection_button_text),
+                    fontSize = Theme.font.font_16,
+                    color = Theme.colors.bodyTextColor
+                )
+        }
         Column(modifier = Modifier.wrapContentSize()) {
             Text(
                 fontWeight = FontWeight.SemiBold,

@@ -3,4 +3,5 @@
     <string name="missing_connection_title">Missing Connection</string>
     <string name="missing_connection_description">
         You may lack internet for browsing this app.\nStart over and check again</string>
+    <string name="missing_connection_button_text">Click Search to Try Again</string>
 </resources>
