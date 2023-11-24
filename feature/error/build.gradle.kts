@@ -56,6 +56,12 @@ android {
             "destinations"
         )
     }
+
+    packaging {
+        resources {
+            excludes += "META-INF/*"
+        }
+    }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlint")

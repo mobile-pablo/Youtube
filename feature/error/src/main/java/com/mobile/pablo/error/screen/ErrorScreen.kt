@@ -54,7 +54,7 @@ fun ErrorScreen(
                     .clickable {
                         navController.popBackStack()
                     },
-                contentDescription = null,
+                contentDescription = SEARCH_BADGE_TAG,
                 tint = Theme.colors.secondaryColor
             )
                 Text(
@@ -80,3 +80,5 @@ fun ErrorScreen(
         }
     }
 }
+
+internal const val SEARCH_BADGE_TAG = "search_badge_tag"
