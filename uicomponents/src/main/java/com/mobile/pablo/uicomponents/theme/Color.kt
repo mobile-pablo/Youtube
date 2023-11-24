@@ -79,4 +79,4 @@ val Colors.progressBackgroundColor: Color
  */
 val Colors.backgroundAlphaColor: Color
     @Composable
-    get() = Color(0x80282828)
+    get() = Color(0xB3282828)

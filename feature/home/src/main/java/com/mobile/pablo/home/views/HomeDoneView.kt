@@ -35,7 +35,7 @@ internal fun HomeDoneView(
                             title = title ?: EMPTY_STRING,
                             channelName = channelTitle ?: EMPTY_STRING,
                             description = description ?: EMPTY_STRING,
-                            imageUrl = thumbnails!!.high!!.url!!,
+                            imageUrl = thumbnails!!.medium!!.url!!,
                             videoId = id!!,
                             duration = contentDetails!!.duration ?: EMPTY_STRING
                         ),

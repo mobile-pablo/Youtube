@@ -2,6 +2,7 @@ package com.mobile.pablo.uicomponents.views
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
@@ -43,7 +44,9 @@ fun AsyncImageWithProgress(
             }
 
             is AsyncImagePainter.State.Error -> painterResource(id = R.drawable.ic_wifi_tethering_error_24)
-            is AsyncImagePainter.State.Success -> SubcomposeAsyncImageContent()
+            is AsyncImagePainter.State.Success -> SubcomposeAsyncImageContent(
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }
