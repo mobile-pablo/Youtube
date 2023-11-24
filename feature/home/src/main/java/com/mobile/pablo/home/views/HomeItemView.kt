@@ -34,7 +34,7 @@ internal fun HomeItemView(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(Theme.spacing.spacing_240)
+            .height(Theme.spacing.spacing_250)
             .clickable {
                 onHomeItemClick(
                     destinationsNavigator = destinationsNavigator,
@@ -68,8 +68,7 @@ internal fun HomeItemView(
                 color = Theme.colors.bodyTextColor,
                 overflow = TextOverflow.Clip,
                 maxLines = HOME_ITEM_TITLE_MAX_LINES,
-                modifier = Modifier
-                    .padding(top = Theme.spacing.spacing_10)
+                modifier = Modifier.padding(top = Theme.spacing.spacing_10)
             )
 
             Text(
@@ -79,8 +78,7 @@ internal fun HomeItemView(
                 color = Theme.colors.bodyTextColor,
                 overflow = TextOverflow.Clip,
                 maxLines = HOME_ITEM_CHANNEL_NAME_MAX_LINES,
-                modifier = Modifier
-                    .padding(top = Theme.spacing.spacing_4)
+                modifier = Modifier.padding(top = Theme.spacing.spacing_4)
             )
         }
     }
