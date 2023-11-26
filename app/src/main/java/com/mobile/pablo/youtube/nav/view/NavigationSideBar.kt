@@ -22,12 +22,14 @@ import com.mobile.pablo.youtube.R
 import com.mobile.pablo.youtube.nav.model.NavigationItem
 import androidx.compose.material.MaterialTheme as Theme
 
+typealias OnNavigationItemSelected = (Int) -> Unit
+
 @Composable
 internal fun NavigationSideBar(
     modifier: Modifier = Modifier,
     items: List<NavigationItem>,
     selectedItemIndex: Int,
-    onItemSelected: (Int) -> Unit
+    onItemSelected: OnNavigationItemSelected
 ) {
     NavigationRail(
         backgroundColor = Theme.colors.secondaryColor,
