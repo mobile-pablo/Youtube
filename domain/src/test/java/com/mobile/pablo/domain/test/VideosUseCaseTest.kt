@@ -118,16 +118,18 @@ class VideosUseCaseTest {
         coEvery { popularDataSource.getPopularVideos("EN", "CAUSAS") } returns
                 DataTransfer(MOCK_POPULAR_ITEM)
 
-        val result = VideosUseCase.GetPopularVideos(
+        val getPopularVideos = VideosUseCase.GetPopularVideos(
             popularDataSource = popularDataSource,
             popularItemMapper = popularItemMapper
-        )()
+        )
+
+        val result = getPopularVideos()
 
         result.map { data ->
-                data.map {
-                    assertThat(it).isIn(MOCK_POPULAR_ITEM.items!!.map(popularItemMapper::map))
-                }
+            data.map {
+                assertThat(it).isIn(MOCK_POPULAR_ITEM.items!!.map(popularItemMapper::map))
             }
+        }
     }
 
     @Test
@@ -135,10 +137,12 @@ class VideosUseCaseTest {
         coEvery { popularDataSource.getPopularVideos("EN", "CAUSAS") } returns
                 DataTransfer()
 
-        val result = VideosUseCase.GetPopularVideos(
+        val getPopularVideos = VideosUseCase.GetPopularVideos(
             popularDataSource = popularDataSource,
             popularItemMapper = popularItemMapper
-        )()
+        )
+
+        val result = getPopularVideos()
 
         result.map { data ->
             data.map {
