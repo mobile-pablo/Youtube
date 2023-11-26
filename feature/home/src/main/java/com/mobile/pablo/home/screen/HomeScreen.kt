@@ -31,7 +31,6 @@ fun HomeScreen(
     navController: NavController = rememberNavController(),
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    // TODO : Update nav bar visibility status
 
     val popularLazyPagingItems: LazyPagingItems<PopularItem> =
         viewModel.popularState.collectAsLazyPagingItems()

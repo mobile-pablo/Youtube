@@ -36,7 +36,6 @@ private const val ERROR_DESCRIPTION_MAX_LINES = 2
 fun ErrorScreen(
     navController: NavController = rememberNavController()
 ) {
-    // TODO : Update nav bar visibility status
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
