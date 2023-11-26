@@ -1,43 +1,49 @@
 package com.mobile.pablo.uicomponents.theme
 
-import androidx.compose.material.Typography
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
 import com.mobile.pablo.uicomponents.R
 
-val LATO = FontFamily(
+val MONTSERRAT_FONT_FAMILY = FontFamily(
     listOf(
         Font(
-            R.font.lato_regular,
+            R.font.montserrat_regular,
             FontWeight.Normal
         ),
         Font(
-            R.font.lato_black,
+            R.font.montserrat_medium,
+            FontWeight.Medium
+        ),
+        Font(
+            R.font.montserrat_black,
             FontWeight.Black
         ),
+
         Font(
-            R.font.lato_bold,
-            FontWeight.Bold
-        ),
-        Font(
-            R.font.lato_thin,
+            R.font.montserrat_thin,
             FontWeight.Thin
         ),
         Font(
-            R.font.lato_light,
+            R.font.montserrat_light,
             FontWeight.Light
-        )
-    )
-)
+        ),
+        Font(
+            R.font.montserrat_extra_light,
+            FontWeight.ExtraLight
+        ),
 
-// Set of Material typography styles to start with
-val Typography = Typography(
-    body1 = TextStyle(
-        fontFamily = LATO,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        Font(
+            R.font.montserrat_bold,
+            FontWeight.Bold
+        ),
+        Font(
+            R.font.montserrat_semi_bold,
+            FontWeight.SemiBold
+        ),
+        Font(
+            R.font.montserrat_extra_bold,
+            FontWeight.ExtraBold
+        )
     )
 )

@@ -16,7 +16,6 @@ fun YoutubeTheme(
         LocalFontSize provides FontSize()
     ) {
         Theme(
-            typography = Typography,
             shapes = Shapes,
             content = content
         )

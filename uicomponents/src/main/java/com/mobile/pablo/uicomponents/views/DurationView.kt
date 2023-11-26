@@ -13,6 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import com.mobile.pablo.uicomponents.ext.formatDuration
+import com.mobile.pablo.uicomponents.theme.MONTSERRAT_FONT_FAMILY
 import com.mobile.pablo.uicomponents.theme.backgroundAlphaColor
 import com.mobile.pablo.uicomponents.theme.font
 import com.mobile.pablo.uicomponents.theme.spacing
@@ -43,7 +44,8 @@ fun DurationView(
             text = formatDuration(duration),
             fontSize = Theme.font.font_9,
             color = Color.White,
-            fontWeight = FontWeight.SemiBold
+            fontWeight = FontWeight.SemiBold,
+            fontFamily = MONTSERRAT_FONT_FAMILY
         )
     }
 }

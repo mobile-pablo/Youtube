@@ -21,6 +21,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.tv.material3.Text
 import com.mobile.pablo.error.R
+import com.mobile.pablo.uicomponents.theme.MONTSERRAT_FONT_FAMILY
 import com.mobile.pablo.uicomponents.theme.bodyTextColor
 import com.mobile.pablo.uicomponents.theme.font
 import com.mobile.pablo.uicomponents.theme.primaryColor
@@ -57,6 +58,7 @@ fun ErrorScreen(
                 tint = Theme.colors.secondaryColor
             )
             Text(
+                fontFamily = MONTSERRAT_FONT_FAMILY,
                 fontWeight = FontWeight.Normal,
                 text = stringResource(id = R.string.missing_connection_button_text),
                 fontSize = Theme.font.font_16,
@@ -65,12 +67,14 @@ fun ErrorScreen(
         }
         Column(modifier = Modifier.wrapContentSize()) {
             Text(
+                fontFamily = MONTSERRAT_FONT_FAMILY,
                 fontWeight = FontWeight.SemiBold,
                 text = stringResource(id = R.string.missing_connection_title),
                 fontSize = Theme.font.font_28,
                 color = Theme.colors.bodyTextColor
             )
             Text(
+                fontFamily = MONTSERRAT_FONT_FAMILY,
                 text = stringResource(id = R.string.missing_connection_description),
                 maxLines = ERROR_DESCRIPTION_MAX_LINES,
                 fontSize = Theme.font.font_20,

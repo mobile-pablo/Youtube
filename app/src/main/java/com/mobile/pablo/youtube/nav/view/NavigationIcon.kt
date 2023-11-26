@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import com.mobile.pablo.uicomponents.theme.MONTSERRAT_FONT_FAMILY
 import com.mobile.pablo.uicomponents.theme.tertiaryColor
 import com.mobile.pablo.uicomponents.theme.tertiarySelectedColor
 import com.mobile.pablo.youtube.nav.model.NavigationItem
@@ -26,7 +27,9 @@ internal fun NavigationIcon(
                         contentDescription = BADGE
                     }
                 ) {
-                    Text(text = item.badgeCount.toString())
+                    Text(
+                        fontFamily = MONTSERRAT_FONT_FAMILY,
+                        text = item.badgeCount.toString())
                 }
             } else if (item.hasNews) {
                 Badge(modifier = Modifier.semantics {

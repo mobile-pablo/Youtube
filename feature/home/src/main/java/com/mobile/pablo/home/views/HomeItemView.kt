@@ -16,6 +16,7 @@ import androidx.tv.material3.Text
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
 import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
 import com.mobile.pablo.uicomponents.ext.navigateTo
+import com.mobile.pablo.uicomponents.theme.MONTSERRAT_FONT_FAMILY
 import com.mobile.pablo.uicomponents.theme.bodyTextColor
 import com.mobile.pablo.uicomponents.theme.font
 import com.mobile.pablo.uicomponents.theme.spacing
@@ -64,6 +65,7 @@ internal fun HomeItemView(
             Text(
                 fontWeight = FontWeight.SemiBold,
                 fontSize = Theme.font.font_12,
+                fontFamily = MONTSERRAT_FONT_FAMILY,
                 text = wrapper.title,
                 color = Theme.colors.bodyTextColor,
                 overflow = TextOverflow.Clip,
@@ -74,6 +76,7 @@ internal fun HomeItemView(
             Text(
                 fontWeight = FontWeight.Normal,
                 fontSize = Theme.font.font_9,
+                fontFamily = MONTSERRAT_FONT_FAMILY,
                 text = wrapper.channelName,
                 color = Theme.colors.bodyTextColor,
                 overflow = TextOverflow.Clip,
