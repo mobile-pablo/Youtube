@@ -11,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 
@@ -28,7 +29,7 @@ class HomeViewModel @Inject constructor(
 
     private val _popularState: MutableStateFlow<PagingData<PopularItem>> =
         MutableStateFlow(value = PagingData.empty())
-    val popularState: MutableStateFlow<PagingData<PopularItem>> get() = _popularState
+    val popularState: StateFlow<PagingData<PopularItem>> get() = _popularState
 
     init {
         getPopularVideos()
