@@ -1,5 +1,6 @@
 package com.mobile.pablo.youtube.nav.graph
 
+import androidx.annotation.Keep
 import com.mobile.pablo.error.screen.destinations.ErrorScreenDestination
 import com.mobile.pablo.home.screen.destinations.HomeScreenDestination
 import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
@@ -7,6 +8,7 @@ import com.ramcosta.composedestinations.dynamic.routedIn
 import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 
+@Keep
 object NavGraphs {
 
     val main = object : NavGraphSpec {

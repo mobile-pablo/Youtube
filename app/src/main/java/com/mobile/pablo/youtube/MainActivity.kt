@@ -3,6 +3,7 @@ package com.mobile.pablo.youtube
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.Keep
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,7 @@ import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.material.MaterialTheme as Theme
 
+@Keep
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 

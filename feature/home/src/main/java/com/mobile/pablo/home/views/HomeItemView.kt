@@ -63,7 +63,7 @@ internal fun HomeItemView(
             }
 
             Text(
-                fontWeight = FontWeight.SemiBold,
+                fontWeight = FontWeight.Medium,
                 fontSize = Theme.font.font_12,
                 fontFamily = MONTSERRAT_FONT_FAMILY,
                 text = wrapper.title,
