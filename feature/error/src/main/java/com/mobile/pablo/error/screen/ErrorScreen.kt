@@ -56,12 +56,12 @@ fun ErrorScreen(
                 contentDescription = SEARCH_BADGE_TAG,
                 tint = Theme.colors.secondaryColor
             )
-                Text(
-                    fontWeight = FontWeight.Normal,
-                    text = stringResource(id = R.string.missing_connection_button_text),
-                    fontSize = Theme.font.font_16,
-                    color = Theme.colors.bodyTextColor
-                )
+            Text(
+                fontWeight = FontWeight.Normal,
+                text = stringResource(id = R.string.missing_connection_button_text),
+                fontSize = Theme.font.font_16,
+                color = Theme.colors.bodyTextColor
+            )
         }
         Column(modifier = Modifier.wrapContentSize()) {
             Text(

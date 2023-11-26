@@ -22,7 +22,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
  *  Copied from https://github.com/PierfrancescoSoffritti/android-youtube-player
  *  My implementation only have opening Intent removed.
  *
- *  Unfortunatly we cannot get ride of Share button that cames with JFrame
+ *  Unfortunately we cannot get ride of Share button that comes with JFrame
  */
 class YoutubePlayerUiController(
     private val youTubePlayerView: YouTubePlayerView,
