@@ -30,9 +30,9 @@ import org.junit.Test
 
 class VideosUseCaseTest {
 
-    lateinit var searchDataSource: SearchDataSource
-    lateinit var searchDataStorage: SearchDataStorage
-    lateinit var popularDataSource: PopularDataSource
+    private lateinit var searchDataSource: SearchDataSource
+    private lateinit var searchDataStorage: SearchDataStorage
+    private lateinit var popularDataSource: PopularDataSource
 
     private val searchMapper = SearchMapper(
         PageInfoMapper(),
