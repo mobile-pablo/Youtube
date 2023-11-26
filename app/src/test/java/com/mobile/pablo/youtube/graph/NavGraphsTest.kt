@@ -8,6 +8,8 @@ import org.junit.Test
 class NavGraphsTest {
 
     private val navGraph: NavGraphs = NavGraphs
+    private val mainNavGraph = navGraph.main
+    private val rootNavGraph = navGraph.root
 
     companion object {
 
@@ -18,25 +20,25 @@ class NavGraphsTest {
 
     @Test
     fun mainNavGraphHasCorrectStartRoute() {
-        assertThat(navGraph.main.route).matches(MAIN)
-        assertThat(navGraph.main.startRoute.route).isEqualTo(MAIN_HOME_SCREEN_ROUTE)
+        assertThat(mainNavGraph.route).matches(MAIN)
+        assertThat(mainNavGraph.startRoute.route).isEqualTo(MAIN_HOME_SCREEN_ROUTE)
     }
 
     @Test
     fun rootNavGraphHasCorrectStartRoute() {
-        assertThat(navGraph.root.route).matches(ROOT)
-        assertThat(navGraph.root.startRoute).isEqualTo(navGraph.main)
+        assertThat(rootNavGraph.route).matches(ROOT)
+        assertThat(rootNavGraph.startRoute).isEqualTo(mainNavGraph)
     }
 
     @Test
     fun rootNavGraphHasCorrectNestedNavGraphs() {
-        val expectedNestedNavGraphs = listOf(navGraph.main)
+        val expectedNestedNavGraphs = listOf(mainNavGraph)
 
-        assertThat(navGraph.root.nestedNavGraphs).isEqualTo(expectedNestedNavGraphs)
+        assertThat(rootNavGraph.nestedNavGraphs).isEqualTo(expectedNestedNavGraphs)
     }
 
     @Test
     fun rootNavGraphHasNoDestinations() {
-        assertThat(navGraph.root.destinationsByRoute).isEqualTo(emptyMap<String, DestinationSpec<*>>())
+        assertThat(rootNavGraph.destinationsByRoute).isEqualTo(emptyMap<String, DestinationSpec<*>>())
     }
 }
