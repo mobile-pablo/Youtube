@@ -51,6 +51,7 @@ mockitoKotlin = '5.1.0'
 mockk = '1.13.6'
 mockWebServer = '4.12.0'
 uiautomator = '2.3.0-alpha02'
+turbine = '1.0.0'
 hilt-testing = '2.44'
 truth = '1.1.3'
 androidx-test-ext-junit = "1.1.5"
@@ -131,6 +132,7 @@ mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutineCore" }
 mockitoKotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
 uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 baseline-profile = { module = "androidx.profileinstaller:profileinstaller", version.ref = "baseline-profile" }
 
 buildGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "build_gradle" }
@@ -176,6 +178,7 @@ androidTestBundle = ["junit-ext",
 testBundle = ["junit",
     "junit-macroBenchmark",
     "test-ext-junit",
+    "turbine",
     "google-truth",
     "mockWebServer",
     "mockitoKotlin",
