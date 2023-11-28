@@ -93,19 +93,30 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 
 ## 📸 Screenshots
 
-* <h3><b>App</b></h3>
+* <h3><b>App</b> with 60-30-10 design</h3>
 
-    * <b>Loading screen</b>
-      <div> <img  src="readme_assets/loading_screen_light.png" width="100%"  /> </div>
-    <br/>
-
-    * <b>Popular video's </b> - <i>Paging</i>
-
-      <div> <img  src="readme_assets/loaded_popular_screen_light.png" width="100%"  /> </div>
-      <br/><br/>
-    * <h4><b>Video Player</b></h4>
-
-      <div> <img  src="readme_assets/player_screen_light.png" width="100%"  /> </div>
+<table border="1">
+<thead>
+  <tr>
+    <th>Light mode</th>
+    <th>Dark mode</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><img  src="readme_assets/loading_screen_light.png" width="50%"  /></td>
+    <td><img  src="readme_assets/loading_screen_dark.png" width="50%"  /></td>
+  </tr>
+  <tr>
+    <td><img  src="readme_assets/loaded_popular_screen_light.png" width="50%"  /></td>
+    <td><img  src="readme_assets/loaded_popular_screen_dark.png" width="50%"  /></td>
+  </tr>
+<tr>
+    <td><img  src="readme_assets/player_screen_light.png" width="50%"  /></td>
+    <td><img  src="readme_assets/player_screen_dark.png" width="50%"  /></td>
+</tr>
+</tbody>
+</table>
 
 * <h3><b>CI/CD</b></h3>
 
