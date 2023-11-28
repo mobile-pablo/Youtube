@@ -10,7 +10,6 @@ typealias contentCompose = @Composable () -> Unit
 fun YoutubeTheme(
     content: contentCompose
 ) {
-
     CompositionLocalProvider(
         LocalSpacing provides Spacing(),
         LocalFontSize provides FontSize()

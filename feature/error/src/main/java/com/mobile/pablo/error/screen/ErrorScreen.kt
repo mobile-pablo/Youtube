@@ -34,25 +34,27 @@ private const val ERROR_DESCRIPTION_MAX_LINES = 2
 @Composable
 @Destination
 fun ErrorScreen(
-    destinationsNavigator: DestinationsNavigator
+    destinationsNavigator: DestinationsNavigator? = null
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Theme.colors.primaryColor)
-            .padding(horizontal = Theme.spacing.spacing_82)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Theme.colors.primaryColor)
+                .padding(horizontal = Theme.spacing.spacing_82)
     ) {
         Box(
             contentAlignment = Alignment.BottomCenter
         ) {
             Icon(
                 imageVector = Icons.Filled.Search,
-                modifier = Modifier
-                    .size(Theme.spacing.spacing_240)
-                    .clickable {
-                        destinationsNavigator.popBackStack()
-                    },
+                modifier =
+                    Modifier
+                        .size(Theme.spacing.spacing_240)
+                        .clickable {
+                            destinationsNavigator?.popBackStack()
+                        },
                 contentDescription = SEARCH_BADGE_TAG,
                 tint = Theme.colors.secondaryColor
             )

@@ -22,20 +22,20 @@ import org.junit.Before
 import org.junit.Test
 
 class SearchDataStorageTest {
-
     private lateinit var searchDao: SearchDao
     private lateinit var searchDataStorage: SearchDataStorage
-    private val searchEntityMapper: SearchEntityMapper = SearchEntityMapper(
-        PageInfoEntityMapper(),
-        SearchItemEntityMapper(
-            IdEntityMapper(),
-            SnippetEntityMapper(
-                ThumbnailsEntityMapper(
-                    ThumbnailEntityMapper()
+    private val searchEntityMapper: SearchEntityMapper =
+        SearchEntityMapper(
+            PageInfoEntityMapper(),
+            SearchItemEntityMapper(
+                IdEntityMapper(),
+                SnippetEntityMapper(
+                    ThumbnailsEntityMapper(
+                        ThumbnailEntityMapper()
+                    )
                 )
             )
         )
-    )
 
     @Before
     fun setUp() {
@@ -44,42 +44,47 @@ class SearchDataStorageTest {
     }
 
     @Test
-    fun `insertSearch inserts search into database`() = runBlocking {
-        val searchDTO = searchEntityMapper.map(MOCK_DOG_SEARCH)!!
-        coEvery { searchDao.insertSearchWithItems(MOCK_DOG_SEARCH) } just runs
-        searchDataStorage.insertSearch(searchDTO)
-        coVerify { searchDao.insertSearchWithItems(MOCK_DOG_SEARCH) }
-    }
+    fun `insertSearch inserts search into database`() =
+        runBlocking {
+            val searchDTO = searchEntityMapper.map(MOCK_DOG_SEARCH)!!
+            coEvery { searchDao.insertSearchWithItems(MOCK_DOG_SEARCH) } just runs
+            searchDataStorage.insertSearch(searchDTO)
+            coVerify { searchDao.insertSearchWithItems(MOCK_DOG_SEARCH) }
+        }
 
     @Test
-    fun `getSearch retrieves search from database`() = runBlocking {
-        coEvery { searchDao.getSearchWithItems() } returns MOCK_DOG_SEARCH
-        val result = searchDataStorage.getSearch()
-        val searchDTO = searchEntityMapper.map(MOCK_DOG_SEARCH)
-        assertThat(result).isEqualTo(searchDTO)
-    }
+    fun `getSearch retrieves search from database`() =
+        runBlocking {
+            coEvery { searchDao.getSearchWithItems() } returns MOCK_DOG_SEARCH
+            val result = searchDataStorage.getSearch()
+            val searchDTO = searchEntityMapper.map(MOCK_DOG_SEARCH)
+            assertThat(result).isEqualTo(searchDTO)
+        }
 
     @Test
-    fun `removeSearch removes search from database`() = runBlocking {
-        val etag = "etag"
-        coEvery { searchDao.removeSearchWithItems(etag) } just runs
-        searchDataStorage.removeSearch(etag)
-        coVerify { searchDao.removeSearchWithItems(etag) }
-    }
+    fun `removeSearch removes search from database`() =
+        runBlocking {
+            val etag = "etag"
+            coEvery { searchDao.removeSearchWithItems(etag) } just runs
+            searchDataStorage.removeSearch(etag)
+            coVerify { searchDao.removeSearchWithItems(etag) }
+        }
 
     @Test
-    fun `clearSearches clears all searches from database`() = runBlocking {
-        coEvery { searchDao.clearSearchesWithItems() } just runs
-        searchDataStorage.clearSearches()
-        coVerify { searchDao.clearSearchesWithItems() }
-    }
+    fun `clearSearches clears all searches from database`() =
+        runBlocking {
+            coEvery { searchDao.clearSearchesWithItems() } just runs
+            searchDataStorage.clearSearches()
+            coVerify { searchDao.clearSearchesWithItems() }
+        }
 
     @Test
-    fun `getSearchByEtag retrieves search by etag from database`() = runBlocking {
-        val etag = "etag"
-        coEvery { searchDao.getSearchWithItemsByEtag(etag) } returns MOCK_DOG_SEARCH
-        val result = searchDataStorage.getSearchByEtag(etag)
-        val searchDTO = searchEntityMapper.map(MOCK_DOG_SEARCH)
-        assertThat(result).isEqualTo(searchDTO)
-    }
+    fun `getSearchByEtag retrieves search by etag from database`() =
+        runBlocking {
+            val etag = "etag"
+            coEvery { searchDao.getSearchWithItemsByEtag(etag) } returns MOCK_DOG_SEARCH
+            val result = searchDataStorage.getSearchByEtag(etag)
+            val searchDTO = searchEntityMapper.map(MOCK_DOG_SEARCH)
+            assertThat(result).isEqualTo(searchDTO)
+        }
 }

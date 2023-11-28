@@ -28,7 +28,6 @@ import androidx.compose.material.MaterialTheme as Theme
 @Keep
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actionBar?.hide()
@@ -40,18 +39,20 @@ class MainActivity : ComponentActivity() {
                 }
                 Surface(modifier = Modifier.fillMaxSize()) {
                     NavigationSideBar(
-                        modifier = Modifier
-                            .width(Theme.spacing.spacing_72),
+                        modifier =
+                            Modifier
+                                .width(Theme.spacing.spacing_72),
                         items = NAVIGATION_ITEMS,
                         selectedItemIndex = selectedItemIndex
                     ) { selectedItemIndex = it }
                     DestinationsNavHost(
                         navController = navController,
                         navGraph = NavGraphs.root,
-                        modifier = Modifier
-                            .padding(start = Theme.spacing.spacing_72)
-                            .fillMaxSize()
-                            .background(Theme.colors.primaryColor)
+                        modifier =
+                            Modifier
+                                .padding(start = Theme.spacing.spacing_72)
+                                .fillMaxSize()
+                                .background(Theme.colors.primaryColor)
                     )
                 }
             }

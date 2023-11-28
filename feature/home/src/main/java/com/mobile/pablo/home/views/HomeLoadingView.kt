@@ -15,10 +15,11 @@ import com.mobile.pablo.uicomponents.theme.spacing
 @Composable
 internal fun HomeLoadingView() {
     LinearProgressIndicator(
-        modifier = Modifier
-            .padding(horizontal = MaterialTheme.spacing.spacing_48)
-            .fillMaxWidth()
-            .height(MaterialTheme.spacing.spacing_16),
+        modifier =
+            Modifier
+                .padding(horizontal = MaterialTheme.spacing.spacing_48)
+                .fillMaxWidth()
+                .height(MaterialTheme.spacing.spacing_16),
         color = MaterialTheme.colors.progressColor,
         backgroundColor = MaterialTheme.colors.progressBackgroundColor,
         strokeCap = StrokeCap.Square

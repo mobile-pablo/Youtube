@@ -36,24 +36,23 @@ internal fun NavigationSideBar(
         modifier = modifier,
         header = {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_youtube_34),
                     tint = Theme.colors.tertiaryColor,
                     contentDescription = null,
-                    modifier = Modifier
-                        .padding(Theme.spacing.spacing_12)
-                        .size(Theme.spacing.spacing_48)
+                    modifier =
+                        Modifier.padding(Theme.spacing.spacing_12)
+                            .size(Theme.spacing.spacing_48)
                 )
             }
         },
         content = {
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .testTag(R.string.side_bar_item_column),
+                modifier =
+                    Modifier.fillMaxSize()
+                        .testTag(R.string.side_bar_item_column),
                 verticalArrangement = Arrangement.spacedBy(Theme.spacing.spacing_12, Alignment.Bottom)
             ) {
                 items.fastForEachIndexed { index, item ->

@@ -10,19 +10,19 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.junit.Test
 
 class JsonExtensionsTest {
-
-    private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory()).build()
+    private val moshi =
+        Moshi.Builder()
+            .add(KotlinJsonAdapterFactory()).build()
 
     companion object {
-
         private const val JSON_ITEM_ONE_TITLE = "test"
         private const val JSON_ITEM_ONE_VALUE = 123
         private const val JSON_ITEM_TWO_TITLE = "test2"
         private const val JSON_ITEM_TWO_VALUE = 456
         private const val JSON_ITEM = "{\"name\":\"$JSON_ITEM_ONE_TITLE\",\"value\":$JSON_ITEM_ONE_VALUE}"
 
-        private const val JSON_LIST = "[" +
+        private const val JSON_LIST =
+            "[" +
                 "{\"name\":\"$JSON_ITEM_ONE_TITLE\",\"value\":$JSON_ITEM_ONE_VALUE}," +
                 "{\"name\":\"$JSON_ITEM_TWO_TITLE\",\"value\":$JSON_ITEM_TWO_VALUE}" +
                 "]"

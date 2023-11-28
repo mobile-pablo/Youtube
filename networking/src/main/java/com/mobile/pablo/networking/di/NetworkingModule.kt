@@ -28,13 +28,13 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkingModule {
-
     @Provides
     @Singleton
     fun providesLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().apply {
-            if (BuildConfig.DEBUG)
+            if (BuildConfig.DEBUG) {
                 level = HttpLoggingInterceptor.Level.BODY
+            }
         }
 
     @Provides

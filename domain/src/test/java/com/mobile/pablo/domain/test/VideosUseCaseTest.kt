@@ -29,33 +29,34 @@ import org.junit.Before
 import org.junit.Test
 
 class VideosUseCaseTest {
-
     private lateinit var searchDataSource: SearchDataSource
     private lateinit var searchDataStorage: SearchDataStorage
     private lateinit var popularDataSource: PopularDataSource
 
-    private val searchMapper = SearchMapper(
-        PageInfoMapper(),
-        SearchItemMapper(
-            IdMapper(),
-            SearchSnippetMapper(
-                ThumbnailsMapper(
-                    ThumbnailMapper()
+    private val searchMapper =
+        SearchMapper(
+            PageInfoMapper(),
+            SearchItemMapper(
+                IdMapper(),
+                SearchSnippetMapper(
+                    ThumbnailsMapper(
+                        ThumbnailMapper()
+                    )
                 )
             )
         )
-    )
 
-    private val popularItemMapper = PopularItemMapper(
-        PopularSnippetMapper(
-            ThumbnailsMapper(
-                ThumbnailMapper()
+    private val popularItemMapper =
+        PopularItemMapper(
+            PopularSnippetMapper(
+                ThumbnailsMapper(
+                    ThumbnailMapper()
+                ),
+                LocalizedMapper()
             ),
-            LocalizedMapper()
-        ),
-        ContentDetailsMapper(),
-        StatisticsMapper()
-    )
+            ContentDetailsMapper(),
+            StatisticsMapper()
+        )
 
     @Before
     fun setUp() {
@@ -65,89 +66,98 @@ class VideosUseCaseTest {
     }
 
     @Test
-    fun getSearchVideos_returnsSearchWhenSearchResponseIsSuccessful() = runTest {
-        coEvery { searchDataSource.getSearchVideos("dog") } returns DataTransfer(MOCK_DOG_SEARCH)
-        coEvery { searchDataStorage.insertSearch(MOCK_DOG_SEARCH) } returns Unit
+    fun getSearchVideos_returnsSearchWhenSearchResponseIsSuccessful() =
+        runTest {
+            coEvery { searchDataSource.getSearchVideos("dog") } returns DataTransfer(MOCK_DOG_SEARCH)
+            coEvery { searchDataStorage.insertSearch(MOCK_DOG_SEARCH) } returns Unit
 
-        val getSearchVideos = VideosUseCase.GetSearchVideos(
-            searchDataSource = searchDataSource,
-            searchDataStorage = searchDataStorage,
-            searchMapper = searchMapper
-        )
-        val result = getSearchVideos("dog")
+            val getSearchVideos =
+                VideosUseCase.GetSearchVideos(
+                    searchDataSource = searchDataSource,
+                    searchDataStorage = searchDataStorage,
+                    searchMapper = searchMapper
+                )
+            val result = getSearchVideos("dog")
 
-        assertThat(result.isSuccessful).isTrue()
-        assertThat(result.data).isEqualTo(searchMapper.map(MOCK_DOG_SEARCH))
-    }
-
-    @Test
-    fun getSearchVideos_returnsLocalSearchWhenSearchResponseIsNotSuccessful() = runTest {
-
-        coEvery { searchDataSource.getSearchVideos("dog") } returns DataTransfer(error = Exception())
-        coEvery { searchDataStorage.getSearch() } returns MOCK_DOG_SEARCH
-        val getSearchVideos = VideosUseCase.GetSearchVideos(
-            searchDataSource = searchDataSource,
-            searchDataStorage = searchDataStorage,
-            searchMapper = searchMapper
-        )
-
-        val result = getSearchVideos("dog")
-
-        assertThat(result.isSuccessful).isTrue()
-        assertThat(result.data).isEqualTo(searchMapper.map(MOCK_DOG_SEARCH))
-    }
+            assertThat(result.isSuccessful).isTrue()
+            assertThat(result.data).isEqualTo(searchMapper.map(MOCK_DOG_SEARCH))
+        }
 
     @Test
-    fun getSearchVideos_returnsErrorWhenSearchResponseAndLocalSearchAreNotSuccessful() = runTest {
-        coEvery { searchDataSource.getSearchVideos("dog") } returns DataTransfer(error = Exception())
-        coEvery { searchDataStorage.getSearch() } throws Exception()
+    fun getSearchVideos_returnsLocalSearchWhenSearchResponseIsNotSuccessful() =
+        runTest {
+            coEvery { searchDataSource.getSearchVideos("dog") } returns DataTransfer(error = Exception())
+            coEvery { searchDataStorage.getSearch() } returns MOCK_DOG_SEARCH
+            val getSearchVideos =
+                VideosUseCase.GetSearchVideos(
+                    searchDataSource = searchDataSource,
+                    searchDataStorage = searchDataStorage,
+                    searchMapper = searchMapper
+                )
 
-        val getSearchVideos = VideosUseCase.GetSearchVideos(
-            searchDataSource = searchDataSource,
-            searchDataStorage = searchDataStorage,
-            searchMapper = searchMapper
-        )
-        val result = getSearchVideos("dog")
+            val result = getSearchVideos("dog")
 
-        assertThat(result.isSuccessful).isFalse()
-        assertThat(result.error).isNotNull()
-    }
+            assertThat(result.isSuccessful).isTrue()
+            assertThat(result.data).isEqualTo(searchMapper.map(MOCK_DOG_SEARCH))
+        }
 
     @Test
-    fun getPopularVideos_pagingConfigReturnsGivenItem() = runTest {
-        coEvery { popularDataSource.getPopularVideos("EN", "CAUSAS") } returns
+    fun getSearchVideos_returnsErrorWhenSearchResponseAndLocalSearchAreNotSuccessful() =
+        runTest {
+            coEvery { searchDataSource.getSearchVideos("dog") } returns DataTransfer(error = Exception())
+            coEvery { searchDataStorage.getSearch() } throws Exception()
+
+            val getSearchVideos =
+                VideosUseCase.GetSearchVideos(
+                    searchDataSource = searchDataSource,
+                    searchDataStorage = searchDataStorage,
+                    searchMapper = searchMapper
+                )
+            val result = getSearchVideos("dog")
+
+            assertThat(result.isSuccessful).isFalse()
+            assertThat(result.error).isNotNull()
+        }
+
+    @Test
+    fun getPopularVideos_pagingConfigReturnsGivenItem() =
+        runTest {
+            coEvery { popularDataSource.getPopularVideos("EN", "CAUSAS") } returns
                 DataTransfer(MOCK_POPULAR_ITEM)
 
-        val getPopularVideos = VideosUseCase.GetPopularVideos(
-            popularDataSource = popularDataSource,
-            popularItemMapper = popularItemMapper
-        )
+            val getPopularVideos =
+                VideosUseCase.GetPopularVideos(
+                    popularDataSource = popularDataSource,
+                    popularItemMapper = popularItemMapper
+                )
 
-        val result = getPopularVideos()
+            val result = getPopularVideos()
 
-        result.map { data ->
-            data.map {
-                assertThat(it).isIn(MOCK_POPULAR_ITEM.items!!.map(popularItemMapper::map))
+            result.map { data ->
+                data.map {
+                    assertThat(it).isIn(MOCK_POPULAR_ITEM.items!!.map(popularItemMapper::map))
+                }
             }
         }
-    }
 
     @Test
-    fun getPopularVideos_pagingConfigReturnsEmptyData() = runTest {
-        coEvery { popularDataSource.getPopularVideos("EN", "CAUSAS") } returns
+    fun getPopularVideos_pagingConfigReturnsEmptyData() =
+        runTest {
+            coEvery { popularDataSource.getPopularVideos("EN", "CAUSAS") } returns
                 DataTransfer()
 
-        val getPopularVideos = VideosUseCase.GetPopularVideos(
-            popularDataSource = popularDataSource,
-            popularItemMapper = popularItemMapper
-        )
+            val getPopularVideos =
+                VideosUseCase.GetPopularVideos(
+                    popularDataSource = popularDataSource,
+                    popularItemMapper = popularItemMapper
+                )
 
-        val result = getPopularVideos()
+            val result = getPopularVideos()
 
-        result.map { data ->
-            data.map {
-                assertThat(it).isNotIn(MOCK_POPULAR_ITEM.items!!.map(popularItemMapper::map))
+            result.map { data ->
+                data.map {
+                    assertThat(it).isNotIn(MOCK_POPULAR_ITEM.items!!.map(popularItemMapper::map))
+                }
             }
         }
-    }
 }

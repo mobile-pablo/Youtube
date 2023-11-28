@@ -13,16 +13,16 @@ fun youtubePlayerView(
 ): YouTubePlayerView {
     val youTubePlayerView = YouTubePlayerView(context)
     youTubePlayerView.enableAutomaticInitialization = false
-    val listener = object : AbstractYouTubePlayerListener() {
-
-        override fun onReady(youTubePlayer: YouTubePlayer) {
-            super.onReady(youTubePlayer)
-            val controller = YoutubePlayerUiController(youTubePlayerView, youTubePlayer)
-            controller.showYouTubeButton(false)
-            youTubePlayerView.setCustomPlayerUi(controller.rootView)
-            youTubePlayer.loadVideo(videoId, 0f)
+    val listener =
+        object : AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                super.onReady(youTubePlayer)
+                val controller = YoutubePlayerUiController(youTubePlayerView, youTubePlayer)
+                controller.showYouTubeButton(false)
+                youTubePlayerView.setCustomPlayerUi(controller.rootView)
+                youTubePlayer.loadVideo(videoId, 0f)
+            }
         }
-    }
 
     val options: IFramePlayerOptions = IFramePlayerOptions.Builder().controls(0).build()
 

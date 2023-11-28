@@ -16,7 +16,6 @@ import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class HomeItemViewTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -33,14 +32,15 @@ class HomeItemViewTest {
     fun assertHomeItemViewFilledIsDisplayed() {
         composeTestRule.apply {
             setContent {
-                wrapper = HomeItemWrapper(
-                    title = "title",
-                    channelName = "channelName",
-                    description = "description",
-                    imageUrl = "imageUrl",
-                    duration = "duration",
-                    videoId = "videoId"
-                )
+                wrapper =
+                    HomeItemWrapper(
+                        title = "title",
+                        channelName = "channelName",
+                        description = "description",
+                        imageUrl = "imageUrl",
+                        duration = "duration",
+                        videoId = "videoId"
+                    )
                 HomeItemView(wrapper, navController = navController)
             }
             waitForIdle()

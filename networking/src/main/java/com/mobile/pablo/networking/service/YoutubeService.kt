@@ -21,7 +21,6 @@ import retrofit2.http.Query
 
 @Keep
 internal interface YoutubeService {
-
     @GET(YOUTUBE_V3_SEARCH)
     suspend fun getSearchVideos(
         @Query(PART_QUERY) part: String = SNIPPET,

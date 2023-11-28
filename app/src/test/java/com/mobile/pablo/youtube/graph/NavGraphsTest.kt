@@ -6,13 +6,11 @@ import com.ramcosta.composedestinations.spec.DestinationSpec
 import org.junit.Test
 
 class NavGraphsTest {
-
     private val navGraph: NavGraphs = NavGraphs
     private val mainNavGraph = navGraph.main
     private val rootNavGraph = navGraph.root
 
     companion object {
-
         const val MAIN = "main"
         const val MAIN_HOME_SCREEN_ROUTE = "main/home_screen"
         const val ROOT = "root"

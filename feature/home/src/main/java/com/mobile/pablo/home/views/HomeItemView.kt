@@ -32,24 +32,30 @@ internal fun HomeItemView(
     destinationsNavigator: DestinationsNavigator? = null,
     navController: NavController
 ) {
-    Box(modifier = modifier
-        .fillMaxWidth()
-        .height(Theme.spacing.spacing_220)
-        .clickable {
-            onHomeItemClick(
-                destinationsNavigator = destinationsNavigator,
-                navController = navController,
-                videoId = wrapper.videoId
-            )
-        }
-        .padding(
-            vertical = Theme.spacing.spacing_12, horizontal = Theme.spacing.spacing_32
-        ), contentAlignment = Alignment.Center) {
+    Box(
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .height(Theme.spacing.spacing_220)
+                .clickable {
+                    onHomeItemClick(
+                        destinationsNavigator = destinationsNavigator,
+                        navController = navController,
+                        videoId = wrapper.videoId
+                    )
+                }
+                .padding(
+                    vertical = Theme.spacing.spacing_12,
+                    horizontal = Theme.spacing.spacing_32
+                ),
+        contentAlignment = Alignment.Center
+    ) {
         Column(
             modifier = Modifier.fillMaxWidth()
         ) {
             Box(
-                modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.BottomEnd
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.BottomEnd
             ) {
                 AsyncImageWithProgress(wrapper.imageUrl)
                 DurationView(wrapper.duration)
@@ -89,9 +95,10 @@ private fun onHomeItemClick(
         navigateTo(
             destinationsNavigator = it,
             navController = navController,
-            direction = PlayerScreenDestination(
-                videoId = videoId
-            )
+            direction =
+                PlayerScreenDestination(
+                    videoId = videoId
+                )
         )
     }
 }

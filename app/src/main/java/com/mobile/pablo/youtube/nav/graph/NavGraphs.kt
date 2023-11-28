@@ -10,24 +10,26 @@ import com.ramcosta.composedestinations.spec.NavGraphSpec
 
 @Keep
 object NavGraphs {
+    val main =
+        object : NavGraphSpec {
+            override val route = "main"
 
-    val main = object : NavGraphSpec {
-        override val route = "main"
+            override val startRoute = HomeScreenDestination routedIn this
 
-        override val startRoute = HomeScreenDestination routedIn this
+            override val destinationsByRoute =
+                listOf<DestinationSpec<*>>(
+                    HomeScreenDestination,
+                    PlayerScreenDestination,
+                    ErrorScreenDestination
+                ).routedIn(this)
+                    .associateBy { it.route }
+        }
 
-        override val destinationsByRoute = listOf<DestinationSpec<*>>(
-            HomeScreenDestination,
-            PlayerScreenDestination,
-            ErrorScreenDestination
-        ).routedIn(this)
-            .associateBy { it.route }
-    }
-
-    val root = object : NavGraphSpec {
-        override val route = "root"
-        override val startRoute = main
-        override val destinationsByRoute = emptyMap<String, DestinationSpec<*>>()
-        override val nestedNavGraphs = listOf(main)
-    }
+    val root =
+        object : NavGraphSpec {
+            override val route = "root"
+            override val startRoute = main
+            override val destinationsByRoute = emptyMap<String, DestinationSpec<*>>()
+            override val nestedNavGraphs = listOf(main)
+        }
 }

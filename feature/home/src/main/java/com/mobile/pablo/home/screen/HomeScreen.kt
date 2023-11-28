@@ -31,22 +31,23 @@ fun HomeScreen(
     navController: NavController = rememberNavController(),
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-
     val popularLazyPagingItems: LazyPagingItems<PopularItem> =
         viewModel.popularState.collectAsLazyPagingItems()
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Theme.colors.primaryColor),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Theme.colors.primaryColor),
         contentAlignment = Alignment.Center
     ) {
         popularLazyPagingItems.apply {
             when {
                 loadState.refresh is LoadState.Loading -> HomeLoadingView()
-                loadState.append is LoadState.Loading -> CircularProgressIndicator(
-                    color = Theme.colors.secondaryColor
-                )
+                loadState.append is LoadState.Loading ->
+                    CircularProgressIndicator(
+                        color = Theme.colors.secondaryColor
+                    )
 
                 loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
                     popularLazyPagingItems.refresh()
@@ -73,6 +74,6 @@ private fun navigateToErrorScreen(
         destinationsNavigator = destinationsNavigator,
         navController = navController,
         direction =
-        ErrorScreenDestination()
+            ErrorScreenDestination()
     )
 }

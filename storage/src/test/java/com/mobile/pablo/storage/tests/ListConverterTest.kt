@@ -6,7 +6,6 @@ import com.mobile.pablo.storage.database.typeconverter.ListConverter
 import org.junit.Test
 
 class ListConverterTest {
-
     @Test
     fun `fromList converts list of strings to single string`() {
         val list = listOf("one", "two", "three")

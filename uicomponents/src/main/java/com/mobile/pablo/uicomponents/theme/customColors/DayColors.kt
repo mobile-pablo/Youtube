@@ -3,7 +3,6 @@ package com.mobile.pablo.uicomponents.theme.customColors
 import androidx.compose.ui.graphics.Color
 
 object DayColors : CustomColors {
-
     override val primaryColor: Color
         get() = Color(0xFFDAD7CD)
 

@@ -28,12 +28,12 @@ class YoutubePlayerUiController(
     private val youTubePlayerView: YouTubePlayerView,
     private val youTubePlayer: YouTubePlayer
 ) : PlayerUiController {
-
     val rootView: View = View.inflate(youTubePlayerView.context, R.layout.ayp_default_player_ui, null)
 
-    private var youTubePlayerMenu: YouTubePlayerMenu = DefaultYoutubePlayerMenu(
-        youTubePlayerView.context
-    )
+    private var youTubePlayerMenu: YouTubePlayerMenu =
+        DefaultYoutubePlayerMenu(
+            youTubePlayerView.context
+        )
 
     /**
      * View used for for intercepting clicks and for drawing a black background.
@@ -69,61 +69,66 @@ class YoutubePlayerUiController(
 
     private var isMatchParent = false
 
-    private val youTubePlayerStateListener = object : AbstractYouTubePlayerListener() {
-        override fun onStateChange(
-            youTubePlayer: YouTubePlayer,
-            state: PlayerConstants.PlayerState
-        ) {
-            updateState(state)
+    private val youTubePlayerStateListener =
+        object : AbstractYouTubePlayerListener() {
+            override fun onStateChange(
+                youTubePlayer: YouTubePlayer,
+                state: PlayerConstants.PlayerState
+            ) {
+                updateState(state)
 
-            if (state === PlayerConstants.PlayerState.PLAYING || state === PlayerConstants.PlayerState.PAUSED || state === PlayerConstants.PlayerState.VIDEO_CUED) {
-                panel.setBackgroundColor(ContextCompat.getColor(panel.context, android.R.color.transparent))
-                progressBar.visibility = View.GONE
-
-                if (isPlayPauseButtonEnabled) playPauseButton.visibility = View.VISIBLE
-                if (isCustomActionLeftEnabled) customActionLeft.visibility = View.VISIBLE
-                if (isCustomActionRightEnabled) customActionRight.visibility = View.VISIBLE
-
-                updatePlayPauseButtonIcon(state === PlayerConstants.PlayerState.PLAYING)
-            } else {
-                updatePlayPauseButtonIcon(false)
-
-                if (state === PlayerConstants.PlayerState.BUFFERING) {
-                    progressBar.visibility = View.VISIBLE
-                    panel.setBackgroundColor(
-                        ContextCompat.getColor(
-                            panel.context,
-                            android.R.color.transparent
-                        )
-                    )
-                    if (isPlayPauseButtonEnabled) playPauseButton.visibility = View.INVISIBLE
-
-                    customActionLeft.visibility = View.GONE
-                    customActionRight.visibility = View.GONE
-                }
-
-                if (state === PlayerConstants.PlayerState.UNSTARTED) {
+                if (state === PlayerConstants.PlayerState.PLAYING ||
+                    state === PlayerConstants.PlayerState.PAUSED ||
+                    state === PlayerConstants.PlayerState.VIDEO_CUED
+                ) {
+                    panel.setBackgroundColor(ContextCompat.getColor(panel.context, android.R.color.transparent))
                     progressBar.visibility = View.GONE
+
                     if (isPlayPauseButtonEnabled) playPauseButton.visibility = View.VISIBLE
+                    if (isCustomActionLeftEnabled) customActionLeft.visibility = View.VISIBLE
+                    if (isCustomActionRightEnabled) customActionRight.visibility = View.VISIBLE
+
+                    updatePlayPauseButtonIcon(state === PlayerConstants.PlayerState.PLAYING)
+                } else {
+                    updatePlayPauseButtonIcon(false)
+
+                    if (state === PlayerConstants.PlayerState.BUFFERING) {
+                        progressBar.visibility = View.VISIBLE
+                        panel.setBackgroundColor(
+                            ContextCompat.getColor(
+                                panel.context,
+                                android.R.color.transparent
+                            )
+                        )
+                        if (isPlayPauseButtonEnabled) playPauseButton.visibility = View.INVISIBLE
+
+                        customActionLeft.visibility = View.GONE
+                        customActionRight.visibility = View.GONE
+                    }
+
+                    if (state === PlayerConstants.PlayerState.UNSTARTED) {
+                        progressBar.visibility = View.GONE
+                        if (isPlayPauseButtonEnabled) playPauseButton.visibility = View.VISIBLE
+                    }
                 }
             }
-        }
 
-        override fun onVideoId(
-            youTubePlayer: YouTubePlayer,
-            videoId: String
-        ) {
+            override fun onVideoId(
+                youTubePlayer: YouTubePlayer,
+                videoId: String
+            ) {
+            }
         }
-    }
 
     init {
-        onFullscreenButtonListener = View.OnClickListener {
-            isMatchParent = !isMatchParent
-            when (isMatchParent) {
-                true -> youTubePlayerView.matchParent()
-                false -> youTubePlayerView.wrapContent()
+        onFullscreenButtonListener =
+            View.OnClickListener {
+                isMatchParent = !isMatchParent
+                when (isMatchParent) {
+                    true -> youTubePlayerView.matchParent()
+                    false -> youTubePlayerView.wrapContent()
+                }
             }
-        }
 
         onMenuButtonClickListener = View.OnClickListener { youTubePlayerMenu.show(menuButton) }
 
@@ -135,9 +140,10 @@ class YoutubePlayerUiController(
         youTubePlayer.addListener(fadeControlsContainer)
         youTubePlayer.addListener(youTubePlayerStateListener)
 
-        youtubePlayerSeekBar.youtubePlayerSeekBarListener = object : YouTubePlayerSeekBarListener {
-            override fun seekTo(time: Float) = youTubePlayer.seekTo(time)
-        }
+        youtubePlayerSeekBar.youtubePlayerSeekBarListener =
+            object : YouTubePlayerSeekBarListener {
+                override fun seekTo(time: Float) = youTubePlayer.seekTo(time)
+            }
         panel.setOnClickListener { fadeControlsContainer.toggleVisibility() }
         playPauseButton.setOnClickListener { onPlayButtonPressed() }
         fullscreenButton.setOnClickListener { onFullscreenButtonListener.onClick(fullscreenButton) }
@@ -257,16 +263,19 @@ class YoutubePlayerUiController(
         return this
     }
 
-    override fun setFullscreenButtonClickListener(customFullscreenButtonClickListener: View.OnClickListener): PlayerUiController {
+    override fun setFullscreenButtonClickListener(
+        customFullscreenButtonClickListener: View.OnClickListener
+    ): PlayerUiController {
         onFullscreenButtonListener = customFullscreenButtonClickListener
         return this
     }
 
     private fun onPlayButtonPressed() {
-        if (isPlaying)
+        if (isPlaying) {
             youTubePlayer.pause()
-        else
+        } else {
             youTubePlayer.play()
+        }
     }
 
     private fun updateState(state: PlayerConstants.PlayerState) {

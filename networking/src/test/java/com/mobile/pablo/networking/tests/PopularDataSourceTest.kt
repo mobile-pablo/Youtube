@@ -29,22 +29,22 @@ import retrofit2.HttpException
 import retrofit2.Response
 
 class PopularDataSourceTest {
-
     private lateinit var youtubeService: YoutubeService
     private lateinit var popularDataSource: PopularDataSource
-    private val popularResponseMapper: PopularResponseMapper = PopularResponseMapper(
-        PageInfoResponseMapper(),
-        PopularItemResponseMapper(
-            PopularSnippetResponseMapper(
-                ThumbnailsResponseMapper(
-                    ThumbnailResponseMapper()
+    private val popularResponseMapper: PopularResponseMapper =
+        PopularResponseMapper(
+            PageInfoResponseMapper(),
+            PopularItemResponseMapper(
+                PopularSnippetResponseMapper(
+                    ThumbnailsResponseMapper(
+                        ThumbnailResponseMapper()
+                    ),
+                    LocalizedResponseMapper()
                 ),
-                LocalizedResponseMapper()
-            ),
-            ContentDetailsResponseMapper(),
-            StatisticsResponseMapper()
+                ContentDetailsResponseMapper(),
+                StatisticsResponseMapper()
+            )
         )
-    )
 
     @Before
     fun setUp() {
@@ -53,32 +53,35 @@ class PopularDataSourceTest {
     }
 
     @Test
-    fun `getPopularVideos returns mapped data when response is successful`() = runBlocking {
-        coEvery {
-            youtubeService.getPopularSearchVideos(
-                regionCode = "US",
-                pageToken = "CAoQAA"
-            )
-        } returns Response.success(MOCK_POPULAR_ITEM)
-        val result = popularDataSource.getPopularVideos("US", "CAoQAA")
-        val wantedResult = DataTransfer(popularResponseMapper.map(MOCK_POPULAR_ITEM))
-        assertThat(result.data).isEqualTo(wantedResult.data)
-    }
+    fun `getPopularVideos returns mapped data when response is successful`() =
+        runBlocking {
+            coEvery {
+                youtubeService.getPopularSearchVideos(
+                    regionCode = "US",
+                    pageToken = "CAoQAA"
+                )
+            } returns Response.success(MOCK_POPULAR_ITEM)
+            val result = popularDataSource.getPopularVideos("US", "CAoQAA")
+            val wantedResult = DataTransfer(popularResponseMapper.map(MOCK_POPULAR_ITEM))
+            assertThat(result.data).isEqualTo(wantedResult.data)
+        }
 
     @Test
-    fun `getPopularVideos returns network exception when response is not successful`() = runBlocking {
-        val notFound = "Not found"
+    fun `getPopularVideos returns network exception when response is not successful`() =
+        runBlocking {
+            val notFound = "Not found"
 
-        val error = Response.error<PopularResponse>(
-            HttpURLConnection.HTTP_UNSUPPORTED_TYPE,
-            notFound.toResponseBody(TEXT_PLAIN.toMediaTypeOrNull())
-        )
+            val error =
+                Response.error<PopularResponse>(
+                    HttpURLConnection.HTTP_UNSUPPORTED_TYPE,
+                    notFound.toResponseBody(TEXT_PLAIN.toMediaTypeOrNull())
+                )
 
-        coEvery { youtubeService.getPopularSearchVideos(regionCode = "US", pageToken = "CAoQAA") } returns error
+            coEvery { youtubeService.getPopularSearchVideos(regionCode = "US", pageToken = "CAoQAA") } returns error
 
-        val result = popularDataSource.getPopularVideos("US", "CAoQAA")
+            val result = popularDataSource.getPopularVideos("US", "CAoQAA")
 
-        assertThat(result.error!!.message).isEqualTo(HttpException(error).message)
-        assertThat(result.data).isNull()
-    }
+            assertThat(result.error!!.message).isEqualTo(HttpException(error).message)
+            assertThat(result.data).isNull()
+        }
 }

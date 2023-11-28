@@ -17,7 +17,6 @@ import org.junit.Rule
 import org.junit.Test
 
 class ErrorScreenTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -28,7 +27,7 @@ class ErrorScreenTest {
     fun setup() {
         navController = TestNavHostController(context)
         composeTestRule.setContent {
-            ErrorScreen(navController = navController)
+            ErrorScreen()
         }
     }
 

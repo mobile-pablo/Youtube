@@ -1,7 +1,6 @@
 package com.mobile.pablo.player.player.controller.menu
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobile.pablo.player.R
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.menu.MenuItem
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.menu.YouTubePlayerMenu
+import timber.log.Timber
 
 /**
  *  Copied from https://github.com/PierfrancescoSoffritti/android-youtube-player
  *  only to make YoutubePlayerUiController.kt work (internal class)
  */
 internal class DefaultYoutubePlayerMenu(private val context: Context) : YouTubePlayerMenu {
-
     private val menuItems = ArrayList<MenuItem>()
     private var popupWindow: PopupWindow? = null
 
@@ -33,8 +32,9 @@ internal class DefaultYoutubePlayerMenu(private val context: Context) : YouTubeP
             -context.resources.getDimensionPixelSize(R.dimen.ayp_8dp) * 12
         )
 
-        if (menuItems.size == 0)
-            Log.e(YouTubePlayerMenu::class.java.name, "The menu is empty")
+        if (menuItems.size == 0) {
+            Timber.e(YouTubePlayerMenu::class.java.name, "The menu is empty")
+        }
     }
 
     override fun dismiss() {
@@ -65,9 +65,12 @@ internal class DefaultYoutubePlayerMenu(private val context: Context) : YouTubeP
         recyclerView.adapter = MenuAdapter(context, menuItems)
         recyclerView.setHasFixedSize(true)
 
-        val popupWindow = PopupWindow(
-            view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
-        )
+        val popupWindow =
+            PopupWindow(
+                view,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
         popupWindow.contentView = view
         popupWindow.isFocusable = true
         popupWindow.width = WindowManager.LayoutParams.WRAP_CONTENT

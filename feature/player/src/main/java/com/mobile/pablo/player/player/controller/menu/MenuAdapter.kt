@@ -19,7 +19,6 @@ internal class MenuAdapter(
     private val menuItems: List<MenuItem>
 ) :
     RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -37,7 +36,9 @@ internal class MenuAdapter(
         menuItems[position].icon?.let {
             holder.textView.setCompoundDrawablesWithIntrinsicBounds(
                 ContextCompat.getDrawable(context, it),
-                null, null, null
+                null,
+                null,
+                null
             )
         }
     }
@@ -47,7 +48,6 @@ internal class MenuAdapter(
     }
 
     internal inner class ViewHolder(val root: View) : RecyclerView.ViewHolder(root) {
-
         val textView: TextView = root.findViewById(R.id.text)
     }
 }

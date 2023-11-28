@@ -25,22 +25,22 @@ import org.junit.Before
 import org.junit.Test
 
 class PopularPagingSourceTest {
-
     private lateinit var popularDataSource: PopularDataSource
     private lateinit var popularPagingSource: PopularPagingSource
-    private val popularResponseMapper: PopularResponseMapper = PopularResponseMapper(
-        PageInfoResponseMapper(),
-        PopularItemResponseMapper(
-            PopularSnippetResponseMapper(
-                ThumbnailsResponseMapper(
-                    ThumbnailResponseMapper()
+    private val popularResponseMapper: PopularResponseMapper =
+        PopularResponseMapper(
+            PageInfoResponseMapper(),
+            PopularItemResponseMapper(
+                PopularSnippetResponseMapper(
+                    ThumbnailsResponseMapper(
+                        ThumbnailResponseMapper()
+                    ),
+                    LocalizedResponseMapper()
                 ),
-                LocalizedResponseMapper()
-            ),
-            ContentDetailsResponseMapper(),
-            StatisticsResponseMapper()
+                ContentDetailsResponseMapper(),
+                StatisticsResponseMapper()
+            )
         )
-    )
 
     @Before
     fun setUp() {
@@ -49,25 +49,27 @@ class PopularPagingSourceTest {
     }
 
     @Test
-    fun `load returns LoadResult Page when data is not null`() = runBlocking {
-        val popularDTO = popularResponseMapper.map(MOCK_POPULAR_ITEM)
-        val dataTransfer = DataTransfer(data = popularDTO)
+    fun `load returns LoadResult Page when data is not null`() =
+        runBlocking {
+            val popularDTO = popularResponseMapper.map(MOCK_POPULAR_ITEM)
+            val dataTransfer = DataTransfer(data = popularDTO)
 
-        coEvery { popularDataSource.getPopularVideos(any(), any()) } returns dataTransfer
+            coEvery { popularDataSource.getPopularVideos(any(), any()) } returns dataTransfer
 
-        val result = popularPagingSource.load(Refresh(null, 0, false))
+            val result = popularPagingSource.load(Refresh(null, 0, false))
 
-        assertThat(result).isInstanceOf(Page::class.java)
-    }
+            assertThat(result).isInstanceOf(Page::class.java)
+        }
 
     @Test
-    fun `load returns LoadResult Error when data is null`() = runBlocking {
-        val dataTransfer = DataTransfer<PopularDTO>(error = Exception())
+    fun `load returns LoadResult Error when data is null`() =
+        runBlocking {
+            val dataTransfer = DataTransfer<PopularDTO>(error = Exception())
 
-        coEvery { popularDataSource.getPopularVideos(any(), any()) } returns dataTransfer
+            coEvery { popularDataSource.getPopularVideos(any(), any()) } returns dataTransfer
 
-        val result = popularPagingSource.load(Refresh(null, 0, false))
+            val result = popularPagingSource.load(Refresh(null, 0, false))
 
-        assertThat(result).isInstanceOf(Error::class.java)
-    }
+            assertThat(result).isInstanceOf(Error::class.java)
+        }
 }

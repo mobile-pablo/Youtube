@@ -13,25 +13,25 @@ import okhttp3.ResponseBody.Companion.toResponseBody
 
 @Keep
 class RequestInterceptor : Interceptor {
-
     companion object {
-
         private const val USER_AGENT = "User-Agent"
         private const val ANDROID = "Android"
         private const val KEY_NAME = "key"
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val url = chain.request()
-            .url
-            .newBuilder()
-            .addQueryParameter(KEY_NAME, YOUTUBE_KEY)
-            .build()
+        val url =
+            chain.request()
+                .url
+                .newBuilder()
+                .addQueryParameter(KEY_NAME, YOUTUBE_KEY)
+                .build()
 
         val request = chain.request()
         return try {
-            val requestBuilder = request.newBuilder().url(url)
-                .addHeader(USER_AGENT, ANDROID)
+            val requestBuilder =
+                request.newBuilder().url(url)
+                    .addHeader(USER_AGENT, ANDROID)
             chain.proceed(requestBuilder.build())
         } catch (timeout: SocketTimeoutException) {
             Response.Builder()

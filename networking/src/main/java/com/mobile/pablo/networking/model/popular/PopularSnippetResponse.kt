@@ -4,7 +4,7 @@ import com.mobile.pablo.networking.model.common.LocalizedResponse
 import com.mobile.pablo.networking.model.common.ThumbnailsResponse
 import com.squareup.moshi.Json
 
-internal data class PopularSnippetResponse (
+internal data class PopularSnippetResponse(
     @Json(name = "publishedAt") val publishedAt: String? = null,
     @Json(name = "channelId") val channelId: String? = null,
     @Json(name = "title") val title: String? = null,

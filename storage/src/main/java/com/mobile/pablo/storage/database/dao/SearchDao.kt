@@ -15,7 +15,6 @@ import com.mobile.pablo.storage.database.entity.search.SearchWithItemEntity
 @Keep
 @Dao
 internal abstract class SearchDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertSearch(search: SearchEntity?)
 

@@ -12,14 +12,16 @@ internal class NavigationIconRobot(
     private val composeTestRule: ComposeTestRule,
     private val item: NavigationItem? = null
 ) {
-
     private val badgeView by lazy { composeTestRule.onNodeWithContentDescription(BADGE) }
     private val titleView by lazy { composeTestRule.onNodeWithContentDescription(item!!.title) }
     private val badgeCount = item?.badgeCount
 
     fun doesBadgeExist() = badgeView.exists()
+
     fun doesNotBadgeExist() = badgeView.doesNotExist()
+
     fun isTitleDisplayed() = titleView.exists()
+
     fun assertBadgeCountIsNull() = assertThat(badgeCount).isNull()
 }
 

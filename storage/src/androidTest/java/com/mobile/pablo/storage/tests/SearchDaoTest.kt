@@ -17,7 +17,6 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class SearchDaoTest {
-
     private lateinit var searchDao: SearchDao
     private lateinit var appDatabase: AppDatabase
 
@@ -35,27 +34,30 @@ class SearchDaoTest {
     }
 
     @Test
-    fun insertSearchWithItemsAreStored() = runBlocking {
-        searchDao.insertSearchWithItems(MOCK_DOG_SEARCH)
-        val result = searchDao.getSearchWithItems()
-        assertThat(result).isEqualTo(MOCK_DOG_SEARCH)
-    }
+    fun insertSearchWithItemsAreStored() =
+        runBlocking {
+            searchDao.insertSearchWithItems(MOCK_DOG_SEARCH)
+            val result = searchDao.getSearchWithItems()
+            assertThat(result).isEqualTo(MOCK_DOG_SEARCH)
+        }
 
     @Test
-    fun removeSearchWithItemsAreRemoved() = runBlocking {
-        searchDao.insertSearchWithItems(MOCK_DOG_SEARCH)
-        searchDao.removeSearchWithItems(MOCK_DOG_SEARCH.search!!.etag)
-        val result = searchDao.getSearchWithItems()
-        assertThat(result?.search).isNull()
-        assertThat(result?.items).isNull()
-    }
+    fun removeSearchWithItemsAreRemoved() =
+        runBlocking {
+            searchDao.insertSearchWithItems(MOCK_DOG_SEARCH)
+            searchDao.removeSearchWithItems(MOCK_DOG_SEARCH.search!!.etag)
+            val result = searchDao.getSearchWithItems()
+            assertThat(result?.search).isNull()
+            assertThat(result?.items).isNull()
+        }
 
     @Test
-    fun clearSearchesWithItemsAreCleared() = runBlocking {
-        searchDao.insertSearchWithItems(MOCK_DOG_SEARCH)
-        searchDao.clearSearchesWithItems()
-        val result = searchDao.getSearchWithItems()
-        assertThat(result?.search).isNull()
-        assertThat(result?.items).isNull()
-    }
+    fun clearSearchesWithItemsAreCleared() =
+        runBlocking {
+            searchDao.insertSearchWithItems(MOCK_DOG_SEARCH)
+            searchDao.clearSearchesWithItems()
+            val result = searchDao.getSearchWithItems()
+            assertThat(result?.search).isNull()
+            assertThat(result?.items).isNull()
+        }
 }

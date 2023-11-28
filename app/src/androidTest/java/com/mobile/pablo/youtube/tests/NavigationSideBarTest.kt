@@ -21,7 +21,6 @@ import org.junit.Rule
 import org.junit.Test
 
 class NavigationSideBarTest {
-
     @JvmField
     @Rule
     val testRule = createAndroidComposeRule<MainActivity>()

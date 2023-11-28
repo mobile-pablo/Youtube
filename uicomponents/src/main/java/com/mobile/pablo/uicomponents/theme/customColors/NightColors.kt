@@ -3,7 +3,6 @@ package com.mobile.pablo.uicomponents.theme.customColors
 import androidx.compose.ui.graphics.Color
 
 object NightColors : CustomColors {
-
     override val primaryColor: Color
         get() = Color(0xFF202425) // 0xFF212224
 

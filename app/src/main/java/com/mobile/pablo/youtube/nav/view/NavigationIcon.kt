@@ -23,18 +23,23 @@ internal fun NavigationIcon(
         badge = {
             if (item.badgeCount != null) {
                 Badge(
-                    modifier = Modifier.semantics {
-                        contentDescription = BADGE
-                    }
+                    modifier =
+                        Modifier.semantics {
+                            contentDescription = BADGE
+                        }
                 ) {
                     Text(
                         fontFamily = MONTSERRAT_FONT_FAMILY,
-                        text = item.badgeCount.toString())
+                        text = item.badgeCount.toString()
+                    )
                 }
             } else if (item.hasNews) {
-                Badge(modifier = Modifier.semantics {
-                    contentDescription = BADGE
-                })
+                Badge(
+                    modifier =
+                        Modifier.semantics {
+                            contentDescription = BADGE
+                        }
+                )
             }
         }
     ) {

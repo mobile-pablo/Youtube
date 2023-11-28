@@ -28,25 +28,28 @@ fun AsyncImageWithProgress(
         model = imageUrl,
         contentDescription = null,
         contentScale = ContentScale.FillWidth,
-        modifier = modifier
-            .clip(
-                RoundedCornerShape(MaterialTheme.spacing.spacing_6)
-            )
+        modifier =
+            modifier
+                .clip(
+                    RoundedCornerShape(MaterialTheme.spacing.spacing_6)
+                )
     ) {
         when (painter.state) {
-            is AsyncImagePainter.State.Loading, AsyncImagePainter.State.Empty -> Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator(
-                    color = MaterialTheme.colors.progressColor
-                )
-            }
+            is AsyncImagePainter.State.Loading, AsyncImagePainter.State.Empty ->
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(
+                        color = MaterialTheme.colors.progressColor
+                    )
+                }
 
             is AsyncImagePainter.State.Error -> painterResource(id = R.drawable.ic_wifi_tethering_error_24)
-            is AsyncImagePainter.State.Success -> SubcomposeAsyncImageContent(
-                modifier = Modifier.fillMaxWidth()
-            )
+            is AsyncImagePainter.State.Success ->
+                SubcomposeAsyncImageContent(
+                    modifier = Modifier.fillMaxWidth()
+                )
         }
     }
 }

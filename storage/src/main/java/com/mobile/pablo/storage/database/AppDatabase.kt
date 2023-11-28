@@ -24,17 +24,16 @@ import com.mobile.pablo.storage.database.typeconverter.ListConverter
     ListConverter::class
 )
 internal abstract class AppDatabase : RoomDatabase() {
-
     abstract fun searchDao(): SearchDao
 
     companion object {
-
         private const val DB_NAME = "app_database.db"
         private lateinit var instance: AppDatabase
 
         fun getInstance(context: Context): AppDatabase =
-            if (this::instance.isInitialized) instance
-            else
+            if (this::instance.isInitialized) {
+                instance
+            } else {
                 Room.databaseBuilder(
                     context,
                     AppDatabase::class.java,
@@ -45,5 +44,6 @@ internal abstract class AppDatabase : RoomDatabase() {
                     .apply {
                         instance = this
                     }
+            }
     }
 }

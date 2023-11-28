@@ -22,7 +22,6 @@ import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
-
     @Before
     fun setUp() {
         Dispatchers.setMain(StandardTestDispatcher())
@@ -36,37 +35,40 @@ class HomeViewModelTest {
     private val getPopularVideosUseCase: VideosUseCase.GetPopularVideos = mockk()
 
     @Test
-    fun `popularState emits expected data when use case is successful`() = runTest {
-        val kind = "youtube#searchResult"
-        val etag = "elhoJXuEkd1u5KN1JMxXeotpjic"
-        val id = "SbTheNHE0VA"
+    fun `popularState emits expected data when use case is successful`() =
+        runTest {
+            val kind = "youtube#searchResult"
+            val etag = "elhoJXuEkd1u5KN1JMxXeotpjic"
+            val id = "SbTheNHE0VA"
 
-        val expectedData = PagingData.from(
-            listOf(PopularItem(kind = kind, etag = etag, id = id))
-        )
+            val expectedData =
+                PagingData.from(
+                    listOf(PopularItem(kind = kind, etag = etag, id = id))
+                )
 
-        coEvery { getPopularVideosUseCase.invoke() } returns flowOf(expectedData)
+            coEvery { getPopularVideosUseCase.invoke() } returns flowOf(expectedData)
 
-        val viewModel = HomeViewModel(getPopularVideosUseCase)
-        viewModel.popularState.test {
-            awaitItem().map {
-                assertThat(it.kind).isEqualTo("1")
-                assertThat(it.etag).isEqualTo("Test Video")
-                assertThat(it.id).isEqualTo("Test Description")
+            val viewModel = HomeViewModel(getPopularVideosUseCase)
+            viewModel.popularState.test {
+                awaitItem().map {
+                    assertThat(it.kind).isEqualTo("1")
+                    assertThat(it.etag).isEqualTo("Test Video")
+                    assertThat(it.id).isEqualTo("Test Description")
+                }
             }
         }
-    }
 
     @Test
-    fun `popularState emits empty data when use case returns empty data`() = runTest {
-        val expectedData = PagingData.empty<PopularItem>()
-        coEvery { getPopularVideosUseCase() } returns flowOf(expectedData)
+    fun `popularState emits empty data when use case returns empty data`() =
+        runTest {
+            val expectedData = PagingData.empty<PopularItem>()
+            coEvery { getPopularVideosUseCase() } returns flowOf(expectedData)
 
-        val viewModel = HomeViewModel(getPopularVideosUseCase)
-        viewModel.popularState.test {
-            awaitItem().map {
-                assertThat(it).isNull()
+            val viewModel = HomeViewModel(getPopularVideosUseCase)
+            viewModel.popularState.test {
+                awaitItem().map {
+                    assertThat(it).isNull()
+                }
             }
         }
-    }
 }

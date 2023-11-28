@@ -17,9 +17,10 @@ fun PlayerScreen(
     videoId: String
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Color.Black),
         verticalArrangement = Arrangement.Center
     ) {
         AndroidView(factory = {

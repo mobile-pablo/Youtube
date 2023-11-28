@@ -10,7 +10,6 @@ import com.mobile.pablo.youtube.ext.stringRes
 internal class NavigationSideBarRobot(
     private val composeTestRule: ComposeTestRule
 ) {
-
     private val sideBarContentColumn by lazy {
         val tag = stringRes(R.string.side_bar_item_column)
         composeTestRule.onNodeWithTag(tag)
@@ -23,7 +22,5 @@ internal class NavigationSideBarRobot(
     }
 }
 
-internal fun navigationSideBarRobot(
-    composeTestRule: ComposeTestRule,
-    func: NavigationSideBarRobot.() -> Unit
-) = NavigationSideBarRobot(composeTestRule).apply(func)
+internal fun navigationSideBarRobot(composeTestRule: ComposeTestRule, func: NavigationSideBarRobot.() -> Unit) =
+    NavigationSideBarRobot(composeTestRule).apply(func)

@@ -1,7 +1,7 @@
 val ktlint by configurations.creating
 
 dependencies {
-    ktlint("com.pinterest:ktlint:0.36.0")
+    ktlint("com.pinterest.ktlint:ktlint-cli:1.0.1")
 }
 
 tasks.register<JavaExec>("ktlint") {
@@ -10,11 +10,12 @@ tasks.register<JavaExec>("ktlint") {
     classpath = ktlint
     mainClass.set("com.pinterest.ktlint.Main")
     args(
-        "--android",
+        "**/src/**/*.kt",
+        "**.kts",
+        "!**/build/**",
         "--reporter=html,output=${buildDir}/ktlint.html",
         "--reporter=plain",
         "--reporter=checkstyle",
-        "src/**/*.kt"
     )
 }
 
@@ -23,13 +24,16 @@ tasks.named("check") {
 }
 
 tasks.register<JavaExec>("ktlintFormat") {
-    group = "formatting"
-    description = "Fix Kotlin code style deviations."
+    group = LifecycleBasePlugin.VERIFICATION_GROUP
+    description = "Check Kotlin code style and format"
     classpath = ktlint
     mainClass.set("com.pinterest.ktlint.Main")
+    jvmArgs("--add-opens=java.base/java.lang=ALL-UNNAMED")
+    // see https://pinterest.github.io/ktlint/install/cli/#command-line-usage for more information
     args(
-        "--android",
         "-F",
-        "src/**/*.kt"
+        "**/src/**/*.kt",
+        "**.kts",
+        "!**/build/**",
     )
 }

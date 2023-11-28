@@ -21,55 +21,57 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 sealed class VideosUseCase {
+    class GetSearchVideos
+        @Inject
+        constructor(
+            private val searchDataSource: SearchDataSource,
+            private val searchDataStorage: SearchDataStorage,
+            private val searchMapper: SearchMapper
+        ) : VideosUseCase() {
+            suspend operator fun invoke(query: String): DataTransfer<Search> {
+                val searchResponse = searchDataSource.getSearchVideos(query)
 
-    class GetSearchVideos @Inject constructor(
-        private val searchDataSource: SearchDataSource,
-        private val searchDataStorage: SearchDataStorage,
-        private val searchMapper: SearchMapper
-    ) : VideosUseCase() {
+                return when {
+                    searchResponse.isSuccessful -> {
+                        val items = searchResponse.data!!
+                        val search = searchMapper.map(searchResponse.data)
+                        searchDataStorage.insertSearch(items)
+                        DataTransfer(data = search)
+                    }
 
-        suspend operator fun invoke(query: String): DataTransfer<Search> {
-            val searchResponse = searchDataSource.getSearchVideos(query)
-
-            return when {
-                searchResponse.isSuccessful -> {
-                    val items = searchResponse.data!!
-                    val search = searchMapper.map(searchResponse.data)
-                    searchDataStorage.insertSearch(items)
-                    DataTransfer(data = search)
-                }
-
-                else -> {
-                    try {
-                        val searchLocal = searchDataStorage.getSearch()
-                        val searchLocalDTO = searchMapper.map(searchLocal)
-                        DataTransfer(data = searchLocalDTO)
-                    } catch (e: Exception) {
-                        DataTransfer(error = searchResponse.error)
+                    else -> {
+                        try {
+                            val searchLocal = searchDataStorage.getSearch()
+                            val searchLocalDTO = searchMapper.map(searchLocal)
+                            DataTransfer(data = searchLocalDTO)
+                        } catch (e: Exception) {
+                            DataTransfer(error = searchResponse.error)
+                        }
                     }
                 }
             }
         }
-    }
 
-    class GetPopularVideos @Inject constructor(
-        private val popularDataSource: PopularDataSource,
-        private val popularItemMapper: PopularItemMapper
-    ) : VideosUseCase() {
-
-        operator fun invoke(): Flow<PagingData<PopularItem>> {
-            return Pager(
-                config = PagingConfig(
-                    pageSize = PAGE_SIZE,
-                    prefetchDistance = PAGE_PREFETCH_DISTANCE,
-                    enablePlaceholders = PAGE_ENABLE_PLACEHOLDERS
-                ),
-                pagingSourceFactory = { PopularPagingSource(popularDataSource) }
-            ).flow.map { pagingData ->
-                pagingData.map { popularItemDTO ->
-                    popularItemMapper.map(popularItemDTO)!!
+    class GetPopularVideos
+        @Inject
+        constructor(
+            private val popularDataSource: PopularDataSource,
+            private val popularItemMapper: PopularItemMapper
+        ) : VideosUseCase() {
+            operator fun invoke(): Flow<PagingData<PopularItem>> {
+                return Pager(
+                    config =
+                        PagingConfig(
+                            pageSize = PAGE_SIZE,
+                            prefetchDistance = PAGE_PREFETCH_DISTANCE,
+                            enablePlaceholders = PAGE_ENABLE_PLACEHOLDERS
+                        ),
+                    pagingSourceFactory = { PopularPagingSource(popularDataSource) }
+                ).flow.map { pagingData ->
+                    pagingData.map { popularItemDTO ->
+                        popularItemMapper.map(popularItemDTO)!!
+                    }
                 }
             }
         }
-    }
 }
