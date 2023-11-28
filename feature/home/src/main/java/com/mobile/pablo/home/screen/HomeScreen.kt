@@ -48,11 +48,13 @@ fun HomeScreen(
                     color = Theme.colors.secondaryColor
                 )
 
-                loadState.refresh is LoadState.Error || loadState.append is LoadState.Error ->
+                loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
+                    popularLazyPagingItems.refresh()
                     navigateToErrorScreen(
                         destinationsNavigator,
                         navController
                     )
+                }
             }
             HomeDoneView(
                 this,

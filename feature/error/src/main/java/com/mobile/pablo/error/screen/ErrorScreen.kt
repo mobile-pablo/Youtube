@@ -17,8 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import androidx.tv.material3.Text
 import com.mobile.pablo.error.R
 import com.mobile.pablo.uicomponents.theme.MONTSERRAT_FONT_FAMILY
@@ -28,6 +26,7 @@ import com.mobile.pablo.uicomponents.theme.primaryColor
 import com.mobile.pablo.uicomponents.theme.secondaryColor
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import androidx.compose.material.MaterialTheme as Theme
 
 private const val ERROR_DESCRIPTION_MAX_LINES = 2
@@ -35,7 +34,7 @@ private const val ERROR_DESCRIPTION_MAX_LINES = 2
 @Composable
 @Destination
 fun ErrorScreen(
-    navController: NavController = rememberNavController()
+    destinationsNavigator: DestinationsNavigator
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -52,7 +51,7 @@ fun ErrorScreen(
                 modifier = Modifier
                     .size(Theme.spacing.spacing_240)
                     .clickable {
-                        navController.popBackStack()
+                        destinationsNavigator.popBackStack()
                     },
                 contentDescription = SEARCH_BADGE_TAG,
                 tint = Theme.colors.secondaryColor
