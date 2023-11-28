@@ -2,6 +2,31 @@
 
 ## <center>TV - oriented Clone of Youtube with their API </center>
 
+## 🧪 60 - 30 - 10 design
+
+<table border="1">
+<thead>
+  <tr>
+    <th>Light mode</th>
+    <th>Dark mode</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><img  src="readme_assets/loading_screen_light.png" /></td>
+    <td><img  src="readme_assets/loading_screen_dark.png" /></td>
+  </tr>
+  <tr>
+    <td><img  src="readme_assets/loaded_popular_screen_light.png" /></td>
+    <td><img  src="readme_assets/loaded_popular_screen_dark.png" /></td>
+  </tr>
+<tr>
+    <td><img  src="readme_assets/player_screen_light.png"  /></td>
+    <td><img  src="readme_assets/player_screen_dark.png" /></td>
+</tr>
+</tbody>
+</table>
+
 ## 🪚 Status
 
     App has basic functions like trending video browsing and playing videos but there is one issue.
@@ -18,12 +43,7 @@ I was regarding to
 
 ## 🎯​ Test Coverage ████████░░ 80%
 
-    Most important files are covered currently (1.0.0 status)
-
-## 🙊​ Google Play - Status
-
-    App new releases only will be internal for Youtube Privacy Law.
-    Non less it still uses CD - Deploy workflow only not for production
+    Most important files are covered currently (1.0.1 status)
 
 ## 📱 How to run
 
@@ -85,72 +105,65 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
     * Lint
     * Mark stale issues
 
-## To be added soon in (1.0.1)
-
-* Add Kover plugin
-
 ## 📸 Screenshots
 
-* <h3><b>App</b> with 60-30-10 design</h3>
-
-<table border="1">
-<thead>
-  <tr>
-    <th>Light mode</th>
-    <th>Dark mode</th>
-  </tr>
-</thead>
+<h3><b>CI/CD</b></h3>
+<table>
 <tbody>
   <tr>
-    <td><img  src="readme_assets/loading_screen_light.png" /></td>
-    <td><img  src="readme_assets/loading_screen_dark.png" /></td>
+    <th><b>CI</b> <i>(primary)</i></th>
+    <th><img  src="readme_assets/bitrise_ci_primary.png" /></th>
   </tr>
   <tr>
-    <td><img  src="readme_assets/loaded_popular_screen_light.png" /></td>
-    <td><img  src="readme_assets/loaded_popular_screen_dark.png" /></td>
+    <td><b>CD</b> <i>(staging)</i></td>
+    <td><img  src="readme_assets/bitrise_cd_staging.png" /> </td>
   </tr>
-<tr>
-    <td><img  src="readme_assets/player_screen_light.png"  /></td>
-    <td><img  src="readme_assets/player_screen_dark.png" /></td>
-</tr>
+  <tr>
+    <td><b>CD</b> <i>(deploy)</i></td>
+    <td><div> <img  src="readme_assets/bitrise_cd_deploy.png" /> </div></td>
+  </tr>
 </tbody>
 </table>
 
-* <h3><b>CI/CD</b></h3>
+<br/><br/>
 
-  * <b>CI</b> <i>(primary)</i>
-     <div> <img  src="readme_assets/bitrise_ci_primary.png" /> </div>
+<h3><b>Config</b></h3>
+<table>
+<tbody>
+  <tr>
+    <th>Firebase App Distribution</th>
+    <th><img  src="readme_assets/firebase_app_distribution.png" /></th>
+  </tr>
+  <tr>
+    <td>Jira</td>
+    <td><img  src="readme_assets/jira_kanban.png" /></td>
+  </tr>
+  <tr>
+    <td>Crashlytics</td>
+    <td><img  src="readme_assets/crashlytics.png" /></td>
+  </tr>
+  <tr>
+    <td>Qase (to be improved</td>
+    <td><img  src="readme_assets/qase_suites.png" /></td>
+  </tr>
+</tbody>
+</table>
 
-  * <b>CD</b> <i>(staging)</i>
+## 🙊​ Google Play - Status
 
-    <div> <img  src="readme_assets/bitrise_cd_staging.png" /> </div>
+    App new releases only will be internal for Youtube Privacy Law.
+    Non less it still uses CD - Deploy workflow only not for production
 
-  * <b>CD</b> <i>(deploy)</i>
+## ​🔗​ To be added (1.0.1)
 
-    <div> <img  src="readme_assets/bitrise_cd_deploy.png" /> </div>
-
-* <h3><b>Config</b></h3>
-
-    * <b> Firebase App Distribution </b>
-        <div> <img  src="readme_assets/firebase_app_distribution.png" /> </div>
-    <br/>
-
-    * <b> Jira</b>
-        <div> <img  src="readme_assets/jira_kanban.png" /> </div>
-    <br/>
-
-    * <b> Qase (to be improved)</b>
-        <div> <img  src="readme_assets/qase_suites.png" /> </div>
-    <br/>
-
-    * <b> Crashlytics </b>
-        <div> <img  src="readme_assets/crashlytics.png" /> </div>
+    * Add Kover plugin
 
 ## 🫧​ Design
 
-<center>
-    I implemented and used 60 - 30 - 10 rule for this design
-    <br/><br/>
-    <img  width = "50%" src="https://cdn.dribbble.com/users/2248264/screenshots/4552223/media/5ee3ff95aa8d67a446556a3ff15e8001.jpg?resize=800x600&vertical=center"/> <br/>
-  Implementation based on [Youtube TV Design](https://dribbble.com/shots/4552223-YouTube-TV-App-Redsign)
-</center>
+I implemented and used 60 - 30 - 10 rule for this design
+<br/><br/>
+
+<img  width = "50%" src="https://cdn.dribbble.com/users/2248264/screenshots/4552223/media/5ee3ff95aa8d67a446556a3ff15e8001.jpg?resize=800x600&vertical=center"/> <br/>
+
+Implementation based
+on [Youtube TV Design](https://dribbble.com/shots/4552223-YouTube-TV-App-Redsign)
