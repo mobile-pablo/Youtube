@@ -104,16 +104,16 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 </thead>
 <tbody>
   <tr>
-    <td><img  src="readme_assets/loading_screen_light.png" width="50%"  /></td>
-    <td><img  src="readme_assets/loading_screen_dark.png" width="50%"  /></td>
+    <td><img  src="readme_assets/loading_screen_light.png" width="80%"  /></td>
+    <td><img  src="readme_assets/loading_screen_dark.png" width="80%"  /></td>
   </tr>
   <tr>
-    <td><img  src="readme_assets/loaded_popular_screen_light.png" width="50%"  /></td>
-    <td><img  src="readme_assets/loaded_popular_screen_dark.png" width="50%"  /></td>
+    <td><img  src="readme_assets/loaded_popular_screen_light.png" width="80%"  /></td>
+    <td><img  src="readme_assets/loaded_popular_screen_dark.png" width="80%"  /></td>
   </tr>
 <tr>
-    <td><img  src="readme_assets/player_screen_light.png" width="50%"  /></td>
-    <td><img  src="readme_assets/player_screen_dark.png" width="50%"  /></td>
+    <td><img  src="readme_assets/player_screen_light.png" width="80%"  /></td>
+    <td><img  src="readme_assets/player_screen_dark.png" width="80%"  /></td>
 </tr>
 </tbody>
 </table>
