@@ -115,11 +115,11 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
     <th><img  src="readme_assets/bitrise_ci_primary.png" /></th>
   </tr>
   <tr>
-    <td><b>CD</b> <i>(staging)</i></td>
+    <th><b>CD</b> <i>(staging)</i></th>
     <td><img  src="readme_assets/bitrise_cd_staging.png" /> </td>
   </tr>
   <tr>
-    <td><b>CD</b> <i>(deploy)</i></td>
+    <th><b>CD</b> <i>(deploy)</i></th>
     <td><div> <img  src="readme_assets/bitrise_cd_deploy.png" /> </div></td>
   </tr>
 </tbody>
@@ -135,15 +135,15 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
     <th><img  src="readme_assets/firebase_app_distribution.png" /></th>
   </tr>
   <tr>
-    <td>Jira</td>
+    <th>Jira</th>
     <td><img  src="readme_assets/jira_kanban.png" /></td>
   </tr>
   <tr>
-    <td>Crashlytics</td>
+    <th>Crashlytics</th>
     <td><img  src="readme_assets/crashlytics.png" /></td>
   </tr>
   <tr>
-    <td>Qase (to be improved</td>
+    <th>Qase (to be improved</th>
     <td><img  src="readme_assets/qase_suites.png" /></td>
   </tr>
 </tbody>
