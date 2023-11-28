@@ -1,5 +1,6 @@
 package com.mobile.pablo.networking.mocks
 
+import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.networking.model.common.IdResponse
 import com.mobile.pablo.networking.model.common.PageInfoResponse
 import com.mobile.pablo.networking.model.common.ThumbnailResponse
@@ -32,7 +33,7 @@ internal val MOCK_DOG_SEARCH = SearchResponse(
                 publishedAt = "2023-06-19T12:45:48Z",
                 channelId = "UCMp-0bU-PA7BNNR-zIvEydA",
                 title = "I found a dog outside my gym \uD83D\uDE33",
-                description = "",
+                description = EMPTY_STRING,
                 thumbnails = ThumbnailsResponse(
                     default = ThumbnailResponse(
                         url = "https://i.ytimg.com/vi/vOThRCun5GY/default.jpg",
@@ -66,7 +67,7 @@ internal val MOCK_DOG_SEARCH = SearchResponse(
                 publishedAt = "2023-10-07T11:28:49Z",
                 channelId = "UCweWFpJ5CiJimQJAAx4aSew",
                 title = "Did the 3rd dog eat cat nip? #dogs #dogsports #flyball",
-                description = "",
+                description = EMPTY_STRING,
                 thumbnails = ThumbnailsResponse(
                     default = ThumbnailResponse(
                         url = "https://i.ytimg.com/vi/SbTheNHE0VA/default.jpg",
@@ -111,7 +112,7 @@ internal val MOCK_POPULAR_ITEM = PopularResponse(
                 publishedAt = "2023-06-19T12:45:48Z",
                 channelId = "UCMp-0bU-PA7BNNR-zIvEydA",
                 title = "I found a dog outside my gym \uD83D\uDE33",
-                description = "",
+                description = EMPTY_STRING,
                 thumbnails = ThumbnailsResponse(
                     default = ThumbnailResponse(
                         url = "https://i.ytimg.com/vi/vOThRCun5GY/default.jpg",
@@ -141,7 +142,7 @@ internal val MOCK_POPULAR_ITEM = PopularResponse(
                 publishedAt = "2023-10-07T11:28:49Z",
                 channelId = "UCweWFpJ5CiJimQJAAx4aSew",
                 title = "Did the 3rd dog eat cat nip? #dogs #dogsports #flyball",
-                description = "",
+                description = EMPTY_STRING,
                 thumbnails = ThumbnailsResponse(
                     default = ThumbnailResponse(
                         url = "https://i.ytimg.com/vi/SbTheNHE0VA/default.jpg",

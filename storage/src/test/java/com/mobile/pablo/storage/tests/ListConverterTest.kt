@@ -1,6 +1,7 @@
 package com.mobile.pablo.storage.tests
 
 import com.google.common.truth.Truth.assertThat
+import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.storage.database.typeconverter.ListConverter
 import org.junit.Test
 
@@ -29,7 +30,7 @@ class ListConverterTest {
     @Test
     fun `fromList handles empty list`() {
         val list = emptyList<String>()
-        val expected = ""
+        val expected = EMPTY_STRING
 
         val result = ListConverter.fromList(list)
 

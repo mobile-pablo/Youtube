@@ -1,5 +1,6 @@
 package com.mobile.pablo.storage.mocks
 
+import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.storage.database.entity.common.IdEntity
 import com.mobile.pablo.storage.database.entity.common.PageInfoEntity
 import com.mobile.pablo.storage.database.entity.common.ThumbnailEntity
@@ -33,7 +34,7 @@ internal val MOCK_DOG_SEARCH = SearchWithItemEntity(
                 publishedAt = "2023-06-19T12:45:48Z",
                 channelId = "UCMp-0bU-PA7BNNR-zIvEydA",
                 title = "I found a dog outside my gym \uD83D\uDE33",
-                description = "",
+                description = EMPTY_STRING,
                 thumbnails = ThumbnailsEntity(
                     default = ThumbnailEntity(
                         url = "https://i.ytimg.com/vi/vOThRCun5GY/default.jpg",
@@ -68,7 +69,7 @@ internal val MOCK_DOG_SEARCH = SearchWithItemEntity(
                 publishedAt = "2023-10-07T11:28:49Z",
                 channelId = "UCweWFpJ5CiJimQJAAx4aSew",
                 title = "Did the 3rd dog eat cat nip? #dogs #dogsports #flyball",
-                description = "",
+                description = EMPTY_STRING,
                 thumbnails = ThumbnailsEntity(
                     default = ThumbnailEntity(
                         url = "https://i.ytimg.com/vi/SbTheNHE0VA/default.jpg",

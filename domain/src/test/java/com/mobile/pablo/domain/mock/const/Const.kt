@@ -10,6 +10,7 @@ import com.mobile.pablo.core.model.popular.PopularSnippetDTO
 import com.mobile.pablo.core.model.search.SearchDTO
 import com.mobile.pablo.core.model.search.SearchItemDTO
 import com.mobile.pablo.core.model.search.SearchSnippetDTO
+import com.mobile.pablo.core.util.EMPTY_STRING
 
 internal val MOCK_DOG_SEARCH = SearchDTO(
     kind = "youtube#searchListResponse",
@@ -32,7 +33,7 @@ internal val MOCK_DOG_SEARCH = SearchDTO(
                 publishedAt = "2023-06-19T12:45:48Z",
                 channelId = "UCMp-0bU-PA7BNNR-zIvEydA",
                 title = "I found a dog outside my gym \uD83D\uDE33",
-                description = "",
+                description = EMPTY_STRING,
                 thumbnails = ThumbnailsDTO(
                     default = ThumbnailDTO(
                         url = "https://i.ytimg.com/vi/vOThRCun5GY/default.jpg",
@@ -66,7 +67,7 @@ internal val MOCK_DOG_SEARCH = SearchDTO(
                 publishedAt = "2023-10-07T11:28:49Z",
                 channelId = "UCweWFpJ5CiJimQJAAx4aSew",
                 title = "Did the 3rd dog eat cat nip? #dogs #dogsports #flyball",
-                description = "",
+                description = EMPTY_STRING,
                 thumbnails = ThumbnailsDTO(
                     default = ThumbnailDTO(
                         url = "https://i.ytimg.com/vi/SbTheNHE0VA/default.jpg",
@@ -111,7 +112,7 @@ internal val MOCK_POPULAR_ITEM = PopularDTO(
                 publishedAt = "2023-06-19T12:45:48Z",
                 channelId = "UCMp-0bU-PA7BNNR-zIvEydA",
                 title = "I found a dog outside my gym \uD83D\uDE33",
-                description = "",
+                description = EMPTY_STRING,
                 thumbnails = ThumbnailsDTO(
                     default = ThumbnailDTO(
                         url = "https://i.ytimg.com/vi/vOThRCun5GY/default.jpg",
@@ -141,7 +142,7 @@ internal val MOCK_POPULAR_ITEM = PopularDTO(
                 publishedAt = "2023-10-07T11:28:49Z",
                 channelId = "UCweWFpJ5CiJimQJAAx4aSew",
                 title = "Did the 3rd dog eat cat nip? #dogs #dogsports #flyball",
-                description = "",
+                description = EMPTY_STRING,
                 thumbnails = ThumbnailsDTO(
                     default = ThumbnailDTO(
                         url = "https://i.ytimg.com/vi/SbTheNHE0VA/default.jpg",

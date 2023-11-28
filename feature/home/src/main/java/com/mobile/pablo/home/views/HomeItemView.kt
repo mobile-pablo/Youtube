@@ -29,34 +29,27 @@ import androidx.compose.material.MaterialTheme as Theme
 internal fun HomeItemView(
     wrapper: HomeItemWrapper,
     modifier: Modifier = Modifier,
-    destinationsNavigator: DestinationsNavigator,
+    destinationsNavigator: DestinationsNavigator? = null,
     navController: NavController
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(Theme.spacing.spacing_220)
-            .clickable {
-                onHomeItemClick(
-                    destinationsNavigator = destinationsNavigator,
-                    navController = navController,
-                    videoId = wrapper.videoId
-                )
-            }
-            .padding(
-                vertical = Theme.spacing.spacing_12,
-                horizontal = Theme.spacing.spacing_32
-            ),
-        contentAlignment = Alignment.Center
-    ) {
+    Box(modifier = modifier
+        .fillMaxWidth()
+        .height(Theme.spacing.spacing_220)
+        .clickable {
+            onHomeItemClick(
+                destinationsNavigator = destinationsNavigator,
+                navController = navController,
+                videoId = wrapper.videoId
+            )
+        }
+        .padding(
+            vertical = Theme.spacing.spacing_12, horizontal = Theme.spacing.spacing_32
+        ), contentAlignment = Alignment.Center) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             Box(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                contentAlignment = Alignment.BottomEnd
+                modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.BottomEnd
             ) {
                 AsyncImageWithProgress(wrapper.imageUrl)
                 DurationView(wrapper.duration)
@@ -88,17 +81,19 @@ internal fun HomeItemView(
 }
 
 private fun onHomeItemClick(
-    destinationsNavigator: DestinationsNavigator,
+    destinationsNavigator: DestinationsNavigator? = null,
     navController: NavController,
     videoId: String
 ) {
-    navigateTo(
-        destinationsNavigator = destinationsNavigator,
-        navController = navController,
-        direction = PlayerScreenDestination(
-            videoId = videoId
+    destinationsNavigator?.let {
+        navigateTo(
+            destinationsNavigator = it,
+            navController = navController,
+            direction = PlayerScreenDestination(
+                videoId = videoId
+            )
         )
-    )
+    }
 }
 
 private const val HOME_ITEM_TITLE_MAX_LINES = 2
