@@ -89,8 +89,6 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
     * Mark stale issues
 
 ## To be added soon in (1.0.1)
-
-* Finish UI of Home Screen and Error Screen
 * Add Kover plugin
 
 ## 📸 Screenshots
@@ -98,19 +96,16 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 * <h3><b>App</b></h3>
 
     * <b>Loading screen</b>
-      <div> <img  src="readme_assets/loading_screen.png" width="100%"  /> </div>
+      <div> <img  src="readme_assets/loading_screen_light.png" width="100%"  /> </div>
     <br/>
 
     * <b>Popular video's </b> - <i>Paging</i>
 
-      <div> <img  src="readme_assets/loaded_popular_screen.png" width="100%"  /> </div>
+      <div> <img  src="readme_assets/loaded_popular_screen_light.png" width="100%"  /> </div>
       <br/><br/>
     * <h4><b>Video Player</b></h4>
 
-      <div> <img  src="readme_assets/player_screen.png" width="100%"  /> </div>
-      <br/>
-      <div> <img  src="readme_assets/player_screen_loading.png" width="100%"  /> </div>
-
+      <div> <img  src="readme_assets/player_screen_light.png" width="100%"  /> </div>
 
 * <h3><b>CI/CD</b></h3>
 
