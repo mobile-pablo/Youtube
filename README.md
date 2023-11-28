@@ -1,6 +1,3 @@
-
-
-
 # <center><img src= "https://freepngimg.com/download/youtube/77699-classic-icons-youtube-computer-logo-icon.png" style="width:30px; height:30px" /> Youtube </center>
 
 ## <center>TV - oriented Clone of Youtube with their API </center>
@@ -20,11 +17,11 @@
 I was regarding to
 
 ## 🎯​ Test Coverage ████████░░ 80%
+
     Most important files are covered currently (1.0.0 status)
 
-
 ## 🙊​ Google Play - Status
-    
+
     App new releases only will be internal for Youtube Privacy Law.
     Non less it still uses CD - Deploy workflow only not for production
 
@@ -64,7 +61,7 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 * <h4> Youtube Android Player (iFrame) </h4>
 * <h4> Permissions - Accompanist </h4>
 * <h4> Tests</h4>
-  
+
     * <h5> Compose testing </h5>
     * <h5> Mockk</h5>
     * <h5> Turbine - flow testing </h5>
@@ -89,6 +86,7 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
     * Mark stale issues
 
 ## To be added soon in (1.0.1)
+
 * Add Kover plugin
 
 ## 📸 Screenshots
@@ -104,16 +102,16 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 </thead>
 <tbody>
   <tr>
-    <td><img  src="readme_assets/loading_screen_light.png" width="80%"  /></td>
-    <td><img  src="readme_assets/loading_screen_dark.png" width="80%"  /></td>
+    <td><img  src="readme_assets/loading_screen_light.png" /></td>
+    <td><img  src="readme_assets/loading_screen_dark.png" /></td>
   </tr>
   <tr>
-    <td><img  src="readme_assets/loaded_popular_screen_light.png" width="80%"  /></td>
-    <td><img  src="readme_assets/loaded_popular_screen_dark.png" width="80%"  /></td>
+    <td><img  src="readme_assets/loaded_popular_screen_light.png" /></td>
+    <td><img  src="readme_assets/loaded_popular_screen_dark.png" /></td>
   </tr>
 <tr>
-    <td><img  src="readme_assets/player_screen_light.png" width="80%"  /></td>
-    <td><img  src="readme_assets/player_screen_dark.png" width="80%"  /></td>
+    <td><img  src="readme_assets/player_screen_light.png"  /></td>
+    <td><img  src="readme_assets/player_screen_dark.png" /></td>
 </tr>
 </tbody>
 </table>
@@ -121,34 +119,35 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 * <h3><b>CI/CD</b></h3>
 
 * <b>CI</b> <i>(primary)</i>
-   <div> <img  src="readme_assets/bitrise_ci_primary.png" width="100%"  /> </div>
+   <div> <img  src="readme_assets/bitrise_ci_primary.png" /> </div>
 
 * <b>CD</b> <i>(staging)</i>
 
-  <div> <img  src="readme_assets/bitrise_cd_staging.png" width="100%"  /> </div>
+  <div> <img  src="readme_assets/bitrise_cd_staging.png" /> </div>
 
 * <b>CD</b> <i>(deploy)</i>
 
-  <div> <img  src="readme_assets/bitrise_cd_deploy.png" width="100%"  /> </div>
+  <div> <img  src="readme_assets/bitrise_cd_deploy.png" /> </div>
 
 * <h3><b>Config</b></h3>
 
     * <b> Firebase App Distribution </b>
-        <div> <img  src="readme_assets/firebase_app_distribution.png" width="100%"  /> </div>
+        <div> <img  src="readme_assets/firebase_app_distribution.png" /> </div>
     <br/>
 
     * <b> Jira</b>
-        <div> <img  src="readme_assets/jira_kanban.png" width="100%"  /> </div>
+        <div> <img  src="readme_assets/jira_kanban.png" /> </div>
     <br/>
-  
+
     * <b> Qase (to be improved)</b>
-        <div> <img  src="readme_assets/qase_suites.png" width="100%"  /> </div>
+        <div> <img  src="readme_assets/qase_suites.png" /> </div>
     <br/>
-  
+
     * <b> Crashlytics </b>
-        <div> <img  src="readme_assets/crashlytics.png" width="100%"  /> </div>
+        <div> <img  src="readme_assets/crashlytics.png" /> </div>
 
 ## 🫧​ Design
+
 <center>
     I implemented and used 60 - 30 - 10 rule for this design
     <br/><br/>
