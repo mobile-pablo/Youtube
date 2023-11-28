@@ -2,7 +2,7 @@ package com.mobile.pablo.networking.interceptor
 
 import androidx.annotation.Keep
 import com.mobile.pablo.core.util.EMPTY_STRING
-import com.mobile.pablo.networking.const.YOUTUBE_KEY
+import com.mobile.pablo.networking.const.NetworkConst.YOUTUBE_KEY
 import java.net.HttpURLConnection
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
