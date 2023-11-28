@@ -13,7 +13,6 @@ import retrofit2.Response
 
 class GeneralExtTest {
     companion object {
-
         private const val FOO_TEXT = "test"
         private const val TEXT_PLAIN = "text/plain"
     }

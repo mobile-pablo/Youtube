@@ -22,5 +22,7 @@ internal class NavigationSideBarRobot(
     }
 }
 
-internal fun navigationSideBarRobot(composeTestRule: ComposeTestRule, func: NavigationSideBarRobot.() -> Unit) =
-    NavigationSideBarRobot(composeTestRule).apply(func)
+internal fun navigationSideBarRobot(
+    composeTestRule: ComposeTestRule,
+    func: NavigationSideBarRobot.() -> Unit
+) = NavigationSideBarRobot(composeTestRule).apply(func)

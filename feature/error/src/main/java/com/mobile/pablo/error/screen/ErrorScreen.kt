@@ -33,9 +33,7 @@ private const val ERROR_DESCRIPTION_MAX_LINES = 2
 
 @Composable
 @Destination
-fun ErrorScreen(
-    destinationsNavigator: DestinationsNavigator? = null
-) {
+fun ErrorScreen(destinationsNavigator: DestinationsNavigator? = null) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier =

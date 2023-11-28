@@ -13,9 +13,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 
 @Composable
 @Destination
-fun PlayerScreen(
-    videoId: String
-) {
+fun PlayerScreen(videoId: String) {
     Column(
         modifier =
             Modifier

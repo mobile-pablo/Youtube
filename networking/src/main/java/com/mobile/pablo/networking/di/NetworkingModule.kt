@@ -43,7 +43,9 @@ object NetworkingModule {
 
     @Provides
     @Singleton
-    fun providesCache(@ApplicationContext context: Context): Cache {
+    fun providesCache(
+        @ApplicationContext context: Context
+    ): Cache {
         val cacheSize = 10 * 1024 * 1024
         val cacheDir = File(context.cacheDir, "http-cache")
         return Cache(cacheDir, cacheSize.toLong())
