@@ -118,16 +118,16 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 
 * <h3><b>CI/CD</b></h3>
 
-* <b>CI</b> <i>(primary)</i>
-   <div> <img  src="readme_assets/bitrise_ci_primary.png" /> </div>
+  * <b>CI</b> <i>(primary)</i>
+     <div> <img  src="readme_assets/bitrise_ci_primary.png" /> </div>
 
-* <b>CD</b> <i>(staging)</i>
+  * <b>CD</b> <i>(staging)</i>
 
-  <div> <img  src="readme_assets/bitrise_cd_staging.png" /> </div>
+    <div> <img  src="readme_assets/bitrise_cd_staging.png" /> </div>
 
-* <b>CD</b> <i>(deploy)</i>
+  * <b>CD</b> <i>(deploy)</i>
 
-  <div> <img  src="readme_assets/bitrise_cd_deploy.png" /> </div>
+    <div> <img  src="readme_assets/bitrise_cd_deploy.png" /> </div>
 
 * <h3><b>Config</b></h3>
 
