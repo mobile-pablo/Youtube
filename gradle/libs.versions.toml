@@ -5,7 +5,7 @@ ksp = "1.9.20-1.0.14"
 kotlin = "1.7.0"
 leanback = "1.0.0"
 core-ktx = "1.12.0"
-coroutineCore = "1.7.3"
+coroutineCore = '1.7.0'
 androidx_core = '1.12.0'
 androidx = '2.6.2'
 androidx_navigation_testing = '2.7.5'
@@ -14,18 +14,20 @@ org-jetbrains-kotlin-android = "1.9.0"
 
 timber = '5.0.1'
 firebase_bom = '32.6.0'
+firebase_analytics = '21.5.0'
+firebase_crashlytics = '18.6.0'
 firebaseCrashlyticsGradle = "2.9.9"
 hiltVersion = "2.48.1"
 
 paging = "3.2.1"
-hilt_compose = '1.1.0-alpha01'
-tv-compose = "1.0.0-alpha07"
-compose = '1.4.0'
+hilt_compose = '1.1.0'
+tv-compose = "1.0.0-alpha10"
+compose = '1.5.4'
 compose_material = '1.4.0'
-activity_compose = '1.7.0'
-compose-bom = "2023.06.01"
+activity_compose = '1.8.1'
+compose-bom = "2023.10.01"
 
-okhttp = "4.11.0"
+okhttp = "4.12.0"
 retrofit = "2.9.0"
 moshi = '1.12.0'
 moshiRetrofit = '2.9.0'
@@ -38,28 +40,28 @@ compose_swipe = '1.1.1'
 youtube_player_core = '12.1.0'
 youtube_player_chromecast = '0.28'
 
-room = '2.5.1'
+room = '2.6.0'
 security-crypto = "1.1.0-alpha06"
 
 
-runner = '1.4.0'
-baseline-profile = '1.3.0'
+runner = '1.5.0'
+baseline-profile = '1.3.1'
 junit_ext = '1.1.5'
-junit_macro = '1.1.1'
+junit_macro = '1.2.1'
 junit = "4.13.2"
 espresso = '3.5.1'
 mockitoKotlin = '5.1.0'
-mockk = '1.13.6'
+mockk = '1.13.8'
 mockWebServer = '4.12.0'
-uiautomator = '2.3.0-alpha02'
+uiautomator = '2.3.0-alpha05'
 turbine = '1.0.0'
 hilt-testing = '2.44'
 truth = '1.1.3'
 androidx-test-ext-junit = "1.1.5"
 
-build_gradle = "8.0"
+build_gradle = "8.0.2"
 kotlin_gradle = "1.9.20"
-google_services = "4.3.15"
+google_services = "4.4.0"
 
 
 [libraries]
@@ -113,15 +115,14 @@ moshi-retrofit = { module = "com.squareup.retrofit2:converter-moshi", version.re
 coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutineCore" }
 
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase_bom" }
-firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx", version = "18.5.0" }
-firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version = "21.4.0" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx", version.ref = "firebase_crashlytics" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebase_analytics" }
 
 youtube-player-core = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:core", version.ref = "youtube_player_core" }
 youtube-player-custom-ui = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:custom-ui", version.ref = "youtube_player_core" }
 youtube-player-chromecast = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender", version.ref = "youtube_player_chromecast" }
 
 google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
-androidx-runner = { group = "androidx.test", name = "runner", version = "1.5.2" }
 test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 junit = { module = "junit:junit", version.ref = "junit" }
 junit-ext = { module = "androidx.test.ext:junit", version.ref = "junit_ext" }

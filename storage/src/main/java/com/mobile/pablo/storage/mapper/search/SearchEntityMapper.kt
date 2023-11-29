@@ -26,7 +26,7 @@ internal class SearchEntityMapper
                         ),
                     items =
                         items!!.map {
-                            searchItemMapper.map(it, etag)
+                            searchItemMapper.map(it, etag)!!
                         }
                 )
             }

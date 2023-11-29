@@ -6,13 +6,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavController
-import androidx.tv.material3.Text
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
 import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
 import com.mobile.pablo.uicomponents.ext.navigateTo
