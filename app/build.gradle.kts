@@ -74,6 +74,12 @@ android {
     kapt {
         correctErrorTypes = true
     }
+
+    packaging {
+        resources {
+            excludes += "META-INF/*"
+        }
+    }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlint")
