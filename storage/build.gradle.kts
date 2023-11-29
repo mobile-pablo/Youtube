@@ -1,6 +1,5 @@
 apply(from = "../ktlint.gradle.kts")
 
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinKapt)
@@ -11,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.mobile.pablo.storage"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 28

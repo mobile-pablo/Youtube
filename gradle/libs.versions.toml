@@ -4,17 +4,18 @@ gms = "4.3.15"
 ksp = "1.9.20-1.0.14"
 kotlin = "1.7.0"
 leanback = "1.0.0"
-core-ktx = "1.9.0"
+core-ktx = "1.12.0"
 coroutineCore = "1.7.3"
-androidx_core = '1.9.0'
-androidx = '2.4.0'
-lifecycle = '2.3.1'
+androidx_core = '1.12.0'
+androidx = '2.6.2'
+androidx_navigation_testing = '2.7.5'
+lifecycle = '2.6.2'
 org-jetbrains-kotlin-android = "1.9.0"
 
 timber = '5.0.1'
-firebase_bom = '31.5.0'
+firebase_bom = '32.6.0'
 firebaseCrashlyticsGradle = "2.9.9"
-hiltVersion = "2.48"
+hiltVersion = "2.48.1"
 
 paging = "3.2.1"
 hilt_compose = '1.1.0-alpha01'
@@ -68,7 +69,7 @@ leanback = { group = "androidx.leanback", name = "leanback", version.ref = "lean
 androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidx_core" }
 androidX-lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx" }
 androidX-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx" }
-androidX-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "androidx" }
+androidX-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "androidx_navigation_testing" }
 
 tv-foundation = { module = "androidx.tv:tv-foundation", version.ref = "tv-compose" }
 tv-material = { module = "androidx.tv:tv-material", version.ref = "tv-compose" }
