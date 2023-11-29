@@ -21,11 +21,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 
@@ -46,11 +43,12 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
-    implementation(libs.firebase.bom)
+    platform(libs.firebase.bom)
     kapt(libs.hilt.compiler)
 
     api(libs.bundles.moshiBundle)
     api(libs.timber)
 
-    testImplementation(libs.junit)
+    testImplementation(libs.bundles.testBundle)
+    androidTestImplementation(libs.bundles.androidTestBundle)
 }

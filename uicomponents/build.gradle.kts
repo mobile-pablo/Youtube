@@ -23,7 +23,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -48,6 +48,8 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
+    api(project(":core"))
+
     implementation(libs.core.ktx)
     implementation(libs.leanback)
 
@@ -61,7 +63,7 @@ dependencies {
     kaptAndroidTest(libs.hilt.android.compiler)
     ksp(libs.compose.destination.ksp)
 
-    testImplementation(libs.junit)
+    testImplementation(libs.bundles.testBundle)
     debugImplementation(libs.bundles.composeDebugBundle)
     androidTestImplementation(libs.bundles.androidTestBundle)
 }

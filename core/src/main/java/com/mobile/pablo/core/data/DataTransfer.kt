@@ -8,9 +8,10 @@ class DataTransfer<T>(
 
     suspend fun <R> map(transform: suspend (T) -> R): DataTransfer<R> {
         return DataTransfer(
-            data = data?.let {
-                transform.invoke(it)
-            },
+            data =
+                data?.let {
+                    transform.invoke(it)
+                },
             error = error
         )
     }

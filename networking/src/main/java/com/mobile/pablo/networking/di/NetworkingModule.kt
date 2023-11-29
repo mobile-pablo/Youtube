@@ -1,7 +1,9 @@
 package com.mobile.pablo.networking.di
 
 import android.content.Context
+import androidx.annotation.Keep
 import com.mobile.pablo.networking.BuildConfig
+import com.mobile.pablo.networking.const.TIMEOUT_MILLIS
 import com.mobile.pablo.networking.interceptor.RequestInterceptor
 import com.mobile.pablo.networking.service.YoutubeService
 import com.mobile.pablo.networking.source.popular.PopularDataSource
@@ -26,13 +28,13 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkingModule {
-
     @Provides
     @Singleton
     fun providesLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().apply {
-            if (BuildConfig.DEBUG)
+            if (BuildConfig.DEBUG) {
                 level = HttpLoggingInterceptor.Level.BODY
+            }
         }
 
     @Provides
@@ -41,7 +43,9 @@ object NetworkingModule {
 
     @Provides
     @Singleton
-    fun providesCache(@ApplicationContext context: Context): Cache {
+    fun providesCache(
+        @ApplicationContext context: Context
+    ): Cache {
         val cacheSize = 10 * 1024 * 1024
         val cacheDir = File(context.cacheDir, "http-cache")
         return Cache(cacheDir, cacheSize.toLong())
@@ -56,15 +60,16 @@ object NetworkingModule {
     ): OkHttpClient =
         OkHttpClient.Builder()
             .cache(cache)
-            .callTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
+            .callTimeout(TIMEOUT_MILLIS, TimeUnit.SECONDS)
+            .readTimeout(TIMEOUT_MILLIS, TimeUnit.SECONDS)
+            .writeTimeout(TIMEOUT_MILLIS, TimeUnit.SECONDS)
             .addInterceptor(requestInterceptor)
             .addInterceptor(loggingInterceptor)
             .build()
 
     @Provides
     @Singleton
+    @Keep
     fun providesRetrofit(
         client: OkHttpClient,
         moshi: Moshi

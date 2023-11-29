@@ -56,11 +56,6 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
 
@@ -78,6 +73,12 @@ android {
 
     kapt {
         correctErrorTypes = true
+    }
+
+    packaging {
+        resources {
+            excludes += "META-INF/*"
+        }
     }
 }
 
@@ -102,7 +103,7 @@ dependencies {
     kaptAndroidTest(libs.hilt.android.compiler)
     ksp(libs.compose.destination.ksp)
 
-    testImplementation(libs.junit)
     debugImplementation(libs.bundles.composeDebugBundle)
+    testImplementation(libs.bundles.testBundle)
     androidTestImplementation(libs.bundles.androidTestBundle)
 }

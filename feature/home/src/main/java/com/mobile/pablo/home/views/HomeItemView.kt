@@ -2,30 +2,26 @@ package com.mobile.pablo.home.views
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.layoutId
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.ConstraintSet
 import androidx.navigation.NavController
 import androidx.tv.material3.Text
-import coil.compose.AsyncImagePainter.State
-import coil.compose.SubcomposeAsyncImage
-import coil.compose.SubcomposeAsyncImageContent
-import com.mobile.pablo.home.R
 import com.mobile.pablo.home.wrapper.HomeItemWrapper
 import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
 import com.mobile.pablo.uicomponents.ext.navigateTo
+import com.mobile.pablo.uicomponents.theme.MONTSERRAT_FONT_FAMILY
+import com.mobile.pablo.uicomponents.theme.bodyTextColor
 import com.mobile.pablo.uicomponents.theme.font
 import com.mobile.pablo.uicomponents.theme.spacing
+import com.mobile.pablo.uicomponents.views.AsyncImageWithProgress
+import com.mobile.pablo.uicomponents.views.DurationView
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import androidx.compose.material.MaterialTheme as Theme
 
@@ -33,88 +29,79 @@ import androidx.compose.material.MaterialTheme as Theme
 internal fun HomeItemView(
     wrapper: HomeItemWrapper,
     modifier: Modifier = Modifier,
-    destinationsNavigator: DestinationsNavigator,
-    navControler: NavController
+    destinationsNavigator: DestinationsNavigator? = null,
+    navController: NavController
 ) {
     Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable {
-                onHomeItemClick(
-                    destinationsNavigator = destinationsNavigator,
-                    navController = navControler,
-                    videoId = wrapper.videoId
-                )
-            }
-            .padding(
-                vertical = Theme.spacing.spacing_12,
-                horizontal = Theme.spacing.spacing_32
-            )
-    ) {
-        ConstraintLayout(
-            modifier = Modifier
-                .fillMaxWidth(),
-            constraintSet = homeItemConstraints
-        ) {
-            SubcomposeAsyncImage(
-                model = wrapper.imageUrl,
-                contentDescription = null,
-                modifier = Modifier
-                    .layoutId(HOME_ITEM_IMAGE_ID)
-                    .clip(
-                        RoundedCornerShape(Theme.spacing.spacing_6)
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .height(Theme.spacing.spacing_220)
+                .clickable {
+                    onHomeItemClick(
+                        destinationsNavigator = destinationsNavigator,
+                        navController = navController,
+                        videoId = wrapper.videoId
                     )
-            ) {
-                when (painter.state) {
-                    is State.Loading, State.Empty -> CircularProgressIndicator()
-                    is State.Error -> painterResource(id = R.drawable.ic_wifi_tethering_error_24)
-                    is State.Success -> SubcomposeAsyncImageContent()
                 }
+                .padding(
+                    vertical = Theme.spacing.spacing_12,
+                    horizontal = Theme.spacing.spacing_32
+                ),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.BottomEnd
+            ) {
+                AsyncImageWithProgress(wrapper.imageUrl)
+                DurationView(wrapper.duration)
             }
+
             Text(
-                fontWeight = FontWeight.Bold,
-                fontSize = Theme.font.font_23,
+                fontWeight = FontWeight.Medium,
+                fontSize = Theme.font.font_12,
+                fontFamily = MONTSERRAT_FONT_FAMILY,
                 text = wrapper.title,
+                color = Theme.colors.bodyTextColor,
                 overflow = TextOverflow.Clip,
                 maxLines = HOME_ITEM_TITLE_MAX_LINES,
-                modifier = Modifier
-                    .layoutId(HOME_ITEM_TITLE_ID)
-                    .padding(top = Theme.spacing.spacing_20)
+                modifier = Modifier.padding(top = Theme.spacing.spacing_10)
+            )
+
+            Text(
+                fontWeight = FontWeight.Normal,
+                fontSize = Theme.font.font_9,
+                fontFamily = MONTSERRAT_FONT_FAMILY,
+                text = wrapper.channelName,
+                color = Theme.colors.bodyTextColor,
+                overflow = TextOverflow.Clip,
+                maxLines = HOME_ITEM_CHANNEL_NAME_MAX_LINES,
+                modifier = Modifier.padding(top = Theme.spacing.spacing_4)
             )
         }
     }
 }
 
 private fun onHomeItemClick(
-    destinationsNavigator: DestinationsNavigator,
+    destinationsNavigator: DestinationsNavigator? = null,
     navController: NavController,
     videoId: String
 ) {
-    navigateTo(
-        destinationsNavigator = destinationsNavigator,
-        navController = navController,
-        direction = PlayerScreenDestination(
-            videoId = videoId
+    destinationsNavigator?.let {
+        navigateTo(
+            destinationsNavigator = it,
+            navController = navController,
+            direction =
+                PlayerScreenDestination(
+                    videoId = videoId
+                )
         )
-    )
-}
-
-private val homeItemConstraints: ConstraintSet = ConstraintSet {
-    val image = createRefFor(HOME_ITEM_IMAGE_ID)
-    val title = createRefFor(HOME_ITEM_TITLE_ID)
-
-    constrain(image) {
-        top.linkTo(parent.top)
-        start.linkTo(parent.start)
-        end.linkTo(parent.end)
-    }
-
-    constrain(title) {
-        top.linkTo(image.bottom)
-        start.linkTo(image.start)
-        end.linkTo(image.end)
     }
 }
-private const val HOME_ITEM_IMAGE_ID = "home_item_image_id"
-private const val HOME_ITEM_TITLE_ID = "home_item_title_id"
-private const val HOME_ITEM_TITLE_MAX_LINES = 1
+
+private const val HOME_ITEM_TITLE_MAX_LINES = 2
+private const val HOME_ITEM_CHANNEL_NAME_MAX_LINES = 1

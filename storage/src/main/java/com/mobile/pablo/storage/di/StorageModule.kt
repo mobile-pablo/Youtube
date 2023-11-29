@@ -16,12 +16,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object StorageModule {
-
     @Provides
     @Singleton
-    internal fun providesSharedPreferencesManager(
-        impl: SharedPreferencesManagerImpl
-    ): SharedPreferencesManager = impl
+    internal fun providesSharedPreferencesManager(impl: SharedPreferencesManagerImpl): SharedPreferencesManager = impl
 
     @Provides
     @Singleton
@@ -31,13 +28,9 @@ object StorageModule {
 
     @Provides
     @Singleton
-    internal fun providesSearchDao(
-        appDatabase: AppDatabase
-    ) = appDatabase.searchDao()
+    internal fun providesSearchDao(appDatabase: AppDatabase) = appDatabase.searchDao()
 
     @Provides
     @Singleton
-    internal fun providesSearchDataStorage(
-        impl: SearchDataStorageImpl
-    ): SearchDataStorage = impl
+    internal fun providesSearchDataStorage(impl: SearchDataStorageImpl): SearchDataStorage = impl
 }

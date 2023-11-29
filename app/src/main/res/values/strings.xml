@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Purple Video Player</string>
+
+    <string name="side_bar_item_column">side_bar_item_column</string>
 </resources>

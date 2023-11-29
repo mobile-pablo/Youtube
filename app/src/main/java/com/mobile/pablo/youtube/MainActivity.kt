@@ -3,6 +3,8 @@ package com.mobile.pablo.youtube
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.Keep
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -14,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.mobile.pablo.uicomponents.theme.YoutubeTheme
+import com.mobile.pablo.uicomponents.theme.primaryColor
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.mobile.pablo.youtube.const.NAVIGATION_ITEMS
 import com.mobile.pablo.youtube.nav.graph.NavGraphs
@@ -22,9 +25,9 @@ import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.material.MaterialTheme as Theme
 
+@Keep
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actionBar?.hide()
@@ -36,14 +39,20 @@ class MainActivity : ComponentActivity() {
                 }
                 Surface(modifier = Modifier.fillMaxSize()) {
                     NavigationSideBar(
-                        modifier = Modifier.width(Theme.spacing.spacing_82),
+                        modifier =
+                            Modifier
+                                .width(Theme.spacing.spacing_72),
                         items = NAVIGATION_ITEMS,
                         selectedItemIndex = selectedItemIndex
                     ) { selectedItemIndex = it }
                     DestinationsNavHost(
                         navController = navController,
                         navGraph = NavGraphs.root,
-                        modifier = Modifier.padding(start = Theme.spacing.spacing_82)
+                        modifier =
+                            Modifier
+                                .padding(start = Theme.spacing.spacing_72)
+                                .fillMaxSize()
+                                .background(Theme.colors.primaryColor)
                     )
                 }
             }
