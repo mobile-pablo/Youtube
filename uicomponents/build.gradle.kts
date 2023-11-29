@@ -54,7 +54,6 @@ dependencies {
 
     implementation(libs.bundles.androidXBundle)
     implementation(libs.bundles.composeBundle)
-    implementation(libs.bundles.tvBundle)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

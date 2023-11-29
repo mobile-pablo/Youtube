@@ -85,9 +85,11 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    implementation(project(":feature:home"))
-    implementation(project(":feature:player"))
-    implementation(project(":feature:error"))
+    val features = listOf("home", "search", "player", "error")
+
+    features.forEach { feature ->
+        implementation(project(":feature:$feature"))
+    }
     implementation(project(":uicomponents"))
 
     implementation(libs.core.ktx)
