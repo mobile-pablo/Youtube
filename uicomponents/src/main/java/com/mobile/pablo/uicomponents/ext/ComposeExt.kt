@@ -37,144 +37,152 @@ import kotlinx.coroutines.launch
 fun Modifier.topRectBorder(
     width: Dp = Dp.Hairline,
     brush: Brush = SolidColor(Color.Black)
-): Modifier = composed(
-    factory = {
-        this.then(
-            Modifier.drawWithCache {
-                onDrawWithContent {
-                    drawContent()
-                    drawLine(
-                        brush,
-                        Offset(
-                            width.value,
-                            0f
-                        ),
-                        Offset(
-                            size.width - width.value,
-                            0f
+): Modifier =
+    composed(
+        factory = {
+            this.then(
+                Modifier.drawWithCache {
+                    onDrawWithContent {
+                        drawContent()
+                        drawLine(
+                            brush,
+                            Offset(
+                                width.value,
+                                0f
+                            ),
+                            Offset(
+                                size.width - width.value,
+                                0f
+                            )
                         )
-                    )
+                    }
                 }
+            )
+        },
+        inspectorInfo =
+            debugInspectorInfo {
+                name = "border"
+                properties["width"] = width
+                if (brush is SolidColor) {
+                    properties["color"] = brush.value
+                    value = brush.value
+                } else {
+                    properties["brush"] = brush
+                }
+                properties["shape"] = RectangleShape
             }
-        )
-    },
-    inspectorInfo = debugInspectorInfo {
-        name = "border"
-        properties["width"] = width
-        if (brush is SolidColor) {
-            properties["color"] = brush.value
-            value = brush.value
-        } else {
-            properties["brush"] = brush
-        }
-        properties["shape"] = RectangleShape
-    }
-)
+    )
 
 @Suppress("UnnecessaryComposedModifier")
 fun Modifier.bottomRectBorder(
     width: Dp = Dp.Hairline,
     brush: Brush = SolidColor(Color.Black)
-): Modifier = composed(
-    factory = {
-        this.then(
-            Modifier.drawWithCache {
-                onDrawWithContent {
-                    drawContent()
-                    drawLine(
-                        brush,
-                        Offset.Zero.copy(y = size.height),
-                        Offset(
-                            size.width,
-                            size.height
+): Modifier =
+    composed(
+        factory = {
+            this.then(
+                Modifier.drawWithCache {
+                    onDrawWithContent {
+                        drawContent()
+                        drawLine(
+                            brush,
+                            Offset.Zero.copy(y = size.height),
+                            Offset(
+                                size.width,
+                                size.height
+                            )
                         )
-                    )
+                    }
                 }
+            )
+        },
+        inspectorInfo =
+            debugInspectorInfo {
+                name = "border"
+                properties["width"] = width
+                if (brush is SolidColor) {
+                    properties["color"] = brush.value
+                    value = brush.value
+                } else {
+                    properties["brush"] = brush
+                }
+                properties["shape"] = RectangleShape
             }
-        )
-    },
-    inspectorInfo = debugInspectorInfo {
-        name = "border"
-        properties["width"] = width
-        if (brush is SolidColor) {
-            properties["color"] = brush.value
-            value = brush.value
-        } else {
-            properties["brush"] = brush
-        }
-        properties["shape"] = RectangleShape
-    }
-)
+    )
 
 @Suppress("UnnecessaryComposedModifier")
 fun Modifier.leftRectBorder(
     width: Dp = Dp.Hairline,
     brush: Brush = SolidColor(Color.Black)
-): Modifier = composed(
-    factory = {
-        this.then(
-            Modifier.drawWithCache {
-                onDrawWithContent {
-                    drawContent()
-                    drawLine(
-                        brush,
-                        Offset.Zero.copy(y = 0f),
-                        Offset.Zero.copy(y = size.height)
-                    )
+): Modifier =
+    composed(
+        factory = {
+            this.then(
+                Modifier.drawWithCache {
+                    onDrawWithContent {
+                        drawContent()
+                        drawLine(
+                            brush,
+                            Offset.Zero.copy(y = 0f),
+                            Offset.Zero.copy(y = size.height)
+                        )
+                    }
                 }
+            )
+        },
+        inspectorInfo =
+            debugInspectorInfo {
+                name = "border"
+                properties["width"] = width
+                if (brush is SolidColor) {
+                    properties["color"] = brush.value
+                    value = brush.value
+                } else {
+                    properties["brush"] = brush
+                }
+                properties["shape"] = RectangleShape
             }
-        )
-    },
-    inspectorInfo = debugInspectorInfo {
-        name = "border"
-        properties["width"] = width
-        if (brush is SolidColor) {
-            properties["color"] = brush.value
-            value = brush.value
-        } else {
-            properties["brush"] = brush
-        }
-        properties["shape"] = RectangleShape
-    }
-)
+    )
 
 @Suppress("UnnecessaryComposedModifier")
 fun Modifier.rightRectBorder(
     width: Dp = Dp.Hairline,
     brush: Brush = SolidColor(Color.Black)
-): Modifier = composed(
-    factory = {
-        this.then(
-            Modifier.drawWithCache {
-                onDrawWithContent {
-                    drawContent()
-                    drawLine(
-                        brush,
-                        Offset(
-                            size.width,
-                            0f
-                        ),
-                        Offset(
-                            size.width,
-                            size.height
+): Modifier =
+    composed(
+        factory = {
+            this.then(
+                Modifier.drawWithCache {
+                    onDrawWithContent {
+                        drawContent()
+                        drawLine(
+                            brush,
+                            Offset(
+                                size.width,
+                                0f
+                            ),
+                            Offset(
+                                size.width,
+                                size.height
+                            )
                         )
-                    )
+                    }
                 }
+            )
+        },
+        inspectorInfo =
+            debugInspectorInfo {
+                name = "border"
+                properties["width"] = width
+                if (brush is SolidColor) {
+                    properties["color"] = brush.value
+                    value = brush.value
+                } else {
+                    properties["brush"] = brush
+                }
+                properties["shape"] = RectangleShape
             }
-        )
-    },
-    inspectorInfo = debugInspectorInfo {
-        name = "border"
-        properties["width"] = width
-        if (brush is SolidColor) {
-            properties["color"] = brush.value
-            value = brush.value
-        } else {
-            properties["brush"] = brush
-        }
-        properties["shape"] = RectangleShape
-    }
-)
+    )
 
 @Composable
 fun Int.pxToDp() = with(LocalDensity.current) { this@pxToDp.toDp() }

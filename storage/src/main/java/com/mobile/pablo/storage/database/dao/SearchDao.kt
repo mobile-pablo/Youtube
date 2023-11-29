@@ -1,5 +1,6 @@
 package com.mobile.pablo.storage.database.dao
 
+import androidx.annotation.Keep
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,9 +12,9 @@ import com.mobile.pablo.storage.database.entity.search.SearchEntity
 import com.mobile.pablo.storage.database.entity.search.SearchItemEntity
 import com.mobile.pablo.storage.database.entity.search.SearchWithItemEntity
 
+@Keep
 @Dao
 internal abstract class SearchDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertSearch(search: SearchEntity?)
 
@@ -47,7 +48,7 @@ internal abstract class SearchDao {
     @Transaction
     open suspend fun getSearchWithItems(): SearchWithItemEntity? {
         val search = getSearch()
-        val items = getSearchItems(search!!.etag)
+        val items = search?.etag?.let { getSearchItems(it) }
         return SearchWithItemEntity(search, items)
     }
 

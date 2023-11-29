@@ -5,21 +5,22 @@ import com.mobile.pablo.domain.mapper.common.ThumbnailsMapper
 import com.mobile.pablo.domain.model.search.SearchSnippet
 import javax.inject.Inject
 
-class SearchSnippetMapper @Inject constructor(
-    private val thumbnailsMapper: ThumbnailsMapper
-) {
-
-    fun map(dto: SearchSnippetDTO?): SearchSnippet? {
-        return dto?.run {
-            SearchSnippet(
-                publishedAt,
-                channelId,
-                title,
-                description,
-                thumbnailsMapper.map(thumbnails),
-                channelTitle,
-                liveBroadcastContent
-            )
+class SearchSnippetMapper
+    @Inject
+    constructor(
+        private val thumbnailsMapper: ThumbnailsMapper
+    ) {
+        fun map(dto: SearchSnippetDTO?): SearchSnippet? {
+            return dto?.run {
+                SearchSnippet(
+                    publishedAt,
+                    channelId,
+                    title,
+                    description,
+                    thumbnailsMapper.map(thumbnails),
+                    channelTitle,
+                    liveBroadcastContent
+                )
+            }
         }
     }
-}

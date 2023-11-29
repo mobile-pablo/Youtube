@@ -21,7 +21,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -35,6 +35,12 @@ android {
 
     kapt {
         correctErrorTypes = true
+    }
+
+    packaging {
+        resources {
+            excludes += "META-INF/*"
+        }
     }
 }
 
@@ -50,4 +56,7 @@ dependencies {
 
     implementation(libs.paging.runtime)
     implementation(libs.compose.paging)
+
+    testImplementation(libs.bundles.testBundle)
+    androidTestImplementation(libs.bundles.androidTestBundle)
 }

@@ -1,5 +1,6 @@
 package com.mobile.pablo.networking.service
 
+import androidx.annotation.Keep
 import com.mobile.pablo.networking.const.CHART_QUERY
 import com.mobile.pablo.networking.const.CONTENT_DETAILS
 import com.mobile.pablo.networking.const.MOST_POPULAR
@@ -18,8 +19,8 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+@Keep
 internal interface YoutubeService {
-
     @GET(YOUTUBE_V3_SEARCH)
     suspend fun getSearchVideos(
         @Query(PART_QUERY) part: String = SNIPPET,

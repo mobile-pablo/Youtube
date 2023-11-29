@@ -15,3 +15,5 @@ const val Q_QUERY: String = "q"
 const val CHART_QUERY: String = "chart"
 const val REGION_CODE_QUERY: String = "regionCode"
 const val PAGE_TOKEN_QUERY: String = "pageToken"
+
+const val TIMEOUT_MILLIS = 30L

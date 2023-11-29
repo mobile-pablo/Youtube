@@ -21,7 +21,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments["room.schemaLocation"] = "${projectDir}/schemas"
+                arguments["room.schemaLocation"] = "$projectDir/schemas"
                 arguments["room.incremental"] = "true"
                 arguments["room.expandProjection"] = "true"
             }
@@ -30,7 +30,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -44,6 +44,12 @@ android {
 
     kapt {
         correctErrorTypes = true
+    }
+
+    packaging {
+        resources {
+            excludes += "META-INF/*"
+        }
     }
 }
 
@@ -61,5 +67,6 @@ dependencies {
     ksp(libs.room.compiler)
     implementation(libs.androidx.security)
 
-    testImplementation(libs.junit)
+    testImplementation(libs.bundles.testBundle)
+    androidTestImplementation(libs.bundles.androidTestBundle)
 }
