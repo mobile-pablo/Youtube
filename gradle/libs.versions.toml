@@ -2,7 +2,19 @@
 ## To do it run a command: ./gradlew versionCatalogUpdate
 ## More info at :
 ## https://github.com/littlerobots/version-catalog-update-plugin
+##
+## PS. Order unfortunately is done automatically by the plugin (alphabetically)
+##
 [versions]
+
+# @keep
+minSdk = "28"
+# @keep
+targetSdk = "34"
+# @keep
+compileSdk = "34"
+# @keep
+jvmTarget = "1.8"
 activity_compose = "1.8.1"
 agp = "8.1.4"
 androidx = "2.6.2"
