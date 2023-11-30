@@ -1,128 +1,93 @@
-<svg fill="none" viewBox="0 0 600 300" width="600" height="300" xmlns="http://www.w3.org/2000/svg">
-    <style>
-        .container{
-        display: flex;
-        width: 100%;
-        height: 300px;
-        background-color: #e5e5e5;
-        color: #333333;
-        }
-        .chip{
-        display: inline-flex;
-        flex-direction: row;
-        background-color: #e5e5e5;
-        border: none;
-        cursor: default;
-        height: 36px;
-        outline: none;
-        padding: 0 ;
-        margin : 0 5px;
-        font-size: 14px;
-        color: #333333;
-        font-family:"Open Sans", sans-serif;
-        white-space: nowrap;
-        align-items: center;
-        border-radius: 16px;
-        vertical-align: middle;
-        text-decoration: none;
-        justify-content: center;
-        }
-        .chip-content{
-        cursor: inherit;
-        display: flex;
-        align-items: center;
-        user-select: none;
-        white-space: nowrap;
-        padding: 0px 14px;
-        }
+<svg xmlns="http://www.w3.org/2000/svg">
+    <style  src="./style.css">
     </style>
     <g class="container">
                 <g class="chip">
-                    <g class="chip-content">Multi-module</g>
+                    <text class="chip-content">Multi-module</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Retrofit</g>
+                    <text class="chip-content">Retrofit</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">OkHttp</g>
+                    <text class="chip-content">OkHttp</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Hilt + Dagger</g>
+                    <text class="chip-content">Hilt + Dagger</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Compose</g>
+                    <text class="chip-content">Compose</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Coroutines</g>
+                    <text class="chip-content">Coroutines</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Compose Navigation</g>
+                    <text class="chip-content">Compose Navigation</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Paging3</g>
+                    <text class="chip-content">Paging3</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Coil</g>
+                    <text class="chip-content">Coil</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">KtLint</g>
+                    <text class="chip-content">KtLint</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Leanback</g>
+                    <text class="chip-content">Leanback</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Youtube Android Player (iFrame)</g>
+                    <text class="chip-content">Youtube Android Player (iFrame)</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Permissions - Accompanist</g>
+                    <text class="chip-content">Permissions - Accompanist</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Tests</g>
+                    <text class="chip-content">Tests</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Compose testing</g>
+                    <text class="chip-content">Compose testing</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Mockk</g>
+                    <text class="chip-content">Mockk</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Turbine - flow testing</g>
+                    <text class="chip-content">Turbine - flow testing</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Mock Web Server</g>
+                    <text  class="chip-content">Mock Web Server</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Truth</g>
+                    <text  class="chip-content">Truth</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Firebase App Distribution</g>
+                    <text  class="chip-content">Firebase App Distribution</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Crashlytics</g>
+                    <text class="chip-content">Crashlytics</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Github Actions</g>
+                    <text class="chip-content">Github Actions</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Bitrise CI/CD</g>
+                    <text class="chip-content">Bitrise CI/CD</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">CI</g>
+                    <text class="chip-content">CI</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">CD - staging - Firebase App Distribution </g>
+                    <text class="chip-content">CD - staging - Firebase App Distribution</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">CD - deploy - Google Play </g>
+                    <text class="chip-content">CD - deploy - Google Play</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Github Actions : Delete Branch</g>
+                    <text class="chip-content">Github Actions : Delete Branch</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Github Actions : Lint</g>
+                    <text class="chip-content">Github Actions : Lint</text>
                 </g>
                 <g class="chip">
-                    <g class="chip-content">Github Actions : Stale issues</g>
+                    <text class="chip-content">Github Actions : Stale issues</text>
                 </g>
             </g>
 </svg>
