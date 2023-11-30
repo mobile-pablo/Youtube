@@ -1,0 +1,128 @@
+<svg fill="none" viewBox="0 0 600 300" width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .container{
+        display: flex;
+        width: 100%;
+        height: 300px;
+        background-color: #e5e5e5;
+        color: #333333;
+        }
+        .chip{
+        display: inline-flex;
+        flex-direction: row;
+        background-color: #e5e5e5;
+        border: none;
+        cursor: default;
+        height: 36px;
+        outline: none;
+        padding: 0 ;
+        margin : 0 5px;
+        font-size: 14px;
+        color: #333333;
+        font-family:"Open Sans", sans-serif;
+        white-space: nowrap;
+        align-items: center;
+        border-radius: 16px;
+        vertical-align: middle;
+        text-decoration: none;
+        justify-content: center;
+        }
+        .chip-content{
+        cursor: inherit;
+        display: flex;
+        align-items: center;
+        user-select: none;
+        white-space: nowrap;
+        padding: 0px 14px;
+        }
+    </style>
+    <g class="container">
+                <g class="chip">
+                    <g class="chip-content">Multi-module</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Retrofit</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">OkHttp</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Hilt + Dagger</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Compose</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Coroutines</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Compose Navigation</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Paging3</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Coil</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">KtLint</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Leanback</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Youtube Android Player (iFrame)</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Permissions - Accompanist</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Tests</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Compose testing</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Mockk</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Turbine - flow testing</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Mock Web Server</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Truth</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Firebase App Distribution</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Crashlytics</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Github Actions</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Bitrise CI/CD</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">CI</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">CD - staging - Firebase App Distribution </g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">CD - deploy - Google Play </g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Github Actions : Delete Branch</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Github Actions : Lint</g>
+                </g>
+                <g class="chip">
+                    <g class="chip-content">Github Actions : Stale issues</g>
+                </g>
+            </g>
+</svg>
