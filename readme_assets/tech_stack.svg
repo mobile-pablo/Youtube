@@ -8,9 +8,9 @@
                 }
                 .container{
                 display: grid;
-                grid-template-columns: repeat(3, 150px);
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
                 background-color: #ffffff;
-                height: 100%;
                 }
                 .chip{
                 display: inline-flex;
@@ -119,9 +119,6 @@
                 </div>
                 <div class="chip">
                     <div class="chip-content">CD - deploy - Google Play </div>
-                </div>
-                <div class="chip">
-                    <div class="chip-content"></div>
                 </div>
                 <div class="chip">
                     <div class="chip-content">Github Actions : Delete Branch</div>
