@@ -51,10 +51,18 @@ I was regarding to
    to [tutorial](https://developer.android.com/studio?gclid=CjwKCAjwnOipBhBQEiwACyGLukOqCPF7rjbRbw2zo-hldBEOSCVk0P0B1bFUCJjxdKyi6zGc3daUzhoCwSkQAvD_BwE&gclsrc=aw.ds)
 2. Download necessary SDK tools
 3. Configure Android emulator or connect external device
-4. Clone repository from button '<> Code'
-5. Remove 'include(":playground")' from settings.gradle.kts
-6. Sync project with Gradle
-7. Click an build button : )
+4. Clone repository from button ' <> Code '
+5. Remove ' include(":playground") ' from settings.gradle.kts
+6. Recreate NetworkConst.kt file with Your API key
+
+       package com.mobile.pablo.networking.const
+
+       object NetworkConst {
+       const val YOUTUBE_KEY = "Get key from https://developers.google.com/youtube/v3/getting-started"
+       }
+
+7. Sync project with Gradle
+8. Click an build button : )
 
 ## ⚙️ Config
 
