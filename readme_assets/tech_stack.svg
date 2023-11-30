@@ -21,6 +21,7 @@
                 border: none;
                 cursor: default;
                 height: 36px;
+                width: fit-content;
                 outline: none;
                 margin : 0 5px;
                 font-size: 11px;
