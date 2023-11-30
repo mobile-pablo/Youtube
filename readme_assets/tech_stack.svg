@@ -4,6 +4,7 @@
             <style>
                 .container{
                 display: grid;
+                grid-template-columns: auto auto auto;
                 background-color: #ffffff;
                 }
                 .chip{
