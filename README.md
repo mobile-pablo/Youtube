@@ -57,7 +57,11 @@ I was regarding to
 ## ⚙️ Config
 
 Config files based on Kotlin DSL. <br/>
-Dependencies in TOML file
+Dependencies in TOML file <br/>
+They are updated via plugin [version-catalog-update-plugin](https://github.com/littlerobots/version-catalog-update-plugin) <br/>
+To update run a command
+
+     ./gradlew versionCatalogUpdate
 
 ## 🤔​ Planning
 

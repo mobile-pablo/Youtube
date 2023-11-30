@@ -42,7 +42,6 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
-    platform(libs.firebase.bom)
     kapt(libs.hilt.compiler)
 
     api(libs.bundles.moshiBundle)

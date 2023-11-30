@@ -1,1 +1,2 @@
 /build
+property(org.gradle.api.file.Directory

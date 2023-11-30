@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.kspPlugin) apply false
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.firebaseCrashlytics) apply false
+    alias(libs.plugins.benmanesVersions) apply true
+    alias(libs.plugins.versionCatalogUpdate) apply true
 }
 
 buildscript {
