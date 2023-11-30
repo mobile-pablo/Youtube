@@ -68,7 +68,7 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 ## 🛠️​ Tech stack
 
 <div style="width: 100%;">
-  <img src="readme_assets/tech_stack.svg" style="width: 100%; height: 100%;" alt="Click to see the source">
+  <img src="readme_assets/tech_stack.svg" style="width: 100%; alt="Click to see the source">
 </div>
 
 ## 📸 Screenshots
