@@ -38,7 +38,7 @@
                 align-items: center;
                 user-select: none;
                 white-space: nowrap;
-                padding: 0px 14px;
+                padding: 0px 7px;
                 }
             </style>
             <div class="container">
