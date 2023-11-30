@@ -32,7 +32,7 @@
             </style>
 
             <div class="chip">
-                <div class="chip-content">Multi-module</div>
+                <b class="chip-content">Multi-module</b>
             </div>
             <div class="chip">
                 <div class="chip-content">Retrofit</div>
@@ -59,7 +59,7 @@
                 <div class="chip-content">Coil</div>
             </div>
             <div class="chip">
-                <div class="chip-content">KtLint</div>
+                <b class="chip-content">KtLint</b>
             </div>
             <div class="chip">
                 <div class="chip-content">Leanback</div>
@@ -71,22 +71,19 @@
                 <div class="chip-content">Permissions - Accompanist</div>
             </div>
             <div class="chip">
-                <div class="chip-content">Tests</div>
-            </div>
-            <div class="chip">
                 <div class="chip-content">Compose testing</div>
             </div>
             <div class="chip">
-                <div class="chip-content">Mockk</div>
+                <div class="chip-content">Mockk - tests</div>
             </div>
             <div class="chip">
                 <div class="chip-content">Turbine - flow testing</div>
             </div>
             <div class="chip">
-                <div class="chip-content">Mock Web Server</div>
+                <div class="chip-content">Mock Web Server - tests</div>
             </div>
             <div class="chip">
-                <div class="chip-content">Truth</div>
+                <div class="chip-content">Truth - tests</div>
             </div>
             <div class="chip">
                 <div class="chip-content">Firebase App Distribution</div>
@@ -98,16 +95,13 @@
                 <div class="chip-content">Github Actions</div>
             </div>
             <div class="chip">
-                <div class="chip-content">Bitrise CI/CD</div>
+                <b class="chip-content">Bitrise: CI</b>
             </div>
             <div class="chip">
-                <div class="chip-content">CI</div>
+                <b class="chip-content">Bitrise: CD - staging - Firebase App Distribution </b>
             </div>
             <div class="chip">
-                <div class="chip-content">CD - staging - Firebase App Distribution </div>
-            </div>
-            <div class="chip">
-                <div class="chip-content">CD - deploy - Google Play </div>
+                <b class="chip-content">Bitrise :CD - deploy - Google Play </b>
             </div>
             <div class="chip">
                 <div class="chip-content">Github Actions : Delete Branch</div>
