@@ -46,7 +46,7 @@ android {
     /**
      * May not be possible for TV platform for now
      * Ticket: https://issuetracker.google.com/issues/232753501
-     * If Doesnt work feel free to remove that part
+     * If Doesn't work feel free to remove that part
      */
     testOptions {
         managedDevices {
@@ -95,6 +95,8 @@ android {
         resources {
             excludes += "/META-INF/AL2.0"
             excludes += "/META-INF/LGPL2.1"
+            excludes += "/META-INF/LICENSE.*"
+            excludes += "/META-INF/LICENSE-*.*"
         }
     }
 }

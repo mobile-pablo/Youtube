@@ -5,8 +5,7 @@ labels: ["enhancement", "triage me"]
 body:
 - type: markdown
   attributes:
-  value: |
-  Thanks for taking the time to fill out this feature report!
+  value: Thanks for taking the time to fill out this feature report!
 - type: checkboxes
   attributes:
   label: Is there an existing issue for this?
