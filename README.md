@@ -52,7 +52,9 @@ I was regarding to
 2. Download necessary SDK tools
 3. Configure Android emulator or connect external device
 4. Clone repository from button '<> Code'
-5. Click Run button : )
+5. Remove 'include(":playground")' from settings.gradle.kts
+6. Sync project with Gradle
+7. Click an build button : )
 
 ## ⚙️ Config
 
@@ -63,6 +65,7 @@ To update run a command
 
      ./gradlew versionCatalogUpdate
 
+Off-topic : I added Playground module for experimental libraries to test out
 ## 🤔​ Planning
 
 Jira
