@@ -43,6 +43,23 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    /**
+     * May not be possible for TV platform for now
+     * Ticket: https://issuetracker.google.com/issues/232753501
+     * If Doesnt work feel free to remove that part
+     */
+    testOptions {
+        managedDevices {
+            localDevices {
+                create("pixel2api28").apply {
+                    device = "Pixel 2"
+                    apiLevel = 28
+                    systemImageSource = "google-tv"
+                }
+            }
+        }
+    }
+
     signingConfigs {
         create("release") {
             storeFile = file(keystoreProperties["storeFile"] as String)
