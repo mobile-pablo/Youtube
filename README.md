@@ -189,6 +189,7 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
         <div class="chip">
           <div class="chip-content">Github Actions : Stale issues</div>
         </div>
+    </div>
   </foreignObject>
 </svg>
 
