@@ -20,12 +20,13 @@ android {
     }
 
     buildTypes {
+        val serverUrl = "\"https://www.googleapis.com/\""
         debug {
             isMinifyEnabled = false
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
-                value = "\"https://www.googleapis.com/\""
+                value = serverUrl
             )
         }
 
@@ -39,7 +40,7 @@ android {
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
-                value = "\"https://www.googleapis.com/\""
+                value = serverUrl
             )
         }
     }
