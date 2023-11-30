@@ -4,7 +4,7 @@
             <style>
                 .container{
                 display: grid;
-                grid-template-columns: repeat(5, 100px);
+                grid-template-columns: auto auto auto auto;
                 background-color: #ffffff;
                 height: 100%;
                 }
