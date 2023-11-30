@@ -35,36 +35,93 @@
                 justify-content: center;
                 }
             </style>
-            <div class="container">
-                <div class="chip">Multi-module</div>
-                <div class="chip">Retrofit</div>
-                <div class="chip">OkHttp</div>
-                <div class="chip">Hilt + Dagger</div>
-                <div class="chip">Compose</div>
-                <div class="chip">Coroutines</div>
-                <div class="chip">Compose Navigation</div>
-                <div class="chip">Paging3</div>
-                <div class="chip">Coil</div>
-                <div class="chip">KtLint</div>
-                <div class="chip">Leanback</div>
-                <div class="chip">Youtube Android Player (iFrame)</div>
-                <div class="chip">Permissions - Accompanist</div>
-                <div class="chip">Tests</div>
-                <div class="chip">Compose testing</div>
-                <div class="chip">Mockk</div>
-                <div class="chip">Turbine - flow testing</div>
-                <div class="chip">Mock Web Server</div>
-                <div class="chip">Truth</div>
-                <div class="chip">Firebase App Distribution</div>
-                <div class="chip">Crashlytics</div>
-                <div class="chip">Github Actions</div>
-                <div class="chip">Bitrise CI/CD</div>
-                <div class="chip">CI</div>
-                <div class="chip">CD - staging - Firebase App Distribution</div>
-                <div class="chip">CD - deploy - Google Play</div>
-                <div class="chip">Github Actions : Delete Branch</div>
-                <div class="chip">Github Actions : Lint</div>
-                <div class="chip">Github Actions : Stale issues</div>
+
+            <div class="chip">
+                <div class="chip-content">Multi-module</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Retrofit</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">OkHttp</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Hilt + Dagger</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Compose</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Coroutines</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Compose Navigation</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Paging3</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Coil</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">KtLint</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Leanback</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Youtube Android Player (iFrame)</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Permissions - Accompanist</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Tests</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Compose testing</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Mockk</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Turbine - flow testing</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Mock Web Server</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Truth</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Firebase App Distribution</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Crashlytics</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Github Actions</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Bitrise CI/CD</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">CI</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">CD - staging - Firebase App Distribution </div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">CD - deploy - Google Play </div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Github Actions : Delete Branch</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Github Actions : Lint</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Github Actions : Stale issues</div>
             </div>
         </div>
     </foreignObject>
