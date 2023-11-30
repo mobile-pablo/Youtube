@@ -66,44 +66,131 @@ at [Youtube Jira](https://mobile-pablo.atlassian.net/jira/software/c/projects/YT
 Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 
 ## 🛠️​ Tech stack
-
-* <h4> Multi-module </h4>
-* <h4> Retrofit </h4>
-* <h4> OkHttp </h4>
-* <h4> Hilt + Dagger </h4>
-* <h4> Compose </h4>
-* <h4> Coroutines </h4>
-* <h4> Compose Navigation </h4>
-* <h4> Paging3 </h4>
-* <h4> Coil </h4>
-* <h4> KtLint </h4>
-* <h4> Leanback </h4>
-* <h4> Youtube Android Player (iFrame) </h4>
-* <h4> Permissions - Accompanist </h4>
-* <h4> Tests</h4>
-
-    * <h5> Compose testing </h5>
-    * <h5> Mockk</h5>
-    * <h5> Turbine - flow testing </h5>
-    * <h5> Mock Web Server </h5>
-    * <h5> Truth </h5>
-* <h4> Firebase App Distribution </h4>
-* <h4> Crashlytics </h4>
-* <h4> Github Actions </h4>
-* <h4> Bitrise CI/CD </h4>
-
-    * <b>CI</b>  <i>(primary workflow)</i>  with integration, widget and unit tests on <b>
-      develop</b> branch
-
-    * <b>CD</b>  <i>(staging workflow)</i> deploy to Firebase App Distribution on <b>
-      x.y.z/staging</b> branch
-
-    * <b>CD</b>  <i>(deploy workflow)</i>  with deploy to Google Play on <b>master</b> branch
-* <h4>Github Actions </h4>
-
-    * Delete Branch
-    * Lint
-    * Mark stale issues
+<svg fill="none" viewBox="0 0 600 300" width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        .chip{
+            display: inline-flex;
+            flex-direction: row;
+            background-color: #e5e5e5;
+            border: none;
+            cursor: default;
+            height: 36px;
+            outline: none;
+            padding: 0 ;
+            margin : 0 5px;
+            font-size: 14px;
+            color: #333333;
+            font-family:"Open Sans", sans-serif;
+            white-space: nowrap;
+            align-items: center;
+            border-radius: 16px;
+            vertical-align: middle;
+            text-decoration: none;
+            justify-content: center;
+        }
+        .chip-content{
+        cursor: inherit;
+        display: flex;
+        align-items: center;
+        user-select: none;
+        white-space: nowrap;
+        padding: 0px 14px;
+        }
+        </style>
+        <div class="chip">
+          <div class="chip-content">Multi-module</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Retrofit</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">OkHttp</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Hilt + Dagger</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Compose</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Coroutines</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Compose Navigation</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Paging3</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Coil</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">KtLint</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Leanback</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Youtube Android Player (iFrame)</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Permissions - Accompanist</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Tests</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Compose testing</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Mockk</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Turbine - flow testing</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Mock Web Server</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Truth</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Firebase App Distribution</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Crashlytics</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Github Actions</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Bitrise CI/CD</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">CI</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">CD - staging - Firebase App Distribution </div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">CD - deploy - Google Play </div>
+        </div>
+        <div class="chip">
+          <div class="chip-content"></div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Github Actions : Delete Branch</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Github Actions : Lint</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Github Actions : Stale issues</div>
+        </div>
+  </foreignObject>
+</svg>
 
 ## 📸 Screenshots
 
