@@ -66,7 +66,7 @@ at [Youtube Jira](https://mobile-pablo.atlassian.net/jira/software/c/projects/YT
 Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 
 ## 🛠️​ Tech stack
-## ![plot](./readme_assets/tech_stack.svg)
+## ![tech stack](./readme_assets/tech_stack.svg)
 
 ## 📸 Screenshots
 

@@ -4,8 +4,9 @@
             <style>
                 .container{
                 display: grid;
-                grid-template-columns: auto auto auto;
+                grid-template-columns: repeat(5, 200px);
                 background-color: #ffffff;
+                height: 100%;
                 }
                 .chip{
                 display: inline-flex;
