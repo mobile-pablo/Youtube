@@ -71,6 +71,13 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
   <foreignObject width="100%" height="100%">
     <div xmlns="http://www.w3.org/1999/xhtml">
       <style>
+        .container{
+          display: flex;
+          width: 100%;
+          height: 300px;
+          background-color: #e5e5e5;
+          color: #333333;
+        }
         .chip{
             display: inline-flex;
             flex-direction: row;
@@ -100,96 +107,98 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
         padding: 0px 14px;
         }
         </style>
-    <div class="chip">
-      <div class="chip-content">Multi-module</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Retrofit</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">OkHttp</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Hilt + Dagger</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Compose</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Coroutines</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Compose Navigation</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Paging3</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Coil</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">KtLint</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Leanback</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Youtube Android Player (iFrame)</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Permissions - Accompanist</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Tests</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Compose testing</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Mockk</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Turbine - flow testing</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Mock Web Server</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Truth</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Firebase App Distribution</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Crashlytics</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Github Actions</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Bitrise CI/CD</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">CI</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">CD - staging - Firebase App Distribution </div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">CD - deploy - Google Play </div>
-    </div>
-    <div class="chip">
-      <div class="chip-content"></div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Github Actions : Delete Branch</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Github Actions : Lint</div>
-    </div>
-    <div class="chip">
-      <div class="chip-content">Github Actions : Stale issues</div>
-    </div>
+      <div class="container">
+        <div class="chip">
+          <div class="chip-content">Multi-module</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Retrofit</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">OkHttp</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Hilt + Dagger</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Compose</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Coroutines</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Compose Navigation</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Paging3</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Coil</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">KtLint</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Leanback</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Youtube Android Player (iFrame)</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Permissions - Accompanist</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Tests</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Compose testing</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Mockk</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Turbine - flow testing</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Mock Web Server</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Truth</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Firebase App Distribution</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Crashlytics</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Github Actions</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Bitrise CI/CD</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">CI</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">CD - staging - Firebase App Distribution </div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">CD - deploy - Google Play </div>
+        </div>
+        <div class="chip">
+          <div class="chip-content"></div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Github Actions : Delete Branch</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Github Actions : Lint</div>
+        </div>
+        <div class="chip">
+          <div class="chip-content">Github Actions : Stale issues</div>
+        </div>
+      </div>
     </div>
   </foreignObject>
 </svg>
