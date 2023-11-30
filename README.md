@@ -68,7 +68,7 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 ## 🛠️​ Tech stack
 
 <div style="width: 100%;">
-  <img src="readme_assets/tech_stack.svg" style="width: 100%; alt="Click to see the source">
+  <img src="readme_assets/tech_stack.svg" style="width: 100%" />
 </div>
 
 ## 📸 Screenshots
@@ -122,7 +122,7 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
 
 ## ​🔗​ To be added (1.0.1)
 
-    * Add Kover plugin
+* Add Kover plugin
 
 ## 🫧​ Design
 
