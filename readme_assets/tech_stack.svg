@@ -18,7 +18,7 @@
                 height: 36px;
                 width: fit-content;
                 outline: none;
-                margin : 1px 5px;
+                margin : 2px 5px;
                 font-size: 11px;
                 padding: 0px 7px;
                 color: #333333;
