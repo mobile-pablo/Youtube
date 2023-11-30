@@ -86,31 +86,28 @@
                 <div class="chip-content">Truth - tests</div>
             </div>
             <div class="chip">
-                <div class="chip-content">Firebase App Distribution</div>
-            </div>
-            <div class="chip">
                 <div class="chip-content">Crashlytics</div>
             </div>
             <div class="chip">
                 <div class="chip-content">Github Actions</div>
             </div>
             <div class="chip">
-                <b class="chip-content">Bitrise: CI</b>
+                <b class="chip-content">Bitrise: CI - primary</b>
             </div>
             <div class="chip">
-                <b class="chip-content">Bitrise: CD - staging - Firebase App Distribution </b>
+                <b class="chip-content">Bitrise: CD - staging - Firebase App Distribution</b>
             </div>
             <div class="chip">
-                <b class="chip-content">Bitrise :CD - deploy - Google Play </b>
+                <b class="chip-content">Bitrise: CD - deploy - Google Play</b>
             </div>
             <div class="chip">
-                <div class="chip-content">Github Actions : Delete Branch</div>
+                <div class="chip-content">Github Actions: Delete Branch</div>
             </div>
             <div class="chip">
-                <div class="chip-content">Github Actions : Lint</div>
+                <div class="chip-content">Github Actions: Lint</div>
             </div>
             <div class="chip">
-                <div class="chip-content">Github Actions : Stale issues</div>
+                <div class="chip-content">Github Actions: Stale issues</div>
             </div>
         </div>
     </foreignObject>
