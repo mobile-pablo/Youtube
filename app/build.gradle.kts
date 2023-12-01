@@ -100,6 +100,33 @@ android {
             excludes += "/META-INF/LICENSE-*.*"
         }
     }
+
+    koverReport {
+        // filters for all report types of all build variants
+        filters {
+            excludes {
+                classes(
+                    "*BuildConfig*",
+                    "*Destination*",
+                    "*_Impl*",
+                    "*Hilt_*",
+                    "*MainActivity*",
+                    "*_Factory*",
+                    "*ComposableSingletons*",
+                    "*Module_*"
+                )
+                packages(
+                    "dagger.hilt.*",
+                    "*di*",
+                    "hilt_aggregated_deps",
+                    "*entity*",
+                    "com.mobile.pablo.uicomponents.theme.*",
+                    "*model*",
+                    "*mapper*"
+                )
+            }
+        }
+    }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlint")
@@ -116,8 +143,6 @@ dependencies {
         listOf(
             "core",
             "domain",
-            "feature:error",
-            "feature:player",
             "feature:search",
             "networking",
             "storage",
