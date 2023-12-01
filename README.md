@@ -135,9 +135,11 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
     App new releases only will be internal for Youtube Privacy Law.
     Non less it still uses CD - Deploy workflow only not for production
 
-## ​🔗​ To be added (1.0.0)
+## ​🔗​ To be added (1.0.1)
 
-* Add Kover plugin
+* Add Playlists
+* Add Settings
+* Add Profile Screen
 
 ## 🫧​ Design
 
