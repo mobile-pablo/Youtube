@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.firebaseCrashlytics)
+    alias(libs.plugins.kover)
 }
 
 android {
@@ -50,8 +51,6 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
     api(project(":networking"))
-
-    testImplementation(libs.junit)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

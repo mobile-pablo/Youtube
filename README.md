@@ -43,7 +43,7 @@ I was regarding to
 
 ## 🎯​ Test Coverage ████████░░ 80%
 
-    Most important files are covered currently (1.0.1 status)
+    Most important files are covered currently (1.0.0 status)
 
 ## 📱 How to run
 
@@ -135,7 +135,7 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
     App new releases only will be internal for Youtube Privacy Law.
     Non less it still uses CD - Deploy workflow only not for production
 
-## ​🔗​ To be added (1.0.1)
+## ​🔗​ To be added (1.0.0)
 
 * Add Kover plugin
 

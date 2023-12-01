@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.firebaseCrashlytics) apply false
     alias(libs.plugins.benmanesVersions) apply true
     alias(libs.plugins.versionCatalogUpdate) apply true
+    alias(libs.plugins.kover) apply false
 }
 
 buildscript {
@@ -24,6 +25,7 @@ buildscript {
         classpath(libs.kotlinGradlePlugin)
         classpath(libs.hiltPlugin)
         classpath(libs.googleServicesPlugin)
+        classpath(libs.koverPlugin)
     }
 }
 

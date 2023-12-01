@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.firebaseCrashlytics)
     alias(libs.plugins.kspPlugin)
+    alias(libs.plugins.kover)
 }
 
 android {

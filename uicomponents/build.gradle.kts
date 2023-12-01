@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.hiltPlugin)
     alias(libs.plugins.kspPlugin)
     alias(libs.plugins.firebaseCrashlytics)
+    alias(libs.plugins.kover)
 }
 
 android {

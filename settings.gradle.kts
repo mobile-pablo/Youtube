@@ -1,4 +1,5 @@
 @file:Suppress("UnstableApiUsage")
+
 pluginManagement {
     repositories {
         google()
@@ -15,14 +16,16 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Purple Video Player"
-include(":app")
-include(":core")
-include(":domain")
-include(":networking")
-include(":storage")
-include(":uicomponents")
-include(":playground")
-include(":feature:home")
-include(":feature:search")
-include(":feature:player")
-include(":feature:error")
+include(
+    ":app",
+    ":core",
+    ":domain",
+    ":networking",
+    ":storage",
+    ":uicomponents",
+    ":playground",
+    ":feature:home",
+    ":feature:search",
+    ":feature:player",
+    ":feature:error"
+)

@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.hiltPlugin)
     alias(libs.plugins.kspPlugin)
     alias(libs.plugins.firebaseCrashlytics)
+    alias(libs.plugins.kover)
 }
 
 kotlin {
@@ -106,10 +107,26 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 dependencies {
     val features = listOf("home", "search", "player", "error")
 
+    implementation(project(":uicomponents"))
     features.forEach { feature ->
         implementation(project(":feature:$feature"))
     }
-    implementation(project(":uicomponents"))
+
+    val modules =
+        listOf(
+            "core",
+            "domain",
+            "feature:error",
+            "feature:player",
+            "feature:search",
+            "networking",
+            "storage",
+            "uicomponents"
+        )
+
+    modules.forEach {
+        kover(project(":$it"))
+    }
 
     implementation(libs.core.ktx)
     implementation(libs.leanback)
