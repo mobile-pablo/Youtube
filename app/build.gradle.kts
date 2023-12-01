@@ -113,14 +113,17 @@ android {
                     "*MainActivity*",
                     "*_Factory*",
                     "*ComposableSingletons*",
-                    "*Module_*"
+                    "*Module_*",
+                    "*Application*"
                 )
                 packages(
                     "dagger.hilt.*",
                     "*di*",
+                    "*const*",
                     "hilt_aggregated_deps",
                     "*entity*",
-                    "com.mobile.pablo.uicomponents.theme.*",
+                    "*uicomponents.theme.*",
+                    "uicomponents.ext",
                     "*model*",
                     "*mapper*"
                 )
