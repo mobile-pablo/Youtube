@@ -106,7 +106,7 @@ android {
               Android UI tests arent included in that report
                Here what is missing currently :
                 - SearchDaoTest.kt
-                 - SharedPreferencesManagerTest.kt
+                - SharedPreferencesManagerTest.kt
                 - ErrorScreenTest.kt
                 - HomeItemViewTest.kt
 
@@ -119,7 +119,7 @@ android {
                     "*_Impl*",
                     "*Hilt_*",
                     "*Screen*",
-                    "*View*",
+                    "*_Hilt*",
                     "*MainActivity*",
                     "*_Factory*",
                     "*ComposableSingletons*",

@@ -41,9 +41,10 @@
 [Iframe issue](https://stackoverflow.com/questions/9640265/problems-giving-focus-to-an-iframe-on-smart-tv)
 I was regarding to
 
-## 🎯​ Test Coverage ████████░░ 80%
+## 🎯​ Test Coverage █████████░ 90%
 
-    Most important files are covered currently (1.0.0 status)
+     Almost all classes are covered (1.0.0 status)
+     Excluding generated files, mappers and models etc.
 
 ## 📱 How to run
 
@@ -73,6 +74,12 @@ They are updated via plugin [version-catalog-update-plugin](https://github.com/l
 To update run a command
 
      ./gradlew versionCatalogUpdate
+
+<br/>
+I added also a Kover for Unit test Coverage <br/>
+To check coverage run :
+
+    ./gradlew koverVerifyDebug koverXmlReportDebug
 
 ## 🤔​ Planning
 
@@ -124,8 +131,12 @@ Qase at [Youtube Qase](https://app.qase.io/project/YTC) <br/>
     <td><img  src="readme_assets/crashlytics.png" /></td>
   </tr>
   <tr>
-    <th>Qase (to be improved</th>
+    <th>Qase (to be improved)</th>
     <td><img  src="readme_assets/qase_suites.png" /></td>
+  </tr>
+ <tr>
+    <th>Kover - Unit tests coverage</th>
+    <td><img  src="readme_assets/kover_coverage.png" /></td>
   </tr>
 </tbody>
 </table>
