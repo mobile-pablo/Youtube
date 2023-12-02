@@ -102,7 +102,15 @@ android {
     }
 
     koverReport {
-        // filters for all report types of all build variants
+        /*
+              Android UI tests arent included in that report
+               Here what is missing currently :
+                - SearchDaoTest.kt
+                 - SharedPreferencesManagerTest.kt
+                - ErrorScreenTest.kt
+                - HomeItemViewTest.kt
+
+         */
         filters {
             excludes {
                 classes(
@@ -110,6 +118,8 @@ android {
                     "*Destination*",
                     "*_Impl*",
                     "*Hilt_*",
+                    "*Screen*",
+                    "*View*",
                     "*MainActivity*",
                     "*_Factory*",
                     "*ComposableSingletons*",
@@ -122,11 +132,16 @@ android {
                     "*const*",
                     "hilt_aggregated_deps",
                     "*entity*",
-                    "*uicomponents.theme.*",
-                    "uicomponents.ext",
+                    "*uicomponents.theme*",
+                    "*uicomponents.ext*",
+                    "*view*",
                     "*model*",
-                    "*mapper*"
+                    "*mapper*",
+                    "*wrapper*",
+                    "*storage.sharedprefs*",
+                    "*storage.database*"
                 )
+                annotatedBy("androidx.compose.runtime.Composable")
             }
         }
     }
@@ -146,6 +161,7 @@ dependencies {
         listOf(
             "core",
             "domain",
+            "feature:home",
             "feature:search",
             "networking",
             "storage",
