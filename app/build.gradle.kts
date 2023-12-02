@@ -161,9 +161,7 @@ dependencies {
 
     implementation(project(":uicomponents"))
     listOf("home", "search", "player", "error")
-        .forEach { feature ->
-            implementation(project(":feature:$feature"))
-        }
+        .onEach { implementation(project(":feature:$it")) }
 
     listOf(
         "core",
@@ -173,9 +171,7 @@ dependencies {
         "networking",
         "storage",
         "uicomponents"
-    ).forEach {
-        kover(project(":$it"))
-    }
+    ).onEach { kover(project(":$it")) }
 
     libs.apply {
         bundles.apply {

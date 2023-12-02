@@ -75,9 +75,7 @@ dependencies {
         "feature:error",
         "domain",
         "uicomponents"
-    ).forEach { module ->
-        implementation(project(":$module"))
-    }
+    ).onEach { implementation(project(":$it")) }
 
     libs.apply {
         bundles.apply {
