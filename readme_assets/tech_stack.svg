@@ -47,6 +47,9 @@
                 <div class="chip-content">Compose</div>
             </div>
             <div class="chip">
+                <div class="chip-content">Flow</div>
+            </div>
+            <div class="chip">
                 <div class="chip-content">Coroutines</div>
             </div>
             <div class="chip">
@@ -68,10 +71,10 @@
                 <div class="chip-content">Youtube Android Player (iFrame)</div>
             </div>
             <div class="chip">
-                <div class="chip-content">Permissions - Accompanist</div>
+                <div class="chip-content">Permissions - Accompanist (soon)</div>
             </div>
             <div class="chip">
-                <div class="chip-content">Compose testing</div>
+                <div class="chip-content">Compose - testing</div>
             </div>
             <div class="chip">
                 <div class="chip-content">Mockk - tests</div>
@@ -108,6 +111,9 @@
             </div>
             <div class="chip">
                 <div class="chip-content">Github Actions: Stale issues</div>
+            </div>
+            <div class="chip">
+                <b class="chip-content">Kover</b>
             </div>
         </div>
     </foreignObject>
