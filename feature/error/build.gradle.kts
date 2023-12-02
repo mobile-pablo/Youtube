@@ -34,21 +34,15 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
+    buildFeatures { compose = true }
 
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.material.get()
     }
 
-    kotlinOptions {
-        jvmTarget = libs.versions.jvmTarget.get()
-    }
+    kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }
 
-    kapt {
-        correctErrorTypes = true
-    }
+    kapt { correctErrorTypes = true }
 
     ksp {
         arg(
@@ -63,12 +57,13 @@ android {
 
     packaging {
         resources {
-            excludes += listOf(
-                "/META-INF/AL2.0",
-                "/META-INF/LGPL2.1",
-                "/META-INF/LICENSE.*",
-                "/META-INF/LICENSE-*.*"
-            )
+            excludes +=
+                listOf(
+                    "/META-INF/AL2.0",
+                    "/META-INF/LGPL2.1",
+                    "/META-INF/LICENSE.*",
+                    "/META-INF/LICENSE-*.*"
+                )
         }
     }
 }
@@ -78,7 +73,7 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 dependencies {
     listOf(
         "domain",
-        "uicomponents",
+        "uicomponents"
     ).forEach {
         implementation(project(":$it"))
     }

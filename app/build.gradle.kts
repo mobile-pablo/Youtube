@@ -80,30 +80,25 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
+    buildFeatures { compose = true }
 
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.material.get()
     }
 
-    kotlinOptions {
-        jvmTarget = libs.versions.jvmTarget.get()
-    }
+    kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }
 
-    kapt {
-        correctErrorTypes = true
-    }
+    kapt { correctErrorTypes = true }
 
     packaging {
         resources {
-            excludes += listOf(
-                "/META-INF/AL2.0",
-                "/META-INF/LGPL2.1",
-                "/META-INF/LICENSE.*",
-                "/META-INF/LICENSE-*.*"
-            )
+            excludes +=
+                listOf(
+                    "/META-INF/AL2.0",
+                    "/META-INF/LGPL2.1",
+                    "/META-INF/LICENSE.*",
+                    "/META-INF/LICENSE-*.*"
+                )
         }
     }
 
@@ -190,7 +185,7 @@ dependencies {
                 androidXBundle,
                 composeBundle,
                 tvBundle,
-                hilt.android,
+                hilt.android
             ).map(::implementation)
 
             kapt(hilt.compiler)

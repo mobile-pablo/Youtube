@@ -19,7 +19,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -34,21 +33,15 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
+    buildFeatures { compose = true }
 
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.material.get()
     }
 
-    kotlinOptions {
-        jvmTarget = libs.versions.jvmTarget.get()
-    }
+    kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }
 
-    kapt {
-        correctErrorTypes = true
-    }
+    kapt { correctErrorTypes = true }
 
     ksp {
         arg(
@@ -83,12 +76,12 @@ dependencies {
                 compose.paging,
                 hilt.android
             ).map(::implementation)
+
+            kapt(hilt.compiler)
+            ksp(compose.destination.ksp)
+
+            testImplementation(testBundle)
+            androidTestImplementation(androidTestBundle)
         }
     }
-
-    kapt(libs.hilt.compiler)
-    ksp(libs.compose.destination.ksp)
-
-    testImplementation(libs.bundles.testBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
 }

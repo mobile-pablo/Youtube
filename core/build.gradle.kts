@@ -29,13 +29,9 @@ android {
         }
     }
 
-    kotlinOptions {
-        jvmTarget = libs.versions.jvmTarget.get()
-    }
+    kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }
 
-    kapt {
-        correctErrorTypes = true
-    }
+    kapt { correctErrorTypes = true }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlint")
@@ -58,5 +54,4 @@ dependencies {
             androidTestImplementation(androidTestBundle)
         }
     }
-
 }
