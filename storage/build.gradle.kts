@@ -48,10 +48,12 @@ android {
 
     packaging {
         resources {
-            excludes += "/META-INF/AL2.0"
-            excludes += "/META-INF/LGPL2.1"
-            excludes += "/META-INF/LICENSE.*"
-            excludes += "/META-INF/LICENSE-*.*"
+            excludes += listOf(
+                "/META-INF/AL2.0",
+                "/META-INF/LGPL2.1",
+                "/META-INF/LICENSE.*",
+                "/META-INF/LICENSE-*.*"
+            )
         }
     }
 }

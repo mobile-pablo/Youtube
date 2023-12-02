@@ -1,11 +1,15 @@
 apply(from = "../ktlint.gradle.kts")
 
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.firebaseCrashlytics)
-    alias(libs.plugins.kover)
+    libs.plugins.apply {
+        listOf(
+            androidLibrary,
+            kotlinKapt,
+            org.jetbrains.kotlin.android,
+            firebaseCrashlytics,
+            kover
+        ).map(::alias)
+    }
 }
 
 android {
@@ -14,7 +18,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -38,16 +41,22 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    implementation(libs.bundles.androidXBundle)
+    libs.apply {
+        bundles.apply {
+            listOf(
+                androidXBundle,
+                hilt.android,
+                firebase.analytics,
+                firebase.crashlytics
+            ).map(::implementation)
 
-    implementation(libs.hilt.android)
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.crashlytics)
-    kapt(libs.hilt.compiler)
+            kapt(hilt.compiler)
+            api(moshiBundle)
+            api(timber)
 
-    api(libs.bundles.moshiBundle)
-    api(libs.timber)
+            testImplementation(testBundle)
+            androidTestImplementation(androidTestBundle)
+        }
+    }
 
-    testImplementation(libs.bundles.testBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
 }

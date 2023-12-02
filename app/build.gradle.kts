@@ -5,15 +5,17 @@ apply(from = "../ktlint.gradle.kts")
 
 plugins {
     libs.plugins.apply {
-        alias(com.android.application)
-        alias(org.jetbrains.kotlin.android)
-        alias(kotlinKapt)
-        alias(kotlinParcelize)
-        alias(gmsGoogle)
-        alias(hiltPlugin)
-        alias(kspPlugin)
-        alias(firebaseCrashlytics)
-        alias(kover)
+        listOf(
+            com.android.application,
+            org.jetbrains.kotlin.android,
+            kotlinKapt,
+            kotlinParcelize,
+            gmsGoogle,
+            hiltPlugin,
+            kspPlugin,
+            firebaseCrashlytics,
+            kover
+        ).map(::alias)
     }
 }
 
@@ -96,10 +98,12 @@ android {
 
     packaging {
         resources {
-            excludes += "/META-INF/AL2.0"
-            excludes += "/META-INF/LGPL2.1"
-            excludes += "/META-INF/LICENSE.*"
-            excludes += "/META-INF/LICENSE-*.*"
+            excludes += listOf(
+                "/META-INF/AL2.0",
+                "/META-INF/LGPL2.1",
+                "/META-INF/LICENSE.*",
+                "/META-INF/LICENSE-*.*"
+            )
         }
     }
 
@@ -159,45 +163,42 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    val features = listOf("home", "search", "player", "error")
 
     implementation(project(":uicomponents"))
-    features.forEach { feature ->
-        implementation(project(":feature:$feature"))
-    }
+    listOf("home", "search", "player", "error")
+        .forEach { feature ->
+            implementation(project(":feature:$feature"))
+        }
 
-    val modules =
-        listOf(
-            "core",
-            "domain",
-            "feature:home",
-            "feature:search",
-            "networking",
-            "storage",
-            "uicomponents"
-        )
-
-    modules.forEach {
+    listOf(
+        "core",
+        "domain",
+        "feature:home",
+        "feature:search",
+        "networking",
+        "storage",
+        "uicomponents"
+    ).forEach {
         kover(project(":$it"))
     }
 
     libs.apply {
         bundles.apply {
-            implementation(core.ktx)
-            implementation(leanback)
+            listOf(
+                core.ktx,
+                leanback,
+                androidXBundle,
+                composeBundle,
+                tvBundle,
+                hilt.android,
+            ).map(::implementation)
 
-            implementation(androidXBundle)
-            implementation(composeBundle)
-            implementation(tvBundle)
-
-            implementation(hilt.android)
             kapt(hilt.compiler)
-
-            kaptAndroidTest(hilt.android.compiler)
             ksp(compose.destination.ksp)
 
             debugImplementation(composeDebugBundle)
             testImplementation(testBundle)
+            kaptAndroidTest(hilt.android.compiler)
             androidTestImplementation(androidTestBundle)
         }
     }

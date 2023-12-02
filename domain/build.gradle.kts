@@ -1,11 +1,15 @@
 apply(from = "../ktlint.gradle.kts")
 
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.firebaseCrashlytics)
-    alias(libs.plugins.kover)
+    libs.plugins.apply {
+        listOf(
+            androidLibrary,
+            kotlinKapt,
+            org.jetbrains.kotlin.android,
+            firebaseCrashlytics,
+            kover
+        ).map(::alias)
+    }
 }
 
 android {
@@ -39,10 +43,12 @@ android {
 
     packaging {
         resources {
-            excludes += "/META-INF/AL2.0"
-            excludes += "/META-INF/LGPL2.1"
-            excludes += "/META-INF/LICENSE.*"
-            excludes += "/META-INF/LICENSE-*.*"
+            excludes += listOf(
+                "/META-INF/AL2.0",
+                "/META-INF/LGPL2.1",
+                "/META-INF/LICENSE.*",
+                "/META-INF/LICENSE-*.*"
+            )
         }
     }
 }
@@ -52,12 +58,16 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 dependencies {
     api(project(":networking"))
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    libs.apply {
+        listOf(
+            hilt.android,
+            paging.runtime,
+            compose.paging
+        ).map(::implementation)
 
-    implementation(libs.paging.runtime)
-    implementation(libs.compose.paging)
+        kapt(hilt.compiler)
 
-    testImplementation(libs.bundles.testBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
+        testImplementation(bundles.testBundle)
+        androidTestImplementation(bundles.androidTestBundle)
+    }
 }

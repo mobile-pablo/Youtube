@@ -1,11 +1,16 @@
 apply(from = "../../ktlint.gradle.kts")
 
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.firebaseCrashlytics)
-    alias(libs.plugins.kspPlugin)
+    libs.plugins.apply {
+        listOf(
+            androidLibrary,
+            kotlinKapt,
+            org.jetbrains.kotlin.android,
+            firebaseCrashlytics,
+            kspPlugin,
+            kover
+        ).map(::alias)
+    }
 }
 
 android {
@@ -60,20 +65,29 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    implementation(project(":domain"))
-    implementation(project(":uicomponents"))
-    implementation(project(":feature:error"))
+    listOf(
+        "domain",
+        "uicomponents",
+        "feature:error"
+    ).forEach {
+        implementation(project(":$it"))
+    }
 
-    implementation(libs.bundles.composeBundle)
-    implementation(libs.bundles.youtubeBundle)
-    implementation(libs.bundles.tvBundle)
-    ksp(libs.compose.destination.ksp)
+    libs.apply {
+        bundles.apply {
+            listOf(
+                composeBundle,
+                youtubeBundle,
+                tvBundle,
+                paging.runtime,
+                compose.paging,
+                hilt.android
+            ).map(::implementation)
+        }
+    }
 
-    implementation(libs.paging.runtime)
-    implementation(libs.compose.paging)
-
-    implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+    ksp(libs.compose.destination.ksp)
 
     testImplementation(libs.bundles.testBundle)
     androidTestImplementation(libs.bundles.androidTestBundle)

@@ -1,12 +1,16 @@
 apply(from = "../../ktlint.gradle.kts")
 
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.firebaseCrashlytics)
-    alias(libs.plugins.kspPlugin)
-    alias(libs.plugins.kover)
+    libs.plugins.apply {
+        listOf(
+            androidLibrary,
+            kotlinKapt,
+            org.jetbrains.kotlin.android,
+            firebaseCrashlytics,
+            kspPlugin,
+            kover
+        ).map(::alias)
+    }
 }
 
 android {
@@ -59,10 +63,12 @@ android {
 
     packaging {
         resources {
-            excludes += "/META-INF/AL2.0"
-            excludes += "/META-INF/LGPL2.1"
-            excludes += "/META-INF/LICENSE.*"
-            excludes += "/META-INF/LICENSE-*.*"
+            excludes += listOf(
+                "/META-INF/AL2.0",
+                "/META-INF/LGPL2.1",
+                "/META-INF/LICENSE.*",
+                "/META-INF/LICENSE-*.*"
+            )
         }
     }
 }
@@ -70,21 +76,29 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    implementation(project(":feature:error"))
+    listOf(
+        "feature:error",
+        "domain",
+        "uicomponents"
+    ).forEach {
+        implementation(project(":$it"))
+    }
 
-    implementation(project(":domain"))
-    implementation(project(":uicomponents"))
+    libs.apply {
+    bundles.apply {
+        listOf(
+            composeBundle,
+            tvBundle,
+            paging.runtime,
+            compose.paging,
+            hilt.android
+        ).map(::implementation)
 
-    implementation(libs.bundles.composeBundle)
-    implementation(libs.bundles.tvBundle)
-    ksp(libs.compose.destination.ksp)
+        kapt(hilt.compiler)
+        ksp(compose.destination.ksp)
 
-    implementation(libs.paging.runtime)
-    implementation(libs.compose.paging)
-
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-
-    testImplementation(libs.bundles.testBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
+        testImplementation(testBundle)
+        androidTestImplementation(androidTestBundle)
+    }
+    }
 }

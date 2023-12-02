@@ -1,11 +1,16 @@
 apply(from = "../../ktlint.gradle.kts")
 
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.firebaseCrashlytics)
-    alias(libs.plugins.kspPlugin)
+    libs.plugins.apply {
+        listOf(
+            androidLibrary,
+            kotlinKapt,
+            org.jetbrains.kotlin.android,
+            firebaseCrashlytics,
+            kspPlugin,
+            kover
+        ).map(::alias)
+    }
 }
 
 android {
@@ -58,10 +63,12 @@ android {
 
     packaging {
         resources {
-            excludes += "/META-INF/AL2.0"
-            excludes += "/META-INF/LGPL2.1"
-            excludes += "/META-INF/LICENSE.*"
-            excludes += "/META-INF/LICENSE-*.*"
+            excludes += listOf(
+                "/META-INF/AL2.0",
+                "/META-INF/LGPL2.1",
+                "/META-INF/LICENSE.*",
+                "/META-INF/LICENSE-*.*"
+            )
         }
     }
 }
@@ -69,19 +76,28 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    implementation(project(":domain"))
-    implementation(project(":uicomponents"))
+    listOf(
+        "domain",
+        "uicomponents",
+    ).forEach {
+        implementation(project(":$it"))
+    }
 
-    implementation(libs.bundles.composeBundle)
-    implementation(libs.bundles.tvBundle)
-    ksp(libs.compose.destination.ksp)
+    libs.apply {
+        bundles.apply {
+            listOf(
+                composeBundle,
+                tvBundle,
+                paging.runtime,
+                compose.paging,
+                hilt.android
+            ).map(::implementation)
 
-    implementation(libs.paging.runtime)
-    implementation(libs.compose.paging)
+            kapt(hilt.compiler)
+            ksp(compose.destination.ksp)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-
-    testImplementation(libs.bundles.testBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
+            testImplementation(testBundle)
+            androidTestImplementation(androidTestBundle)
+        }
+    }
 }
