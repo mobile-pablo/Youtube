@@ -4,15 +4,17 @@ import java.util.Properties
 apply(from = "../ktlint.gradle.kts")
 
 plugins {
-    alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.kotlinParcelize)
-    alias(libs.plugins.gmsGoogle)
-    alias(libs.plugins.hiltPlugin)
-    alias(libs.plugins.kspPlugin)
-    alias(libs.plugins.firebaseCrashlytics)
-    alias(libs.plugins.kover)
+    libs.plugins.apply {
+        alias(com.android.application)
+        alias(org.jetbrains.kotlin.android)
+        alias(kotlinKapt)
+        alias(kotlinParcelize)
+        alias(gmsGoogle)
+        alias(hiltPlugin)
+        alias(kspPlugin)
+        alias(firebaseCrashlytics)
+        alias(kover)
+    }
 }
 
 kotlin {
@@ -101,16 +103,23 @@ android {
         }
     }
 
+    /**
+     *    Android UI tests arent included in that report
+     *    It misses like 60% of the tests I wrote. (Instrumented tests)
+     *    Its not possible for Github Action to
+     *    include coverage for UI test without a AWS Device Farm etc.
+     *    Even plugin don't support that (currently).
+     */
     koverReport {
-        /*
-              Android UI tests arent included in that report
-               Here what is missing currently :
-                - SearchDaoTest.kt
-                - SharedPreferencesManagerTest.kt
-                - ErrorScreenTest.kt
-                - HomeItemViewTest.kt
 
-         */
+        defaults {
+            verify {
+                rule("Multi-module project coverage should be at least 60%") {
+                    minBound(60)
+                }
+            }
+        }
+
         filters {
             excludes {
                 classes(
@@ -172,20 +181,24 @@ dependencies {
         kover(project(":$it"))
     }
 
-    implementation(libs.core.ktx)
-    implementation(libs.leanback)
+    libs.apply {
+        bundles.apply {
+            implementation(core.ktx)
+            implementation(leanback)
 
-    implementation(libs.bundles.androidXBundle)
-    implementation(libs.bundles.composeBundle)
-    implementation(libs.bundles.tvBundle)
+            implementation(androidXBundle)
+            implementation(composeBundle)
+            implementation(tvBundle)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+            implementation(hilt.android)
+            kapt(hilt.compiler)
 
-    kaptAndroidTest(libs.hilt.android.compiler)
-    ksp(libs.compose.destination.ksp)
+            kaptAndroidTest(hilt.android.compiler)
+            ksp(compose.destination.ksp)
 
-    debugImplementation(libs.bundles.composeDebugBundle)
-    testImplementation(libs.bundles.testBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
+            debugImplementation(composeDebugBundle)
+            testImplementation(testBundle)
+            androidTestImplementation(androidTestBundle)
+        }
+    }
 }
