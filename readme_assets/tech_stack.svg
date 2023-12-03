@@ -115,6 +115,9 @@
             <div class="chip">
                 <b class="chip-content">Kover</b>
             </div>
+            <div class="chip">
+                <div class="chip-content">Speech Recognizer</div>
+            </div>
         </div>
     </foreignObject>
 </svg>
