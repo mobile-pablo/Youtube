@@ -14,7 +14,6 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
 import com.mobile.pablo.uicomponents.theme.YoutubeTheme
 import com.mobile.pablo.uicomponents.theme.primaryColor
 import com.mobile.pablo.uicomponents.theme.spacing
@@ -22,6 +21,7 @@ import com.mobile.pablo.youtube.const.NAVIGATION_ITEMS
 import com.mobile.pablo.youtube.nav.graph.NavGraphs
 import com.mobile.pablo.youtube.nav.view.NavigationSideBar
 import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.rememberNavHostEngine
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.material.MaterialTheme as Theme
 
@@ -32,7 +32,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         actionBar?.hide()
         setContent {
-            val navController = rememberNavController()
+            val engine = rememberNavHostEngine()
+            val navController = engine.rememberNavController()
 
             YoutubeTheme {
                 var selectedItemIndex by rememberSaveable {
@@ -47,8 +48,10 @@ class MainActivity : ComponentActivity() {
                     ) { selectedItemIndex = it }
 
                     DestinationsNavHost(
+                        engine = engine,
                         navController = navController,
                         navGraph = NavGraphs.root,
+                        startRoute = NavGraphs.root.startRoute,
                         modifier = Modifier
                             .padding(start = Theme.spacing.spacing_72)
                             .fillMaxSize()

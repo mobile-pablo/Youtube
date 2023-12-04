@@ -23,8 +23,10 @@ import com.mobile.pablo.uicomponents.theme.tertiaryColor
 import com.mobile.pablo.youtube.R
 import com.mobile.pablo.youtube.nav.graph.NavGraphs
 import com.mobile.pablo.youtube.nav.model.NavigationItem
+import com.ramcosta.composedestinations.dynamic.within
+import com.ramcosta.composedestinations.navigation.navigate
 import com.ramcosta.composedestinations.navigation.popUpTo
-import com.ramcosta.composedestinations.spec.Direction
+import com.ramcosta.composedestinations.spec.DirectionDestinationSpec
 import androidx.compose.material.MaterialTheme as Theme
 
 typealias OnNavigationItemSelected = (Int) -> Unit
@@ -83,18 +85,18 @@ internal fun NavigationSideBar(
 }
 
 private fun navigateToTab(
-    direction: Direction,
+    destination: DirectionDestinationSpec,
     navController: NavController
 ) {
     navController.apply {
         val isCurrentDestOnBackStack =
-            navController.isRouteOnBackStack(direction.route)
+            navController.isRouteOnBackStack(destination.route)
 
         if (isCurrentDestOnBackStack) {
-            navController.popBackStack(direction.route, false)
+            navController.popBackStack(destination.route, false)
             return
         }
-        navigate(direction.route) {
+        navigate(destination within NavGraphs.main) {
             popUpTo(NavGraphs.root) {
                 saveState = true
             }
