@@ -47,9 +47,9 @@ class SearchDataStorageTest {
     fun `insertSearch inserts search into database`() =
         runBlocking {
             val searchDTO = searchEntityMapper.map(MOCK_DOG_SEARCH)!!
-            coEvery { searchDao.insertSearchWithItems(MOCK_DOG_SEARCH) } just runs
-            searchDataStorage.insertSearch(searchDTO)
-            coVerify { searchDao.insertSearchWithItems(MOCK_DOG_SEARCH) }
+            coEvery { searchDao.upsertSearchWithItems(MOCK_DOG_SEARCH) } just runs
+            searchDataStorage.upsertSearch(searchDTO)
+            coVerify { searchDao.upsertSearchWithItems(MOCK_DOG_SEARCH) }
         }
 
     @Test

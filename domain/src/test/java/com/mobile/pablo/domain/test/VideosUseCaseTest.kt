@@ -69,7 +69,7 @@ class VideosUseCaseTest {
     fun getSearchVideos_returnsSearchWhenSearchResponseIsSuccessful() =
         runTest {
             coEvery { searchDataSource.getSearchVideos("dog") } returns DataTransfer(MOCK_DOG_SEARCH)
-            coEvery { searchDataStorage.insertSearch(MOCK_DOG_SEARCH) } returns Unit
+            coEvery { searchDataStorage.upsertSearch(MOCK_DOG_SEARCH) } returns Unit
 
             val getSearchVideos =
                 VideosUseCase.GetSearchVideos(

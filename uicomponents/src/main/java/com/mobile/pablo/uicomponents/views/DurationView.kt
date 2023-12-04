@@ -3,7 +3,6 @@ package com.mobile.pablo.uicomponents.views
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +26,6 @@ fun DurationView(
     Box(
         modifier =
             modifier
-                .wrapContentSize()
                 .padding(
                     bottom = Theme.spacing.spacing_8,
                     end = Theme.spacing.spacing_8
@@ -37,7 +35,7 @@ fun DurationView(
                 )
                 .background(Theme.colors.backgroundAlphaColor)
                 .padding(
-                    Theme.spacing.spacing_4
+                    horizontal = Theme.spacing.spacing_2
                 ),
         contentAlignment = Alignment.Center
     ) {

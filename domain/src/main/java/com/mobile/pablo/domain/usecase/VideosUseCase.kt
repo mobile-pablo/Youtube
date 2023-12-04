@@ -35,7 +35,7 @@ sealed class VideosUseCase {
                     searchResponse.isSuccessful -> {
                         val items = searchResponse.data!!
                         val search = searchMapper.map(searchResponse.data)
-                        searchDataStorage.insertSearch(items)
+                        searchDataStorage.upsertSearch(items)
                         DataTransfer(data = search)
                     }
 

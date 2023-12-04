@@ -32,27 +32,27 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         actionBar?.hide()
         setContent {
+            val navController = rememberNavController()
+
             YoutubeTheme {
-                val navController = rememberNavController()
                 var selectedItemIndex by rememberSaveable {
                     mutableIntStateOf(0)
                 }
                 Surface(modifier = Modifier.fillMaxSize()) {
                     NavigationSideBar(
-                        modifier =
-                            Modifier
-                                .width(Theme.spacing.spacing_72),
+                        modifier = Modifier.width(Theme.spacing.spacing_72),
                         items = NAVIGATION_ITEMS,
-                        selectedItemIndex = selectedItemIndex
+                        selectedItemIndex = selectedItemIndex,
+                        navController = navController
                     ) { selectedItemIndex = it }
+
                     DestinationsNavHost(
                         navController = navController,
                         navGraph = NavGraphs.root,
-                        modifier =
-                            Modifier
-                                .padding(start = Theme.spacing.spacing_72)
-                                .fillMaxSize()
-                                .background(Theme.colors.primaryColor)
+                        modifier = Modifier
+                            .padding(start = Theme.spacing.spacing_72)
+                            .fillMaxSize()
+                            .background(Theme.colors.primaryColor)
                     )
                 }
             }

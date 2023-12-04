@@ -41,6 +41,7 @@ dependencies {
         bundles.apply {
             listOf(
                 androidXBundle,
+                composeBundle,
                 hilt.android,
                 firebase.analytics,
                 firebase.crashlytics

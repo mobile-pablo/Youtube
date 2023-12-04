@@ -14,12 +14,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.util.fastForEachIndexed
+import androidx.navigation.NavController
+import com.mobile.pablo.core.ext.isRouteOnBackStack
 import com.mobile.pablo.uicomponents.ext.testTag
 import com.mobile.pablo.uicomponents.theme.secondaryColor
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.mobile.pablo.uicomponents.theme.tertiaryColor
 import com.mobile.pablo.youtube.R
+import com.mobile.pablo.youtube.nav.graph.NavGraphs
 import com.mobile.pablo.youtube.nav.model.NavigationItem
+import com.ramcosta.composedestinations.navigation.popUpTo
+import com.ramcosta.composedestinations.spec.Direction
 import androidx.compose.material.MaterialTheme as Theme
 
 typealias OnNavigationItemSelected = (Int) -> Unit
@@ -29,6 +34,7 @@ internal fun NavigationSideBar(
     modifier: Modifier = Modifier,
     items: List<NavigationItem>,
     selectedItemIndex: Int,
+    navController: NavController? = null,
     onItemSelected: OnNavigationItemSelected
 ) {
     NavigationRail(
@@ -42,24 +48,27 @@ internal fun NavigationSideBar(
                     painter = painterResource(id = R.drawable.ic_youtube_34),
                     tint = Theme.colors.tertiaryColor,
                     contentDescription = null,
-                    modifier =
-                        Modifier.padding(Theme.spacing.spacing_12)
-                            .size(Theme.spacing.spacing_48)
+                    modifier = Modifier
+                        .padding(Theme.spacing.spacing_12)
+                        .size(Theme.spacing.spacing_48)
                 )
             }
         },
         content = {
             Column(
-                modifier =
-                    Modifier.fillMaxSize()
-                        .testTag(R.string.side_bar_item_column),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .testTag(R.string.side_bar_item_column),
                 verticalArrangement = Arrangement.spacedBy(Theme.spacing.spacing_12, Alignment.Bottom)
             ) {
                 items.fastForEachIndexed { index, item ->
                     NavigationRailItem(
                         modifier = Modifier.size(Theme.spacing.spacing_72),
                         selected = selectedItemIndex == index,
-                        onClick = { onItemSelected(index) },
+                        onClick = {
+                            onItemSelected(index)
+                            item.direction?.let { navigateToTab(it, navController!!) }
+                        },
                         icon = {
                             NavigationIcon(
                                 item = item,
@@ -71,4 +80,26 @@ internal fun NavigationSideBar(
             }
         }
     )
+}
+
+private fun navigateToTab(
+    direction: Direction,
+    navController: NavController
+) {
+    navController.apply {
+        val isCurrentDestOnBackStack =
+            navController.isRouteOnBackStack(direction.route)
+
+        if (isCurrentDestOnBackStack) {
+            navController.popBackStack(direction.route, false)
+            return
+        }
+        navigate(direction.route) {
+            popUpTo(NavGraphs.root) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
 }

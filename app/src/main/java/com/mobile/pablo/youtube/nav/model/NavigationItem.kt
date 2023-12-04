@@ -7,7 +7,7 @@ internal data class NavigationItem(
     val title: String,
     val unselectedIcon: ImageVector,
     val selectedIcon: ImageVector,
-    val destination: Direction? = null,
+    val direction: Direction? = null,
     val hasNews: Boolean = false,
     val badgeCount: Int? = null
 )

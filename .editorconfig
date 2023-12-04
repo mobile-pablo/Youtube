@@ -105,3 +105,5 @@ ij_kotlin_wrap_first_method_in_call_chain = false
 insert_final_newline = true
 ij_kotlin_packages_to_use_import_on_demand = disabled
 ktlint_standard_function-naming = disabled
+ktlint_standard_multiline-expression-wrapping = disabled
+ktlint_standard_string-template-indent = disabled

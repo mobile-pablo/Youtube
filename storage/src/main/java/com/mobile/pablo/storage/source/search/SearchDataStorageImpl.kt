@@ -11,14 +11,14 @@ internal class SearchDataStorageImpl
         private val searchDao: SearchDao,
         private val searchEntityMapper: SearchEntityMapper
     ) : SearchDataStorage {
-        override suspend fun insertSearch(search: SearchDTO?) {
-            val entity = searchEntityMapper.map(search)!!
-            searchDao.insertSearchWithItems(entity)
-        }
-
         override suspend fun getSearch(): SearchDTO? {
             val items = searchDao.getSearchWithItems()
             return searchEntityMapper.map(items)
+        }
+
+        override suspend fun upsertSearch(search: SearchDTO?) {
+            val entity = searchEntityMapper.map(search)!!
+            searchDao.upsertSearchWithItems(entity)
         }
 
         override suspend fun removeSearch(etag: String) = searchDao.removeSearchWithItems(etag)

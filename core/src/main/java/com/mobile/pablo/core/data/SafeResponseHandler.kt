@@ -4,8 +4,8 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.core.util.TEXT_PLAIN
 import java.net.HttpURLConnection
-import okhttp3.MediaType
-import okhttp3.ResponseBody
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 import timber.log.Timber
 
@@ -17,7 +17,7 @@ suspend fun <T> callSafe(request: suspend () -> Response<T>): Response<T> {
         FirebaseCrashlytics.getInstance().recordException(exception)
         Response.error(
             HttpURLConnection.HTTP_UNSUPPORTED_TYPE,
-            ResponseBody.create(MediaType.parse(TEXT_PLAIN), exception.message ?: EMPTY_STRING)
+            (exception.message ?: EMPTY_STRING).toResponseBody(TEXT_PLAIN.toMediaTypeOrNull())
         )
     }
 }

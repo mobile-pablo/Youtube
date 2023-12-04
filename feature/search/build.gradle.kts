@@ -83,7 +83,8 @@ dependencies {
                 tvBundle,
                 paging.runtime,
                 compose.paging,
-                hilt.android
+                hilt.android,
+                accomponistBundle
             ).map(::implementation)
 
             kapt(hilt.compiler)
