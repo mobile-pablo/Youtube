@@ -78,17 +78,11 @@ class VoiceToTextParser(
         }
     }
 
-    override fun onBeginningOfSpeech() {
-        TODO("Not yet implemented")
-    }
+    override fun onBeginningOfSpeech() {}
 
-    override fun onRmsChanged(rmsdB: Float) {
-        TODO("Not yet implemented")
-    }
+    override fun onRmsChanged(rmsdB: Float) {}
 
-    override fun onBufferReceived(buffer: ByteArray?) {
-        TODO("Not yet implemented")
-    }
+    override fun onBufferReceived(buffer: ByteArray?) {}
 
     override fun onEndOfSpeech() {
         _state.update {
