@@ -10,7 +10,7 @@ import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Settings
 import com.mobile.pablo.home.screen.destinations.HomeScreenDestination
-import com.mobile.pablo.search.screen.destinations.SearchScreenDestination
+import com.mobile.pablo.search.screen.destinations.SearchEntryScreenDestination
 import com.mobile.pablo.youtube.nav.model.NavigationItem
 
 internal val NAVIGATION_ITEMS =
@@ -25,7 +25,7 @@ internal val NAVIGATION_ITEMS =
             title = "Search",
             selectedIcon = Icons.Filled.Search,
             unselectedIcon = Icons.Outlined.Search,
-            direction = SearchScreenDestination
+            direction = SearchEntryScreenDestination
         ),
         NavigationItem(
             title = "Playlist",
