@@ -6,6 +6,8 @@ import com.mobile.pablo.storage.sharedprefs.SharedPreferencesManager
 import com.mobile.pablo.storage.sharedprefs.SharedPreferencesManagerImpl
 import com.mobile.pablo.storage.source.search.SearchDataStorage
 import com.mobile.pablo.storage.source.search.SearchDataStorageImpl
+import com.mobile.pablo.storage.source.searchHistory.SearchHistoryDataStorage
+import com.mobile.pablo.storage.source.searchHistory.SearchHistoryDataStorageImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,5 +34,13 @@ object StorageModule {
 
     @Provides
     @Singleton
+    internal fun providesSearchHistoryDao(appDatabase: AppDatabase) = appDatabase.searchHistoryDao()
+
+    @Provides
+    @Singleton
     internal fun providesSearchDataStorage(impl: SearchDataStorageImpl): SearchDataStorage = impl
+
+    @Provides
+    @Singleton
+    internal fun providesSearchHistoryDataStorage(impl: SearchHistoryDataStorageImpl): SearchHistoryDataStorage = impl
 }

@@ -2,6 +2,7 @@ package com.mobile.pablo.storage.database.const
 
 internal const val SEARCH_TABLE_NAME: String = "search"
 internal const val SEARCH_ITEM_TABLE_NAME: String = "search_item"
+internal const val SEARCH_HISTORY_TABLE_NAME: String = "search_history"
 
 internal const val SEARCH_PREFIX: String = "search_"
 internal const val PAGE_INFO_PREFIX: String = "pageInfo_"
