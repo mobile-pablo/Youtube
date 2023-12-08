@@ -1,9 +1,11 @@
 package com.mobile.pablo.storage.source.searchHistory
 
+import kotlinx.coroutines.flow.Flow
+
 interface SearchHistoryDataStorage {
     suspend fun upsertSearchHistory(query: String)
 
-    suspend fun getSearchHistories(): List<String>
+    fun getSearchHistories(): Flow<List<String>>
 
     suspend fun removeSearchHistory(query: String)
 

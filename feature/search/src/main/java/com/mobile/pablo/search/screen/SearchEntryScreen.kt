@@ -18,6 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
@@ -29,10 +31,13 @@ import com.ramcosta.composedestinations.annotation.Destination
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 @Destination
-fun SearchEntryScreen() {
+fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewModel()) {
     val recordAudioPermission = rememberPermissionState(
         android.Manifest.permission.RECORD_AUDIO
     )
+
+    val searchHistory = searchSharedViewModel.searchHistory
+        .collectAsStateWithLifecycle(initialValue = emptyList())
 
     val context = LocalContext.current
     val activity = context.findActivity()
