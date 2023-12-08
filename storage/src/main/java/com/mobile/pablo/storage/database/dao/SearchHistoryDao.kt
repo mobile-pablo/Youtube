@@ -12,14 +12,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 internal abstract class SearchHistoryDao {
     @Upsert
-    abstract suspend fun upsertSearchHistory(searchHistory: SearchHistoryEntity)
+    abstract suspend fun upsertSearchHistoryItem(searchHistory: SearchHistoryEntity)
 
     @Query("SELECT * FROM $SEARCH_HISTORY_TABLE_NAME")
-    abstract fun getSearchHistories(): Flow<List<SearchHistoryEntity>>
+    abstract fun getSearchHistory(): Flow<List<SearchHistoryEntity>>
 
     @Query("DELETE FROM $SEARCH_HISTORY_TABLE_NAME WHERE query = :query")
-    abstract suspend fun removeSearchHistory(query: String)
+    abstract suspend fun removeSearchHistoryItem(query: String)
 
     @Query("DELETE FROM $SEARCH_HISTORY_TABLE_NAME")
-    abstract suspend fun clearSearchHistories()
+    abstract suspend fun clearSearchHistory()
 }

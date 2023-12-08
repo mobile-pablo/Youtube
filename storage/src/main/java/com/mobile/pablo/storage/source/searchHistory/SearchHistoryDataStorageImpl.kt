@@ -7,19 +7,20 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class SearchHistoryDataStorageImpl
-    @Inject
-    constructor(
-        private val searchHistoryDao: SearchHistoryDao
-    ) : SearchHistoryDataStorage {
-        override suspend fun upsertSearchHistory(query: String) =
-            searchHistoryDao.upsertSearchHistory(
-                SearchHistoryEntity(query = query)
-            )
+@Inject
+constructor(
+    private val searchHistoryDao: SearchHistoryDao
+) : SearchHistoryDataStorage {
 
-        override fun getSearchHistories(): Flow<List<String>> =
-            searchHistoryDao.getSearchHistories().map { it.map(SearchHistoryEntity::query) }
+    override suspend fun upsertSearchHistoryItem(query: String) =
+        searchHistoryDao.upsertSearchHistoryItem(
+            SearchHistoryEntity(query = query)
+        )
 
-        override suspend fun removeSearchHistory(query: String) = searchHistoryDao.removeSearchHistory(query)
+    override fun getSearchHistory(): Flow<List<String>> =
+        searchHistoryDao.getSearchHistory().map { it.map(SearchHistoryEntity::query) }
 
-        override suspend fun clearSearchHistories() = searchHistoryDao.clearSearchHistories()
-    }
+    override suspend fun removeSearchHistoryItem(query: String) = searchHistoryDao.removeSearchHistoryItem(query)
+
+    override suspend fun clearSearchHistory() = searchHistoryDao.clearSearchHistory()
+}

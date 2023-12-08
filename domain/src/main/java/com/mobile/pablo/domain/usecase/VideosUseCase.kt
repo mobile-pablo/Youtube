@@ -16,7 +16,6 @@ import com.mobile.pablo.networking.source.popular.PopularDataSource
 import com.mobile.pablo.networking.source.popular.PopularPagingSource
 import com.mobile.pablo.networking.source.search.SearchDataSource
 import com.mobile.pablo.storage.source.search.SearchDataStorage
-import com.mobile.pablo.storage.source.searchHistory.SearchHistoryDataStorage
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -51,14 +50,6 @@ sealed class VideosUseCase {
                     }
                 }
             }
-        }
-
-    class GetSearchHistories
-        @Inject
-        constructor(
-            private val searchHistoryDataStorage: SearchHistoryDataStorage
-        ) : VideosUseCase() {
-            operator fun invoke(): Flow<List<String>> = searchHistoryDataStorage.getSearchHistories()
         }
 
     class GetPopularVideos
