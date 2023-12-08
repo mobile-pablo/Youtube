@@ -107,3 +107,5 @@ ij_kotlin_packages_to_use_import_on_demand = disabled
 ktlint_standard_function-naming = disabled
 ktlint_standard_multiline-expression-wrapping = disabled
 ktlint_standard_string-template-indent = disabled
+ktlint_standard_annotation = disabled
+ktlint_standard_no-empty-first-line-in-class-body = disabled

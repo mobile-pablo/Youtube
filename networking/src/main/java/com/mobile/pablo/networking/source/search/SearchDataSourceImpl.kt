@@ -8,18 +8,17 @@ import com.mobile.pablo.networking.mapper.search.SearchResponseMapper
 import com.mobile.pablo.networking.service.YoutubeService
 import javax.inject.Inject
 
-internal class SearchDataSourceImpl
-    @Inject
-    constructor(
-        private val youtubeService: YoutubeService,
-        private val searchResponseMapper: SearchResponseMapper
-    ) : SearchDataSource {
-        override suspend fun getSearchVideos(query: String): DataTransfer<SearchDTO> {
-            val searchResponse =
-                callSafe {
-                    youtubeService.getSearchVideos(q = query)
-                }
+internal class SearchDataSourceImpl @Inject constructor(
+    private val youtubeService: YoutubeService,
+    private val searchResponseMapper: SearchResponseMapper
+) : SearchDataSource {
 
-            return searchResponse.map(searchResponseMapper::map)
-        }
+    override suspend fun getSearchVideos(query: String): DataTransfer<SearchDTO> {
+        val searchResponse =
+            callSafe {
+                youtubeService.getSearchVideos(q = query)
+            }
+
+        return searchResponse.map(searchResponseMapper::map)
     }
+}

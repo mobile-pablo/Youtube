@@ -35,10 +35,9 @@ fun HomeScreen(
         viewModel.popularState.collectAsLazyPagingItems()
 
     Box(
-        modifier =
-            Modifier
-                .fillMaxSize()
-                .background(Theme.colors.primaryColor),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Theme.colors.primaryColor),
         contentAlignment = Alignment.Center
     ) {
         popularLazyPagingItems.apply {
@@ -73,7 +72,6 @@ private fun navigateToErrorScreen(
     navigateTo(
         destinationsNavigator = destinationsNavigator,
         navController = navController,
-        direction =
-            ErrorScreenDestination()
+        direction = ErrorScreenDestination()
     )
 }

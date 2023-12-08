@@ -10,7 +10,9 @@ internal data class HomeItemWrapper(
     val duration: String,
     val videoId: String
 ) {
+
     companion object {
+
         fun empty() =
             HomeItemWrapper(
                 title = EMPTY_STRING,

@@ -33,21 +33,20 @@ internal fun HomeItemView(
     navController: NavController
 ) {
     Box(
-        modifier =
-            modifier
-                .fillMaxWidth()
-                .height(Theme.spacing.spacing_240)
-                .clickable {
-                    onHomeItemClick(
-                        destinationsNavigator = destinationsNavigator,
-                        navController = navController,
-                        videoId = wrapper.videoId
-                    )
-                }
-                .padding(
-                    vertical = Theme.spacing.spacing_12,
-                    horizontal = Theme.spacing.spacing_32
-                ),
+        modifier = modifier
+            .fillMaxWidth()
+            .height(Theme.spacing.spacing_240)
+            .clickable {
+                onHomeItemClick(
+                    destinationsNavigator = destinationsNavigator,
+                    navController = navController,
+                    videoId = wrapper.videoId
+                )
+            }
+            .padding(
+                vertical = Theme.spacing.spacing_12,
+                horizontal = Theme.spacing.spacing_32
+            ),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -95,10 +94,9 @@ private fun onHomeItemClick(
         navigateTo(
             destinationsNavigator = it,
             navController = navController,
-            direction =
-                PlayerScreenDestination(
-                    videoId = videoId
-                )
+            direction = PlayerScreenDestination(
+                videoId = videoId
+            )
         )
     }
 }

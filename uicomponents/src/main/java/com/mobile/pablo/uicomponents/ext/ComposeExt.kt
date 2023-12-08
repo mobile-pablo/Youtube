@@ -73,18 +73,17 @@ fun Modifier.topRectBorder(
                 }
             )
         },
-        inspectorInfo =
-            debugInspectorInfo {
-                name = "border"
-                properties["width"] = width
-                if (brush is SolidColor) {
-                    properties["color"] = brush.value
-                    value = brush.value
-                } else {
-                    properties["brush"] = brush
-                }
-                properties["shape"] = RectangleShape
+        inspectorInfo = debugInspectorInfo {
+            name = "border"
+            properties["width"] = width
+            if (brush is SolidColor) {
+                properties["color"] = brush.value
+                value = brush.value
+            } else {
+                properties["brush"] = brush
             }
+            properties["shape"] = RectangleShape
+        }
     )
 
 @Suppress("UnnecessaryComposedModifier")
@@ -110,18 +109,17 @@ fun Modifier.bottomRectBorder(
                 }
             )
         },
-        inspectorInfo =
-            debugInspectorInfo {
-                name = "border"
-                properties["width"] = width
-                if (brush is SolidColor) {
-                    properties["color"] = brush.value
-                    value = brush.value
-                } else {
-                    properties["brush"] = brush
-                }
-                properties["shape"] = RectangleShape
+        inspectorInfo = debugInspectorInfo {
+            name = "border"
+            properties["width"] = width
+            if (brush is SolidColor) {
+                properties["color"] = brush.value
+                value = brush.value
+            } else {
+                properties["brush"] = brush
             }
+            properties["shape"] = RectangleShape
+        }
     )
 
 @Suppress("UnnecessaryComposedModifier")
@@ -144,18 +142,17 @@ fun Modifier.leftRectBorder(
                 }
             )
         },
-        inspectorInfo =
-            debugInspectorInfo {
-                name = "border"
-                properties["width"] = width
-                if (brush is SolidColor) {
-                    properties["color"] = brush.value
-                    value = brush.value
-                } else {
-                    properties["brush"] = brush
-                }
-                properties["shape"] = RectangleShape
+        inspectorInfo = debugInspectorInfo {
+            name = "border"
+            properties["width"] = width
+            if (brush is SolidColor) {
+                properties["color"] = brush.value
+                value = brush.value
+            } else {
+                properties["brush"] = brush
             }
+            properties["shape"] = RectangleShape
+        }
     )
 
 @Suppress("UnnecessaryComposedModifier")
@@ -184,18 +181,17 @@ fun Modifier.rightRectBorder(
                 }
             )
         },
-        inspectorInfo =
-            debugInspectorInfo {
-                name = "border"
-                properties["width"] = width
-                if (brush is SolidColor) {
-                    properties["color"] = brush.value
-                    value = brush.value
-                } else {
-                    properties["brush"] = brush
-                }
-                properties["shape"] = RectangleShape
+        inspectorInfo = debugInspectorInfo {
+            name = "border"
+            properties["width"] = width
+            if (brush is SolidColor) {
+                properties["color"] = brush.value
+                value = brush.value
+            } else {
+                properties["brush"] = brush
             }
+            properties["shape"] = RectangleShape
+        }
     )
 
 @Composable

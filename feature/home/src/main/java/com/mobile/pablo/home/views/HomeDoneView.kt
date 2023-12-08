@@ -22,24 +22,21 @@ internal fun HomeDoneView(
 ) {
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Fixed(GRID_COLUMNS),
-        modifier =
-            Modifier
-                .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
         items(popularItems.itemCount) { index ->
             val item = popularItems[index]
             item?.apply {
                 snippet?.apply {
                     HomeItemView(
-                        wrapper =
-                            HomeItemWrapper(
-                                title = title ?: EMPTY_STRING,
-                                channelName = channelTitle ?: EMPTY_STRING,
-                                description = description ?: EMPTY_STRING,
-                                imageUrl = thumbnails!!.medium!!.url!!,
-                                videoId = id!!,
-                                duration = contentDetails!!.duration ?: EMPTY_STRING
-                            ),
+                        wrapper = HomeItemWrapper(
+                            title = title ?: EMPTY_STRING,
+                            channelName = channelTitle ?: EMPTY_STRING,
+                            description = description ?: EMPTY_STRING,
+                            imageUrl = thumbnails!!.medium!!.url!!,
+                            videoId = id!!,
+                            duration = contentDetails!!.duration ?: EMPTY_STRING
+                        ),
                         destinationsNavigator = destinationsNavigator,
                         navController = navController
                     )

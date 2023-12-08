@@ -14,19 +14,19 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 @HiltViewModel
-class HomeViewModel
-    @Inject
-    constructor(
-        getPopularVideosUseCase: VideosUseCase.GetPopularVideos
-    ) : ViewModel() {
-        companion object {
-            private const val POPULAR_VIDEO_DEBOUNCE_MILLIS = 1000L
-        }
+class HomeViewModel @Inject constructor(
+    getPopularVideosUseCase: VideosUseCase.GetPopularVideos
+) : ViewModel() {
 
-        @OptIn(FlowPreview::class)
-        val popularState: Flow<PagingData<PopularItem>> =
-            getPopularVideosUseCase()
-                .distinctUntilChanged()
-                .cachedIn(viewModelScope)
-                .debounce(POPULAR_VIDEO_DEBOUNCE_MILLIS)
+    companion object {
+
+        private const val POPULAR_VIDEO_DEBOUNCE_MILLIS = 1000L
     }
+
+    @OptIn(FlowPreview::class)
+    val popularState: Flow<PagingData<PopularItem>> =
+        getPopularVideosUseCase()
+            .distinctUntilChanged()
+            .cachedIn(viewModelScope)
+            .debounce(POPULAR_VIDEO_DEBOUNCE_MILLIS)
+}

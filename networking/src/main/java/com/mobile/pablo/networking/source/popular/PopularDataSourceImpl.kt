@@ -8,24 +8,23 @@ import com.mobile.pablo.networking.mapper.popular.PopularResponseMapper
 import com.mobile.pablo.networking.service.YoutubeService
 import javax.inject.Inject
 
-internal class PopularDataSourceImpl
-    @Inject
-    constructor(
-        private val youtubeService: YoutubeService,
-        private val popularResponseMapper: PopularResponseMapper
-    ) : PopularDataSource {
-        override suspend fun getPopularVideos(
-            regionCode: String,
-            pageToken: String?
-        ): DataTransfer<PopularDTO> {
-            val popularResponse =
-                callSafe {
-                    youtubeService.getPopularSearchVideos(
-                        regionCode = regionCode,
-                        pageToken = pageToken
-                    )
-                }
+internal class PopularDataSourceImpl @Inject constructor(
+    private val youtubeService: YoutubeService,
+    private val popularResponseMapper: PopularResponseMapper
+) : PopularDataSource {
 
-            return popularResponse.map(popularResponseMapper::map)
-        }
+    override suspend fun getPopularVideos(
+        regionCode: String,
+        pageToken: String?
+    ): DataTransfer<PopularDTO> {
+        val popularResponse =
+            callSafe {
+                youtubeService.getPopularSearchVideos(
+                    regionCode = regionCode,
+                    pageToken = pageToken
+                )
+            }
+
+        return popularResponse.map(popularResponseMapper::map)
     }
+}

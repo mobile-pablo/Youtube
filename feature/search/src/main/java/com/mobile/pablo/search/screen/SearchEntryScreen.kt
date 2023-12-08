@@ -5,10 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.FabPosition
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -17,15 +14,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.mobile.pablo.core.ext.findActivity
-import com.mobile.pablo.search.R
 import com.mobile.pablo.search.data.VoiceToTextParser
+import com.mobile.pablo.search.view.RecordFab
 import com.ramcosta.composedestinations.annotation.Destination
 
 @OptIn(ExperimentalPermissionsApi::class)
@@ -53,28 +48,11 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
             Scaffold(
                 floatingActionButtonPosition = FabPosition.Center,
                 floatingActionButton = {
-                    FloatingActionButton(
-                        shape = CircleShape,
-                        onClick = {
-                            if (!status.isGranted) {
-                                recordAudioPermission.launchPermissionRequest()
-                            } else {
-                                if (!state.isSpeaking) {
-                                    voiceToText.startListening("en")
-                                } else {
-                                    voiceToText.stopListening()
-                                }
-                            }
-                        }
-                    ) {
-                        AnimatedContent(targetState = state.isSpeaking, label = "") { isSpeaking ->
-                            if (isSpeaking) {
-                                Icon(painterResource(R.drawable.ic_stop_24), null)
-                            } else {
-                                Icon(painterResource(R.drawable.ic_mic_24), null)
-                            }
-                        }
-                    }
+                    RecordFab(
+                        state = state,
+                        recordAudioPermission = recordAudioPermission,
+                        voiceToText = voiceToText
+                    )
                 }
             ) { padding ->
                 Column(
@@ -88,6 +66,7 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                         if (isSpeaking) {
                             Text(text = "Speak...")
                         } else {
+                            searchSharedViewModel.upsertSearchHistoryItem(state.spokenText)
                             Text(text = state.spokenText.ifEmpty { "Click on record" })
                         }
                     }

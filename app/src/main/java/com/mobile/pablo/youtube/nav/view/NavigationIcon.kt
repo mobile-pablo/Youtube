@@ -23,10 +23,9 @@ internal fun NavigationIcon(
         badge = {
             if (item.badgeCount != null) {
                 Badge(
-                    modifier =
-                        Modifier.semantics {
-                            contentDescription = BADGE
-                        }
+                    modifier = Modifier.semantics {
+                        contentDescription = BADGE
+                    }
                 ) {
                     Text(
                         fontFamily = MONTSERRAT_FONT_FAMILY,
@@ -35,10 +34,9 @@ internal fun NavigationIcon(
                 }
             } else if (item.hasNews) {
                 Badge(
-                    modifier =
-                        Modifier.semantics {
-                            contentDescription = BADGE
-                        }
+                    modifier = Modifier.semantics {
+                        contentDescription = BADGE
+                    }
                 )
             }
         }
