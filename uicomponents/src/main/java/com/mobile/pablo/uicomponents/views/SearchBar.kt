@@ -75,7 +75,7 @@ fun SearchBar(
                 if (text.text.isEmpty()) {
                     Text(
                         text = hint,
-                        color = Color.Gray.copy(alpha = 0.5f),
+                        color = Theme.colors.tertiaryColor,
                         fontSize = Theme.font.font_16,
                         fontWeight = FontWeight.Bold
                     )

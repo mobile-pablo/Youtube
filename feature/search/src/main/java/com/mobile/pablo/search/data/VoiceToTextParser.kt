@@ -45,7 +45,6 @@ class VoiceToTextParser(
                     RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                     RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
                 )
-                putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
                 putExtra(RecognizerIntent.EXTRA_LANGUAGE, languageCode)
             }
 
@@ -98,13 +97,14 @@ class VoiceToTextParser(
     }
 
     override fun onError(error: Int) {
-        if (error == SpeechRecognizer.ERROR_CLIENT) {
-            return
-        }
         _state.update {
             it.copy(
+                isSpeaking = false,
                 error = "Error: $error"
             )
+        }
+        if (error == SpeechRecognizer.ERROR_CLIENT) {
+            return
         }
     }
 
@@ -113,7 +113,6 @@ class VoiceToTextParser(
             ?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
             ?.getOrNull(0)
             ?.let { text ->
-                if (_state.value.spokenText == text) return
                 _state.update {
                     updateStatus(text)
                     it.copy(

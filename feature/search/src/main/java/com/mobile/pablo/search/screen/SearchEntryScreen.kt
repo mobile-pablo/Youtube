@@ -1,12 +1,19 @@
 package com.mobile.pablo.search.screen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.InputChip
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,13 +29,21 @@ import com.mobile.pablo.core.ext.findActivity
 import com.mobile.pablo.search.data.VoiceToTextParser
 import com.mobile.pablo.search.data.VoiceToTextParserState
 import com.mobile.pablo.search.view.RecordFab
+import com.mobile.pablo.uicomponents.theme.primaryColor
 import com.mobile.pablo.uicomponents.theme.spacing
+import com.mobile.pablo.uicomponents.theme.tertiaryColor
+import com.mobile.pablo.uicomponents.theme.tertiarySelectedColor
 import com.mobile.pablo.uicomponents.views.SearchBar
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.distinctUntilChanged
 import androidx.compose.material.MaterialTheme as Theme
 
-@OptIn(ExperimentalPermissionsApi::class)
+@OptIn(
+    ExperimentalPermissionsApi::class,
+    ExperimentalMaterial3Api::class,
+    ExperimentalLayoutApi::class,
+    ExperimentalMaterialApi::class
+)
 @Composable
 @Destination
 fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewModel()) {
@@ -56,7 +71,14 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
             .distinctUntilChanged { old, new -> old.spokenText == new.spokenText }
             .collectAsState(VoiceToTextParserState())
 
-        Scaffold { padding ->
+        Scaffold(
+            modifier = Modifier
+                .padding(
+                    vertical = Theme.spacing.spacing_8,
+                    horizontal = Theme.spacing.spacing_16
+                ),
+            containerColor = Theme.colors.primaryColor
+        ) { padding ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -64,8 +86,8 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
             ) {
                 Row(
                     modifier = Modifier.padding(
-                        vertical = Theme.spacing.spacing_8,
-                        horizontal = Theme.spacing.spacing_16
+                        horizontal = Theme.spacing.spacing_16,
+                        vertical = Theme.spacing.spacing_16
                     )
                 ) {
                     SearchBar(
@@ -86,9 +108,26 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                     )
                 }
 
-                LazyColumn {
-                    items(searchHistory) { item ->
-                        Text(text = item)
+                FlowRow {
+                    searchHistory.forEach {
+                        InputChip(
+                            modifier = Modifier.padding(horizontal = Theme.spacing.spacing_4),
+                            selected = false,
+                            onClick = {},
+                            leadingIcon = {
+                                Icon(
+                                    imageVector = Icons.Filled.Refresh,
+                                    contentDescription = null
+                                )
+                            },
+                            colors = FilterChipDefaults.filterChipColors(
+                                containerColor = Theme.colors.primaryColor,
+                                selectedLabelColor = Theme.colors.tertiarySelectedColor,
+                                labelColor = Theme.colors.tertiaryColor,
+                                iconColor = Theme.colors.tertiarySelectedColor
+                            ),
+                            label = { Text(text = it) }
+                        )
                     }
                 }
             }
