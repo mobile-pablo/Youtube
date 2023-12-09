@@ -9,6 +9,9 @@ object DayColors : CustomColors {
     override val secondaryColor: Color
         get() = Color(0xFFBEC8AD)
 
+    override val secondarySelectedColor: Color
+        get() = Color(0XFFABB49B)
+
     override val tertiaryColor: Color
         get() = Color(0xFF3A5A40)
 

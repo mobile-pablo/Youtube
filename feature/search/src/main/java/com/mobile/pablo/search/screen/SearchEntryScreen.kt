@@ -7,9 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
@@ -19,18 +16,25 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 import com.mobile.pablo.core.ext.findActivity
+import com.mobile.pablo.search.R
 import com.mobile.pablo.search.data.VoiceToTextParser
 import com.mobile.pablo.search.data.VoiceToTextParserState
 import com.mobile.pablo.search.view.RecordFab
 import com.mobile.pablo.uicomponents.theme.primaryColor
 import com.mobile.pablo.uicomponents.theme.secondaryColor
+import com.mobile.pablo.uicomponents.theme.secondarySelectedColor
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.mobile.pablo.uicomponents.theme.tertiaryColor
 import com.mobile.pablo.uicomponents.theme.tertiarySelectedColor
@@ -43,8 +47,7 @@ import androidx.compose.material.MaterialTheme as Theme
 @OptIn(
     ExperimentalPermissionsApi::class,
     ExperimentalMaterial3Api::class,
-    ExperimentalLayoutApi::class,
-    ExperimentalMaterialApi::class
+    ExperimentalLayoutApi::class
 )
 @Composable
 @Destination
@@ -60,6 +63,7 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
     val activity = context.findActivity()
     val application = activity.application
 
+    var clickedChip by remember { mutableIntStateOf(-1) }
     val voiceToText by lazy {
         VoiceToTextParser(
             application,
@@ -99,7 +103,7 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                             modifier = Modifier
                                 .weight(5f)
                                 .padding(end = Theme.spacing.spacing_8),
-                            hint = "Search",
+                            hint = stringResource(id = R.string.search_videos),
                             onSearchClicked = {
                                 searchSharedViewModel.upsertSearchHistoryItem(it)
                             }
@@ -117,20 +121,23 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                         searchHistory.forEachIndexed { index, item ->
                             InputChip(
                                 modifier = Modifier.padding(horizontal = Theme.spacing.spacing_4),
-                                selected = searchHistory[index] == item,
-                                onClick = {},
+                                selected = clickedChip == index,
+                                onClick = {
+                                    clickedChip = index
+                                },
                                 leadingIcon = {
                                     Icon(
-                                        imageVector = Icons.Filled.Refresh,
+                                        painter = painterResource(id = R.drawable.ic_history_24),
                                         contentDescription = null
                                     )
                                 },
                                 colors = FilterChipDefaults.filterChipColors(
                                     containerColor = Theme.colors.secondaryColor,
-                                    selectedContainerColor = Theme.colors.secondaryColor,
-                                    selectedLabelColor = Theme.colors.tertiarySelectedColor,
                                     labelColor = Theme.colors.tertiaryColor,
-                                    iconColor = Theme.colors.tertiarySelectedColor
+                                    iconColor = Theme.colors.tertiaryColor,
+                                    selectedContainerColor = Theme.colors.secondarySelectedColor,
+                                    selectedLabelColor = Theme.colors.tertiarySelectedColor,
+                                    selectedLeadingIconColor = Theme.colors.tertiarySelectedColor
                                 ),
                                 label = { Text(text = item) }
                             )
