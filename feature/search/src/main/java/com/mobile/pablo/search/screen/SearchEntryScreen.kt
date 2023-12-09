@@ -2,29 +2,29 @@ package com.mobile.pablo.search.screen
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.FabPosition
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.tv.material3.ExperimentalTvMaterial3Api
+import androidx.tv.material3.Text
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 import com.mobile.pablo.core.ext.findActivity
 import com.mobile.pablo.search.data.VoiceToTextParser
 import com.mobile.pablo.search.view.RecordFab
-import com.mobile.pablo.uicomponents.views.SearchBarView
+import com.mobile.pablo.uicomponents.theme.spacing
+import com.mobile.pablo.uicomponents.views.SearchBar
 import com.ramcosta.composedestinations.annotation.Destination
+import androidx.compose.material.MaterialTheme as Theme
 
-@OptIn(ExperimentalPermissionsApi::class)
+@OptIn(ExperimentalPermissionsApi::class, ExperimentalTvMaterial3Api::class)
 @Composable
 @Destination
 fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewModel()) {
@@ -42,47 +42,45 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
     val voiceToText by lazy {
         VoiceToTextParser(application)
     }
+    val state by voiceToText.state.collectAsStateWithLifecycle()
+
     recordAudioPermission.apply {
         Column {
-            val state by voiceToText.state.collectAsState()
-
-            Scaffold(
-                floatingActionButtonPosition = FabPosition.Center,
-                floatingActionButton = {
-                    RecordFab(
-                        state = state,
-                        recordAudioPermission = recordAudioPermission,
-                        voiceToText = voiceToText
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        vertical = Theme.spacing.spacing_8,
+                        horizontal = Theme.spacing.spacing_16
                     )
-                }
-            ) { padding ->
-                Column(
+            ) {
+                SearchBar(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(padding)
-                ) {
-                    SearchBarView(
-                        searchSharedViewModel.searchQuery,
-                        onSearchQueryChange = {
-                            searchSharedViewModel.searchQuery = it
-                        },
-                        onSearch = {
-                            searchSharedViewModel.upsertSearchHistoryItem(it)
-                        }
-                    )
-                    LazyColumn {
-                        items(searchHistory) { item ->
-                            Text(text = item)
-                        }
+                        .weight(5f)
+                        .padding(end = Theme.spacing.spacing_8),
+                    onTextChange = {
+                        searchSharedViewModel.searchQuery = it
+                    },
+                    hint = "Search",
+                    onSearchClicked = {
+                        searchSharedViewModel.upsertSearchHistoryItem(state.spokenText)
                     }
-                    AnimatedContent(targetState = state.isSpeaking, label = "") { isSpeaking ->
-                        if (isSpeaking) {
-                            Text(text = "Speak...")
-                        } else {
-                            searchSharedViewModel.upsertSearchHistoryItem(state.spokenText)
-                            Text(text = state.spokenText.ifEmpty { "Click on record" })
-                        }
-                    }
+                )
+                RecordFab(
+                    modifier = Modifier
+                        .wrapContentHeight(),
+                    state = state,
+                    recordAudioPermission = recordAudioPermission,
+                    voiceToText = voiceToText
+                )
+            }
+
+            AnimatedContent(targetState = state.isSpeaking, label = "") { isSpeaking ->
+                if (isSpeaking) {
+                    Text(text = "Speak...")
+                } else {
+                    Text(text = state.spokenText.ifEmpty { "Click on record" })
+                    searchSharedViewModel.upsertSearchHistoryItem(state.spokenText)
                 }
             }
         }

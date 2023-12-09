@@ -25,6 +25,7 @@ class SearchSharedViewModel @Inject constructor(
         .distinctUntilChanged()
 
     fun upsertSearchHistoryItem(query: String) {
+        if (query.isBlank()) return
         searchHistoryJob?.cancel()
         searchHistoryJob = launchAsync { upsertSearchHistoryItemUseCase(query) }
     }
