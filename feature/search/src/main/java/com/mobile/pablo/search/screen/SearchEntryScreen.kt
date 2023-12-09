@@ -30,9 +30,11 @@ import com.mobile.pablo.search.data.VoiceToTextParser
 import com.mobile.pablo.search.data.VoiceToTextParserState
 import com.mobile.pablo.search.view.RecordFab
 import com.mobile.pablo.uicomponents.theme.primaryColor
+import com.mobile.pablo.uicomponents.theme.secondaryColor
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.mobile.pablo.uicomponents.theme.tertiaryColor
 import com.mobile.pablo.uicomponents.theme.tertiarySelectedColor
+import com.mobile.pablo.uicomponents.views.KeyboardView
 import com.mobile.pablo.uicomponents.views.SearchBar
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -79,57 +81,67 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                 ),
             containerColor = Theme.colors.primaryColor
         ) { padding ->
-            Column(
+            Row(
                 modifier = Modifier
-                    .fillMaxSize()
                     .padding(padding)
             ) {
-                Row(
-                    modifier = Modifier.padding(
-                        horizontal = Theme.spacing.spacing_16,
-                        vertical = Theme.spacing.spacing_16
-                    )
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize(0.7f)
                 ) {
-                    SearchBar(
-                        modifier = Modifier
-                            .weight(5f)
-                            .padding(end = Theme.spacing.spacing_8),
-                        hint = "Search",
-                        onSearchClicked = {
-                            searchSharedViewModel.upsertSearchHistoryItem(it)
-                        }
-                    )
+                    Row(
+                        modifier = Modifier.padding(
+                            horizontal = Theme.spacing.spacing_16,
+                            vertical = Theme.spacing.spacing_16
+                        )
+                    ) {
+                        SearchBar(
+                            modifier = Modifier
+                                .weight(5f)
+                                .padding(end = Theme.spacing.spacing_8),
+                            hint = "Search",
+                            onSearchClicked = {
+                                searchSharedViewModel.upsertSearchHistoryItem(it)
+                            }
+                        )
 
-                    RecordFab(
-                        modifier = Modifier.wrapContentHeight(),
-                        state = state,
-                        recordAudioPermission = recordAudioPermission,
-                        voiceToText = voiceToText
-                    )
-                }
-
-                FlowRow {
-                    searchHistory.forEach {
-                        InputChip(
-                            modifier = Modifier.padding(horizontal = Theme.spacing.spacing_4),
-                            selected = false,
-                            onClick = {},
-                            leadingIcon = {
-                                Icon(
-                                    imageVector = Icons.Filled.Refresh,
-                                    contentDescription = null
-                                )
-                            },
-                            colors = FilterChipDefaults.filterChipColors(
-                                containerColor = Theme.colors.primaryColor,
-                                selectedLabelColor = Theme.colors.tertiarySelectedColor,
-                                labelColor = Theme.colors.tertiaryColor,
-                                iconColor = Theme.colors.tertiarySelectedColor
-                            ),
-                            label = { Text(text = it) }
+                        RecordFab(
+                            modifier = Modifier.wrapContentHeight(),
+                            state = state,
+                            recordAudioPermission = recordAudioPermission,
+                            voiceToText = voiceToText
                         )
                     }
+
+                    FlowRow {
+                        searchHistory.forEachIndexed { index, item ->
+                            InputChip(
+                                modifier = Modifier.padding(horizontal = Theme.spacing.spacing_4),
+                                selected = searchHistory[index] == item,
+                                onClick = {},
+                                leadingIcon = {
+                                    Icon(
+                                        imageVector = Icons.Filled.Refresh,
+                                        contentDescription = null
+                                    )
+                                },
+                                colors = FilterChipDefaults.filterChipColors(
+                                    containerColor = Theme.colors.secondaryColor,
+                                    selectedContainerColor = Theme.colors.secondaryColor,
+                                    selectedLabelColor = Theme.colors.tertiarySelectedColor,
+                                    labelColor = Theme.colors.tertiaryColor,
+                                    iconColor = Theme.colors.tertiarySelectedColor
+                                ),
+                                label = { Text(text = item) }
+                            )
+                        }
+                    }
                 }
+
+                KeyboardView(
+                    modifier = Modifier
+                        .fillMaxSize(0.3f)
+                )
             }
         }
     }
