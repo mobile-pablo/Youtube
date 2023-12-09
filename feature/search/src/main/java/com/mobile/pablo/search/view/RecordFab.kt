@@ -12,6 +12,7 @@ import androidx.compose.ui.res.painterResource
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
+import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.search.R
 import com.mobile.pablo.search.data.VoiceToTextParser
 import com.mobile.pablo.search.data.VoiceToTextParserState
@@ -40,7 +41,7 @@ fun RecordFab(
             }
         }
     ) {
-        AnimatedContent(targetState = state.isSpeaking, label = "") { isSpeaking ->
+        AnimatedContent(targetState = state.isSpeaking, label = EMPTY_STRING) { isSpeaking ->
             @DrawableRes
             val resId = if (isSpeaking)
                 R.drawable.ic_stop_24

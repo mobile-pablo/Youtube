@@ -1,8 +1,5 @@
 package com.mobile.pablo.search.screen
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.mobile.pablo.core.ext.launchAsync
 import com.mobile.pablo.domain.usecase.SearchHistoryUseCase
@@ -18,8 +15,6 @@ class SearchSharedViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var searchHistoryJob: Job? = null
-
-    var searchQuery by mutableStateOf("")
 
     val searchHistory = getSearchHistoryUseCase()
         .distinctUntilChanged()

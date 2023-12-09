@@ -11,9 +11,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
+typealias UpdateStatus = (String) -> Unit
+
 class VoiceToTextParser(
-    private val app: Application
+    private val app: Application,
+    private val updateStatus: UpdateStatus
 ) : RecognitionListener {
+
     private val _state = MutableStateFlow(VoiceToTextParserState())
 
     val state: StateFlow<VoiceToTextParserState>
@@ -41,6 +45,7 @@ class VoiceToTextParser(
                     RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                     RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
                 )
+                putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
                 putExtra(RecognizerIntent.EXTRA_LANGUAGE, languageCode)
             }
 
@@ -108,7 +113,9 @@ class VoiceToTextParser(
             ?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
             ?.getOrNull(0)
             ?.let { text ->
+                if (_state.value.spokenText == text) return
                 _state.update {
+                    updateStatus(text)
                     it.copy(
                         spokenText = text
                     )
