@@ -81,6 +81,11 @@ To check coverage run :
 
     ./gradlew koverVerifyDebug koverXmlReportDebug
 
+<br/>
+To fix lint issues run : 
+
+    ./gradlew ktLintFormat
+
 ## 🤔​ Planning
 
 Jira
