@@ -1,4 +1,4 @@
-package com.mobile.pablo.uicomponents.views
+package com.mobile.pablo.uicomponents.views.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,10 +12,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -36,8 +33,9 @@ import androidx.compose.material.MaterialTheme as Theme
 @Composable
 fun SearchBar(
     hint: String,
+    textFieldState: MutableState<TextFieldValue>,
     modifier: Modifier = Modifier,
-    isEnabled: (Boolean) = true,
+    isEnabled: Boolean = true,
     height: Dp = Theme.spacing.spacing_56,
     elevation: Dp = Theme.spacing.spacing_4,
     cornerShape: Shape = RoundedCornerShape(Theme.spacing.spacing_16),
@@ -45,14 +43,13 @@ fun SearchBar(
     onSearchClicked: (String) -> Unit = {},
     onTextChange: (String) -> Unit = {}
 ) {
-    var text by remember { mutableStateOf(TextFieldValue()) }
     Row(
         modifier = modifier
             .height(height)
             .fillMaxWidth()
             .shadow(elevation = elevation, shape = cornerShape)
             .background(color = backgroundColor, shape = cornerShape)
-            .clickable { onSearchClicked(text.text) },
+            .clickable { onSearchClicked(textFieldState.value.text) },
         verticalAlignment = Alignment.CenterVertically
     ) {
         BasicTextField(
@@ -60,9 +57,9 @@ fun SearchBar(
                 .weight(5f)
                 .fillMaxWidth()
                 .padding(horizontal = Theme.spacing.spacing_12),
-            value = text,
+            value = textFieldState.value,
             onValueChange = {
-                text = it
+                textFieldState.value = it
                 onTextChange(it.text)
             },
             enabled = isEnabled,
@@ -72,7 +69,7 @@ fun SearchBar(
                 fontWeight = FontWeight.Bold
             ),
             decorationBox = { innerTextField ->
-                if (text.text.isEmpty()) {
+                if (textFieldState.value.text.isEmpty()) {
                     Text(
                         text = hint,
                         color = Theme.colors.tertiaryColor,
@@ -86,7 +83,7 @@ fun SearchBar(
                 keyboardType = KeyboardType.Text,
                 imeAction = ImeAction.Search
             ),
-            keyboardActions = KeyboardActions(onSearch = { onSearchClicked(text.text) }),
+            keyboardActions = KeyboardActions(onSearch = { onSearchClicked(textFieldState.value.text) }),
             singleLine = true
         )
     }

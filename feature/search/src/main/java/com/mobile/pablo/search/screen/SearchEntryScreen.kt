@@ -17,12 +17,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -38,8 +40,8 @@ import com.mobile.pablo.uicomponents.theme.secondarySelectedColor
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.mobile.pablo.uicomponents.theme.tertiaryColor
 import com.mobile.pablo.uicomponents.theme.tertiarySelectedColor
-import com.mobile.pablo.uicomponents.views.KeyboardView
-import com.mobile.pablo.uicomponents.views.SearchBar
+import com.mobile.pablo.uicomponents.views.common.SearchBar
+import com.mobile.pablo.uicomponents.views.keyboard.view.KeyboardView
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.distinctUntilChanged
 import androidx.compose.material.MaterialTheme as Theme
@@ -55,6 +57,8 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
     val recordAudioPermission = rememberPermissionState(
         android.Manifest.permission.RECORD_AUDIO
     )
+
+    val query = remember { mutableStateOf(TextFieldValue()) }
 
     val searchHistory by searchSharedViewModel.searchHistory
         .collectAsStateWithLifecycle(initialValue = emptyList())
@@ -100,6 +104,7 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                         )
                     ) {
                         SearchBar(
+                            textFieldState = query,
                             modifier = Modifier
                                 .weight(5f)
                                 .padding(end = Theme.spacing.spacing_8),
@@ -147,7 +152,9 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
 
                 KeyboardView(
                     modifier = Modifier
-                        .fillMaxSize(0.3f)
+                        .fillMaxSize(),
+                    textFieldState = query,
+                    onKeyPress = {}
                 )
             }
         }

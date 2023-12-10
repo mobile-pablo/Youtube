@@ -1,4 +1,4 @@
-package com.mobile.pablo.uicomponents.views
+package com.mobile.pablo.uicomponents.views.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

@@ -20,8 +20,8 @@ import com.mobile.pablo.uicomponents.theme.MONTSERRAT_FONT_FAMILY
 import com.mobile.pablo.uicomponents.theme.bodyTextColor
 import com.mobile.pablo.uicomponents.theme.font
 import com.mobile.pablo.uicomponents.theme.spacing
-import com.mobile.pablo.uicomponents.views.AsyncImageWithProgress
-import com.mobile.pablo.uicomponents.views.DurationView
+import com.mobile.pablo.uicomponents.views.common.AsyncImageWithProgress
+import com.mobile.pablo.uicomponents.views.common.DurationView
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import androidx.compose.material.MaterialTheme as Theme
 
