@@ -67,7 +67,7 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
     val activity = context.findActivity()
     val application = activity.application
 
-    var clickedChip by remember { mutableIntStateOf(-1) }
+    var clickedChip by remember { mutableIntStateOf(DEFAULT_CHIP_INDEX) }
     val voiceToText by lazy {
         VoiceToTextParser(
             application,
@@ -82,11 +82,6 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
             .collectAsState(VoiceToTextParserState())
 
         Scaffold(
-            modifier = Modifier
-                .padding(
-                    vertical = Theme.spacing.spacing_8,
-                    horizontal = Theme.spacing.spacing_16
-                ),
             containerColor = Theme.colors.primaryColor
         ) { padding ->
             Row(
@@ -95,12 +90,15 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
             ) {
                 Column(
                     modifier = Modifier
-                        .fillMaxSize(0.7f)
+                        .padding(
+                            vertical = Theme.spacing.spacing_12
+                        )
+                        .fillMaxSize(LEFT_BOX_WEIGHT)
                 ) {
                     Row(
                         modifier = Modifier.padding(
-                            horizontal = Theme.spacing.spacing_16,
-                            vertical = Theme.spacing.spacing_16
+                            vertical = Theme.spacing.spacing_8,
+                            horizontal = Theme.spacing.spacing_16
                         )
                     ) {
                         SearchBar(
@@ -119,13 +117,19 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                         )
                     }
 
-                    FlowRow {
+                    FlowRow(
+                        modifier = Modifier.padding(
+                            horizontal = Theme.spacing.spacing_10,
+                            vertical = Theme.spacing.spacing_8
+                        )
+                    ) {
                         searchHistory.forEachIndexed { index, item ->
                             InputChip(
                                 modifier = Modifier.padding(horizontal = Theme.spacing.spacing_4),
                                 selected = clickedChip == index,
                                 onClick = {
                                     clickedChip = index
+                                    query.value = TextFieldValue(item)
                                 },
                                 leadingIcon = {
                                     Icon(
@@ -164,3 +168,6 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
         }
     }
 }
+
+private const val DEFAULT_CHIP_INDEX = -1
+private const val LEFT_BOX_WEIGHT = 0.7f

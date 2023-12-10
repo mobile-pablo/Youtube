@@ -75,7 +75,7 @@ fun KeyboardView(
             .padding(Theme.spacing.spacing_16)
     ) {
         LazyVerticalGrid(
-            columns = GridCells.Fixed(5),
+            columns = GridCells.Fixed(GRID_ITEMS_COUNT),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(bottom = Theme.spacing.spacing_8)
@@ -144,3 +144,5 @@ fun processKeys(
 fun KeyboardViewPreview() {
     KeyboardView(textFieldState = null) {}
 }
+
+private const val GRID_ITEMS_COUNT = 5

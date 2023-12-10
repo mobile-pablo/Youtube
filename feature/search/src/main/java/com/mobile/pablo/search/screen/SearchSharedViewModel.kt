@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.take
 
 @HiltViewModel
 class SearchSharedViewModel @Inject constructor(
@@ -18,10 +19,15 @@ class SearchSharedViewModel @Inject constructor(
 
     val searchHistory = getSearchHistoryUseCase()
         .distinctUntilChanged()
+        .take(SEARCH_HISTORY_LIMIT)
 
     fun upsertSearchHistoryItem(query: String) {
         if (query.isBlank()) return
         searchHistoryJob?.cancel()
         searchHistoryJob = launchAsync { upsertSearchHistoryItemUseCase(query) }
+    }
+
+    companion object {
+       private const val SEARCH_HISTORY_LIMIT = 10
     }
 }

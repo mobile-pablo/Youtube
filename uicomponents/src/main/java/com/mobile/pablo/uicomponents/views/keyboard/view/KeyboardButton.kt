@@ -71,7 +71,10 @@ fun KeyboardButton(
             modifier.aspectRatio((key.span.toFloat() / 1F))
     }
     val scale = animateFloatAsState(
-        targetValue = if ((selected.value || isFocused) && scaleAnimationEnabled) 1.2f else 1f,
+        targetValue = if ((selected.value || isFocused) && scaleAnimationEnabled)
+            ANIMATION_SELECTED
+        else
+            ANIMATION_UNSELECTED,
         animationSpec = tween(
             durationMillis = 10,
             easing = LinearEasing
@@ -109,7 +112,7 @@ fun KeyboardButton(
         ),
         modifier = conditionalModifier
             .scale(scale.value)
-            .zIndex(if (isFocused) 10f else 1f)
+            .zIndex(if (isFocused) ZINDEX_FOCUSED else ZINDEX_UNFOCUSED)
             .focusRequester(focusRequester)
             .focusable(interactionSource = interactionSource)
             .padding(Theme.spacing.spacing_4)
@@ -147,3 +150,8 @@ fun KeyboardButton(
 fun KeyboardButtonPreview() {
     KeyboardButton(key = Digit.Zero, requestFocus = false) {}
 }
+
+private const val ZINDEX_FOCUSED = 10F
+private const val ZINDEX_UNFOCUSED = 1F
+private const val ANIMATION_SELECTED = 1.2F
+private const val ANIMATION_UNSELECTED = 1F
