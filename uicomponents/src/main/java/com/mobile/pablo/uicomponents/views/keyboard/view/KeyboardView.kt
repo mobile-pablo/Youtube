@@ -14,13 +14,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import com.mobile.pablo.uicomponents.ext.append
 import com.mobile.pablo.uicomponents.ext.clear
 import com.mobile.pablo.uicomponents.ext.toggle
 import com.mobile.pablo.uicomponents.ext.updateAndRemoveLastChar
-import com.mobile.pablo.uicomponents.theme.primaryColor
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.mobile.pablo.uicomponents.views.keyboard.data.KeysDataSource
 import com.mobile.pablo.uicomponents.views.keyboard.data.model.Key
@@ -43,8 +43,13 @@ fun KeyboardView(
     modifier: Modifier = Modifier,
     textFieldState: MutableState<TextFieldValue>?,
     focusFirstKey: Boolean = false,
+    backgroundColor: Color = Theme.colors.primary,
+    buttonBackgroundColor: Color = Theme.colors.primary,
+    buttonSelectedBackgroundColor: Color = Theme.colors.primary,
+    buttonTextColor: Color = Theme.colors.primary,
+    buttonSelectedTextColor: Color = Theme.colors.primary,
     onAction: ((key: Key) -> Unit)? = null,
-    onKeyPress: (key: Key) -> Unit
+    onKeyPress: (key: Key) -> Unit = {}
 ) {
     val focusKey = remember { mutableStateOf(focusFirstKey) }
     val isUppercase = remember { mutableStateOf(false) }
@@ -66,7 +71,7 @@ fun KeyboardView(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Theme.colors.primaryColor)
+            .background(backgroundColor)
             .padding(Theme.spacing.spacing_16)
     ) {
         LazyVerticalGrid(
@@ -88,21 +93,31 @@ fun KeyboardView(
                     key = keys[index],
                     requestFocus = focusKey.value && index == 0,
                     isUppercaseEnable = isUppercase.value,
+                    containerColor = buttonBackgroundColor,
+                    containerSelectedColor = buttonSelectedBackgroundColor,
+                    textColor = buttonTextColor,
+                    textSelectedColor = buttonSelectedTextColor,
                     isToggle = keys[index].isToggleKey()
                 ) {
-                    if (it.isUppercase()) {
-                        isUppercase.toggle()
-                    } else if (it.isAction()) {
-                        onAction?.invoke(it)
-                    } else if (it.isSpecialCharacters()) {
-                        isSpecialCharacters.toggle()
-                        isNumeric.value = false
-                    } else if (it.isNumeric() || it.isAbc()) {
-                        isNumeric.toggle()
-                        isSpecialCharacters.value = false
-                    } else {
-                        onKeyPress(it)
-                        processKeys(it, textFieldState, isUppercase.value)
+                    when {
+                        it.isUppercase() -> {
+                            isUppercase.toggle()
+                        }
+                        it.isAction() -> {
+                            onAction?.invoke(it)
+                        }
+                        it.isSpecialCharacters() -> {
+                            isSpecialCharacters.toggle()
+                            isNumeric.value = false
+                        }
+                        it.isNumeric() || it.isAbc() -> {
+                            isNumeric.toggle()
+                            isSpecialCharacters.value = false
+                        }
+                        else -> {
+                            onKeyPress(it)
+                            processKeys(it, textFieldState, isUppercase.value)
+                        }
                     }
                 }
             }

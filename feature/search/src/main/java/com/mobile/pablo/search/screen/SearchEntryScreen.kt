@@ -153,8 +153,15 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                 KeyboardView(
                     modifier = Modifier
                         .fillMaxSize(),
+                    backgroundColor = Theme.colors.primaryColor,
+                    buttonBackgroundColor = Theme.colors.secondaryColor,
+                    buttonSelectedBackgroundColor = Theme.colors.secondarySelectedColor,
+                    buttonTextColor = Theme.colors.tertiaryColor,
+                    buttonSelectedTextColor = Theme.colors.tertiarySelectedColor,
                     textFieldState = query,
-                    onKeyPress = {}
+                    onAction = {
+                        searchSharedViewModel.upsertSearchHistoryItem(query.value.text)
+                    }
                 )
             }
         }

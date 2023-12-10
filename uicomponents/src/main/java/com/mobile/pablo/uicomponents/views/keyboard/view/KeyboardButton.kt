@@ -24,16 +24,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.zIndex
 import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.uicomponents.ext.toggle
-import com.mobile.pablo.uicomponents.theme.secondaryColor
-import com.mobile.pablo.uicomponents.theme.secondarySelectedColor
 import com.mobile.pablo.uicomponents.theme.spacing
-import com.mobile.pablo.uicomponents.theme.tertiaryColor
-import com.mobile.pablo.uicomponents.theme.tertiarySelectedColor
 import com.mobile.pablo.uicomponents.views.keyboard.data.model.Digit
 import com.mobile.pablo.uicomponents.views.keyboard.data.model.Key
 import com.mobile.pablo.uicomponents.views.keyboard.ext.handleCaseMode
@@ -50,6 +47,10 @@ fun KeyboardButton(
     modifier: Modifier = Modifier,
     key: Key,
     requestFocus: Boolean,
+    containerColor: Color = Theme.colors.primary,
+    containerSelectedColor: Color = Theme.colors.primary,
+    textColor: Color = Theme.colors.primary,
+    textSelectedColor: Color = Theme.colors.primary,
     isUppercaseEnable: Boolean = false,
     isToggle: Boolean = false,
     wrapContent: Boolean = false,
@@ -90,14 +91,16 @@ fun KeyboardButton(
         },
         contentPadding = contentPadding,
         colors = ButtonDefaults.buttonColors(
-            containerColor = if (isFocused || isToggleEnable.value)
-                Theme.colors.secondarySelectedColor
-            else
-                Theme.colors.secondaryColor,
-            contentColor = if (isFocused || isToggleEnable.value)
-                Theme.colors.tertiarySelectedColor
-            else
-                Theme.colors.tertiaryColor
+            containerColor =
+                if (isFocused || isToggleEnable.value)
+                    containerSelectedColor
+                else
+                    containerColor,
+            contentColor =
+                if (isFocused || isToggleEnable.value)
+                    textSelectedColor
+                else
+                    textColor
         ),
         elevation = ButtonDefaults.buttonElevation(
             pressedElevation = Theme.spacing.default,
