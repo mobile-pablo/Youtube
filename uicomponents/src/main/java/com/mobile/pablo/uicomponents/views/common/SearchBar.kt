@@ -12,14 +12,12 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -37,7 +35,7 @@ fun SearchBar(
     hint: String,
     textFieldState: MutableState<TextFieldValue>,
     modifier: Modifier = Modifier,
-    isEnabled: Boolean = true,
+    isEnabled: Boolean = false,
     height: Dp = Theme.spacing.spacing_56,
     elevation: Dp = Theme.spacing.spacing_4,
     cornerShape: Shape = RoundedCornerShape(Theme.spacing.spacing_16),
@@ -45,12 +43,6 @@ fun SearchBar(
     onSearchClicked: (String) -> Unit = {},
     onTextChange: (String) -> Unit = {}
 ) {
-    val keyboardController = LocalSoftwareKeyboardController.current
-
-    LaunchedEffect(keyboardController) {
-        keyboardController?.hide()
-    }
-
     Row(
         modifier = modifier
             .height(height)

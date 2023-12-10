@@ -108,10 +108,7 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                             modifier = Modifier
                                 .weight(5f)
                                 .padding(end = Theme.spacing.spacing_8),
-                            hint = stringResource(id = R.string.search_videos),
-                            onSearchClicked = {
-                                searchSharedViewModel.upsertSearchHistoryItem(it)
-                            }
+                            hint = stringResource(id = R.string.search_videos)
                         )
 
                         RecordFab(
