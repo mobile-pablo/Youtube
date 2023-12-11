@@ -52,18 +52,14 @@ fun RecordFab(
             @DrawableRes
             val resId = when {
                 state.isSpeaking -> R.drawable.ic_stop_24
-                !state.isSpeaking -> R.drawable.ic_mic_24
-                state.error != null -> R.drawable.ic_mic_24
-                else -> null
+                else -> R.drawable.ic_mic_24
             }
 
-            resId?.let {
-                Icon(
-                    painter = painterResource(it),
-                    contentDescription = EMPTY_STRING,
-                    tint = Theme.colors.secondaryColor
-                )
-            }
+            Icon(
+                painter = painterResource(resId),
+                contentDescription = EMPTY_STRING,
+                tint = Theme.colors.secondaryColor
+            )
         }
     }
 }
