@@ -2,6 +2,7 @@ package com.mobile.pablo.uicomponents.ext
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.text.input.TextFieldValue
+import com.mobile.pablo.core.util.EMPTY_STRING
 
 fun TextFieldValue.removeLastCharOrEmpty(): TextFieldValue {
     val length = text.length - 1
@@ -17,7 +18,7 @@ fun MutableState<Boolean>.toggle() {
 }
 
 fun MutableState<TextFieldValue>.clear() {
-    updateWith("")
+    updateWith(EMPTY_STRING)
 }
 
 fun MutableState<TextFieldValue>.updateAndRemoveLastChar() {

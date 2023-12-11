@@ -172,8 +172,8 @@ object KeysDataSource {
             add(Ampersat)
             add(Hash)
             add(Dollar)
-            add(Underscore)
             add(And)
+            add(Underscore)
             add(Dash)
             add(Plus)
             add(ParenthesesBracketsLeft)
@@ -190,13 +190,11 @@ object KeysDataSource {
             add(Exclamation)
             add(Question)
             add(Percent)
-            add(Dash)
             add(Backspace)
 
             // Row five
             add(ABC)
             add(Clear)
-            add(Underscore)
             add(Space)
             add(ActionArrow)
         }

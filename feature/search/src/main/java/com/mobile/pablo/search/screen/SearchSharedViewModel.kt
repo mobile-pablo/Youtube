@@ -5,9 +5,10 @@ import com.mobile.pablo.core.ext.launchAsync
 import com.mobile.pablo.domain.usecase.SearchHistoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.mapLatest
 
 @HiltViewModel
 class SearchSharedViewModel @Inject constructor(
@@ -17,9 +18,12 @@ class SearchSharedViewModel @Inject constructor(
 
     private var searchHistoryJob: Job? = null
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     val searchHistory = getSearchHistoryUseCase()
         .distinctUntilChanged()
-        .take(SEARCH_HISTORY_LIMIT)
+        .mapLatest {
+            it.takeLast(SEARCH_HISTORY_LIMIT)
+        }
 
     fun upsertSearchHistoryItem(query: String) {
         if (query.isBlank()) return
@@ -28,6 +32,7 @@ class SearchSharedViewModel @Inject constructor(
     }
 
     companion object {
-       private const val SEARCH_HISTORY_LIMIT = 10
+
+        private const val SEARCH_HISTORY_LIMIT = 15
     }
 }

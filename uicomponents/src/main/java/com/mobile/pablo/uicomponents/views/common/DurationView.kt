@@ -24,19 +24,16 @@ fun DurationView(
     modifier: Modifier = Modifier
 ) {
     Box(
-        modifier =
-            modifier
-                .padding(
-                    bottom = Theme.spacing.spacing_8,
-                    end = Theme.spacing.spacing_8
-                )
-                .clip(
-                    RoundedCornerShape(Theme.spacing.spacing_4)
-                )
-                .background(Theme.colors.backgroundAlphaColor)
-                .padding(
-                    horizontal = Theme.spacing.spacing_2
-                ),
+        modifier = modifier
+            .padding(
+                bottom = Theme.spacing.spacing_8,
+                end = Theme.spacing.spacing_8
+            )
+            .clip(
+                RoundedCornerShape(Theme.spacing.spacing_4)
+            )
+            .background(Theme.colors.backgroundAlphaColor)
+            .padding(Theme.spacing.spacing_4),
         contentAlignment = Alignment.Center
     ) {
         Text(

@@ -34,6 +34,8 @@ import com.mobile.pablo.search.R
 import com.mobile.pablo.search.data.VoiceToTextParser
 import com.mobile.pablo.search.data.VoiceToTextParserState
 import com.mobile.pablo.search.view.RecordFab
+import com.mobile.pablo.uicomponents.ext.clear
+import com.mobile.pablo.uicomponents.ext.updateWith
 import com.mobile.pablo.uicomponents.theme.primaryColor
 import com.mobile.pablo.uicomponents.theme.secondaryColor
 import com.mobile.pablo.uicomponents.theme.secondarySelectedColor
@@ -129,7 +131,7 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                                 selected = clickedChip == index,
                                 onClick = {
                                     clickedChip = index
-                                    query.value = TextFieldValue(item)
+                                    query.updateWith(item)
                                 },
                                 leadingIcon = {
                                     Icon(
@@ -152,8 +154,7 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                 }
 
                 KeyboardView(
-                    modifier = Modifier
-                        .fillMaxSize(),
+                    modifier = Modifier.fillMaxSize(),
                     backgroundColor = Theme.colors.primaryColor,
                     buttonBackgroundColor = Theme.colors.secondaryColor,
                     buttonSelectedBackgroundColor = Theme.colors.secondarySelectedColor,
@@ -162,6 +163,7 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                     textFieldState = query,
                     onAction = {
                         searchSharedViewModel.upsertSearchHistoryItem(query.value.text)
+                        query.clear()
                     }
                 )
             }
