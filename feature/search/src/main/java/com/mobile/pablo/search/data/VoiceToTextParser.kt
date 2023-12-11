@@ -26,10 +26,8 @@ class VoiceToTextParser(
     private val recognizer = SpeechRecognizer.createSpeechRecognizer(app)
 
     fun startListening(languageCode: String) {
-        // Clears the state
         _state.update { VoiceToTextParserState() }
 
-        // If is not available shows the error
         if (!SpeechRecognizer.isRecognitionAvailable(app)) {
             _state.update {
                 it.copy(
@@ -38,7 +36,6 @@ class VoiceToTextParser(
             }
         }
 
-        // Creates an Intent for speech recognition in a specified language
         val intent =
             Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
                 putExtra(
@@ -48,13 +45,10 @@ class VoiceToTextParser(
                 putExtra(RecognizerIntent.EXTRA_LANGUAGE, languageCode)
             }
 
-        // Sets the listener that will receive all the callbacks
         recognizer.setRecognitionListener(this)
 
-        // Starts listening for speech
         recognizer.startListening(intent)
 
-        // Indicates that speech recognition has started
         _state.update {
             it.copy(
                 isSpeaking = true
@@ -63,14 +57,12 @@ class VoiceToTextParser(
     }
 
     fun stopListening() {
-        // Indicates that speech recognition has stopped
         _state.update {
             it.copy(
                 isSpeaking = false
             )
         }
 
-        // Stops listening for speech
         recognizer.stopListening()
     }
 
@@ -127,6 +119,5 @@ class VoiceToTextParser(
     override fun onEvent(
         eventType: Int,
         params: Bundle?
-    ) {
-    }
+    ) {}
 }
