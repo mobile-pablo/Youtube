@@ -17,13 +17,12 @@ internal class PopularDataSourceImpl @Inject constructor(
         regionCode: String,
         pageToken: String?
     ): DataTransfer<PopularDTO> {
-        val popularResponse =
-            callSafe {
-                youtubeService.getPopularSearchVideos(
-                    regionCode = regionCode,
-                    pageToken = pageToken
-                )
-            }
+        val popularResponse = callSafe {
+            youtubeService.getPopularSearchVideos(
+                regionCode = regionCode,
+                pageToken = pageToken
+            )
+        }
 
         return popularResponse.map(popularResponseMapper::map)
     }

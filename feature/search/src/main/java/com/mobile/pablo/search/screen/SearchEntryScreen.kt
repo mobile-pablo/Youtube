@@ -17,15 +17,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 import com.mobile.pablo.core.ext.findActivity
 import com.mobile.pablo.search.R
 import com.mobile.pablo.search.data.VoiceToTextParser
 import com.mobile.pablo.search.data.VoiceToTextParserState
+import com.mobile.pablo.search.screen.destinations.SearchResultScreenDestination
 import com.mobile.pablo.search.view.RecordFab
 import com.mobile.pablo.search.view.SearchHistoryChips
 import com.mobile.pablo.uicomponents.ext.clear
+import com.mobile.pablo.uicomponents.ext.navigateTo
 import com.mobile.pablo.uicomponents.theme.primaryColor
 import com.mobile.pablo.uicomponents.theme.secondaryColor
 import com.mobile.pablo.uicomponents.theme.secondarySelectedColor
@@ -35,6 +39,7 @@ import com.mobile.pablo.uicomponents.theme.tertiarySelectedColor
 import com.mobile.pablo.uicomponents.views.common.SearchBar
 import com.mobile.pablo.uicomponents.views.keyboard.view.KeyboardView
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.distinctUntilChanged
 import androidx.compose.material.MaterialTheme as Theme
 
@@ -43,14 +48,17 @@ import androidx.compose.material.MaterialTheme as Theme
 )
 @Composable
 @Destination
-fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewModel()) {
+fun SearchEntryScreen(
+    destinationsNavigator: DestinationsNavigator,
+    navController: NavController = rememberNavController(),
+    viewModel: SearchSharedViewModel = hiltViewModel()
+) {
     val recordAudioPermission = rememberPermissionState(
         android.Manifest.permission.RECORD_AUDIO
     )
 
     val query = remember { mutableStateOf(TextFieldValue()) }
-
-    val searchHistory by searchSharedViewModel.searchHistory
+    val searchHistory by viewModel.searchHistory
         .collectAsStateWithLifecycle(initialValue = emptyList())
 
     val context = LocalContext.current
@@ -61,10 +69,17 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
         VoiceToTextParser(
             application,
             updateStatus = {
-                searchSharedViewModel.upsertSearchHistoryItem(it)
+                viewModel.upsertSearchHistoryItem(it)
+                navigateToResultScreen(
+                    destinationsNavigator = destinationsNavigator,
+                    navController = navController,
+                    query = query.value.text
+                )
+                query.clear()
             }
         )
     }
+
     recordAudioPermission.apply {
         val state by voiceToText.state
             .distinctUntilChanged { old, new -> old.spokenText == new.spokenText }
@@ -118,7 +133,12 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                     buttonSelectedTextColor = Theme.colors.tertiarySelectedColor,
                     textFieldState = query,
                     onAction = {
-                        searchSharedViewModel.upsertSearchHistoryItem(query.value.text)
+                        viewModel.upsertSearchHistoryItem(query.value.text)
+                        navigateToResultScreen(
+                            destinationsNavigator = destinationsNavigator,
+                            navController = navController,
+                            query = query.value.text
+                        )
                         query.clear()
                     }
                 )
@@ -126,5 +146,15 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
         }
     }
 }
+
+private fun navigateToResultScreen(
+    destinationsNavigator: DestinationsNavigator,
+    navController: NavController,
+    query: String
+) = navigateTo(
+    destinationsNavigator = destinationsNavigator,
+    navController = navController,
+    direction = SearchResultScreenDestination(query)
+)
 
 private const val LEFT_BOX_WEIGHT = 0.7f

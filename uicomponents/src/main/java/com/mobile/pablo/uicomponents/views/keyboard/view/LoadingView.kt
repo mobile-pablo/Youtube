@@ -1,4 +1,4 @@
-package com.mobile.pablo.home.views
+package com.mobile.pablo.uicomponents.views.keyboard.view
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,7 +13,7 @@ import com.mobile.pablo.uicomponents.theme.progressColor
 import com.mobile.pablo.uicomponents.theme.spacing
 
 @Composable
-internal fun HomeLoadingView() {
+fun LoadingView() {
     LinearProgressIndicator(
         modifier = Modifier
             .padding(horizontal = MaterialTheme.spacing.spacing_48)

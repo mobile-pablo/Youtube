@@ -5,6 +5,7 @@ import com.mobile.pablo.error.screen.destinations.ErrorScreenDestination
 import com.mobile.pablo.home.screen.destinations.HomeScreenDestination
 import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
 import com.mobile.pablo.search.screen.destinations.SearchEntryScreenDestination
+import com.mobile.pablo.search.screen.destinations.SearchResultScreenDestination
 import com.ramcosta.composedestinations.dynamic.routedIn
 import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
@@ -21,6 +22,7 @@ object NavGraphs {
             listOf<DestinationSpec<*>>(
                 HomeScreenDestination,
                 SearchEntryScreenDestination,
+                SearchResultScreenDestination,
                 PlayerScreenDestination,
                 ErrorScreenDestination
             ).routedIn(this)

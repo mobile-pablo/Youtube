@@ -13,11 +13,16 @@ internal class SearchDataSourceImpl @Inject constructor(
     private val searchResponseMapper: SearchResponseMapper
 ) : SearchDataSource {
 
-    override suspend fun getSearchVideos(query: String): DataTransfer<SearchDTO> {
-        val searchResponse =
-            callSafe {
-                youtubeService.getSearchVideos(q = query)
-            }
+    override suspend fun getSearchVideos(
+        query: String,
+        pageToken: String?
+    ): DataTransfer<SearchDTO> {
+        val searchResponse = callSafe {
+            youtubeService.getSearchVideos(
+                q = query,
+                pageToken = pageToken
+            )
+        }
 
         return searchResponse.map(searchResponseMapper::map)
     }
