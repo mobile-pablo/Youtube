@@ -1,28 +1,18 @@
 package com.mobile.pablo.search.screen
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChipDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.InputChip
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -34,8 +24,8 @@ import com.mobile.pablo.search.R
 import com.mobile.pablo.search.data.VoiceToTextParser
 import com.mobile.pablo.search.data.VoiceToTextParserState
 import com.mobile.pablo.search.view.RecordFab
+import com.mobile.pablo.search.view.SearchHistoryChips
 import com.mobile.pablo.uicomponents.ext.clear
-import com.mobile.pablo.uicomponents.ext.updateWith
 import com.mobile.pablo.uicomponents.theme.primaryColor
 import com.mobile.pablo.uicomponents.theme.secondaryColor
 import com.mobile.pablo.uicomponents.theme.secondarySelectedColor
@@ -49,9 +39,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import androidx.compose.material.MaterialTheme as Theme
 
 @OptIn(
-    ExperimentalPermissionsApi::class,
-    ExperimentalMaterial3Api::class,
-    ExperimentalLayoutApi::class
+    ExperimentalPermissionsApi::class
 )
 @Composable
 @Destination
@@ -69,7 +57,6 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
     val activity = context.findActivity()
     val application = activity.application
 
-    var clickedChip by remember { mutableIntStateOf(DEFAULT_CHIP_INDEX) }
     val voiceToText by lazy {
         VoiceToTextParser(
             application,
@@ -119,38 +106,7 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
                         )
                     }
 
-                    FlowRow(
-                        modifier = Modifier.padding(
-                            horizontal = Theme.spacing.spacing_10,
-                            vertical = Theme.spacing.spacing_8
-                        )
-                    ) {
-                        searchHistory.forEachIndexed { index, item ->
-                            InputChip(
-                                modifier = Modifier.padding(horizontal = Theme.spacing.spacing_4),
-                                selected = clickedChip == index,
-                                onClick = {
-                                    clickedChip = index
-                                    query.updateWith(item)
-                                },
-                                leadingIcon = {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.ic_history_24),
-                                        contentDescription = null
-                                    )
-                                },
-                                colors = FilterChipDefaults.filterChipColors(
-                                    containerColor = Theme.colors.secondaryColor,
-                                    labelColor = Theme.colors.tertiaryColor,
-                                    iconColor = Theme.colors.tertiaryColor,
-                                    selectedContainerColor = Theme.colors.secondarySelectedColor,
-                                    selectedLabelColor = Theme.colors.tertiarySelectedColor,
-                                    selectedLeadingIconColor = Theme.colors.tertiarySelectedColor
-                                ),
-                                label = { Text(text = item) }
-                            )
-                        }
-                    }
+                    SearchHistoryChips(searchHistory = searchHistory, query = query)
                 }
 
                 KeyboardView(
@@ -171,5 +127,4 @@ fun SearchEntryScreen(searchSharedViewModel: SearchSharedViewModel = hiltViewMod
     }
 }
 
-private const val DEFAULT_CHIP_INDEX = -1
 private const val LEFT_BOX_WEIGHT = 0.7f
