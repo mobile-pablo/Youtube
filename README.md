@@ -41,8 +41,8 @@
 [Iframe issue](https://stackoverflow.com/questions/9640265/problems-giving-focus-to-an-iframe-on-smart-tv)
 I was regarding to
 
-## 🎯​ Test Coverage
-[Test Coverage 🎯​](https://progress-bar.dev/90/?width=200&color=ABB49B)
+## ![Test Coverage 🎯​](https://progress-bar.dev/90/?width=200&color=ABB49B)
+
      Almost all classes are covered (1.0.0 status)
      Excluding generated files, mappers and models etc.
 
