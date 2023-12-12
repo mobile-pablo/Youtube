@@ -16,6 +16,7 @@ internal class SearchResponseMapper @Inject constructor(
                 kind = kind,
                 etag = etag,
                 nextPageToken = nextPageToken,
+                prevPageToken = prevPageToken,
                 regionCode = regionCode,
                 pageInfo = pageInfoResponseMapper.map(pageInfo),
                 items = items?.map(searchItemResponseMapper::map)
