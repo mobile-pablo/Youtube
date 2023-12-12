@@ -38,6 +38,8 @@ android {
     kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }
 
     kapt { correctErrorTypes = true }
+
+    hilt { enableAggregatingTask = true }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlint")
