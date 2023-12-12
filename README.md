@@ -29,6 +29,8 @@
 
 ## 🪚 Status
 
+![Progress](https://progress-bar.dev/100/?title=v1.0.0&width=200&color=3A5A40)
+    
     App has basic functions like trending video browsing and playing videos but there is one issue.
     Youtube API doesnt support any views only iframe which is not so much supported by Android TV.
     I can like open video and play it but not so much add my own features like comment or like.
@@ -41,7 +43,7 @@
 [Iframe issue](https://stackoverflow.com/questions/9640265/problems-giving-focus-to-an-iframe-on-smart-tv)
 I was regarding to
 
-## ![Test Coverage 🎯​](https://progress-bar.dev/90/?width=200&color=ABB49B)
+## ![Test Coverage 🎯​](https://progress-bar.dev/90/?title=Test%20Coverage%20🎯​&width=200&color=ABB49B)
 
      Almost all classes are covered (1.0.0 status)
      Excluding generated files, mappers and models etc.
