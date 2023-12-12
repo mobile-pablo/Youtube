@@ -96,23 +96,16 @@ fun KeyboardButton(
             .padding(Theme.spacing.spacing_4)
     ) {
         when (key) {
-            is TextUtilityKey -> {
-                Text(text = key.text)
-            }
+            is TextUtilityKey -> Text(text = key.text)
+            is UtilityKey -> Icon(
+                painterResource(id = key.iconId),
+                contentDescription = key.text,
+                modifier = Modifier.size(Theme.spacing.spacing_16)
+            )
 
-            is UtilityKey -> {
-                Icon(
-                    painterResource(id = key.iconId),
-                    contentDescription = key.text,
-                    modifier = Modifier.size(Theme.spacing.spacing_16)
-                )
-            }
-
-            else -> {
-                Text(
-                    text = key.handleCaseMode(isUppercaseEnable)
-                )
-            }
+            else -> Text(
+                text = key.handleCaseMode(isUppercaseEnable)
+            )
         }
     }
 
