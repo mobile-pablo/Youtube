@@ -41,8 +41,8 @@ class SearchSharedViewModel @Inject constructor(
     }
 
     @OptIn(FlowPreview::class)
-    fun getSearch(query: String): Flow<PagingData<SearchItem>> =
-        getSearchVideos(query)
+    val getSearch: Flow<PagingData<SearchItem>> =
+        getSearchVideos("dog")
             .distinctUntilChanged()
             .cachedIn(viewModelScope)
             .debounce(POPULAR_VIDEO_DEBOUNCE_MILLIS)

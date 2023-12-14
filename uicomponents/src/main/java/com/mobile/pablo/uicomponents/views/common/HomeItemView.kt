@@ -1,4 +1,4 @@
-package com.mobile.pablo.home.views
+package com.mobile.pablo.uicomponents.views.common
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -13,34 +13,37 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavController
-import com.mobile.pablo.home.wrapper.HomeItemWrapper
-import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
-import com.mobile.pablo.uicomponents.ext.navigateTo
 import com.mobile.pablo.uicomponents.theme.MONTSERRAT_FONT_FAMILY
 import com.mobile.pablo.uicomponents.theme.bodyTextColor
 import com.mobile.pablo.uicomponents.theme.font
 import com.mobile.pablo.uicomponents.theme.spacing
-import com.mobile.pablo.uicomponents.views.common.AsyncImageWithProgress
-import com.mobile.pablo.uicomponents.views.common.DurationView
+import com.mobile.pablo.uicomponents.views.wrapper.VideoItemWrapper
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import androidx.compose.material.MaterialTheme as Theme
 
+typealias NavigateToPlayer = (
+    destinationsNavigator: DestinationsNavigator?,
+    navController: NavController,
+    videoId: String
+) -> Unit
+
 @Composable
-internal fun HomeItemView(
-    wrapper: HomeItemWrapper,
+fun VideoItemView(
+    wrapper: VideoItemWrapper,
     modifier: Modifier = Modifier,
     destinationsNavigator: DestinationsNavigator? = null,
-    navController: NavController
+    navController: NavController,
+    navigateToPlayer: NavigateToPlayer
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
             .height(Theme.spacing.spacing_240)
             .clickable {
-                onHomeItemClick(
-                    destinationsNavigator = destinationsNavigator,
-                    navController = navController,
-                    videoId = wrapper.videoId
+                navigateToPlayer(
+                    destinationsNavigator,
+                    navController,
+                    wrapper.videoId
                 )
             }
             .padding(
@@ -57,7 +60,7 @@ internal fun HomeItemView(
                 contentAlignment = Alignment.BottomEnd
             ) {
                 AsyncImageWithProgress(wrapper.imageUrl)
-                DurationView(wrapper.duration)
+                wrapper.duration?.let { DurationView(it) }
             }
 
             Text(
@@ -82,22 +85,6 @@ internal fun HomeItemView(
                 modifier = Modifier.padding(top = Theme.spacing.spacing_4)
             )
         }
-    }
-}
-
-private fun onHomeItemClick(
-    destinationsNavigator: DestinationsNavigator? = null,
-    navController: NavController,
-    videoId: String
-) {
-    destinationsNavigator?.let {
-        navigateTo(
-            destinationsNavigator = it,
-            navController = navController,
-            direction = PlayerScreenDestination(
-                videoId = videoId
-            )
-        )
     }
 }
 

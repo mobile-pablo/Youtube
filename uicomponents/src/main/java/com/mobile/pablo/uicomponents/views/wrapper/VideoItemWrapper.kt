@@ -1,20 +1,20 @@
-package com.mobile.pablo.home.wrapper
+package com.mobile.pablo.uicomponents.views.wrapper
 
 import com.mobile.pablo.core.util.EMPTY_STRING
 
-internal data class HomeItemWrapper(
+data class VideoItemWrapper(
     val title: String,
     val channelName: String,
     val description: String,
     val imageUrl: String,
-    val duration: String,
+    val duration: String? = null,
     val videoId: String
 ) {
 
     companion object {
 
         fun empty() =
-            HomeItemWrapper(
+            VideoItemWrapper(
                 title = EMPTY_STRING,
                 channelName = EMPTY_STRING,
                 description = EMPTY_STRING,

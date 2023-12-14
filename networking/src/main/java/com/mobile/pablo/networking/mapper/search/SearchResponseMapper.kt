@@ -15,11 +15,11 @@ internal class SearchResponseMapper @Inject constructor(
             SearchDTO(
                 kind = kind,
                 etag = etag,
-                nextPageToken = nextPageToken,
-                prevPageToken = prevPageToken,
                 regionCode = regionCode,
-                pageInfo = pageInfoResponseMapper.map(pageInfo),
-                items = items?.map(searchItemResponseMapper::map)
+                items = items?.map(searchItemResponseMapper::map),
+                prevPageToken = prevPageToken,
+                nextPageToken = nextPageToken,
+                pageInfo = pageInfoResponseMapper.map(pageInfo)
             )
         }
     }

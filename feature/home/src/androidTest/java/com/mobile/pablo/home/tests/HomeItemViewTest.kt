@@ -7,8 +7,8 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.home.ext.exists
 import com.mobile.pablo.home.ext.textEquals
-import com.mobile.pablo.home.views.HomeItemView
-import com.mobile.pablo.home.wrapper.HomeItemWrapper
+import com.mobile.pablo.uicomponents.views.common.HomeItemView
+import com.mobile.pablo.uicomponents.views.wrapper.VideoItemWrapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
@@ -21,7 +21,7 @@ class HomeItemViewTest {
 
     private lateinit var navController: TestNavHostController
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
-    private lateinit var wrapper: HomeItemWrapper
+    private lateinit var wrapper: VideoItemWrapper
 
     @Before
     fun setup() {
@@ -33,7 +33,7 @@ class HomeItemViewTest {
         composeTestRule.apply {
             setContent {
                 wrapper =
-                    HomeItemWrapper(
+                    VideoItemWrapper(
                         title = "title",
                         channelName = "channelName",
                         description = "description",
@@ -51,7 +51,7 @@ class HomeItemViewTest {
 
     @Test
     fun assertHomeItemViewEmptyDoesntExist() {
-        wrapper = HomeItemWrapper.empty()
+        wrapper = VideoItemWrapper.empty()
         composeTestRule.apply {
             setContent {
                 HomeItemView(wrapper, navController = navController)

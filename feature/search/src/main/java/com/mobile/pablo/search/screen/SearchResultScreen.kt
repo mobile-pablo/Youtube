@@ -31,8 +31,7 @@ fun SearchResultScreen(
     viewModel: SearchSharedViewModel = hiltViewModel(),
     query: String
 ) {
-    val searchLazyPagingItems: LazyPagingItems<SearchItem> =
-        viewModel.getSearch(query).collectAsLazyPagingItems()
+    val searchLazyPagingItems: LazyPagingItems<SearchItem> = viewModel.getSearch.collectAsLazyPagingItems()
 
     Box(
         modifier = Modifier

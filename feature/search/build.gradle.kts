@@ -71,6 +71,7 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
     listOf(
+        "feature:player",
         "feature:error",
         "domain",
         "uicomponents"

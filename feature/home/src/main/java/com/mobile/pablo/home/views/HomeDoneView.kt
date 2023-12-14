@@ -9,10 +9,11 @@ import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
 import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.domain.model.popular.PopularItem
-import com.mobile.pablo.home.wrapper.HomeItemWrapper
+import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
+import com.mobile.pablo.uicomponents.ext.navigateTo
+import com.mobile.pablo.uicomponents.views.common.VideoItemView
+import com.mobile.pablo.uicomponents.views.wrapper.VideoItemWrapper
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-
-private const val GRID_COLUMNS = 3
 
 @Composable
 internal fun HomeDoneView(
@@ -28,8 +29,8 @@ internal fun HomeDoneView(
             val item = popularItems[index]
             item?.apply {
                 snippet?.apply {
-                    HomeItemView(
-                        wrapper = HomeItemWrapper(
+                    VideoItemView(
+                        wrapper = VideoItemWrapper(
                             title = title ?: EMPTY_STRING,
                             channelName = channelTitle ?: EMPTY_STRING,
                             description = description ?: EMPTY_STRING,
@@ -38,10 +39,35 @@ internal fun HomeDoneView(
                             duration = contentDetails!!.duration ?: EMPTY_STRING
                         ),
                         destinationsNavigator = destinationsNavigator,
-                        navController = navController
+                        navController = navController,
+                        navigateToPlayer = { destinationsNavigator, navController, videoId ->
+                            onVideoItemClick(
+                                destinationsNavigator,
+                                navController,
+                                videoId
+                            )
+                        }
                     )
                 }
             }
         }
     }
 }
+
+private fun onVideoItemClick(
+    destinationsNavigator: DestinationsNavigator? = null,
+    navController: NavController,
+    videoId: String
+) {
+    destinationsNavigator?.let {
+        navigateTo(
+            destinationsNavigator = it,
+            navController = navController,
+            direction = PlayerScreenDestination(
+                videoId = videoId
+            )
+        )
+    }
+}
+
+private const val GRID_COLUMNS = 3
