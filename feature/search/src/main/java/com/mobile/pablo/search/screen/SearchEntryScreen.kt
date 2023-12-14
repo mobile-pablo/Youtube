@@ -73,7 +73,7 @@ fun SearchEntryScreen(
                 navigateToResultScreen(
                     destinationsNavigator = destinationsNavigator,
                     navController = navController,
-                    query = query.value.text
+                    query = it
                 )
                 query.clear()
             }

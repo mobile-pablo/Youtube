@@ -35,7 +35,7 @@ internal fun SearchDoneView(
                             channelName = channelTitle ?: EMPTY_STRING,
                             description = description ?: EMPTY_STRING,
                             imageUrl = thumbnails!!.medium!!.url!!,
-                            videoId = id!!.videoId!!
+                            videoId = id!!.videoId ?: EMPTY_STRING
                         ),
                         destinationsNavigator = destinationsNavigator,
                         navController = navController,

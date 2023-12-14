@@ -5,18 +5,22 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.mobile.pablo.core.ext.launchAsync
+import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.domain.model.search.SearchItem
 import com.mobile.pablo.domain.usecase.SearchHistoryUseCase
 import com.mobile.pablo.domain.usecase.VideosUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.shareIn
 
 @HiltViewModel
 class SearchSharedViewModel @Inject constructor(
@@ -26,6 +30,12 @@ class SearchSharedViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var searchHistoryJob: Job? = null
+    private var _query = MutableStateFlow<String>(EMPTY_STRING)
+    val query: StateFlow<String> get() = _query
+
+    fun setQuery(q: String) {
+        _query.value = q
+    }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val searchHistory = getSearchHistoryUseCase()
@@ -40,16 +50,19 @@ class SearchSharedViewModel @Inject constructor(
         searchHistoryJob = launchAsync { upsertSearchHistoryItemUseCase(query) }
     }
 
-    @OptIn(FlowPreview::class)
-    val getSearch: Flow<PagingData<SearchItem>> =
-        getSearchVideos("dog")
-            .distinctUntilChanged()
-            .cachedIn(viewModelScope)
-            .debounce(POPULAR_VIDEO_DEBOUNCE_MILLIS)
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val searchItemsState: Flow<PagingData<SearchItem>> =
+        query.flatMapLatest { query ->
+            getSearchVideos(query)
+        }.shareIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(POPULAR_VIDEO_DEBOUNCE_MILLIS),
+            replay = 1
+        ).cachedIn(viewModelScope)
 
     companion object {
 
-        private const val POPULAR_VIDEO_DEBOUNCE_MILLIS = 1000L
+        private const val POPULAR_VIDEO_DEBOUNCE_MILLIS = 6000L
         private const val SEARCH_HISTORY_LIMIT = 15
     }
 }

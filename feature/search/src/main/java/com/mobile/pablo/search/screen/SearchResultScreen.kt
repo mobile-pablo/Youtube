@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -31,7 +32,10 @@ fun SearchResultScreen(
     viewModel: SearchSharedViewModel = hiltViewModel(),
     query: String
 ) {
-    val searchLazyPagingItems: LazyPagingItems<SearchItem> = viewModel.getSearch.collectAsLazyPagingItems()
+    LaunchedEffect(true) {
+        viewModel.setQuery(query)
+    }
+    val searchLazyPagingItems: LazyPagingItems<SearchItem> = viewModel.searchItemsState.collectAsLazyPagingItems()
 
     Box(
         modifier = Modifier
@@ -54,6 +58,7 @@ fun SearchResultScreen(
                         navController
                     )
                 }
+                this.itemCount == 0 -> LoadingView()
             }
             SearchDoneView(
                 this,
