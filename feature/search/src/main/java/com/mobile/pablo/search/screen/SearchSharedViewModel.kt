@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.filter
 import com.mobile.pablo.core.ext.launchAsync
 import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.domain.model.search.SearchItem
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.shareIn
 
@@ -60,6 +62,17 @@ class SearchSharedViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(POPULAR_VIDEO_DEBOUNCE_MILLIS),
             replay = 1
         ).cachedIn(viewModelScope)
+            .distinctUntilChanged()
+            .map { pagingData ->
+                pagingData.filter { item ->
+                    when {
+                        item.id == null -> false
+                        item.id!!.videoId == null -> false
+                        item.snippet!!.thumbnails!!.medium!!.url.isNullOrBlank() -> false
+                        else -> true
+                    }
+                }
+            }
 
     companion object {
 
