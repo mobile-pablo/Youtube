@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -69,13 +70,12 @@ fun SearchEntryScreen(
         VoiceToTextParser(
             application,
             updateStatus = {
-                viewModel.upsertSearchHistoryItem(it)
-                navigateToResultScreen(
-                    destinationsNavigator = destinationsNavigator,
-                    navController = navController,
-                    query = it
+                searchFromQuery(
+                    it,
+                    viewModel,
+                    destinationsNavigator,
+                    navController
                 )
-                query.clear()
             }
         )
     }
@@ -88,15 +88,10 @@ fun SearchEntryScreen(
         Scaffold(
             containerColor = Theme.colors.primaryColor
         ) { padding ->
-            Row(
-                modifier = Modifier
-                    .padding(padding)
-            ) {
+            Row(modifier = Modifier.padding(padding)) {
                 Column(
                     modifier = Modifier
-                        .padding(
-                            vertical = Theme.spacing.spacing_12
-                        )
+                        .padding(vertical = Theme.spacing.spacing_12)
                         .fillMaxSize(LEFT_BOX_WEIGHT)
                 ) {
                     Row(
@@ -121,7 +116,17 @@ fun SearchEntryScreen(
                         )
                     }
 
-                    SearchHistoryChips(searchHistory = searchHistory, query = query)
+                    SearchHistoryChips(
+                        searchHistory = searchHistory,
+                        onClick = {
+                            searchFromQuery(
+                                it,
+                                viewModel,
+                                destinationsNavigator,
+                                navController
+                            )
+                        }
+                    )
                 }
 
                 KeyboardView(
@@ -133,13 +138,12 @@ fun SearchEntryScreen(
                     buttonSelectedTextColor = Theme.colors.tertiarySelectedColor,
                     textFieldState = query,
                     onAction = {
-                        viewModel.upsertSearchHistoryItem(query.value.text)
-                        navigateToResultScreen(
-                            destinationsNavigator = destinationsNavigator,
-                            navController = navController,
-                            query = query.value.text
+                        searchFromQuery(
+                            query,
+                            viewModel,
+                            destinationsNavigator,
+                            navController
                         )
-                        query.clear()
                     }
                 )
             }
@@ -156,5 +160,30 @@ private fun navigateToResultScreen(
     navController = navController,
     direction = SearchResultScreenDestination(query)
 )
+
+private fun searchFromQuery(
+    query: String,
+    viewModel: SearchSharedViewModel,
+    destinationsNavigator: DestinationsNavigator,
+    navController: NavController
+) {
+    viewModel.upsertSearchHistoryItem(query)
+    navigateToResultScreen(
+        destinationsNavigator = destinationsNavigator,
+        navController = navController,
+        query = query
+    )
+}
+
+private fun searchFromQuery(
+    queryState: MutableState<TextFieldValue>,
+    viewModel: SearchSharedViewModel,
+    destinationsNavigator: DestinationsNavigator,
+    navController: NavController
+) {
+    val query = queryState.value.text
+    searchFromQuery(query, viewModel, destinationsNavigator, navController)
+    queryState.clear()
+}
 
 private const val LEFT_BOX_WEIGHT = 0.7f

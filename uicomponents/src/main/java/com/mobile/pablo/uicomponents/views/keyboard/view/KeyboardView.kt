@@ -38,6 +38,11 @@ import androidx.compose.material.MaterialTheme as Theme
 /**
  *  Copied from https://github.com/UmairKhalid786/ComposeTvKeyboard
  */
+
+typealias OnAction = (key: Key) -> Unit?
+typealias OnClean = () -> Unit
+typealias OnKeyPress = (key: Key) -> Unit
+
 @Composable
 fun KeyboardView(
     modifier: Modifier = Modifier,
@@ -48,8 +53,9 @@ fun KeyboardView(
     buttonSelectedBackgroundColor: Color = Theme.colors.primary,
     buttonTextColor: Color = Theme.colors.primary,
     buttonSelectedTextColor: Color = Theme.colors.primary,
-    onAction: ((key: Key) -> Unit)? = null,
-    onKeyPress: (key: Key) -> Unit = {}
+    onAction: OnAction = {},
+    onClear: OnClean = {},
+    onKeyPress: OnKeyPress = {}
 ) {
     val focusKey = remember { mutableStateOf(focusFirstKey) }
     val isUppercase = remember { mutableStateOf(false) }
@@ -104,7 +110,7 @@ fun KeyboardView(
                             isUppercase.toggle()
                         }
                         it.isAction() -> {
-                            onAction?.invoke(it)
+                            onAction.invoke(it)
                         }
                         it.isSpecialCharacters() -> {
                             isSpecialCharacters.toggle()
@@ -116,7 +122,7 @@ fun KeyboardView(
                         }
                         else -> {
                             onKeyPress(it)
-                            processKeys(it, textFieldState, isUppercase.value)
+                            processKeys(it, textFieldState, isUppercase.value, onClear)
                         }
                     }
                 }
@@ -128,11 +134,13 @@ fun KeyboardView(
 fun processKeys(
     it: Key,
     state: MutableState<TextFieldValue>?,
-    isUppercase: Boolean
+    isUppercase: Boolean,
+    onClear: OnClean
 ) {
     if (it.isBackspace()) {
         state?.updateAndRemoveLastChar()
     } else if (it.isClear()) {
+        onClear()
         state?.clear()
     } else {
         state?.append(it.handleCaseMode(isUppercase))
