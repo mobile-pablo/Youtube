@@ -31,14 +31,16 @@
 
 ![Progress](https://progress-bar.dev/100/?title=v1.0.0&width=200&color=3A5A40)
     
-    App has basic functions like trending video browsing and playing videos but there is one issue.
+    App have features : 
+        * Trending Videos
+        * Search with Query history
+
+    App works perfectly but There is one issue (not on my side).
     Youtube API doesnt support any views only iframe which is not so much supported by Android TV.
     I can like open video and play it but not so much add my own features like comment or like.
     That cuts many of future features that I would implement.
     Only few external like share and title with redirrection to Youtube App.
     I have decided to cut external app opening but I wont  be able to remove Share button.
-
-    Soon App will have Search Option with history saving.
 
 [Iframe issue](https://stackoverflow.com/questions/9640265/problems-giving-focus-to-an-iframe-on-smart-tv)
 I was regarding to
