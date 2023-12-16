@@ -12,3 +12,5 @@ internal const val THUMBNAILS_PREFIX: String = "thumbnails_"
 internal const val HIGH_PREFIX: String = "high_"
 internal const val MEDIUM_PREFIX: String = "medium_"
 internal const val DEFAULT_PREFIX: String = "default_"
+
+const val SEARCH_HISTORY_LIMIT = 15

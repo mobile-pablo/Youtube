@@ -11,7 +11,7 @@ internal class SearchHistoryDataStorageImpl @Inject constructor(
 ) : SearchHistoryDataStorage {
 
     override suspend fun upsertSearchHistoryItem(query: String) =
-        searchHistoryDao.upsertSearchHistoryItem(
+        searchHistoryDao.upsertNotDuplicateSearchHistoryItem(
             SearchHistoryEntity(query = query)
         )
 

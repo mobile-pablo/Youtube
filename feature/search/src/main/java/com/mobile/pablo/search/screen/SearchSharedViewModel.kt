@@ -9,6 +9,7 @@ import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.domain.model.search.SearchItem
 import com.mobile.pablo.domain.usecase.SearchHistoryUseCase
 import com.mobile.pablo.domain.usecase.VideosUseCase
+import com.mobile.pablo.storage.database.const.SEARCH_HISTORY_LIMIT
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -30,7 +31,7 @@ class SearchSharedViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var searchHistoryJob: Job? = null
-    private var _query = MutableStateFlow<String>(EMPTY_STRING)
+    private var _query = MutableStateFlow(EMPTY_STRING)
     val query: StateFlow<String> get() = _query
 
     fun setQuery(q: String) {
@@ -63,6 +64,5 @@ class SearchSharedViewModel @Inject constructor(
     companion object {
 
         private const val POPULAR_VIDEO_DEBOUNCE_MILLIS = 6000L
-        private const val SEARCH_HISTORY_LIMIT = 15
     }
 }
