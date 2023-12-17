@@ -1,13 +1,12 @@
-package com.mobile.pablo.home.tests
+package com.mobile.pablo.uicomponents.tests
 
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.platform.app.InstrumentationRegistry
 import com.mobile.pablo.core.util.EMPTY_STRING
-import com.mobile.pablo.home.ext.exists
-import com.mobile.pablo.home.ext.textEquals
-import com.mobile.pablo.uicomponents.views.common.HomeItemView
+import com.mobile.pablo.uicomponents.views.common.VideoItemView
 import com.mobile.pablo.uicomponents.views.wrapper.VideoItemWrapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
@@ -15,7 +14,8 @@ import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class HomeItemViewTest {
+class VideoItemViewTest {
+
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -29,7 +29,7 @@ class HomeItemViewTest {
     }
 
     @Test
-    fun assertHomeItemViewFilledIsDisplayed() {
+    fun assertVideoItemViewFilledIsDisplayed() {
         composeTestRule.apply {
             setContent {
                 wrapper =
@@ -41,24 +41,24 @@ class HomeItemViewTest {
                         duration = "duration",
                         videoId = "videoId"
                     )
-                HomeItemView(wrapper, navController = navController)
+                VideoItemView(wrapper, navController = navController, navigateToPlayer = { _, _, _ -> })
             }
             waitForIdle()
-            onNodeWithText(wrapper.title).exists()
-            onNodeWithText(wrapper.channelName).exists()
+            onNodeWithText(wrapper.title).assertExists()
+            onNodeWithText(wrapper.channelName).assertExists()
         }
     }
 
     @Test
-    fun assertHomeItemViewEmptyDoesntExist() {
+    fun assertVideoItemViewEmptyDoesntExist() {
         wrapper = VideoItemWrapper.empty()
         composeTestRule.apply {
             setContent {
-                HomeItemView(wrapper, navController = navController)
+                VideoItemView(wrapper, navController = navController, navigateToPlayer = { _, _, _ -> })
             }
 
-            onNodeWithText(wrapper.title).textEquals(EMPTY_STRING)
-            onNodeWithText(wrapper.channelName).textEquals(EMPTY_STRING)
+            onNodeWithText(wrapper.title).assertTextEquals(EMPTY_STRING)
+            onNodeWithText(wrapper.channelName).assertTextEquals(EMPTY_STRING)
         }
     }
 }

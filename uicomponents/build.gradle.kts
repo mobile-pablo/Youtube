@@ -40,6 +40,18 @@ android {
     kapt { correctErrorTypes = true }
 
     hilt { enableAggregatingTask = true }
+
+    packaging {
+        resources {
+            excludes +=
+                listOf(
+                    "/META-INF/AL2.0",
+                    "/META-INF/LGPL2.1",
+                    "/META-INF/LICENSE.*",
+                    "/META-INF/LICENSE-*.*"
+                )
+        }
+    }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlint")
