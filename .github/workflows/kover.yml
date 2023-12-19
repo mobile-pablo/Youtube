@@ -21,15 +21,16 @@ jobs:
               run: chmod +x gradlew
             - name: Run Bash Script
               run: |
-                  echo ${{ secrets.GOOGLE_SERVICES }} >> ../app/google-services.json
-                  FILE_PATH="../networking/src/main/java/com/mobile/pablo/networking/const/NetworkConst.kt"
+                  cd ..
+                  echo ${{ secrets.GOOGLE_SERVICES }} >> ./app/google-services.json
+                  FILE_PATH="./networking/src/main/java/com/mobile/pablo/networking/const/NetworkConst.kt"
                   mkdir -p $(dirname "$FILE_PATH")
                   echo ${{ secrets.NETWORK_CONST }} >> $FILE_PATH
-                  sed -i '/tasks.getByPath("preBuild").dependsOn("ktlint")/d' ../networking/build.gradle.kts
-                  echo "storePassword= ${{ secrets.STORE_PASSWORD }}" > ../key.properties
-                  echo "keyPassword= ${{ secrets.KEY_PASSWORD }}" >> ../key.properties
-                  echo "keyAlias= ${{ secrets.KEY_ALIAS }}" >> ../key.properties
-                  echo "storeFile= ${{ secrets.STORE_FILE }}" >> ../key.properties
+                  sed -i '/tasks.getByPath("preBuild").dependsOn("ktlint")/d' ./networking/build.gradle.kts
+                  echo "storePassword= ${{ secrets.STORE_PASSWORD }}" > ./key.properties
+                  echo "keyPassword= ${{ secrets.KEY_PASSWORD }}" >> ./key.properties
+                  echo "keyAlias= ${{ secrets.KEY_ALIAS }}" >> ./key.properties
+                  echo "storeFile= ${{ secrets.STORE_FILE }}" >> ./key.properties
             - name: Build with Gradle
               run:  ./gradlew koverVerifyDebug koverXmlReportDebug
             - name: Upload coverage reports
