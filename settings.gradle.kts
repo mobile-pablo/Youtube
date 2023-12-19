@@ -24,6 +24,7 @@ include(
     ":storage",
     ":uicomponents",
     ":playground",
+    ":feature:auth",
     ":feature:home",
     ":feature:search",
     ":feature:player",
