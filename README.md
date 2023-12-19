@@ -30,6 +30,8 @@
 ## 🪚 Status
 
 ![Progress](https://progress-bar.dev/100/?title=v1.0.0&width=200&color=3A5A40)
+
+![Progress](https://progress-bar.dev/10/?title=v1.0.1&width=200&color=3A5A40)
     
     App have features : 
         * Trending Videos
