@@ -1,0 +1,38 @@
+name: Java CI with Gradle
+
+on:
+    push:
+        branches: [ master , develop ]
+    pull_request:
+        branches: [ master, develop ]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: set up JDK 15.0.0-ea
+              uses: actions/setup-java@v3
+              with:
+                  java-version: '20'
+                  distribution: 'temurin'
+                  cache: gradle
+            - name: Grant execute permission for gradlew
+              run: chmod +x gradlew
+            - name: Run Bash Script
+              run: |
+                  echo ${{ secrets.GOOGLE_SERVICES }} >> ./app/google-services.json
+                  FILE_PATH="./networking/src/main/java/com/mobile/pablo/networking/const/NetworkConst.kt"
+                  mkdir -p $(dirname "$FILE_PATH")
+                  echo ${{ secrets.NETWORK_CONST }} >> $FILE_PATH
+                  sed -i '/tasks.getByPath("preBuild").dependsOn("ktlint")/d' ./networking/build.gradle.kts
+                  echo "storePassword= ${{ secrets.STORE_PASSWORD }}" > ./key.properties
+                  echo "keyPassword= ${{  secrets.KEY_PASSWORD }}" >> ./key.properties
+                  echo "keyAlias= ${{ secrets.KEY_ALIAS }}" >> ./key.properties
+                  echo "storeFile= ${{ secrets.STORE_FILE }}" >> ./key.properties
+            - name: Build with Gradle
+              run:  ./gradlew koverVerifyDebug koverXmlReportDebug
+            - name: Upload coverage reports
+              uses: codecov/codecov-action@v2
+              with:
+                  files: build/reports/kover/report.xml
