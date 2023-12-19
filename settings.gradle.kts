@@ -27,5 +27,6 @@ include(
     ":feature:home",
     ":feature:search",
     ":feature:player",
+    ":feature:playlist",
     ":feature:error"
 )
