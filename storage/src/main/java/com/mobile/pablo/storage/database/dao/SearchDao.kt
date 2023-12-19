@@ -14,6 +14,7 @@ import com.mobile.pablo.storage.database.entity.search.SearchWithItemEntity
 @Keep
 @Dao
 internal abstract class SearchDao {
+
     @Upsert
     abstract suspend fun upsertSearch(search: SearchEntity)
 
