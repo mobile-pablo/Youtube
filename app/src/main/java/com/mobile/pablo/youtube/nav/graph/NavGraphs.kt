@@ -4,6 +4,7 @@ import androidx.annotation.Keep
 import com.mobile.pablo.error.screen.destinations.ErrorScreenDestination
 import com.mobile.pablo.home.screen.destinations.HomeScreenDestination
 import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
+import com.mobile.pablo.playlist.destinations.PlaylistEntryScreenDestination
 import com.mobile.pablo.search.screen.destinations.SearchEntryScreenDestination
 import com.mobile.pablo.search.screen.destinations.SearchResultScreenDestination
 import com.ramcosta.composedestinations.dynamic.routedIn
@@ -24,6 +25,7 @@ object NavGraphs {
                 SearchEntryScreenDestination,
                 SearchResultScreenDestination,
                 PlayerScreenDestination,
+                PlaylistEntryScreenDestination,
                 ErrorScreenDestination
             ).routedIn(this)
                 .associateBy { it.route }

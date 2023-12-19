@@ -10,6 +10,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Settings
 import com.mobile.pablo.home.screen.destinations.HomeScreenDestination
+import com.mobile.pablo.playlist.destinations.PlaylistEntryScreenDestination
 import com.mobile.pablo.search.screen.destinations.SearchEntryScreenDestination
 import com.mobile.pablo.youtube.nav.model.NavigationItem
 
@@ -30,7 +31,8 @@ internal val NAVIGATION_ITEMS =
         NavigationItem(
             title = "Playlist",
             selectedIcon = Icons.AutoMirrored.Filled.List,
-            unselectedIcon = Icons.AutoMirrored.Outlined.List
+            unselectedIcon = Icons.AutoMirrored.Outlined.List,
+            direction = PlaylistEntryScreenDestination
         ),
         NavigationItem(
             title = "Settings",
