@@ -1,15 +1,16 @@
 package com.mobile.pablo.youtube.const
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.automirrored.outlined.List
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Settings
 import com.mobile.pablo.home.screen.destinations.HomeScreenDestination
+import com.mobile.pablo.search.screen.destinations.SearchEntryScreenDestination
 import com.mobile.pablo.youtube.nav.model.NavigationItem
 
 internal val NAVIGATION_ITEMS =
@@ -17,25 +18,24 @@ internal val NAVIGATION_ITEMS =
         NavigationItem(
             title = "Home",
             selectedIcon = Icons.Filled.Home,
-            destination = HomeScreenDestination,
+            direction = HomeScreenDestination,
             unselectedIcon = Icons.Outlined.Home
         ),
         NavigationItem(
             title = "Search",
             selectedIcon = Icons.Filled.Search,
-            unselectedIcon = Icons.Outlined.Search
+            unselectedIcon = Icons.Outlined.Search,
+            direction = SearchEntryScreenDestination
         ),
         NavigationItem(
             title = "Playlist",
-            selectedIcon = Icons.Filled.List,
-            unselectedIcon = Icons.Outlined.List,
-            destination = HomeScreenDestination
+            selectedIcon = Icons.AutoMirrored.Filled.List,
+            unselectedIcon = Icons.AutoMirrored.Outlined.List
         ),
         NavigationItem(
             title = "Settings",
             selectedIcon = Icons.Filled.Settings,
-            unselectedIcon = Icons.Outlined.Settings,
-            destination = HomeScreenDestination
+            unselectedIcon = Icons.Outlined.Settings
         )
     )
 internal val MOCK_NAVIGATION_ITEMS =
@@ -52,8 +52,8 @@ internal val MOCK_NAVIGATION_ITEMS =
         ),
         NavigationItem(
             title = "Playlist",
-            selectedIcon = Icons.Filled.List,
-            unselectedIcon = Icons.Outlined.List,
+            selectedIcon = Icons.AutoMirrored.Filled.List,
+            unselectedIcon = Icons.AutoMirrored.Outlined.List,
             hasNews = true
         ),
         NavigationItem(

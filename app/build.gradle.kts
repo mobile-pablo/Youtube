@@ -3,16 +3,20 @@ import java.util.Properties
 
 apply(from = "../ktlint.gradle.kts")
 
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.kotlinParcelize)
-    alias(libs.plugins.gmsGoogle)
-    alias(libs.plugins.hiltPlugin)
-    alias(libs.plugins.kspPlugin)
-    alias(libs.plugins.firebaseCrashlytics)
+    libs.plugins.apply {
+        listOf(
+            com.android.application,
+            org.jetbrains.kotlin.android,
+            kotlinKapt,
+            kotlinParcelize,
+            gmsGoogle,
+            hiltPlugin,
+            kspPlugin,
+            firebaseCrashlytics,
+            kover
+        ).map(::alias)
+    }
 }
 
 kotlin {
@@ -33,15 +37,32 @@ keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 android {
     namespace = "com.mobile.pablo.youtube"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.mobile.pablo.youtube"
-        minSdk = 28
-        targetSdk = 33
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    /**
+     * May not be possible for TV platform for now
+     * Ticket: https://issuetracker.google.com/issues/232753501
+     * If Doesn't work feel free to remove that part
+     */
+    testOptions {
+        managedDevices {
+            localDevices {
+                create("pixel2api28").apply {
+                    device = "Pixel 2"
+                    apiLevel = 28
+                    systemImageSource = "google-tv"
+                }
+            }
+        }
     }
 
     signingConfigs {
@@ -59,25 +80,77 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
+    buildFeatures { compose = true }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = libs.versions.compose.material.get()
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+    kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }
 
-    kapt {
-        correctErrorTypes = true
-    }
+    kapt { correctErrorTypes = true }
 
     packaging {
         resources {
-            excludes += "META-INF/*"
+            excludes +=
+                listOf(
+                    "/META-INF/AL2.0",
+                    "/META-INF/LGPL2.1",
+                    "/META-INF/LICENSE.*",
+                    "/META-INF/LICENSE-*.*"
+                )
+        }
+    }
+
+    /**
+     *    Android UI tests arent included in that report
+     *    It misses like 60% of the tests I wrote. (Instrumented tests)
+     *    Its not possible for Github Action to
+     *    include coverage for UI test without a AWS Device Farm etc.
+     *    Even plugin don't support that (currently).
+     */
+    koverReport {
+
+        defaults {
+            verify {
+                rule("Multi-module project coverage should be at least 60%") {
+                    minBound(60)
+                }
+            }
+        }
+
+        filters {
+            excludes {
+                classes(
+                    "*BuildConfig*",
+                    "*Destination*",
+                    "*_Impl*",
+                    "*Hilt_*",
+                    "*Screen*",
+                    "*_Hilt*",
+                    "*MainActivity*",
+                    "*_Factory*",
+                    "*ComposableSingletons*",
+                    "*Module_*",
+                    "*Application*"
+                )
+                packages(
+                    "dagger.hilt.*",
+                    "*di*",
+                    "*const*",
+                    "hilt_aggregated_deps",
+                    "*entity*",
+                    "*uicomponents.theme*",
+                    "*uicomponents.ext*",
+                    "*view*",
+                    "*model*",
+                    "*mapper*",
+                    "*wrapper*",
+                    "*storage.sharedprefs*",
+                    "*storage.database*"
+                )
+                annotatedBy("androidx.compose.runtime.Composable")
+            }
         }
     }
 }
@@ -85,25 +158,39 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    implementation(project(":feature:home"))
-    implementation(project(":feature:player"))
-    implementation(project(":feature:error"))
+
     implementation(project(":uicomponents"))
+    listOf("home", "search", "player", "error")
+        .onEach { implementation(project(":feature:$it")) }
 
-    implementation(libs.core.ktx)
-    implementation(libs.leanback)
+    listOf(
+        "core",
+        "domain",
+        "feature:home",
+        "feature:search",
+        "networking",
+        "storage",
+        "uicomponents"
+    ).onEach { kover(project(":$it")) }
 
-    implementation(libs.bundles.androidXBundle)
-    implementation(libs.bundles.composeBundle)
-    implementation(libs.bundles.tvBundle)
+    libs.apply {
+        bundles.apply {
+            listOf(
+                core.ktx,
+                leanback,
+                androidXBundle,
+                composeBundle,
+                tvBundle,
+                hilt.android
+            ).map(::implementation)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+            kapt(hilt.compiler)
+            ksp(compose.destination.ksp)
 
-    kaptAndroidTest(libs.hilt.android.compiler)
-    ksp(libs.compose.destination.ksp)
-
-    debugImplementation(libs.bundles.composeDebugBundle)
-    testImplementation(libs.bundles.testBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
+            debugImplementation(composeDebugBundle)
+            testImplementation(testBundle)
+            kaptAndroidTest(hilt.android.compiler)
+            androidTestImplementation(androidTestBundle)
+        }
+    }
 }

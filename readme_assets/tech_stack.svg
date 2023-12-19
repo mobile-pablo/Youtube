@@ -1,0 +1,123 @@
+<svg fill="none" viewBox="0 0 600 280"  width="700" height = "280" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <style>
+                .container{
+                display: flex;
+                width: 100%;
+                height: fit-content;
+                background-color: #ffffff;
+                }
+                .chip{
+                display: inline-flex;
+                flex-direction: row;
+                background-color: #e5e5e5;
+                border: none;
+                cursor: default;
+                height: 36px;
+                width: fit-content;
+                outline: none;
+                margin : 2px 5px;
+                font-size: 11px;
+                padding: 0px 7px;
+                color: #333333;
+                font-family:"Open Sans", sans-serif;
+                white-space: nowrap;
+                align-items: center;
+                border-radius: 16px;
+                vertical-align: middle;
+                text-decoration: none;
+                justify-content: center;
+                }
+            </style>
+
+            <div class="chip">
+                <b class="chip-content">Multi-module</b>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Retrofit</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">OkHttp</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Hilt + Dagger</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Compose</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Flow</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Coroutines</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Compose Navigation</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Paging3</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Coil</div>
+            </div>
+            <div class="chip">
+                <b class="chip-content">KtLint</b>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Leanback</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Youtube Android Player (iFrame)</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Permissions - Accompanist (soon)</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Compose - testing</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Mockk - tests</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Turbine - flow testing</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Mock Web Server - tests</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Truth - tests</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Crashlytics</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Github Actions</div>
+            </div>
+            <div class="chip">
+                <b class="chip-content">Bitrise: CI - primary</b>
+            </div>
+            <div class="chip">
+                <b class="chip-content">Bitrise: CD - staging - Firebase App Distribution</b>
+            </div>
+            <div class="chip">
+                <b class="chip-content">Bitrise: CD - deploy - Google Play</b>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Github Actions: Delete Branch</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Github Actions: Lint</div>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Github Actions: Stale issues</div>
+            </div>
+            <div class="chip">
+                <b class="chip-content">Kover</b>
+            </div>
+            <div class="chip">
+                <div class="chip-content">Speech Recognizer</div>
+            </div>
+        </div>
+    </foreignObject>
+</svg>

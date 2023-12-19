@@ -1,32 +1,38 @@
 apply(from = "../ktlint.gradle.kts")
 
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.kotlinParcelize)
-    alias(libs.plugins.firebaseCrashlytics)
+
+    libs.plugins.apply {
+        listOf(
+            androidLibrary,
+            org.jetbrains.kotlin.android,
+            kotlinKapt,
+            kotlinParcelize,
+            firebaseCrashlytics,
+            kover
+        ).map(::alias)
+    }
 }
 
 android {
     namespace = "com.mobile.pablo.networking"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 28
+        minSdk = libs.versions.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
+        val serverUrl = "\"https://www.googleapis.com/\""
         debug {
             isMinifyEnabled = false
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
-                value = "\"https://www.googleapis.com/\""
+                value = serverUrl
             )
         }
 
@@ -40,13 +46,13 @@ android {
             buildConfigField(
                 type = "String",
                 name = "SERVER_URL",
-                value = "\"https://www.googleapis.com/\""
+                value = serverUrl
             )
         }
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
 
     kapt {
@@ -59,15 +65,19 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 dependencies {
     api(project(":storage"))
 
-    implementation(libs.bundles.networkingBundle)
+    libs.apply {
+        bundles.apply {
+            listOf(
+                networkingBundle,
+                hilt.android,
+                paging.runtime
+            ).map(::implementation)
 
-    api(libs.coroutine.core)
+            kapt(hilt.compiler)
+            api(coroutine.core)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-
-    implementation(libs.paging.runtime)
-
-    testImplementation(libs.bundles.testBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
+            testImplementation(testBundle)
+            androidTestImplementation(androidTestBundle)
+        }
+    }
 }

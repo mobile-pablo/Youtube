@@ -2,6 +2,7 @@ package com.mobile.pablo.networking.tests
 
 import com.google.common.truth.Truth.assertThat
 import com.mobile.pablo.core.data.DataTransfer
+import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.core.util.TEXT_PLAIN
 import com.mobile.pablo.networking.mapper.common.IdResponseMapper
 import com.mobile.pablo.networking.mapper.common.PageInfoResponseMapper
@@ -27,6 +28,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 
 class SearchDataSourceTest {
+
     private lateinit var youtubeService: YoutubeService
     private lateinit var searchDataSource: SearchDataSource
     private val searchResponseMapper: SearchResponseMapper =
@@ -52,9 +54,9 @@ class SearchDataSourceTest {
     fun `getSearchVideos returns mapped data when response is successful`() =
         runBlocking {
             val query = "test"
-
-            coEvery { youtubeService.getSearchVideos(q = query) } returns Response.success(MOCK_DOG_SEARCH)
-            val result = searchDataSource.getSearchVideos(query)
+            coEvery { youtubeService.getSearchVideos(q = query, pageToken = EMPTY_STRING) } returns
+                Response.success(MOCK_DOG_SEARCH)
+            val result = searchDataSource.getSearchVideos(query, EMPTY_STRING)
             val wantedResult = DataTransfer(searchResponseMapper.map(MOCK_DOG_SEARCH))
             assertThat(result.data).isEqualTo(wantedResult.data)
         }
@@ -71,9 +73,9 @@ class SearchDataSourceTest {
                     notFound.toResponseBody(TEXT_PLAIN.toMediaTypeOrNull())
                 )
 
-            coEvery { youtubeService.getSearchVideos(q = query) } returns error
+            coEvery { youtubeService.getSearchVideos(q = query, pageToken = EMPTY_STRING) } returns error
 
-            val result = searchDataSource.getSearchVideos(query)
+            val result = searchDataSource.getSearchVideos(query, EMPTY_STRING)
 
             assertThat(result.error!!.message).isEqualTo(HttpException(error).message)
             assertThat(result.data).isNull()

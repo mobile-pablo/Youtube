@@ -7,7 +7,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.mobile.pablo.storage.database.dao.SearchDao
+import com.mobile.pablo.storage.database.dao.SearchHistoryDao
 import com.mobile.pablo.storage.database.entity.search.SearchEntity
+import com.mobile.pablo.storage.database.entity.search.SearchHistoryEntity
 import com.mobile.pablo.storage.database.entity.search.SearchItemEntity
 import com.mobile.pablo.storage.database.typeconverter.ListConverter
 
@@ -15,7 +17,8 @@ import com.mobile.pablo.storage.database.typeconverter.ListConverter
 @Database(
     entities = [
         SearchEntity::class,
-        SearchItemEntity::class
+        SearchItemEntity::class,
+        SearchHistoryEntity::class
     ],
     version = 2,
     exportSchema = false
@@ -25,6 +28,8 @@ import com.mobile.pablo.storage.database.typeconverter.ListConverter
 )
 internal abstract class AppDatabase : RoomDatabase() {
     abstract fun searchDao(): SearchDao
+
+    abstract fun searchHistoryDao(): SearchHistoryDao
 
     companion object {
         private const val DB_NAME = "app_database.db"

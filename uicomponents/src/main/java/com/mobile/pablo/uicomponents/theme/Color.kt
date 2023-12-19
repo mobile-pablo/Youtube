@@ -28,6 +28,15 @@ val Colors.secondaryColor: Color
 
 /**
  *  Extension properties for [Colors]
+ *  @property secondarySelectedColor [Color] is
+ *  the secondary color that is currently selected occupies 30% of the color scheme.
+ */
+val Colors.secondarySelectedColor: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) Night.secondarySelectedColor else Day.secondarySelectedColor
+
+/**
+ *  Extension properties for [Colors]
  *  @property tertiaryColor [Color] is
  *  the secondary color that occupies 10% of the color scheme.
  */

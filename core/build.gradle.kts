@@ -1,20 +1,23 @@
 apply(from = "../ktlint.gradle.kts")
 
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.firebaseCrashlytics)
+    libs.plugins.apply {
+        listOf(
+            androidLibrary,
+            kotlinKapt,
+            org.jetbrains.kotlin.android,
+            firebaseCrashlytics,
+            kover
+        ).map(::alias)
+    }
 }
 
 android {
     namespace = "com.mobile.pablo.core"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 28
-
+        minSdk = libs.versions.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -26,29 +29,30 @@ android {
         }
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+    kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }
 
-    kapt {
-        correctErrorTypes = true
-    }
+    kapt { correctErrorTypes = true }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    implementation(libs.bundles.androidXBundle)
+    libs.apply {
+        bundles.apply {
+            listOf(
+                androidXBundle,
+                composeBundle,
+                hilt.android,
+                firebase.analytics,
+                firebase.crashlytics
+            ).map(::implementation)
 
-    implementation(libs.hilt.android)
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.crashlytics)
-    platform(libs.firebase.bom)
-    kapt(libs.hilt.compiler)
+            kapt(hilt.compiler)
+            api(moshiBundle)
+            api(timber)
 
-    api(libs.bundles.moshiBundle)
-    api(libs.timber)
-
-    testImplementation(libs.bundles.testBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
+            testImplementation(testBundle)
+            androidTestImplementation(androidTestBundle)
+        }
+    }
 }

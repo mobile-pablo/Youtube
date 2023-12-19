@@ -5,22 +5,21 @@ import com.mobile.pablo.networking.mapper.common.ThumbnailsResponseMapper
 import com.mobile.pablo.networking.model.search.SearchSnippetResponse
 import javax.inject.Inject
 
-internal class SearchSnippetResponseMapper
-    @Inject
-    constructor(
-        private val thumbnailsResponseMapper: ThumbnailsResponseMapper
-    ) {
-        fun map(response: SearchSnippetResponse?): SearchSnippetDTO? {
-            return response?.run {
-                SearchSnippetDTO(
-                    publishedAt,
-                    channelId,
-                    title,
-                    description,
-                    thumbnailsResponseMapper.map(thumbnails),
-                    channelTitle,
-                    liveBroadcastContent
-                )
-            }
+internal class SearchSnippetResponseMapper @Inject constructor(
+    private val thumbnailsResponseMapper: ThumbnailsResponseMapper
+) {
+
+    fun map(response: SearchSnippetResponse?): SearchSnippetDTO? {
+        return response?.run {
+            SearchSnippetDTO(
+                publishedAt,
+                channelId,
+                title,
+                description,
+                thumbnailsResponseMapper.map(thumbnails),
+                channelTitle,
+                liveBroadcastContent
+            )
         }
     }
+}

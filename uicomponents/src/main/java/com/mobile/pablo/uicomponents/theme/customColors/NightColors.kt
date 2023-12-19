@@ -9,6 +9,9 @@ object NightColors : CustomColors {
     override val secondaryColor: Color
         get() = Color(0xFF1D2E28)
 
+    override val secondarySelectedColor: Color
+        get() = Color(0xFF3D5D51)
+
     override val tertiaryColor: Color
         get() = Color(0xFF066839)
 

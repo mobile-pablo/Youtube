@@ -6,23 +6,22 @@ import com.mobile.pablo.domain.mapper.common.StatisticsMapper
 import com.mobile.pablo.domain.model.popular.PopularItem
 import javax.inject.Inject
 
-class PopularItemMapper
-    @Inject
-    constructor(
-        private val popularSnippetMapper: PopularSnippetMapper,
-        private val contentDetailsMapper: ContentDetailsMapper,
-        private val statisticsMapper: StatisticsMapper
-    ) {
-        fun map(dto: PopularItemDTO?): PopularItem? {
-            return dto?.run {
-                PopularItem(
-                    kind = kind,
-                    etag = etag,
-                    id = id,
-                    snippet = popularSnippetMapper.map(snippet),
-                    contentDetails = contentDetailsMapper.map(contentDetails),
-                    statistics = statisticsMapper.map(statistics)
-                )
-            }
+class PopularItemMapper @Inject constructor(
+    private val popularSnippetMapper: PopularSnippetMapper,
+    private val contentDetailsMapper: ContentDetailsMapper,
+    private val statisticsMapper: StatisticsMapper
+) {
+
+    fun map(dto: PopularItemDTO?): PopularItem? {
+        return dto?.run {
+            PopularItem(
+                kind = kind,
+                etag = etag,
+                id = id,
+                snippet = popularSnippetMapper.map(snippet),
+                contentDetails = contentDetailsMapper.map(contentDetails),
+                statistics = statisticsMapper.map(statistics)
+            )
         }
     }
+}

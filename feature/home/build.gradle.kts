@@ -1,21 +1,24 @@
 apply(from = "../../ktlint.gradle.kts")
 
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.firebaseCrashlytics)
-    alias(libs.plugins.kspPlugin)
+    libs.plugins.apply {
+        listOf(
+            androidLibrary,
+            kotlinKapt,
+            org.jetbrains.kotlin.android,
+            firebaseCrashlytics,
+            kspPlugin,
+            kover
+        ).map(::alias)
+    }
 }
 
 android {
     namespace = "com.mobile.pablo.home"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 28
-
+        minSdk = libs.versions.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -30,21 +33,15 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
+    buildFeatures { compose = true }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = libs.versions.compose.material.get()
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+    kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }
 
-    kapt {
-        correctErrorTypes = true
-    }
+    kapt { correctErrorTypes = true }
 
     ksp {
         arg(
@@ -59,7 +56,13 @@ android {
 
     packaging {
         resources {
-            excludes += "META-INF/*"
+            excludes +=
+                listOf(
+                    "/META-INF/AL2.0",
+                    "/META-INF/LGPL2.1",
+                    "/META-INF/LICENSE.*",
+                    "/META-INF/LICENSE-*.*"
+                )
         }
     }
 }
@@ -67,22 +70,28 @@ android {
 tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
-    implementation(project(":feature:player"))
-    implementation(project(":feature:error"))
+    listOf(
+        "feature:player",
+        "feature:error",
+        "domain",
+        "uicomponents"
+    ).onEach { implementation(project(":$it")) }
 
-    implementation(project(":domain"))
-    implementation(project(":uicomponents"))
+    libs.apply {
+        bundles.apply {
+            listOf(
+                composeBundle,
+                tvBundle,
+                paging.runtime,
+                compose.paging,
+                hilt.android
+            ).map(::implementation)
 
-    implementation(libs.bundles.composeBundle)
-    implementation(libs.bundles.tvBundle)
-    ksp(libs.compose.destination.ksp)
+            kapt(hilt.compiler)
+            ksp(compose.destination.ksp)
 
-    implementation(libs.paging.runtime)
-    implementation(libs.compose.paging)
-
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-
-    testImplementation(libs.bundles.testBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
+            testImplementation(testBundle)
+            androidTestImplementation(androidTestBundle)
+        }
+    }
 }

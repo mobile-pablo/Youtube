@@ -1,2 +1,4 @@
 /build
 /src/main/java/com/mobile/pablo/networking/const/NetworkConst.kt
+property(org.gradle.api.file.Directory
+/property 'buildDir'/ktlint.html

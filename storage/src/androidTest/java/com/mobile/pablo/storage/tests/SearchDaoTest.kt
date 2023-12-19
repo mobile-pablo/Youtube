@@ -36,7 +36,7 @@ class SearchDaoTest {
     @Test
     fun insertSearchWithItemsAreStored() =
         runBlocking {
-            searchDao.insertSearchWithItems(MOCK_DOG_SEARCH)
+            searchDao.upsertSearchWithItems(MOCK_DOG_SEARCH)
             val result = searchDao.getSearchWithItems()
             assertThat(result).isEqualTo(MOCK_DOG_SEARCH)
         }
@@ -44,7 +44,7 @@ class SearchDaoTest {
     @Test
     fun removeSearchWithItemsAreRemoved() =
         runBlocking {
-            searchDao.insertSearchWithItems(MOCK_DOG_SEARCH)
+            searchDao.upsertSearchWithItems(MOCK_DOG_SEARCH)
             searchDao.removeSearchWithItems(MOCK_DOG_SEARCH.search!!.etag)
             val result = searchDao.getSearchWithItems()
             assertThat(result?.search).isNull()
@@ -54,7 +54,7 @@ class SearchDaoTest {
     @Test
     fun clearSearchesWithItemsAreCleared() =
         runBlocking {
-            searchDao.insertSearchWithItems(MOCK_DOG_SEARCH)
+            searchDao.upsertSearchWithItems(MOCK_DOG_SEARCH)
             searchDao.clearSearchesWithItems()
             val result = searchDao.getSearchWithItems()
             assertThat(result?.search).isNull()
