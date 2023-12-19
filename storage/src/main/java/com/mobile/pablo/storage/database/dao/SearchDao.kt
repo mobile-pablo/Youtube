@@ -2,10 +2,9 @@ package com.mobile.pablo.storage.database.dao
 
 import androidx.annotation.Keep
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Upsert
 import com.mobile.pablo.storage.database.const.SEARCH_ITEM_TABLE_NAME
 import com.mobile.pablo.storage.database.const.SEARCH_TABLE_NAME
 import com.mobile.pablo.storage.database.entity.search.SearchEntity
@@ -15,17 +14,17 @@ import com.mobile.pablo.storage.database.entity.search.SearchWithItemEntity
 @Keep
 @Dao
 internal abstract class SearchDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insertSearch(search: SearchEntity?)
+    @Upsert
+    abstract suspend fun upsertSearch(search: SearchEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insertSearchItems(items: List<SearchItemEntity?>)
+    @Upsert
+    abstract suspend fun upsertSearchItems(items: List<SearchItemEntity>)
 
     @Query("SELECT * FROM $SEARCH_TABLE_NAME")
     abstract suspend fun getSearch(): SearchEntity?
 
     @Query("SELECT * FROM $SEARCH_ITEM_TABLE_NAME WHERE parentId = :parentId")
-    abstract suspend fun getSearchItems(parentId: String): List<SearchItemEntity?>?
+    abstract suspend fun getSearchItems(parentId: String): List<SearchItemEntity>?
 
     @Query("DELETE FROM $SEARCH_TABLE_NAME WHERE etag = :etag")
     abstract suspend fun removeSearch(etag: String)
@@ -43,7 +42,7 @@ internal abstract class SearchDao {
     abstract suspend fun getSearchByEtag(etag: String): SearchEntity?
 
     @Query("SELECT * FROM $SEARCH_ITEM_TABLE_NAME WHERE parentId = :parentId")
-    abstract suspend fun getSearchItemsByParentEtag(parentId: String): List<SearchItemEntity?>?
+    abstract suspend fun getSearchItemsByParentEtag(parentId: String): List<SearchItemEntity>?
 
     @Transaction
     open suspend fun getSearchWithItems(): SearchWithItemEntity? {
@@ -54,15 +53,15 @@ internal abstract class SearchDao {
 
     @Transaction
     open suspend fun getSearchWithItemsByEtag(etag: String): SearchWithItemEntity? {
-        val search = getSearchByEtag(etag)
-        val items = getSearchItemsByParentEtag(etag)
+        val search = getSearchByEtag(etag)!!
+        val items = getSearchItemsByParentEtag(etag)!!
         return SearchWithItemEntity(search, items)
     }
 
     @Transaction
-    open suspend fun insertSearchWithItems(searchWithItemEntity: SearchWithItemEntity) {
-        insertSearch(searchWithItemEntity.search)
-        insertSearchItems(searchWithItemEntity.items!!)
+    open suspend fun upsertSearchWithItems(searchWithItemEntity: SearchWithItemEntity) {
+        upsertSearch(searchWithItemEntity.search!!)
+        upsertSearchItems(searchWithItemEntity.items!!)
     }
 
     @Transaction

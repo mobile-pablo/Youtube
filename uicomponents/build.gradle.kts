@@ -1,23 +1,24 @@
 apply(from = "../ktlint.gradle.kts")
 
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.kotlinParcelize)
-    alias(libs.plugins.hiltPlugin)
-    alias(libs.plugins.kspPlugin)
-    alias(libs.plugins.firebaseCrashlytics)
+    listOf(
+        libs.plugins.androidLibrary,
+        libs.plugins.org.jetbrains.kotlin.android,
+        libs.plugins.kotlinKapt,
+        libs.plugins.kotlinParcelize,
+        libs.plugins.hiltPlugin,
+        libs.plugins.kspPlugin,
+        libs.plugins.firebaseCrashlytics,
+        libs.plugins.kover
+    ).map(::alias)
 }
 
 android {
     namespace = "com.mobile.pablo.uicomponents"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 28
-
+        minSdk = libs.versions.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -28,20 +29,28 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
+    buildFeatures { compose = true }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = libs.versions.compose.material.get()
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+    kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }
 
-    kapt {
-        correctErrorTypes = true
+    kapt { correctErrorTypes = true }
+
+    hilt { enableAggregatingTask = true }
+
+    packaging {
+        resources {
+            excludes +=
+                listOf(
+                    "/META-INF/AL2.0",
+                    "/META-INF/LGPL2.1",
+                    "/META-INF/LICENSE.*",
+                    "/META-INF/LICENSE-*.*"
+                )
+        }
     }
 }
 
@@ -50,20 +59,23 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 dependencies {
     api(project(":core"))
 
-    implementation(libs.core.ktx)
-    implementation(libs.leanback)
+    libs.apply {
+        bundles.apply {
+            listOf(
+                core.ktx,
+                leanback,
+                androidXBundle,
+                composeBundle,
+                hilt.android
+            ).map(::implementation)
 
-    implementation(libs.bundles.androidXBundle)
-    implementation(libs.bundles.composeBundle)
-    implementation(libs.bundles.tvBundle)
+            kapt(hilt.compiler)
+            ksp(compose.destination.ksp)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-
-    kaptAndroidTest(libs.hilt.android.compiler)
-    ksp(libs.compose.destination.ksp)
-
-    testImplementation(libs.bundles.testBundle)
-    debugImplementation(libs.bundles.composeDebugBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
+            testImplementation(testBundle)
+            debugImplementation(composeDebugBundle)
+            kaptAndroidTest(hilt.android.compiler)
+            androidTestImplementation(androidTestBundle)
+        }
+    }
 }

@@ -271,10 +271,8 @@ class YoutubePlayerUiController(
     }
 
     private fun onPlayButtonPressed() {
-        if (isPlaying) {
-            youTubePlayer.pause()
-        } else {
-            youTubePlayer.play()
+        youTubePlayer.apply {
+            if (isPlaying) pause() else play()
         }
     }
 

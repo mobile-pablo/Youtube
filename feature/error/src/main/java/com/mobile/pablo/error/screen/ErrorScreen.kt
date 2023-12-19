@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
@@ -17,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.tv.material3.Text
 import com.mobile.pablo.error.R
 import com.mobile.pablo.uicomponents.theme.MONTSERRAT_FONT_FAMILY
 import com.mobile.pablo.uicomponents.theme.bodyTextColor
@@ -36,23 +36,21 @@ private const val ERROR_DESCRIPTION_MAX_LINES = 2
 fun ErrorScreen(destinationsNavigator: DestinationsNavigator? = null) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier =
-            Modifier
-                .fillMaxSize()
-                .background(Theme.colors.primaryColor)
-                .padding(horizontal = Theme.spacing.spacing_82)
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Theme.colors.primaryColor)
+            .padding(horizontal = Theme.spacing.spacing_82)
     ) {
         Box(
             contentAlignment = Alignment.BottomCenter
         ) {
             Icon(
                 imageVector = Icons.Filled.Search,
-                modifier =
-                    Modifier
-                        .size(Theme.spacing.spacing_240)
-                        .clickable {
-                            destinationsNavigator?.popBackStack()
-                        },
+                modifier = Modifier
+                    .size(Theme.spacing.spacing_240)
+                    .clickable {
+                        destinationsNavigator?.popBackStack()
+                    },
                 contentDescription = SEARCH_BADGE_TAG,
                 tint = Theme.colors.secondaryColor
             )

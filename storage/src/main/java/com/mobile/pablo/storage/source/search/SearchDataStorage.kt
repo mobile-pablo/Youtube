@@ -3,7 +3,7 @@ package com.mobile.pablo.storage.source.search
 import com.mobile.pablo.core.model.search.SearchDTO
 
 interface SearchDataStorage {
-    suspend fun insertSearch(search: SearchDTO?)
+    suspend fun upsertSearch(search: SearchDTO?)
 
     suspend fun getSearch(): SearchDTO?
 

@@ -11,4 +11,4 @@ jobs:
       - name: delete branch
         uses: SvanBoxel/delete-merged-branch@main
         env:
-          GITHUB_TOKEN: ${{ secrets.Youtube_API_Repo }}
+          GITHUB_TOKEN: ${{ secrets.YOUTUBE_REPO_GITHUB_TOKEN }}

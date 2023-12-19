@@ -1,21 +1,24 @@
 apply(from = "../ktlint.gradle.kts")
 
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.kspPlugin)
-    alias(libs.plugins.firebaseCrashlytics)
+    libs.plugins.apply {
+        listOf(
+            androidLibrary,
+            kotlinKapt,
+            org.jetbrains.kotlin.android,
+            kspPlugin,
+            firebaseCrashlytics,
+            kover
+        ).map(::alias)
+    }
 }
 
 android {
     namespace = "com.mobile.pablo.storage"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 28
-
+        minSdk = libs.versions.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
 
@@ -39,7 +42,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
 
     kapt {
@@ -48,7 +51,13 @@ android {
 
     packaging {
         resources {
-            excludes += "META-INF/*"
+            excludes +=
+                listOf(
+                    "/META-INF/AL2.0",
+                    "/META-INF/LGPL2.1",
+                    "/META-INF/LICENSE.*",
+                    "/META-INF/LICENSE-*.*"
+                )
         }
     }
 }
@@ -58,15 +67,19 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 dependencies {
     api(project(":core"))
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    libs.apply {
+        listOf(
+            hilt.android,
+            paging.runtime,
+            androidx.security
+        ).map(::implementation)
 
-    implementation(libs.paging.runtime)
+        kapt(hilt.compiler)
 
-    api(libs.room.ktx)
-    ksp(libs.room.compiler)
-    implementation(libs.androidx.security)
+        api(room.ktx)
+        ksp(room.compiler)
 
-    testImplementation(libs.bundles.testBundle)
-    androidTestImplementation(libs.bundles.androidTestBundle)
+        testImplementation(bundles.testBundle)
+        androidTestImplementation(bundles.androidTestBundle)
+    }
 }

@@ -11,5 +11,5 @@ internal data class SearchWithItemEntity(
         parentColumn = "${SEARCH_PREFIX}etag",
         entityColumn = "parentId"
     )
-    val items: List<SearchItemEntity?>?
+    val items: List<SearchItemEntity>?
 )

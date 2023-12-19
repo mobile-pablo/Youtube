@@ -24,7 +24,8 @@ internal interface YoutubeService {
     @GET(YOUTUBE_V3_SEARCH)
     suspend fun getSearchVideos(
         @Query(PART_QUERY) part: String = SNIPPET,
-        @Query(Q_QUERY) q: String
+        @Query(Q_QUERY) q: String,
+        @Query(PAGE_TOKEN_QUERY) pageToken: String? = null
     ): Response<SearchResponse>
 
     @GET(YOUTUBE_V3_VIDEOS)

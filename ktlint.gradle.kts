@@ -13,7 +13,7 @@ tasks.register<JavaExec>("ktlint") {
         "**/src/**/*.kt",
         "**.kts",
         "!**/build/**",
-        "--reporter=html,output=${buildDir}/ktlint.html",
+        "--reporter=html,output=${layout.buildDirectory}/ktlint.html",
         "--reporter=plain",
         "--reporter=checkstyle",
     )
