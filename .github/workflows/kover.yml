@@ -27,7 +27,7 @@ jobs:
                   echo ${{ secrets.NETWORK_CONST }} >> $FILE_PATH
                   sed -i '/tasks.getByPath("preBuild").dependsOn("ktlint")/d' ./networking/build.gradle.kts
                   echo "storePassword= ${{ secrets.STORE_PASSWORD }}" > ./key.properties
-                  echo "keyPassword= ${{  secrets.KEY_PASSWORD }}" >> ./key.properties
+                  echo "keyPassword= ${{ secrets.KEY_PASSWORD }}" >> ./key.properties
                   echo "keyAlias= ${{ secrets.KEY_ALIAS }}" >> ./key.properties
                   echo "storeFile= ${{ secrets.STORE_FILE }}" >> ./key.properties
             - name: Build with Gradle
