@@ -159,7 +159,7 @@ tasks.getByPath("preBuild").dependsOn("ktlint")
 
 dependencies {
 
-    implementation(project(":uicomponents"))
+    listOf("uicomponents", "domain").onEach { implementation(project(":$it")) }
     listOf("auth", "error", "home", "player", "playlist", "search")
         .onEach { implementation(project(":feature:$it")) }
 

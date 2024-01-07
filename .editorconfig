@@ -110,3 +110,4 @@ ktlint_standard_string-template-indent = disabled
 ktlint_standard_annotation = disabled
 ktlint_standard_no-empty-first-line-in-class-body = disabled
 ktlint_standard_multiline-if-else = disabled
+ktlint_standard_property-naming = disabled

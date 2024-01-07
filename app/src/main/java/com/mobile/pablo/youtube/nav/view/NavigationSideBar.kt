@@ -15,18 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.navigation.NavController
-import com.mobile.pablo.core.ext.isRouteOnBackStack
 import com.mobile.pablo.uicomponents.ext.testTag
 import com.mobile.pablo.uicomponents.theme.secondaryColor
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.mobile.pablo.uicomponents.theme.tertiaryColor
 import com.mobile.pablo.youtube.R
+import com.mobile.pablo.youtube.nav.ext.navigateTo
 import com.mobile.pablo.youtube.nav.graph.NavGraphs
 import com.mobile.pablo.youtube.nav.model.NavigationItem
-import com.ramcosta.composedestinations.dynamic.within
-import com.ramcosta.composedestinations.navigation.navigate
-import com.ramcosta.composedestinations.navigation.popUpTo
-import com.ramcosta.composedestinations.spec.DirectionDestinationSpec
 import androidx.compose.material.MaterialTheme as Theme
 
 typealias OnNavigationItemSelected = (Int) -> Unit
@@ -69,7 +65,7 @@ internal fun NavigationSideBar(
                         selected = selectedItemIndex == index,
                         onClick = {
                             onItemSelected(index)
-                            item.direction?.let { navigateToTab(it, navController!!) }
+                            item.direction?.let { navController!!.navigateTo(it, NavGraphs.main) }
                         },
                         icon = {
                             NavigationIcon(
@@ -82,26 +78,4 @@ internal fun NavigationSideBar(
             }
         }
     )
-}
-
-private fun navigateToTab(
-    destination: DirectionDestinationSpec,
-    navController: NavController
-) {
-    navController.apply {
-        val isCurrentDestOnBackStack =
-            navController.isRouteOnBackStack(destination.route)
-
-        if (isCurrentDestOnBackStack) {
-            navController.popBackStack(destination.route, false)
-            return
-        }
-        navigate(destination within NavGraphs.main) {
-            popUpTo(NavGraphs.root) {
-                saveState = true
-            }
-            launchSingleTop = true
-            restoreState = true
-        }
-    }
 }

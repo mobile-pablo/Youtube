@@ -1,6 +1,7 @@
 package com.mobile.pablo.youtube.nav.graph
 
 import androidx.annotation.Keep
+import com.mobile.pablo.auth.destinations.AuthScreenDestination
 import com.mobile.pablo.error.screen.destinations.ErrorScreenDestination
 import com.mobile.pablo.home.screen.destinations.HomeScreenDestination
 import com.mobile.pablo.player.screen.destinations.PlayerScreenDestination
@@ -26,6 +27,7 @@ object NavGraphs {
                 SearchResultScreenDestination,
                 PlayerScreenDestination,
                 PlaylistEntryScreenDestination,
+                AuthScreenDestination,
                 ErrorScreenDestination
             ).routedIn(this)
                 .associateBy { it.route }

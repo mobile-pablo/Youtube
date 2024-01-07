@@ -12,7 +12,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.mobile.pablo.uicomponents.theme.spacing
-import com.mobile.pablo.youtube.MainActivity
+import com.mobile.pablo.youtube.activity.MainActivity
 import com.mobile.pablo.youtube.const.MOCK_NAVIGATION_ITEMS
 import com.mobile.pablo.youtube.nav.view.NavigationSideBar
 import com.mobile.pablo.youtube.robot.navigationSideBarRobot
