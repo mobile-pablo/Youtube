@@ -1,8 +1,10 @@
 package com.mobile.pablo.networking.source.popular
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mobile.pablo.core.model.popular.PopularItemDTO
+import java.util.Locale
 import javax.inject.Inject
 
 class PopularPagingSource @Inject constructor(
@@ -22,7 +24,7 @@ class PopularPagingSource @Inject constructor(
     override suspend fun load(params: LoadParams<String>): LoadResult<String, PopularItemDTO> {
         val popularResponse =
             popularDataSource.getPopularVideos(
-                regionCode = "US",
+                regionCode = Locale.getDefault().getCountry() ?: "US",
                 nextPageToken
             )
 
