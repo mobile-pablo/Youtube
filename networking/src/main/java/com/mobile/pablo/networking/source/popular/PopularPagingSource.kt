@@ -1,6 +1,5 @@
 package com.mobile.pablo.networking.source.popular
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mobile.pablo.core.model.popular.PopularItemDTO

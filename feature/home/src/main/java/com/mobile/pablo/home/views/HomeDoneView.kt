@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.mobile.pablo.core.util.EMPTY_STRING
 import com.mobile.pablo.domain.model.popular.PopularItem
@@ -27,16 +28,16 @@ internal fun HomeDoneView(
     ) {
         items(popularItems.itemCount) { index ->
             val item = popularItems[index]
-            item?.apply {
-                snippet?.apply {
+            if (item != null) {
+                item.snippet?.apply {
                     VideoItemView(
                         wrapper = VideoItemWrapper(
                             title = title ?: EMPTY_STRING,
                             channelName = channelTitle ?: EMPTY_STRING,
                             description = description ?: EMPTY_STRING,
                             imageUrl = thumbnails!!.medium!!.url!!,
-                            videoId = id!!,
-                            duration = contentDetails!!.duration ?: EMPTY_STRING
+                            videoId = item.id!!,
+                            duration = item.contentDetails!!.duration ?: EMPTY_STRING
                         ),
                         destinationsNavigator = destinationsNavigator,
                         navController = navController,
@@ -49,6 +50,14 @@ internal fun HomeDoneView(
                         }
                     )
                 }
+            } else {
+                HomeShimmerVideoItem()
+            }
+        }
+
+        if (popularItems.loadState.append is LoadState.Loading) {
+            items(3) {
+                HomeShimmerVideoItem()
             }
         }
     }
