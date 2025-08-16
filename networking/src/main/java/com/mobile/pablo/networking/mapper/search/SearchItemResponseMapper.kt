@@ -10,8 +10,8 @@ internal class SearchItemResponseMapper @Inject constructor(
     private val searchSnippetResponseMapper: SearchSnippetResponseMapper
 ) {
 
-    fun map(response: SearchItemResponse?): SearchItemDTO? {
-        return response?.run {
+    fun map(response: SearchItemResponse?): SearchItemDTO? =
+        response?.run {
             SearchItemDTO(
                 kind = kind,
                 etag = etag,
@@ -19,5 +19,4 @@ internal class SearchItemResponseMapper @Inject constructor(
                 snippet = searchSnippetResponseMapper.map(snippet)
             )
         }
-    }
 }

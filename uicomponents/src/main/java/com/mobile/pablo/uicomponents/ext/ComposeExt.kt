@@ -265,8 +265,7 @@ fun Modifier.shimmerEffect(): Modifier =
                 end = Offset(startOffsetX + size.width.toFloat(), size.height.toFloat())
             ),
             shape = RoundedCornerShape(Theme.spacing.spacing_6)
-        )
-            .onGloballyPositioned {
-                size = it.size
-            }
+        ).onGloballyPositioned {
+            size = it.size
+        }
     }

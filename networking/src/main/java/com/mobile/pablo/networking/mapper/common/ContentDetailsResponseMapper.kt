@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 internal class ContentDetailsResponseMapper @Inject constructor() {
 
-    fun map(response: ContentDetailsResponse?): ContentDetailsDTO? {
-        return response?.run {
+    fun map(response: ContentDetailsResponse?): ContentDetailsDTO? =
+        response?.run {
             ContentDetailsDTO(
                 duration = duration,
                 dimension = dimension,
@@ -17,5 +17,4 @@ internal class ContentDetailsResponseMapper @Inject constructor() {
                 projection = projection
             )
         }
-    }
 }

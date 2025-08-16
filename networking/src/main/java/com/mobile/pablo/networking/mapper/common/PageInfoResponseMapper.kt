@@ -6,12 +6,11 @@ import javax.inject.Inject
 
 internal class PageInfoResponseMapper @Inject constructor() {
 
-    fun map(response: PageInfoResponse?): PageInfoDTO? {
-        return response?.run {
+    fun map(response: PageInfoResponse?): PageInfoDTO? =
+        response?.run {
             PageInfoDTO(
                 totalResults = totalResults,
                 resultsPerPage = resultsPerPage
             )
         }
-    }
 }

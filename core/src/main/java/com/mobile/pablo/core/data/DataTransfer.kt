@@ -7,14 +7,13 @@ class DataTransfer<T>(
 
     val isSuccessful: Boolean = data != null
 
-    suspend fun <R> map(transform: suspend (T) -> R): DataTransfer<R> {
-        return DataTransfer(
+    suspend fun <R> map(transform: suspend (T) -> R): DataTransfer<R> =
+        DataTransfer(
             data = data?.let {
                 transform.invoke(it)
             },
             error = error
         )
-    }
 
     fun doIfSuccessful(action: (T) -> Unit) {
         if (isSuccessful) {

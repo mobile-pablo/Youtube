@@ -12,8 +12,8 @@ class PopularItemMapper @Inject constructor(
     private val statisticsMapper: StatisticsMapper
 ) {
 
-    fun map(dto: PopularItemDTO?): PopularItem? {
-        return dto?.run {
+    fun map(dto: PopularItemDTO?): PopularItem? =
+        dto?.run {
             PopularItem(
                 kind = kind,
                 etag = etag,
@@ -23,5 +23,4 @@ class PopularItemMapper @Inject constructor(
                 statistics = statisticsMapper.map(statistics)
             )
         }
-    }
 }

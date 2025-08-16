@@ -6,21 +6,19 @@ import javax.inject.Inject
 
 internal class PageInfoEntityMapper @Inject constructor() {
 
-    fun map(dto: PageInfoDTO?): PageInfoEntity? {
-        return dto?.run {
+    fun map(dto: PageInfoDTO?): PageInfoEntity? =
+        dto?.run {
             PageInfoEntity(
                 totalResults = totalResults,
                 resultsPerPage = resultsPerPage
             )
         }
-    }
 
-    fun map(entity: PageInfoEntity?): PageInfoDTO? {
-        return entity?.run {
+    fun map(entity: PageInfoEntity?): PageInfoDTO? =
+        entity?.run {
             PageInfoDTO(
                 totalResults = totalResults,
                 resultsPerPage = resultsPerPage
             )
         }
-    }
 }

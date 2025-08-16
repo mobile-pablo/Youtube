@@ -21,7 +21,8 @@ class RequestInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val url =
-            chain.request()
+            chain
+                .request()
                 .url
                 .newBuilder()
                 .addQueryParameter(KEY_NAME, YOUTUBE_KEY)
@@ -30,11 +31,14 @@ class RequestInterceptor : Interceptor {
         val request = chain.request()
         return try {
             val requestBuilder =
-                request.newBuilder().url(url)
+                request
+                    .newBuilder()
+                    .url(url)
                     .addHeader(USER_AGENT, ANDROID)
             chain.proceed(requestBuilder.build())
         } catch (timeout: SocketTimeoutException) {
-            Response.Builder()
+            Response
+                .Builder()
                 .request(request)
                 .protocol(Protocol.HTTP_2)
                 .code(HttpURLConnection.HTTP_CLIENT_TIMEOUT)
@@ -42,7 +46,8 @@ class RequestInterceptor : Interceptor {
                 .message("SocketTimeout ${timeout.message}")
                 .build()
         } catch (unknown: UnknownHostException) {
-            Response.Builder()
+            Response
+                .Builder()
                 .request(request)
                 .protocol(Protocol.HTTP_2)
                 .code(HttpURLConnection.HTTP_UNAVAILABLE)
@@ -50,7 +55,8 @@ class RequestInterceptor : Interceptor {
                 .message("Unknown  ${unknown.message}")
                 .build()
         } catch (ex: Exception) {
-            Response.Builder()
+            Response
+                .Builder()
                 .request(request)
                 .protocol(Protocol.HTTP_2)
                 .code(HttpURLConnection.HTTP_INTERNAL_ERROR)

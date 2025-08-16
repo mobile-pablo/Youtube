@@ -11,8 +11,8 @@ class PopularSnippetMapper @Inject constructor(
     private val localizedMapper: LocalizedMapper
 ) {
 
-    fun map(dto: PopularSnippetDTO?): PopularSnippet? {
-        return dto?.run {
+    fun map(dto: PopularSnippetDTO?): PopularSnippet? =
+        dto?.run {
             PopularSnippet(
                 publishedAt = publishedAt,
                 channelId = channelId,
@@ -27,5 +27,4 @@ class PopularSnippetMapper @Inject constructor(
                 defaultAudioLanguage = defaultAudioLanguage
             )
         }
-    }
 }

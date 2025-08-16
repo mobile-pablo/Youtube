@@ -17,8 +17,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.menu.MenuIt
 internal class MenuAdapter(
     private val context: Context,
     private val menuItems: List<MenuItem>
-) :
-    RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -43,11 +42,11 @@ internal class MenuAdapter(
         }
     }
 
-    override fun getItemCount(): Int {
-        return menuItems.size
-    }
+    override fun getItemCount(): Int = menuItems.size
 
-    internal inner class ViewHolder(val root: View) : RecyclerView.ViewHolder(root) {
+    internal inner class ViewHolder(
+        val root: View
+    ) : RecyclerView.ViewHolder(root) {
         val textView: TextView = root.findViewById(R.id.text)
     }
 }

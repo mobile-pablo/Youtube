@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 class StatisticsMapper @Inject constructor() {
 
-    fun map(dto: StatisticsDTO?): Statistics? {
-        return dto?.run {
+    fun map(dto: StatisticsDTO?): Statistics? =
+        dto?.run {
             Statistics(
                 viewCount = viewCount,
                 likeCount = likeCount,
@@ -16,5 +16,4 @@ class StatisticsMapper @Inject constructor() {
                 commentCount = commentCount
             )
         }
-    }
 }

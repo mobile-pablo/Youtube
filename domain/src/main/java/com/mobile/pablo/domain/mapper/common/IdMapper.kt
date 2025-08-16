@@ -6,12 +6,11 @@ import javax.inject.Inject
 
 class IdMapper @Inject constructor() {
 
-    fun map(dto: IdDTO?): Id? {
-        return dto?.run {
+    fun map(dto: IdDTO?): Id? =
+        dto?.run {
             Id(
                 kind = kind,
                 videoId = videoId
             )
         }
-    }
 }

@@ -8,13 +8,12 @@ internal class ThumbnailsResponseMapper @Inject constructor(
     private val thumbnailResponseMapper: ThumbnailResponseMapper
 ) {
 
-    fun map(response: ThumbnailsResponse?): ThumbnailsDTO? {
-        return response?.run {
+    fun map(response: ThumbnailsResponse?): ThumbnailsDTO? =
+        response?.run {
             ThumbnailsDTO(
                 thumbnailResponseMapper.map(default),
                 thumbnailResponseMapper.map(medium),
                 thumbnailResponseMapper.map(high)
             )
         }
-    }
 }

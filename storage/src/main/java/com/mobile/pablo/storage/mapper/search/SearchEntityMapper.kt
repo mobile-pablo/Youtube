@@ -11,8 +11,8 @@ internal class SearchEntityMapper @Inject constructor(
     private val searchItemMapper: SearchItemEntityMapper
 ) {
 
-    fun map(dto: SearchDTO?): SearchWithItemEntity? {
-        return dto?.run {
+    fun map(dto: SearchDTO?): SearchWithItemEntity? =
+        dto?.run {
             SearchWithItemEntity(
                 search = SearchEntity(
                     kind = kind,
@@ -27,10 +27,9 @@ internal class SearchEntityMapper @Inject constructor(
                 }
             )
         }
-    }
 
-    fun map(entity: SearchWithItemEntity?): SearchDTO? {
-        return entity?.run {
+    fun map(entity: SearchWithItemEntity?): SearchDTO? =
+        entity?.run {
             SearchDTO(
                 kind = search!!.kind,
                 etag = search.etag,
@@ -41,5 +40,4 @@ internal class SearchEntityMapper @Inject constructor(
                 items = items!!.map(searchItemMapper::map)
             )
         }
-    }
 }

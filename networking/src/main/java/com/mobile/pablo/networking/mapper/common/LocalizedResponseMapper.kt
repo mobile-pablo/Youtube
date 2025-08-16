@@ -6,12 +6,11 @@ import javax.inject.Inject
 
 internal class LocalizedResponseMapper @Inject constructor() {
 
-    fun map(response: LocalizedResponse?): LocalizedDTO? {
-        return response?.run {
+    fun map(response: LocalizedResponse?): LocalizedDTO? =
+        response?.run {
             LocalizedDTO(
                 title = title,
                 description = description
             )
         }
-    }
 }

@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 internal class StatisticsResponseMapper @Inject constructor() {
 
-    fun map(response: StatisticsResponse?): StatisticsDTO? {
-        return response?.run {
+    fun map(response: StatisticsResponse?): StatisticsDTO? =
+        response?.run {
             StatisticsDTO(
                 viewCount = viewCount,
                 likeCount = likeCount,
@@ -16,5 +16,4 @@ internal class StatisticsResponseMapper @Inject constructor() {
                 commentCount = commentCount
             )
         }
-    }
 }

@@ -6,23 +6,21 @@ import javax.inject.Inject
 
 internal class ThumbnailEntityMapper @Inject constructor() {
 
-    fun map(dto: ThumbnailDTO?): ThumbnailEntity? {
-        return dto?.run {
+    fun map(dto: ThumbnailDTO?): ThumbnailEntity? =
+        dto?.run {
             ThumbnailEntity(
                 url,
                 width,
                 height
             )
         }
-    }
 
-    fun map(entity: ThumbnailEntity?): ThumbnailDTO? {
-        return entity?.run {
+    fun map(entity: ThumbnailEntity?): ThumbnailDTO? =
+        entity?.run {
             ThumbnailDTO(
                 url,
                 width,
                 height
             )
         }
-    }
 }

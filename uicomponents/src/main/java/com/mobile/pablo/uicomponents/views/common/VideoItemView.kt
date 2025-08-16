@@ -45,8 +45,7 @@ fun VideoItemView(
                     navController,
                     wrapper.videoId
                 )
-            }
-            .padding(
+            }.padding(
                 vertical = Theme.spacing.spacing_12,
                 horizontal = Theme.spacing.spacing_32
             ),

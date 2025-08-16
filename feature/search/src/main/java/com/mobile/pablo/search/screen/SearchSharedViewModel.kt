@@ -55,20 +55,25 @@ class SearchSharedViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val searchItemsState: Flow<PagingData<SearchItem>> =
-        query.flatMapLatest { query ->
-            getSearchVideos(query)
-        }.shareIn(
-            viewModelScope,
-            started = SharingStarted.WhileSubscribed(POPULAR_VIDEO_DEBOUNCE_MILLIS),
-            replay = 1
-        ).cachedIn(viewModelScope)
+        query
+            .flatMapLatest { query ->
+                getSearchVideos(query)
+            }.shareIn(
+                viewModelScope,
+                started = SharingStarted.WhileSubscribed(POPULAR_VIDEO_DEBOUNCE_MILLIS),
+                replay = 1
+            ).cachedIn(viewModelScope)
             .distinctUntilChanged()
             .map { pagingData ->
                 pagingData.filter { item ->
                     when {
                         item.id == null -> false
                         item.id!!.videoId == null -> false
-                        item.snippet!!.thumbnails!!.medium!!.url.isNullOrBlank() -> false
+                        item.snippet!!
+                            .thumbnails!!
+                            .medium!!
+                            .url
+                            .isNullOrBlank() -> false
                         else -> true
                     }
                 }

@@ -28,11 +28,9 @@ fun DurationView(
             .padding(
                 bottom = Theme.spacing.spacing_8,
                 end = Theme.spacing.spacing_8
-            )
-            .clip(
+            ).clip(
                 RoundedCornerShape(Theme.spacing.spacing_4)
-            )
-            .background(Theme.colors.backgroundAlphaColor)
+            ).background(Theme.colors.backgroundAlphaColor)
             .padding(Theme.spacing.spacing_4),
         contentAlignment = Alignment.Center
     ) {

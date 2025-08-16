@@ -8,13 +8,12 @@ import javax.inject.Inject
 
 internal class ThumbnailResponseMapper @Inject constructor() {
 
-    fun map(response: ThumbnailResponse?): ThumbnailDTO? {
-        return response?.run {
+    fun map(response: ThumbnailResponse?): ThumbnailDTO? =
+        response?.run {
             ThumbnailDTO(
                 url.takeIf { it!!.startsWith(IMAGE_PREFIX) } ?: EMPTY_STRING,
                 width,
                 height
             )
         }
-    }
 }

@@ -6,12 +6,11 @@ import javax.inject.Inject
 
 internal class IdResponseMapper @Inject constructor() {
 
-    fun map(remote: IdResponse?): IdDTO? {
-        return remote?.run {
+    fun map(remote: IdResponse?): IdDTO? =
+        remote?.run {
             IdDTO(
                 kind = kind,
                 videoId = videoId
             )
         }
-    }
 }

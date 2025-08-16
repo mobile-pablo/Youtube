@@ -4,7 +4,9 @@ import androidx.annotation.Keep
 import com.mobile.pablo.core.util.EMPTY_STRING
 
 @Keep
-enum class Setting(val type: Type) {
+enum class Setting(
+    val type: Type
+) {
     OAUTH_TOKEN(Type.STRING),
     DARK_MODE_ENABLED(Type.BOOL),
 
@@ -14,7 +16,9 @@ enum class Setting(val type: Type) {
     TEST_STRING(Type.STRING)
 }
 
-enum class Type(val default: Any) {
+enum class Type(
+    val default: Any
+) {
     BOOL(false),
     INT(0),
     LONG(0L),

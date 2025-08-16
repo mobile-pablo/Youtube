@@ -26,8 +26,8 @@ sealed class VideosUseCase {
         private val searchItemMapper: SearchItemMapper
     ) : VideosUseCase() {
 
-        operator fun invoke(query: String): Flow<PagingData<SearchItem>> {
-            return Pager(
+        operator fun invoke(query: String): Flow<PagingData<SearchItem>> =
+            Pager(
                 config = PagingConfig(
                     pageSize = PAGE_SIZE,
                     prefetchDistance = PAGE_PREFETCH_DISTANCE,
@@ -39,7 +39,6 @@ sealed class VideosUseCase {
                     searchItemMapper.map(searchItemDTO)!!
                 }
             }
-        }
     }
 
     class GetPopularVideos @Inject constructor(
@@ -47,8 +46,8 @@ sealed class VideosUseCase {
         private val popularItemMapper: PopularItemMapper
     ) : VideosUseCase() {
 
-        operator fun invoke(): Flow<PagingData<PopularItem>> {
-            return Pager(
+        operator fun invoke(): Flow<PagingData<PopularItem>> =
+            Pager(
                 config = PagingConfig(
                     pageSize = PAGE_SIZE,
                     prefetchDistance = PAGE_PREFETCH_DISTANCE,
@@ -60,6 +59,5 @@ sealed class VideosUseCase {
                     popularItemMapper.map(popularItemDTO)!!
                 }
             }
-        }
     }
 }

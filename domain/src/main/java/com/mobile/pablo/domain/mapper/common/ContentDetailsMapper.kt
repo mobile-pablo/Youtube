@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 class ContentDetailsMapper @Inject constructor() {
 
-    fun map(dto: ContentDetailsDTO?): ContentDetails? {
-        return dto?.run {
+    fun map(dto: ContentDetailsDTO?): ContentDetails? =
+        dto?.run {
             ContentDetails(
                 duration = duration,
                 dimension = dimension,
@@ -17,5 +17,4 @@ class ContentDetailsMapper @Inject constructor() {
                 projection = projection
             )
         }
-    }
 }

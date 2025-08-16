@@ -9,8 +9,8 @@ internal class SearchSnippetResponseMapper @Inject constructor(
     private val thumbnailsResponseMapper: ThumbnailsResponseMapper
 ) {
 
-    fun map(response: SearchSnippetResponse?): SearchSnippetDTO? {
-        return response?.run {
+    fun map(response: SearchSnippetResponse?): SearchSnippetDTO? =
+        response?.run {
             SearchSnippetDTO(
                 publishedAt,
                 channelId,
@@ -21,5 +21,4 @@ internal class SearchSnippetResponseMapper @Inject constructor(
                 liveBroadcastContent
             )
         }
-    }
 }

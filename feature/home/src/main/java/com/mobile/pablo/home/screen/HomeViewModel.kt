@@ -32,12 +32,15 @@ class HomeViewModel @Inject constructor(
                 pagingData.filter { item ->
                     when {
                         item.id == null -> false
-                        item.snippet!!.thumbnails!!.medium!!.url.isNullOrBlank() -> false
+                        item.snippet!!
+                            .thumbnails!!
+                            .medium!!
+                            .url
+                            .isNullOrBlank() -> false
                         else -> true
                     }
                 }
-            }
-            .distinctUntilChanged()
+            }.distinctUntilChanged()
             .cachedIn(viewModelScope)
             .debounce(POPULAR_VIDEO_DEBOUNCE_MILLIS)
 }

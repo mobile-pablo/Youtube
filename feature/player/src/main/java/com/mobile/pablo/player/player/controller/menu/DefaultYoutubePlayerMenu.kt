@@ -17,7 +17,9 @@ import timber.log.Timber
  *  Copied from https://github.com/PierfrancescoSoffritti/android-youtube-player
  *  only to make YoutubePlayerUiController.kt work (internal class)
  */
-internal class DefaultYoutubePlayerMenu(private val context: Context) : YouTubePlayerMenu {
+internal class DefaultYoutubePlayerMenu(
+    private val context: Context
+) : YouTubePlayerMenu {
     private val menuItems = ArrayList<MenuItem>()
     private var popupWindow: PopupWindow? = null
 

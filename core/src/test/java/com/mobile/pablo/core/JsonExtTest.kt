@@ -11,8 +11,10 @@ import org.junit.Test
 
 class JsonExtensionsTest {
     private val moshi =
-        Moshi.Builder()
-            .add(KotlinJsonAdapterFactory()).build()
+        Moshi
+            .Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
 
     companion object {
         private const val JSON_ITEM_ONE_TITLE = "test"

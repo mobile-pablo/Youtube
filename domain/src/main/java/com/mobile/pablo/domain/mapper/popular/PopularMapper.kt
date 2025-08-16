@@ -10,8 +10,8 @@ internal class PopularMapper @Inject constructor(
     private val popularItemMapper: PopularItemMapper
 ) {
 
-    fun map(dto: PopularDTO?): Popular? {
-        return dto?.run {
+    fun map(dto: PopularDTO?): Popular? =
+        dto?.run {
             Popular(
                 kind = kind,
                 etag = etag,
@@ -21,5 +21,4 @@ internal class PopularMapper @Inject constructor(
                 pageInfo = pageInfoMapper.map(pageInfo)
             )
         }
-    }
 }

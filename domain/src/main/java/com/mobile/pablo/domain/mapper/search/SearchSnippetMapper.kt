@@ -9,8 +9,8 @@ class SearchSnippetMapper @Inject constructor(
     private val thumbnailsMapper: ThumbnailsMapper
 ) {
 
-    fun map(dto: SearchSnippetDTO?): SearchSnippet? {
-        return dto?.run {
+    fun map(dto: SearchSnippetDTO?): SearchSnippet? =
+        dto?.run {
             SearchSnippet(
                 publishedAt,
                 channelId,
@@ -21,5 +21,4 @@ class SearchSnippetMapper @Inject constructor(
                 liveBroadcastContent
             )
         }
-    }
 }

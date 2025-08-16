@@ -32,13 +32,8 @@ import com.mobile.pablo.search.view.SearchHistoryChips
 import com.mobile.pablo.uicomponents.ext.clear
 import com.mobile.pablo.uicomponents.ext.navigateTo
 import com.mobile.pablo.uicomponents.theme.primaryColor
-import com.mobile.pablo.uicomponents.theme.secondaryColor
-import com.mobile.pablo.uicomponents.theme.secondarySelectedColor
 import com.mobile.pablo.uicomponents.theme.spacing
-import com.mobile.pablo.uicomponents.theme.tertiaryColor
-import com.mobile.pablo.uicomponents.theme.tertiarySelectedColor
 import com.mobile.pablo.uicomponents.views.common.SearchBar
-import com.mobile.pablo.uicomponents.views.keyboard.view.KeyboardView
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -105,7 +100,9 @@ fun SearchEntryScreen(
                             modifier = Modifier
                                 .weight(5f)
                                 .padding(end = Theme.spacing.spacing_8),
-                            hint = stringResource(id = R.string.search_videos)
+                            hint = stringResource(id = R.string.search_videos),
+                            isEnabled = true,
+                            autoFocus = true
                         )
 
                         RecordFab(
@@ -128,24 +125,6 @@ fun SearchEntryScreen(
                         }
                     )
                 }
-
-                KeyboardView(
-                    modifier = Modifier.fillMaxSize(),
-                    backgroundColor = Theme.colors.primaryColor,
-                    buttonBackgroundColor = Theme.colors.secondaryColor,
-                    buttonSelectedBackgroundColor = Theme.colors.secondarySelectedColor,
-                    buttonTextColor = Theme.colors.tertiaryColor,
-                    buttonSelectedTextColor = Theme.colors.tertiarySelectedColor,
-                    textFieldState = query,
-                    onAction = {
-                        searchFromQuery(
-                            query,
-                            viewModel,
-                            destinationsNavigator,
-                            navController
-                        )
-                    }
-                )
             }
         }
     }

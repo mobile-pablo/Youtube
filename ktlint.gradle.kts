@@ -15,7 +15,7 @@ tasks.register<JavaExec>("ktlint") {
         "!**/build/**",
         "--reporter=html,output=${layout.buildDirectory}/ktlint.html",
         "--reporter=plain",
-        "--reporter=checkstyle",
+        "--reporter=checkstyle"
     )
 }
 
@@ -34,6 +34,6 @@ tasks.register<JavaExec>("ktlintFormat") {
         "-F",
         "**/src/**/*.kt",
         "**.kts",
-        "!**/build/**",
+        "!**/build/**"
     )
 }

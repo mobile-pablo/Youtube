@@ -20,7 +20,8 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
 
     init {
         val masterKey =
-            MasterKey.Builder(context)
+            MasterKey
+                .Builder(context)
                 .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
                 .build()
         sharedPreferences =
@@ -43,7 +44,8 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
         value: String
     ): String {
         if (setting.type != Type.STRING) throw IllegalArgumentException("${setting.name} is not a String")
-        sharedPreferences.edit()
+        sharedPreferences
+            .edit()
             .putString(setting.name, value)
             .apply()
 
@@ -60,7 +62,8 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
         value: Int
     ): Int {
         if (setting.type != Type.INT) throw IllegalArgumentException("${setting.name} is not an Int")
-        sharedPreferences.edit()
+        sharedPreferences
+            .edit()
             .putInt(setting.name, value)
             .apply()
 
@@ -77,7 +80,8 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
         value: Long
     ): Long {
         if (setting.type != Type.LONG) throw IllegalArgumentException("${setting.name} is not a Long")
-        sharedPreferences.edit()
+        sharedPreferences
+            .edit()
             .putLong(setting.name, value)
             .apply()
 
@@ -94,14 +98,16 @@ internal class SharedPreferencesManagerImpl @Inject constructor(
         value: Boolean
     ): Boolean {
         if (setting.type != Type.BOOL) throw IllegalArgumentException("${setting.name} is not a Boolean")
-        sharedPreferences.edit()
+        sharedPreferences
+            .edit()
             .putBoolean(setting.name, value)
             .apply()
         return value
     }
 
     override suspend fun clear() {
-        sharedPreferences.edit()
+        sharedPreferences
+            .edit()
             .clear()
             .apply()
     }

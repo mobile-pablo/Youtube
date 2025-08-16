@@ -9,8 +9,8 @@ import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 import timber.log.Timber
 
-suspend fun <T> callSafe(request: suspend () -> Response<T>): Response<T> {
-    return try {
+suspend fun <T> callSafe(request: suspend () -> Response<T>): Response<T> =
+    try {
         request.invoke()
     } catch (exception: Exception) {
         Timber.e(exception)
@@ -20,4 +20,3 @@ suspend fun <T> callSafe(request: suspend () -> Response<T>): Response<T> {
             (exception.message ?: EMPTY_STRING).toResponseBody(TEXT_PLAIN.toMediaTypeOrNull())
         )
     }
-}

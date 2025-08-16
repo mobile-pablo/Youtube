@@ -6,12 +6,11 @@ import javax.inject.Inject
 
 class PageInfoMapper @Inject constructor() {
 
-    fun map(dto: PageInfoDTO?): PageInfo? {
-        return dto?.run {
+    fun map(dto: PageInfoDTO?): PageInfo? =
+        dto?.run {
             PageInfo(
                 totalResults = totalResults,
                 resultsPerPage = resultsPerPage
             )
         }
-    }
 }

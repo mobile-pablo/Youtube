@@ -12,8 +12,8 @@ internal class PopularItemResponseMapper @Inject constructor(
     private val statisticsResponseMapper: StatisticsResponseMapper
 ) {
 
-    fun map(response: PopularItemResponse?): PopularItemDTO? {
-        return response?.run {
+    fun map(response: PopularItemResponse?): PopularItemDTO? =
+        response?.run {
             PopularItemDTO(
                 kind = kind,
                 etag = etag,
@@ -23,5 +23,4 @@ internal class PopularItemResponseMapper @Inject constructor(
                 statistics = statisticsResponseMapper.map(statistics)
             )
         }
-    }
 }

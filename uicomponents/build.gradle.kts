@@ -15,10 +15,14 @@ plugins {
 
 android {
     namespace = "com.mobile.pablo.uicomponents"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk = libs.versions.compileSdk
+        .get()
+        .toInt()
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = libs.versions.minSdk
+            .get()
+            .toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -32,7 +36,8 @@ android {
     buildFeatures { compose = true }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.material.get()
+        kotlinCompilerExtensionVersion = libs.versions.compose.material
+            .get()
     }
 
     kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }

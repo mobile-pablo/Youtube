@@ -11,8 +11,8 @@ internal class PopularSnippetResponseMapper @Inject constructor(
     private val localizedResponseMapper: LocalizedResponseMapper
 ) {
 
-    fun map(response: PopularSnippetResponse?): PopularSnippetDTO? {
-        return response?.run {
+    fun map(response: PopularSnippetResponse?): PopularSnippetDTO? =
+        response?.run {
             PopularSnippetDTO(
                 publishedAt = publishedAt,
                 channelId = channelId,
@@ -27,5 +27,4 @@ internal class PopularSnippetResponseMapper @Inject constructor(
                 defaultAudioLanguage = defaultAudioLanguage
             )
         }
-    }
 }

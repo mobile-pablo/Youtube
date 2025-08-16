@@ -9,8 +9,8 @@ internal class SnippetEntityMapper @Inject constructor(
     private val thumbnailsMapper: ThumbnailsEntityMapper
 ) {
 
-    fun map(dto: SearchSnippetDTO?): SearchSnippetEntity? {
-        return dto?.run {
+    fun map(dto: SearchSnippetDTO?): SearchSnippetEntity? =
+        dto?.run {
             SearchSnippetEntity(
                 publishedAt,
                 channelId,
@@ -22,10 +22,9 @@ internal class SnippetEntityMapper @Inject constructor(
                 publishTime
             )
         }
-    }
 
-    fun map(entity: SearchSnippetEntity?): SearchSnippetDTO? {
-        return entity?.run {
+    fun map(entity: SearchSnippetEntity?): SearchSnippetDTO? =
+        entity?.run {
             SearchSnippetDTO(
                 publishedAt,
                 channelId,
@@ -37,5 +36,4 @@ internal class SnippetEntityMapper @Inject constructor(
                 publishTime
             )
         }
-    }
 }

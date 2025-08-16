@@ -39,12 +39,12 @@ internal abstract class AppDatabase : RoomDatabase() {
             if (this::instance.isInitialized) {
                 instance
             } else {
-                Room.databaseBuilder(
-                    context,
-                    AppDatabase::class.java,
-                    DB_NAME
-                )
-                    .fallbackToDestructiveMigration()
+                Room
+                    .databaseBuilder(
+                        context,
+                        AppDatabase::class.java,
+                        DB_NAME
+                    ).fallbackToDestructiveMigration()
                     .build()
                     .apply {
                         instance = this

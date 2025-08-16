@@ -8,23 +8,21 @@ internal class ThumbnailsEntityMapper @Inject constructor(
     private val thumbnailEntityMapper: ThumbnailEntityMapper
 ) {
 
-    fun map(dto: ThumbnailsDTO?): ThumbnailsEntity? {
-        return dto?.run {
+    fun map(dto: ThumbnailsDTO?): ThumbnailsEntity? =
+        dto?.run {
             ThumbnailsEntity(
                 thumbnailEntityMapper.map(default),
                 thumbnailEntityMapper.map(medium),
                 thumbnailEntityMapper.map(high)
             )
         }
-    }
 
-    fun map(entity: ThumbnailsEntity?): ThumbnailsDTO? {
-        return entity?.run {
+    fun map(entity: ThumbnailsEntity?): ThumbnailsDTO? =
+        entity?.run {
             ThumbnailsDTO(
                 thumbnailEntityMapper.map(default),
                 thumbnailEntityMapper.map(medium),
                 thumbnailEntityMapper.map(high)
             )
         }
-    }
 }

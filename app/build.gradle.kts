@@ -37,12 +37,18 @@ keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 android {
     namespace = "com.mobile.pablo.youtube"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk = libs.versions.compileSdk
+        .get()
+        .toInt()
 
     defaultConfig {
         applicationId = "com.mobile.pablo.youtube"
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
+        minSdk = libs.versions.minSdk
+            .get()
+            .toInt()
+        targetSdk = libs.versions.targetSdk
+            .get()
+            .toInt()
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -83,7 +89,8 @@ android {
     buildFeatures { compose = true }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.material.get()
+        kotlinCompilerExtensionVersion = libs.versions.compose.material
+            .get()
     }
 
     kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }

@@ -58,7 +58,8 @@ object NetworkingModule {
         requestInterceptor: RequestInterceptor,
         cache: Cache
     ): OkHttpClient =
-        OkHttpClient.Builder()
+        OkHttpClient
+            .Builder()
             .cache(cache)
             .callTimeout(TIMEOUT_MILLIS, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT_MILLIS, TimeUnit.SECONDS)
@@ -74,7 +75,8 @@ object NetworkingModule {
         client: OkHttpClient,
         moshi: Moshi
     ): Retrofit =
-        Retrofit.Builder()
+        Retrofit
+            .Builder()
             .baseUrl(BuildConfig.SERVER_URL)
             .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))

@@ -1,7 +1,6 @@
 package com.mobile.pablo.uicomponents.views.common
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -12,12 +11,18 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -28,6 +33,7 @@ import com.mobile.pablo.uicomponents.theme.font
 import com.mobile.pablo.uicomponents.theme.secondaryColor
 import com.mobile.pablo.uicomponents.theme.spacing
 import com.mobile.pablo.uicomponents.theme.tertiaryColor
+import kotlinx.coroutines.delay
 import androidx.compose.material.MaterialTheme as Theme
 
 @Composable
@@ -36,6 +42,7 @@ fun SearchBar(
     textFieldState: MutableState<TextFieldValue>,
     modifier: Modifier = Modifier,
     isEnabled: Boolean = false,
+    autoFocus: Boolean = false,
     height: Dp = Theme.spacing.spacing_56,
     elevation: Dp = Theme.spacing.spacing_4,
     cornerShape: Shape = RoundedCornerShape(Theme.spacing.spacing_16),
@@ -43,20 +50,34 @@ fun SearchBar(
     onSearchClicked: (String) -> Unit = {},
     onTextChange: (String) -> Unit = {}
 ) {
+    val focusRequester = remember { FocusRequester() }
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    LaunchedEffect(autoFocus) {
+        if (autoFocus) {
+            delay(100)
+            focusRequester.requestFocus()
+        }
+    }
     Row(
         modifier = modifier
             .height(height)
             .fillMaxWidth()
             .shadow(elevation = elevation, shape = cornerShape)
-            .background(color = backgroundColor, shape = cornerShape)
-            .clickable { onSearchClicked(textFieldState.value.text) },
+            .background(color = backgroundColor, shape = cornerShape),
         verticalAlignment = Alignment.CenterVertically
     ) {
         BasicTextField(
             modifier = modifier
                 .weight(5f)
                 .fillMaxWidth()
-                .padding(horizontal = Theme.spacing.spacing_12),
+                .padding(horizontal = Theme.spacing.spacing_12)
+                .focusRequester(focusRequester)
+                .onFocusChanged { focusState ->
+                    if (focusState.isFocused) {
+                        keyboardController?.show()
+                    }
+                },
             value = textFieldState.value,
             onValueChange = {
                 textFieldState.value = it

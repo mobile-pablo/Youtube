@@ -13,8 +13,8 @@ internal class SearchItemEntityMapper @Inject constructor(
     fun map(
         dto: SearchItemDTO?,
         parentId: String
-    ): SearchItemEntity? {
-        return dto?.run {
+    ): SearchItemEntity? =
+        dto?.run {
             SearchItemEntity(
                 kind = kind,
                 etag = etag,
@@ -23,10 +23,9 @@ internal class SearchItemEntityMapper @Inject constructor(
                 snippet = snippetEntityMapper.map(snippet)
             )
         }
-    }
 
-    fun map(entity: SearchItemEntity?): SearchItemDTO? {
-        return entity?.run {
+    fun map(entity: SearchItemEntity?): SearchItemDTO? =
+        entity?.run {
             SearchItemDTO(
                 kind = kind,
                 etag = etag,
@@ -34,5 +33,4 @@ internal class SearchItemEntityMapper @Inject constructor(
                 snippet = snippetEntityMapper.map(snippet)
             )
         }
-    }
 }

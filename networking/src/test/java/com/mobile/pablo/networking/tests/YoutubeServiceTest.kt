@@ -28,7 +28,8 @@ class YoutubeServiceTest {
 
     private lateinit var youtubeService: YoutubeService
     private val okHttpClient =
-        OkHttpClient.Builder()
+        OkHttpClient
+            .Builder()
             .callTimeout(TIMEOUT_MILLIS, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT_MILLIS, TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT_MILLIS, TimeUnit.SECONDS)
@@ -37,10 +38,10 @@ class YoutubeServiceTest {
                 HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
                 }
-            )
-            .build()
+            ).build()
     private val moshi =
-        Moshi.Builder()
+        Moshi
+            .Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
 
@@ -49,7 +50,8 @@ class YoutubeServiceTest {
         mockWebServer.start()
 
         youtubeService =
-            Retrofit.Builder()
+            Retrofit
+                .Builder()
                 .baseUrl(mockWebServer.url("/"))
                 .client(okHttpClient)
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
@@ -69,7 +71,8 @@ class YoutubeServiceTest {
 
             val responseJson = jsonAdapter.toJson(MOCK_DOG_SEARCH)
             val response =
-                MockResponse().setResponseCode(HttpURLConnection.HTTP_OK)
+                MockResponse()
+                    .setResponseCode(HttpURLConnection.HTTP_OK)
                     .setBody(responseJson)
 
             mockWebServer.enqueue(response)
@@ -87,7 +90,8 @@ class YoutubeServiceTest {
 
             val responseJson = jsonAdapter.toJson(MOCK_POPULAR_ITEM)
             val response =
-                MockResponse().setResponseCode(HttpURLConnection.HTTP_OK)
+                MockResponse()
+                    .setResponseCode(HttpURLConnection.HTTP_OK)
                     .setBody(responseJson)
 
             mockWebServer.enqueue(response)

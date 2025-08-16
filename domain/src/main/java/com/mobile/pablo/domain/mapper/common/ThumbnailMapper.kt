@@ -6,13 +6,12 @@ import javax.inject.Inject
 
 class ThumbnailMapper @Inject constructor() {
 
-    fun map(dto: ThumbnailDTO?): Thumbnail? {
-        return dto?.run {
+    fun map(dto: ThumbnailDTO?): Thumbnail? =
+        dto?.run {
             Thumbnail(
                 url,
                 width,
                 height
             )
         }
-    }
 }

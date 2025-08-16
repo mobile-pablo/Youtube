@@ -6,7 +6,8 @@ package com.mobile.pablo.uicomponents.views.keyboard.data.model
 sealed class Alphabets(
     override val text: String,
     override val span: Int = 1
-) : Key, Cloneable {
+) : Key,
+    Cloneable {
     object A : Alphabets("a")
 
     object B : Alphabets("b")
