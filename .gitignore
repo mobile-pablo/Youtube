@@ -5,6 +5,7 @@
 *.aab
 
 # Misc files
+*.md
 
 # Files for the ART/Dalvik VM
 *.dex
